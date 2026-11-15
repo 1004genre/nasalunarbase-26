@@ -18,10 +18,11 @@ It counts spells of low Sun of two hours or more on snow-free bare ground. It re
 It also tells clearly what no place on Earth can copy: black shadows, a slow Sun, vacuum, low gravity, dust and cold.
 A coarser first pass does a similar search for 57 Mars sites.
 
-It is an entry to the NASA Space Apps Challenge 2026. The challenge: [Identify Earth Locations that Analog the Permanent Moon Base Locations and Mars](https://www.spaceappschallenge.org/2026/challenges/permanent-moon-base-locations-and-mars/).
+It is the entry of Researched Technologies LLC (Merced, California) to the NASA Space Apps Challenge 2026. The challenge: [Identify Earth Locations that Analog the Permanent Moon Base Locations and Mars](https://www.spaceappschallenge.org/2026/challenges/permanent-moon-base-locations-and-mars/).
 
 - The page: http://15.204.81.56/
 - The repository: https://github.com/1004genre/nasalunarbase-26
+- The project page on Space Apps: https://www.spaceappschallenge.org/2026/find-a-team/spicy-chicken/?tab=project
 - How the method works: [docs/METHOD.md](docs/METHOD.md)
 - The results of the 16 lunar regions and the 57 Mars sites: [data/derived/RESULTS-FINAL.md](data/derived/RESULTS-FINAL.md)
 - Each Moon result of the first build, with the file and field that it comes from: [data/derived/RESULTS.md](data/derived/RESULTS.md)
@@ -529,4 +530,4 @@ Code: Apache License 2.0. Our result files: CC BY 4.0, except `data/reference/kn
 
 The licence line above is the one `data/SOURCES.md` gives.
 
-Copyright 2026 the LuniMartian Atlas team. See `LICENSE` and `NOTICE`.
+Copyright 2026 Researched Technologies LLC. See `LICENSE` and `NOTICE`.
