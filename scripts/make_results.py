@@ -508,7 +508,7 @@ def build():
 
     L = []
     A = L.append
-    A("# Earth Twin Finder: results, version 3")
+    A("# LuniMartian Atlas: results, version 3")
     A("")
     A(f"Generated {datetime.now().strftime('%A %-d %B %Y, %H:%M')} Pacific by `scripts/make_results.py` from the files in "
       "`data/derived/` as they stood after the chain was run again on the version 3 inputs. Every number below was read from those files or "

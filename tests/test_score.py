@@ -822,7 +822,7 @@ def test_terrain_held_back_for_a_missing_tile_is_not_called_a_refused_window():
 
 def test_results_of_the_new_method_are_never_renamed(tmp_path):
     new = {"cells_scored.json": '{"meta": {}, "cells": []}', "validation.json": '{"meta": {}, "checks": []}',
-           "ranking.txt": "Earth Twin Finder ranking, written 2026-11-14T16:30:00.\n"}
+           "ranking.txt": "LuniMartian Atlas ranking, written 2026-11-14T16:30:00.\n"}
     for name, text in new.items():
         (tmp_path / name).write_text(text)
     assert score_cells.keep_old_results(tmp_path) == []       # no _v1 copy exists, and still nothing is renamed
@@ -840,7 +840,7 @@ def test_a_first_method_file_is_told_from_a_new_one(tmp_path):
     assert first("validation.json", '{"qaqortorsuaq": {}}') is True
     assert first("validation.json", '{"meta": {}}') is False
     assert first("ranking.txt", "scored cells: 1053; wrote data/derived/cells_scored.json\n") is True
-    assert first("ranking.txt", "Earth Twin Finder ranking, written 2026-11-14T14:39:00.\n") is False
+    assert first("ranking.txt", "LuniMartian Atlas ranking, written 2026-11-14T14:39:00.\n") is False
     assert first("cells_scored.json", "{ not json") is False          # a file that cannot be read is left alone
 
 

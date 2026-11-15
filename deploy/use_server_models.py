@@ -1,4 +1,4 @@
-# This file was written with AI assistance (Claude, Anthropic) for the Earth Twin Finder project.
+# This file was written with AI assistance (Claude, Anthropic) for the LuniMartian Atlas project.
 """Let one copy of the page use the AI models of the right computer.
 
     python3 deploy/use_server_models.py <folder of the page>

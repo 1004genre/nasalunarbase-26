@@ -1,4 +1,4 @@
-// This file was written with AI assistance (Claude, Anthropic) for the Earth Twin Finder project.
+// This file was written with AI assistance (Claude, Anthropic) for the LuniMartian Atlas project.
 // On an address that is not secure (http and not localhost), a browser does not give a page the
 // function crypto.subtle. The page uses that function for one job only: SHA-256, to check that its
 // data files belong together. This file supplies SHA-256 where the browser does not, so that the

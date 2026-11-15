@@ -21,7 +21,7 @@ The commands, with `<folder>` for the folder that holds `site/` and the two conf
     docker run -d --name etf-ollama --restart unless-stopped --network etf-net -v etf-ollama:/root/.ollama ollama/ollama
     docker exec etf-ollama ollama pull nomic-embed-text
     docker exec etf-ollama ollama pull qwen2.5:7b
-    docker run -d --name earth-twin-finder --restart unless-stopped --network etf-net -p 80:80 \
+    docker run -d --name lunimartian-atlas --restart unless-stopped --network etf-net -p 80:80 \
       -v <folder>/site:/usr/share/nginx/html:ro \
       -v <folder>/nginx-site.conf:/etc/nginx/conf.d/default.conf:ro \
       -v <folder>/nginx-models.inc:/etc/nginx/conf.d/models.inc:ro nginx

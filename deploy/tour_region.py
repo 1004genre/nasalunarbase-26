@@ -1,4 +1,4 @@
-# This file was written with AI assistance (Claude, Anthropic) for the Earth Twin Finder project.
+# This file was written with AI assistance (Claude, Anthropic) for the LuniMartian Atlas project.
 """Make the tour turn to Malapert Massif, the example region of the documents.
 
     python3 deploy/tour_region.py <folder of the page>

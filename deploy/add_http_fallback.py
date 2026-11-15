@@ -1,4 +1,4 @@
-# This file was written with AI assistance (Claude, Anthropic) for the Earth Twin Finder project.
+# This file was written with AI assistance (Claude, Anthropic) for the LuniMartian Atlas project.
 """Make a copy of the page work on a plain http address.
 
     python3 deploy/add_http_fallback.py <folder of the page>

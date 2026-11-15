@@ -1,4 +1,4 @@
-// Tools for Earth Twin Finder. All data enters through the page's module API.
+// Tools for LuniMartian Atlas. All data enters through the page's module API.
 const DRAWN = 'Drawn by code from open data; the code was written with AI assistance.';
 const NO_MODEL = 'unknown: NASA has no 5 m terrain model of this region';
 const valid = (x) => typeof x === 'number' && Number.isFinite(x);
@@ -664,7 +664,7 @@ export async function mount(root, api) {
     });
     const print = button('Print this place', async () => {
       const value = await ready; if (!value || destroyed) return;
-      printCard.replaceChildren(el('p', 'tl-eyebrow', 'Earth Twin Finder · Place card'), el('h1', '', nameOf(api.area(i))), el('pre', 'tl-print-text', value.split('\n').slice(1).join('\n')));
+      printCard.replaceChildren(el('p', 'tl-eyebrow', 'LuniMartian Atlas · Place card'), el('h1', '', nameOf(api.area(i))), el('pre', 'tl-print-text', value.split('\n').slice(1).join('\n')));
       printCard.dataset.ready = 'true'; window.print();
     });
     actions.append(copy, print); node.append(actions, status, preview);
@@ -693,7 +693,7 @@ export async function mount(root, api) {
     const kml = `<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://www.opengis.net/kml/2.2"><Document><name>${esc(notes.title)}</name><description>${esc(description)}</description>${marks}</Document></kml>\n`;
     if (exportURL) URL.revokeObjectURL(exportURL);
     exportURL = URL.createObjectURL(new Blob([kml], { type: 'application/vnd.google-earth.kml+xml;charset=utf-8' }));
-    const link = el('a', 'tl-download', 'Download the KML file'); link.href = exportURL; link.download = `earth-twin-finder_${state.tab}_${state.target}.kml`;
+    const link = el('a', 'tl-download', 'Download the KML file'); link.href = exportURL; link.download = `lunimartian-atlas_${state.tab}_${state.target}.kml`;
     takePanel.body.querySelector('.tl-download')?.remove(); takePanel.body.append(link); link.click();
     exportStatus.textContent = `The page saved ${number(rows.length)} ${rows.length === 1 ? 'row' : 'rows'} from the current short list.`;
     api.announce(exportStatus.textContent);

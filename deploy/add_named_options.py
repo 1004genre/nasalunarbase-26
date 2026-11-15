@@ -1,4 +1,4 @@
-# This file was written with AI assistance (Claude, Anthropic) for the Earth Twin Finder project.
+# This file was written with AI assistance (Claude, Anthropic) for the LuniMartian Atlas project.
 """Put back experiment conditions that the board lost, each with a name and a category.
 
     python3 deploy/add_named_options.py <folder of the page>

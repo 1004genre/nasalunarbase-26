@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
-  <title>Earth Twin Finder — Tools development page</title>
+  <title>LuniMartian Atlas — Tools development page</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="tools.css">
   <style>
@@ -42,7 +42,7 @@
 <body>
 <main class="tl-dev-shell">
   <header>
-    <h1>Earth Twin Finder: Tools</h1>
+    <h1>LuniMartian Atlas: Tools</h1>
     <p class="tl-dev-muted">This development page uses the data and module contract of the main page.</p>
     <p class="tl-dev-muted">The map is represented by a location line here. Open the main page to see the map.</p>
   </header>
@@ -269,7 +269,7 @@
     const preview = ['famous', 'basis', 'search', 'glossary', 'tour', 'take', 'winter'].includes(feature);
     if (preview) {
       document.body.dataset.preview = feature;
-      document.querySelector('.tl-dev-shell > header h1').textContent = 'Earth Twin Finder · Tools';
+      document.querySelector('.tl-dev-shell > header h1').textContent = 'LuniMartian Atlas · Tools';
       const visiblePanel = byId(`tl-${feature === 'tour' ? 'famous' : feature}`);
       if (visiblePanel) { visiblePanel.dataset.previewPanel = 'true'; visiblePanel.open = true; }
     }

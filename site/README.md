@@ -1,4 +1,4 @@
-# Earth Twin Finder: the map page
+# LuniMartian Atlas: the map page
 
 The page uses `index.html`, `app.js` (a plain ES module), `style.css`, and the files in `data/`.
 It has no build step or framework. The optional globes use the local MIT library in `vendor/`.

@@ -1,4 +1,4 @@
-# This file was written with AI assistance (Claude, Anthropic) for the Earth Twin Finder project.
+# This file was written with AI assistance (Claude, Anthropic) for the LuniMartian Atlas project.
 """Put the Simplified Technical English wording into the page's data files.
 
 The page's data files (site/data/*.json) hold sentences that the build scripts wrote. This script

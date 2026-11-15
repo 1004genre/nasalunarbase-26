@@ -1,4 +1,4 @@
-# This file was written with AI assistance (Claude, Anthropic) for the Earth Twin Finder project.
+# This file was written with AI assistance (Claude, Anthropic) for the LuniMartian Atlas project.
 """Write a compressed copy of each large data file of the page.
 
 For each .bin and .json file in site/data, this script writes the same

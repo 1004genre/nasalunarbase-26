@@ -210,7 +210,7 @@ def test_a_lunar_record_gives_the_years_highest_sun_against_the_ceiling():
 
 # ---------------------------------------------------------------- choosing the Earth places
 
-RANKING = """Earth Twin Finder ranking, written 2026-11-14T14:39:06.
+RANKING = """LuniMartian Atlas ranking, written 2026-11-14T14:39:06.
 
 NORTH: measured cells with a horizon
 

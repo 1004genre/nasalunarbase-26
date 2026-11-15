@@ -47,7 +47,7 @@ def whole(text: str) -> int:
 
 def test_it_runs_on_the_real_files(built):
     text, numbers = built
-    assert len(text) > 30000 and text.startswith("# Earth Twin Finder")
+    assert len(text) > 30000 and text.startswith("# LuniMartian Atlas")
     assert len(numbers) > 100 and all(set(n) == {"label", "value", "how"} for n in numbers)
     assert not re.search(r"\bnan\b|\binf\b|Infinity|None", text)      # unknown is written n/a
 
@@ -113,7 +113,7 @@ def test_main_writes_beside_the_old_file_and_renames(tmp_path, built, capsys):
     make_results.main(out)
     capsys.readouterr()
     text = out.read_text()
-    assert text.startswith("# Earth Twin Finder") and text.endswith("\n")
+    assert text.startswith("# LuniMartian Atlas") and text.endswith("\n")
     assert [p.name for p in tmp_path.iterdir()] == ["RESULTS.md"]        # no side file is left behind
 
 

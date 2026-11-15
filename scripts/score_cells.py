@@ -530,7 +530,7 @@ def main() -> None:
     }
     write_text(OUT, json.dumps({"meta": out_meta, "cells": records}, separators=(",", ":")))
 
-    lines = [f"Earth Twin Finder ranking, written {out_meta['written']}.",
+    lines = [f"LuniMartian Atlas ranking, written {out_meta['written']}.",
              f"Cells scored: {tally['records']} (from {source}); with a horizon: {tally['with_a_horizon']}; "
              f"with terrain: {tally['with_terrain']}; ranked north: {tally['ranked_north']}; "
              f"ranked south: {tally['ranked_south']}.",

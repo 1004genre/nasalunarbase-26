@@ -803,7 +803,7 @@ def bare_class_line(val) -> str:
 def results_md(cards, cells, counts, best, summary, val, climate_meta, made) -> str:
     L = []
     w = L.append
-    w("# Earth Twin Finder: the Mars part, a first pass")
+    w("# LuniMartian Atlas: the Mars part, a first pass")
     w("")
     w(f"Generated {made} by `scripts/build_mars_cells.py`. "
       "It reads `mars_sites_base.json`, `mars_terrain.json` and `mars_climate.json` in `data/derived/`. "

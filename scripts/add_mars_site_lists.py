@@ -1,4 +1,4 @@
-# This file was written with AI assistance (Claude, Anthropic) for the Earth Twin Finder project.
+# This file was written with AI assistance (Claude, Anthropic) for the LuniMartian Atlas project.
 """Add the Mars sites of two lists to data/derived/mars_sites_base.json, and give each site its lists.
 
     uv run python scripts/add_mars_site_lists.py

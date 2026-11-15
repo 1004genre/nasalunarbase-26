@@ -387,7 +387,7 @@ def test_main_writes_the_whole_file_and_leaves_no_part_file(tmp_path, capsys):
     out = tmp_path / "SUBMISSION.md"
     assert build.main(["--out", str(out)]) == 0
     text = out.read_text(encoding="utf-8")
-    assert text.startswith("# Earth Twin Finder") and "{" not in text
+    assert text.startswith("# LuniMartian Atlas") and "{" not in text
     assert not (tmp_path / "SUBMISSION.md.part").exists()
     assert "none over 25 words" in capsys.readouterr().out
     assert build.main(["--check", "--out", str(tmp_path / "other.md")]) == 0

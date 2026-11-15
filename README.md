@@ -1,14 +1,14 @@
-# Earth Twin Finder
+# LuniMartian Atlas
 
 **Open the page: http://15.204.81.56/**
 
-**See the demo of 30 seconds: http://15.204.81.56/demo/earth-twin-finder-demo.mp4**
+**See the demo of 30 seconds: http://15.204.81.56/demo/lunimartian-atlas-demo.mp4**
 
-Earth Twin Finder finds places on Earth for tests of Moon and Mars work.
+LuniMartian Atlas finds places on Earth for tests of Moon and Mars work.
 A scientist selects a candidate lunar landing region or a Mars site, and sets how much each condition counts, from 0 to 10.
 The page then shows the areas on Earth that match best, with a match percent, the dates and the evidence.
 
-![The experiment board of the page, with the base Malapert Massif](docs/page.jpg)
+![The experiment board of the page, with its closed category cards](docs/page.jpg)
 
 *The experiment board of the page. Drawn by code from open data; the code was written with AI assistance.*
 
@@ -529,4 +529,4 @@ Code: Apache License 2.0. Our result files: CC BY 4.0, except `data/reference/kn
 
 The licence line above is the one `data/SOURCES.md` gives.
 
-Copyright 2026 the Earth Twin Finder team. See `LICENSE` and `NOTICE`.
+Copyright 2026 the LuniMartian Atlas team. See `LICENSE` and `NOTICE`.

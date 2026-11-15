@@ -1,4 +1,4 @@
-# Earth Twin Finder: results of the grazing-hours method
+# LuniMartian Atlas: results of the grazing-hours method
 
 Written Saturday 14 November 2026, 14:49 Pacific by the last step of the build (FINAL), from the files in `data/derived/` as they stood after the whole chain was run again. Every number below was read from those files or computed from them in that run; each table names the file and field it comes from. Unknown values are written `n/a`, never 0.
 

@@ -1,4 +1,4 @@
-Earth Twin Finder ranking, written 2026-11-14T14:39:06.
+LuniMartian Atlas ranking, written 2026-11-14T14:39:06.
 Cells scored: 1690 (from candidates.json); with a horizon: 1682; with terrain: 1690; ranked north: 1085; ranked south: 334.
 Not ranked because: {"bare under 0.25": 223, "named-site cell outside the screen": 10, "no snow data": 30, "snow doubtful": 14, "window across the antimeridian": 8}
 

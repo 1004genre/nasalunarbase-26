@@ -367,7 +367,7 @@ export function mountMars(rootElement, options = {}) {
       <div class="mars-pass">${escapeHTML(pass)}</div>
       <header class="mars-header section-head">
         <span class="step-number" aria-hidden="true">2</span><div>
-        <p class="mars-kicker eyebrow">Earth Twin Finder / Mars</p>
+        <p class="mars-kicker eyebrow">LuniMartian Atlas / Mars</p>
         <h2>Where does Earth compare with Mars?</h2><p class="mars-finding finding"></p>
         <details class="mars-sources fold"><summary>What this first pass compares</summary><p>This first pass compares Earth places with the landscapes and environments of Mars sites.</p>
         <p>Its squares span ${number(meta.square_deg)} degrees, approximately ${number(meta.square_km_about)} km. They are larger than the areas in the Moon part.</p>
@@ -580,7 +580,7 @@ export function mountMars(rootElement, options = {}) {
         ...data.squares.months.map((month, index) => [`${month}_score_unitless`, place => place.month_scores?.[index]])
       ];
       const notes = [
-        'Earth Twin Finder: this list shows the best places for this Mars site and goal.',
+        'LuniMartian Atlas: this list shows the best places for this Mars site and goal.',
         `Mars site: ${currentSite().name}.`, `Goal: ${GOALS.find(([id]) => id === goal)[1]}.`,
         `First pass: squares of ${meta.square_deg} degree, approximately ${meta.square_km_about} km wide.`,
         meta.climate_caution, meta.score_caution, credits?.licence_line || 'See the page for the licence.'

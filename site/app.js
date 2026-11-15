@@ -1,4 +1,4 @@
-// Earth Twin Finder: one module, no dependencies. Every number shown is read from data/*.
+// LuniMartian Atlas: one module, no dependencies. Every number shown is read from data/*.
 // The map squares are called "areas" on the page (the data files still say "cells").
 // State lives in the URL fragment, for example
 //   #view=arctic&step=2&period=summer&go=map
@@ -812,7 +812,7 @@ function renderStatic() {
   $('headline').textContent = "Find places on Earth for Moon and Mars tests.";
   $('purpose').textContent = 'Select a base. Set what your experiment needs. The page finds the places and the dates.';
   $('subline').textContent = '';
-  document.title = 'Earth Twin Finder';
+  document.title = 'LuniMartian Atlas';
   document.querySelectorAll('.drawn').forEach((p) => { p.textContent = DRAWN; });
   const lastStep = m.has_cloud ? STEPS.length : STEPS.length - 1;   // the cloud step is off when cloud is not in the data
   $('when-press').textContent = `Press steps 1 to ${lastStep} in the bar. First, snow removes hours. Then hills remove hours.${m.has_cloud ? ' Last, mean cloud decreases the hours by a rough estimate.' : ''}`;
@@ -2807,12 +2807,12 @@ function takeNotes() {   // what the file is, where it comes from and how it may
   const m = D.meta, t = listTarget(), s = X.got['sources.json'], tab = (tabList().find(([k]) => k === S.tab) || [])[1] || S.tab;
   const notice = copernicusNotice();
   return {
-    title: `Earth Twin Finder: ${tab}, for the lunar region ${t.name} (Sun ceiling ${t.limit_deg.toFixed(2)} degrees)`,
+    title: `LuniMartian Atlas: ${tab}, for the lunar region ${t.name} (Sun ceiling ${t.limit_deg.toFixed(2)} degrees)`,
     saved_from: location.href.split('#')[0] + '#' + hashString(),
     data_written: m.generated,
     what: `Each row is one area of approximately ${m.scoring.cell_km} km across. Latitude and longitude give its centre. The hours are the hours with the Sun above the horizon and no higher than the Sun ceiling of the lunar region. ${m.long_rule.text}`,
     unknown: 'An empty field (null in GeoJSON) means unknown, not measured or not applicable. It never means zero. Snow is not measured in Antarctica. Thus, only the columns for the rock season contain figures there.',
-    source: 'The Earth Twin Finder team (NASA Space Apps Challenge ' + m.generated.slice(0, 4) + ') calculated these figures from open data: ' + m.sources.map((x) => x.name).join('; ') + '.' + (notice ? ' Terrain figures: ' + notice + '.' : ''),
+    source: 'The LuniMartian Atlas team (NASA Space Apps Challenge ' + m.generated.slice(0, 4) + ') calculated these figures from open data: ' + m.sources.map((x) => x.name).join('; ') + '.' + (notice ? ' Terrain figures: ' + notice + '.' : ''),
     licence: s && s.licence_line ? s.licence_line : 'See the section "Licence" of the page that you saved this file from.',
   };
 }
@@ -2840,7 +2840,7 @@ const extraWait = (name) => new Promise((done) => { const tick = () => { const g
 async function saveList(kind, status) {
   if (pendingListSettings()) { if (status) status.textContent = 'Open Tools or Planner to restore the saved list settings first.'; return; }
   await extraWait('sources.json');   // the licence line; the file is saved without it only if sources.json is missing
-  const rows = listRows(), base = `earth-twin-finder_${S.tab}_${listTarget().id}`;
+  const rows = listRows(), base = `lunimartian-atlas_${S.tab}_${listTarget().id}`;
   if (kind === 'csv') saveText(base + '.csv', 'text/csv;charset=utf-8', takeCsv());
   else saveText(base + '.geojson', 'application/geo+json', takeGeoJson());
   if (status) status.textContent = `The page saved ${base}.${kind === 'csv' ? 'csv' : 'geojson'} with ${rows.length} ${rows.length === 1 ? 'row' : 'rows'}.`;

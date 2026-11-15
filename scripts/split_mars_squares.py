@@ -1,4 +1,4 @@
-# This file was written with AI assistance (Claude, Anthropic) for the Earth Twin Finder project.
+# This file was written with AI assistance (Claude, Anthropic) for the LuniMartian Atlas project.
 """Divide the Mars scores file of the page so that the page loads one Mars site at a time.
 
 site/data/mars_squares.bin holds, for every Earth square, a few shared columns and 15 columns for

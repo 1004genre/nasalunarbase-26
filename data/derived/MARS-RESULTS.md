@@ -1,4 +1,4 @@
-# Earth Twin Finder: the Mars part, a first pass
+# LuniMartian Atlas: the Mars part, a first pass
 
 Generated Sunday 15 November 2026, 09:49 PST by `scripts/build_mars_cells.py`. It reads `mars_sites_base.json`, `mars_terrain.json` and `mars_climate.json` in `data/derived/`. Every number below was read from those files or computed from them in this run. Each table names its file and field. Unknown values are written `n/a`, never 0.
 

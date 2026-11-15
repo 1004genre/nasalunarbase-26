@@ -1,4 +1,4 @@
-# Earth Twin Finder: results of the joined build
+# LuniMartian Atlas: results of the joined build
 
 This page gives the results of the build of 15 November 2026: 16 lunar regions and 57 Mars sites. Each figure comes from the files in `data/derived` and `site/data`. The Moon part reads `grazing_cells.json` and `site/data/meta.json`. The Mars part reads `mars_sites.json` and `mars_cells.json`.
 

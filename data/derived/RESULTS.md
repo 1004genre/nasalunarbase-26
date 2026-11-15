@@ -1,4 +1,4 @@
-# Earth Twin Finder: results, version 3
+# LuniMartian Atlas: results, version 3
 
 Generated Sunday 15 November 2026, 10:44 Pacific by `scripts/make_results.py` from the files in `data/derived/` as they stood after the chain was run again on the version 3 inputs. Every number below was read from those files or computed from them in that run; each table names the file and field it comes from. Unknown values are written `n/a`, never 0. Version 2 of this file is kept as `RESULTS_v2.md`; section (k) sets the two side by side.
 

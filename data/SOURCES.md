@@ -1,6 +1,6 @@
 # Data sources, licences and credit lines
 
-Earth Twin Finder, NASA Space Apps 2026. Written Saturday 14 November 2026. Rows 3 to 5 corrected and rows 19
+LuniMartian Atlas, NASA Space Apps 2026. Written Saturday 14 November 2026. Rows 3 to 5 corrected and rows 19
 to 21, credits O and P and the Copernicus liability sentence added the same day by the late check of the
 additions; every licence page that decides whether a file may be public was opened a second time then
 (copies in `data/raw/additions_check_links/`) and said what this file says. Row 22 and credit Q (OurAirports, for the distance to airfields) were added
