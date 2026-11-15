@@ -1,0 +1,71 @@
+{
+  "about": "Surface images for the three globes. Each file is in this folder. Each image is a plain latitude and longitude grid (equirectangular): north at the top, 90 N to 90 S, 360 degrees of longitude. centre_lon_deg is the longitude at the horizontal centre; east is positive. With centre 0, the left edge is 180 W and the right edge is 180 E.",
+  "fetched_by": "curl with the header 'User-Agent: twinfinder/0.1', no login",
+  "images": [
+    {
+      "body": "Earth",
+      "file": "earth.jpg",
+      "width": 4096,
+      "height": 2048,
+      "bytes": 1627494,
+      "sha256": "58d1cd25b5a3d51814a053a9b8f0db54b83b9f24bd6ad9aa1a9b0dee1e619e72",
+      "centre_lon_deg": 0,
+      "shows": "Blue Marble: Next Generation, monthly composite for July 2004, with shading for topography and bathymetry. Natural colour from NASA satellite data, with no clouds. The deep ocean is one uniform blue, as the provider says. Source scale 8 km per pixel.",
+      "provider": "NASA Earth Observatory (NASA Goddard Space Flight Center)",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/blue-marble-next-generation/base-topography-bathymetry/",
+      "source_url_note": "The old Visible Earth address https://visibleearth.nasa.gov/images/73909/december-blue-marble-next-generation-w-topography-and-bathymetry now goes to this page.",
+      "file_url": "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/bmng/bmng-topography-bathymetry/july/world.topo.bathy.200407.3x5400x2700.jpg",
+      "fetched": "2026-11-15",
+      "credit": "NASA Earth Observatory",
+      "credit_source": "https://science.nasa.gov/earth/earth-observatory/blue-marble-next-generation/ says: \"Anyone using or republishing Blue Marble: Next Generation please credit “NASA Earth Observatory.”\"",
+      "licence": {
+        "statement": "The product pages state no licence. They ask only for the credit above. NASA's media usage guidelines page answered HTTP 429 to our client, so it was not read. NASA material is generally not copyrighted in the United States (general NASA policy, not read today).",
+        "url": "https://science.nasa.gov/earth/earth-observatory/blue-marble-next-generation/",
+        "not_read": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      "made_by": "Downloaded the provider's 5400 x 2700 JPEG (2,308,798 bytes). Resized it to 4096 x 2048 with sips at JPEG quality 80. Removed the Exif and Photoshop metadata blocks; the image data is unchanged."
+    },
+    {
+      "body": "Moon",
+      "file": "moon.jpg",
+      "width": 4096,
+      "height": 2048,
+      "bytes": 2589657,
+      "sha256": "8fb90398384e1e4831e96ec33504dabbc7595a99616cc7d4d8d65291d9a9205c",
+      "centre_lon_deg": 0,
+      "shows": "CGI Moon Kit colour map, 2019 version with the poles filled (lroc_color_poles). Natural colour from the Lunar Reconnaissance Orbiter Camera (LROC) Wide Angle Camera mosaic, adjusted to match human vision. North of 70 N and south of 70 S the map holds a lower-resolution grey albedo map from the laser altimeter (LOLA). The four lunar regions of this project lie in that grey band.",
+      "provider": "NASA's Scientific Visualization Studio (NASA Goddard Space Flight Center); colour data from the LROC team, Arizona State University",
+      "source_url": "https://svs.gsfc.nasa.gov/4720/",
+      "file_url": "https://svs.gsfc.nasa.gov/vis/a000000/a004700/a004720/lroc_color_poles_4k.tif",
+      "fetched": "2026-11-15",
+      "credit": "NASA's Scientific Visualization Studio",
+      "credit_source": "https://svs.gsfc.nasa.gov/4720/ says: \"Please give credit for this item to: NASA's Scientific Visualization Studio\"",
+      "licence": {
+        "statement": "Public domain. The SVS help page says: \"All of our content is in the public domain (unless otherwise noted), meaning that it is free to download, use, and redistribute for whatever purposes you see fit.\" Page 4720 notes no exception.",
+        "url": "https://svs.gsfc.nasa.gov/help/"
+      },
+      "made_by": "Downloaded the provider's 4096 x 2048 TIFF, 8 bits a channel (13,095,388 bytes). Converted it to JPEG at quality 80 with sips; pixel size unchanged. Removed the Exif and Photoshop metadata blocks, because one held a file path from the provider's computer. The image data is unchanged."
+    },
+    {
+      "body": "Mars",
+      "file": "mars.jpg",
+      "width": 4096,
+      "height": 2048,
+      "bytes": 2891386,
+      "sha256": "70afc775af992b7a6ffdb46785d37be08a10964f673b7e034b0286af846d5d8b",
+      "centre_lon_deg": 0,
+      "shows": "Mars Viking Colorized Global Mosaic (MDIM 2.1), 1 km per pixel copy. Viking Orbiter images on the USGS controlled mosaic, coloured by NASA Ames. The colour is a natural-looking colourised version, not a true-colour photograph. Stated purpose: \"To make an artistically colorized version of the latest controlled Mars Digital Image Model (MDIM).\" Planetocentric latitude, east-positive longitude, -180 to 180.",
+      "provider": "USGS Astrogeology Science Center (publisher); NASA Ames (colourised mosaic); NASA Viking Orbiter images",
+      "source_url": "https://astrogeology.usgs.gov/search/map/mars_viking_colorized_global_mosaic_232m",
+      "file_url": "https://astrogeology.usgs.gov/ckan/dataset/7131d503-cdc9-45a5-8f83-5126c0fd397e/resource/5ea881c6-01b3-41fa-a7af-42d2131b54f1/download/mars_viking_mdim21_clrmosaic_1km.jpg",
+      "fetched": "2026-11-15",
+      "credit": "Mars Viking Colorized Global Mosaic (MDIM 2.1): USGS Astrogeology Science Center and NASA Ames; Viking Orbiter images, NASA.",
+      "credit_source": "Our wording. The product page asks for no credit line. It names \"USGS Astrogeology Science Center\" as primary author and publisher, and \"NASA AMES\" as originator.",
+      "licence": {
+        "statement": "Public domain. The product page says \"Access Constraints: Public domain\" and \"Use Constraints: None\".",
+        "url": "https://astrogeology.usgs.gov/search/map/mars_viking_colorized_global_mosaic_232m"
+      },
+      "made_by": "Downloaded the provider's 21339 x 10670 JPEG (36,708,552 bytes), one of the files listed under 'Ancillary Data' on the product page. Its GDAL side file puts the left edge at 180 W. Resized it to 4096 x 2048 with sips at JPEG quality 80. This stretches the width by 0.005 percent, to make an exact 2:1 image. Removed the Exif and Photoshop metadata blocks; the image data is unchanged."
+    }
+  ]
+}

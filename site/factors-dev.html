@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-dest="moon">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Earth Twin Finder: factors development page</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="factors.css">
+  <style>
+    .fx-dev-shell { max-width: 1200px; margin: 0 auto; padding: 20px 20px 80px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 430px); gap: 24px; align-items: start; }
+    .fx-dev-shell > header { grid-column: 1 / -1; }
+    .fx-dev-muted { color: var(--ink2, #b9c8d8); font-size: 14px; margin-top: 4px; }
+    .fx-dev-controls { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+    .fx-dev-controls :focus-visible { outline: 3px solid var(--ui, #5cc8f5); outline-offset: 3px; }
+    .fx-dev-controls label { display: grid; gap: 3px; font-size: 13px; color: var(--ink2, #b9c8d8); }
+    .fx-dev-controls select, .fx-dev-controls input { min-height: 38px; padding: 6px 9px; font: inherit; color: var(--ink, #eef4fa); background: var(--surface, #111c2a); border: 1px solid var(--border, rgba(150,175,200,0.3)); border-radius: 7px; max-width: 100%; }
+    #fx-dev-card { margin-top: 0; }
+    @media (max-width: 900px) { .fx-dev-shell { grid-template-columns: minmax(0, 1fr); } #fx-dev-card { order: -1; } }
+    @media (max-width: 560px) { .fx-dev-shell { padding: 14px 14px 60px; } }
+  </style>
+</head>
+<body>
+<main class="fx-dev-shell">
+  <header>
+    <h1>Earth Twin Finder: every factor</h1>
+    <p class="fx-dev-muted">This development page uses local data and a stand-in API.</p>
+    <div class="fx-dev-controls">
+      <label>Area id<input id="fx-dev-place" size="14"></label>
+      <label>Lunar region<select id="fx-dev-target"></select></label>
+      <label>Theme<select id="fx-dev-theme"><option value="light">Light</option><option value="dark">Dark</option></select></label>
+    </div>
+    <p id="fx-dev-status" class="fx-dev-muted" role="status">The data is not ready.</p>
+  </header>
+  <section id="factors-root" aria-label="Every factor and its status"><h2>Every factor and its status</h2></section>
+  <article id="fx-dev-card" class="card" aria-label="Place card"></article>
+</main>
+<script type="module">
+  import { mount } from './factors.js';
+  const $ = (id) => document.getElementById(id);
+  const query = new URLSearchParams(location.search);
+  const cache = new Map();
+  const read = (name, binary) => {
+    if (!/^[a-zA-Z0-9_.-]+$/.test(name)) return Promise.reject(new Error('Invalid data file name.'));
+    if (!cache.has(name)) cache.set(name, fetch(`data/${name}`).then((r) => {
+      if (!r.ok) throw new Error(`Could not load ${name}.`);
+      return binary ? r.arrayBuffer() : r.json();
+    }));
+    return cache.get(name);
+  };
+  const theme = query.get('theme') === 'light' ? 'light' : 'dark';
+  if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+  $('fx-dev-theme').value = theme || '';
+  try {
+    const [meta, cells] = await Promise.all([read('meta.json'), read('cells.json')]);
+    const targets = meta.targets.map((t) => ({ id: t.id, name: t.name, limitDeg: t.limit_deg }));
+    const index = new Map(cells.ids.map((id, i) => [id, i]));
+    const state = { target: targets.some((t) => t.id === query.get('target')) ? query.get('target') : targets[0].id,
+      place: query.get('place') || cells.ids[0] };
+    const cards = new Map();
+    const fmtNumber = (x, digits = 0) => (typeof x === 'number' && Number.isFinite(x))
+      ? x.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits }) : 'unknown';
+    const api = {
+      version: 1,
+      getState: () => ({ ...state }),
+      setState: (partial) => { Object.assign(state, partial); draw(); },
+      onState: () => () => {},
+      targets, periods: [], areaCount: cells.n,
+      areaIndex: (id) => index.get(id) ?? -1,
+      area(i) {
+        if (!(i >= 0 && i < cells.n)) return null;
+        return { id: cells.ids[i], lat: cells.lat[i] / 100, lon: cells.lon[i] / 100, hemisphere: cells.hemisphere[i],
+          region: cells.regions[cells.region[i]] ?? null, bare: cells.bare[i] < 0 ? null : cells.bare[i] / 100,
+          snowStatus: null, named: cells.site?.[String(i)] ?? null, littleKnown: null };
+      },
+      hours: () => null, periodHours: () => null, openPlace: (id) => { state.place = id; draw(); }, flyTo() {},
+      loadJSON: (name) => read(name, false), loadBin: (name) => read(name, true),
+      fmtHours: (x) => (typeof x === 'number' && Number.isFinite(x)) ? `${fmtNumber(x, 0)} h` : 'unknown',
+      fmtNumber,
+      theme: () => document.documentElement.dataset.theme || 'dark',
+      addToolsButton: () => () => {},
+      addCardSection(id, title, render, summary) { cards.set(id, { title, render, summary }); draw(); return () => { cards.delete(id); draw(); }; },
+      addListNote: () => () => {}, addListFilter: () => () => {}, setListOrder: () => () => {},
+      announce: () => {},
+    };
+    for (const t of targets) $('fx-dev-target').append(new Option(t.name, t.id, false, t.id === state.target));
+    $('fx-dev-place').value = state.place;
+    function draw() {
+      const card = $('fx-dev-card');
+      const i = api.areaIndex(state.place);
+      card.replaceChildren();
+      const head = document.createElement('h3');
+      const area = api.area(i);
+      head.textContent = area ? (area.named || `Area ${area.id}`) : `No area with the id ${state.place}`;
+      const where = document.createElement('p'); where.className = 'where';
+      where.textContent = area ? `${area.region || ''} · ${api.targets.find((t) => t.id === state.target)?.name}` : '';
+      card.append(head, where);
+      if (!area) return;
+      for (const [id, part] of cards) {
+        const content = part.render(i, state.target);
+        if (!(content instanceof Element)) continue;
+        const section = document.createElement('section'), title = document.createElement('h4');
+        section.className = 'card-extension'; section.dataset.cardSection = id;
+        title.textContent = part.title; section.append(title);
+        if (part.summary) { const finding = document.createElement('p'); finding.textContent = part.summary(i, state.target); section.append(finding); }
+        section.append(content); card.append(section);
+        if (query.get('open') === '1') content.querySelectorAll('details').forEach((d) => { d.open = true; });
+        if (content.tagName === 'DETAILS' && query.get('open') === '1') content.open = true;
+      }
+    }
+    const reload = () => {
+      const q = new URLSearchParams(location.search);
+      q.set('place', $('fx-dev-place').value.trim()); q.set('target', $('fx-dev-target').value);
+      if ($('fx-dev-theme').value) q.set('theme', $('fx-dev-theme').value); else q.delete('theme');
+      location.search = q.toString();
+    };
+    $('fx-dev-place').addEventListener('change', reload);
+    $('fx-dev-target').addEventListener('change', reload);
+    $('fx-dev-theme').addEventListener('change', reload);
+    await mount($('factors-root'), api);
+    if (query.get('only') === 'overview' || query.get('only') === 'card') {
+      document.querySelector('.fx-dev-shell > header').hidden = true;
+      $('factors-root').hidden = query.get('only') === 'card';
+      $('fx-dev-card').hidden = query.get('only') === 'overview';
+      document.querySelector('.fx-dev-shell').style.gridTemplateColumns = 'minmax(0, 1fr)';
+    }
+    $('fx-dev-status').textContent = `The place card shows area ${state.place}.`;
+    document.documentElement.dataset.ready = '1';
+    if (query.get('measure') === '1') $('fx-dev-status').dataset.widths = `${document.documentElement.scrollWidth}/${innerWidth}`;
+  } catch (error) {
+    $('fx-dev-status').textContent = `Could not start: ${error.message}`;
+  }
+</script>
+</body>
+</html>

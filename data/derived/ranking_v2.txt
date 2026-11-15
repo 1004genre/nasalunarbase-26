@@ -1,0 +1,739 @@
+Earth Twin Finder ranking, written 2026-11-14T14:39:06.
+Cells scored: 1690 (from candidates.json); with a horizon: 1682; with terrain: 1690; ranked north: 1085; ranked south: 334.
+Not ranked because: {"bare under 0.25": 223, "named-site cell outside the screen": 10, "no snow data": 30, "snow doubtful": 14, "window across the antimeridian": 8}
+
+How to read the tables
+  hours   long-window grazing hours a year behind the light score: Sun above the horizon and at or below the
+          lunar site's limit, in ten-day bins whose longest daily stretch is at least 2 h, on
+          snow-free ground and clear of the terrain (north); in the south 27 November to 1 March, clear of the terrain.
+  flat    the same hours over a flat horizon (no terrain).
+  light   min(1, hours / 200).   terrain   slope overlap with the lunar site / the site's overlap with itself.
+  score   geometric mean of the goal's factors: Low Sun on bare ground = light x bare; Driving in long shadows = light x terrain x bare; Geology training = rock x terrain x bare; Full match = light x terrain x rock x bare.
+  where the Sun stands   share of the long-window flat-horizon hours with the Sun within 90 degrees of the pole
+          (the midnight-Sun side) or on the equator side; whole year in the north, the rock season in the south.
+  best ten-day bins   the three long-window bins with the most hours (open hours where a horizon exists).
+  One site per 50 km; cells with bare ground under 0.25 are not ranked.
+
+NORTH: measured cells with a horizon
+
+Low Sun on bare ground | Shackleton-de Gerlache connecting ridge (Sun at or below 2.08 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.49   68.25   -96.15  Arctic Canada                      0.96     50     52   0.25   0.04  0.00  10 Jul-19 Jul (29 h), 30 Jun-9 Jul (20 h) | 65% midnight-Sun side (Sun in the north) | snow odds thin (2 of 9 pixels)
+  0.42   68.35   -88.05  Arctic Canada                      0.81     45     50   0.22   0.07  0.00  10 Jul-19 Jul (27 h), 30 Jun-9 Jul (18 h) | 65% midnight-Sun side (Sun in the north)
+  0.42   67.75   -76.65  Arctic Canada                      0.79     45     53   0.23   0.01  0.00  10 Jul-19 Jul (22 h), 30 Jun-9 Jul (21 h), 10 Jun-19 Jun (2 h) | 67% midnight-Sun side (Sun in the north)
+  0.41   68.35   -98.55  Arctic Canada                      0.75     45     51   0.22   0.05  0.00  10 Jul-19 Jul (26 h), 30 Jun-9 Jul (19 h) | 65% midnight-Sun side (Sun in the north) | snow odds thin (6 of 9 pixels)
+  0.40   75.25   140.75  Siberia and the Russian Far East   1.00     32     32   0.16   0.00  0.00  9 Aug-18 Aug (32 h) | 60% midnight-Sun side (Sun in the north)
+  0.39   82.05   -21.90  Greenland                          0.91     34     35   0.17   0.22  0.00  29 Aug-7 Sep (34 h) | 58% midnight-Sun side (Sun in the north) | snow odds thin (0 of 9 pixels)
+  0.39   75.75   141.25  Siberia and the Russian Far East   1.00     31     31   0.15   0.00  0.00  9 Aug-18 Aug (31 h) | 67% midnight-Sun side (Sun in the north)
+  0.39   68.95    54.45  Kola and north-west Russia         1.00     31     31   0.15   0.00  0.00  10 Jul-19 Jul (28 h), 21 May-30 May (3 h) | 67% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+  0.39   67.05  -158.85  Alaska                             0.36     83    117   0.42   0.22  0.00  10 Jun-19 Jun (23 h), 20 Jun-29 Jun (22 h), 30 Jun-9 Jul (21 h) | 69% midnight-Sun side (Sun in the north)
+  0.39   78.45  -113.10  Arctic Canada                      0.96     31     31   0.16   0.00  0.00  19 Aug-28 Aug (31 h) | 58% midnight-Sun side (Sun in the north) | snow odds thin (0 of 9 pixels)
+
+Driving in long shadows | Shackleton-de Gerlache connecting ridge (Sun at or below 2.08 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.43   82.05   -26.70  Greenland                          0.86     22     36   0.11   0.85  0.00  29 Aug-7 Sep (22 h) | 58% midnight-Sun side (Sun in the north) | snow odds thin (0 of 9 pixels)
+  0.40   81.55   -64.50  North-west Greenland or Ellesmere  1.00     15     35   0.07   0.87  0.00  29 Aug-7 Sep (15 h) | 64% midnight-Sun side (Sun in the north) | snow odds thin (0 of 9 pixels)
+  0.40   70.15  -116.85  Arctic Canada                      0.98     27     31   0.14   0.46  0.00  20 Jul-29 Jul (27 h) | 62% midnight-Sun side (Sun in the north) | snow odds thin (2 of 9 pixels)
+  0.37   73.15   -89.25  Arctic Canada                      0.97     13     28   0.06   0.84  0.00  30 Jul-8 Aug (13 h) | 68% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+  0.37   79.25   -74.70  Arctic Canada                      1.00     14     31   0.07   0.74  0.00  19 Aug-28 Aug (14 h) | 66% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+  0.37   67.65   169.95  Siberia and the Russian Far East   0.69     20     48   0.10   0.72  0.00  30 Jun-9 Jul (9 h), 20 Jun-29 Jun (6 h), 10 Jun-19 Jun (4 h) | 66% midnight-Sun side (Sun in the north)
+  0.36   70.35   -91.65  Arctic Canada                      0.85     19     31   0.10   0.59  0.00  20 Jul-29 Jul (19 h) | 68% midnight-Sun side (Sun in the north) | snow odds thin (2 of 9 pixels)
+  0.36   75.55    57.75  Novaya Zemlya                      0.79     16     27   0.08   0.73  0.00  9 Aug-18 Aug (16 h) | 50% midnight-Sun side (Sun in the north) | snow odds thin (3 of 9 pixels)
+  0.36   74.85   -93.25  Arctic Canada                      1.00     11     29   0.05   0.88  0.00  9 Aug-18 Aug (11 h) | 66% midnight-Sun side (Sun in the north) | snow odds thin (0 of 9 pixels)
+  0.36   75.55   -87.75  Arctic Canada                      0.84     18     32   0.09   0.60  0.00  9 Aug-18 Aug (18 h) | 50% midnight-Sun side (Sun in the north) | KNOWN AREA: Devon Island: classic analog site (Haughton-Mars Project) | snow odds thin (3 of 9 pixels)
+
+Geology training | Shackleton-de Gerlache connecting ridge (Sun at or below 2.08 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.67   63.15   -50.10  Greenland                          0.42      0      0   0.00   0.88  0.82  none | no long window | rock: Fiskenaesset anorthosite complex
+  0.55   63.95   -51.10  Greenland                          0.37      0      0   0.00   0.80  0.55  none | no long window | rock: Buksefjorden anorthosite
+  0.52   70.15   -51.15  Greenland                          0.38      1     20   0.00   0.86  0.42  20 Jul-29 Jul (0.9 h) | 62% midnight-Sun side (Sun in the north) | rock: Tunulik anorthosite (with Boye So)
+  0.32   64.45   -52.10  Greenland                          0.26      0      0   0.00   0.19  0.67  none | no long window | rock: Akia anorthosite (Godthabsfjord) | snow odds thin (2 of 9 pixels)
+
+Full match | Shackleton-de Gerlache connecting ridge (Sun at or below 2.08 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.16   70.15   -51.15  Greenland                          0.38      1     20   0.00   0.86  0.42  20 Jul-29 Jul (0.9 h) | 62% midnight-Sun side (Sun in the north) | rock: Tunulik anorthosite (with Boye So)
+
+Low Sun on bare ground | Shackleton-de Gerlache connecting ridge (Sun at or below 2.08 deg) | little-known sites only
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.49   68.25   -96.15  Arctic Canada                      0.96     50     52   0.25   0.04  0.00  10 Jul-19 Jul (29 h), 30 Jun-9 Jul (20 h) | 65% midnight-Sun side (Sun in the north) | snow odds thin (2 of 9 pixels)
+  0.42   68.35   -88.05  Arctic Canada                      0.81     45     50   0.22   0.07  0.00  10 Jul-19 Jul (27 h), 30 Jun-9 Jul (18 h) | 65% midnight-Sun side (Sun in the north)
+  0.42   67.75   -76.65  Arctic Canada                      0.79     45     53   0.23   0.01  0.00  10 Jul-19 Jul (22 h), 30 Jun-9 Jul (21 h), 10 Jun-19 Jun (2 h) | 67% midnight-Sun side (Sun in the north)
+  0.41   68.35   -98.55  Arctic Canada                      0.75     45     51   0.22   0.05  0.00  10 Jul-19 Jul (26 h), 30 Jun-9 Jul (19 h) | 65% midnight-Sun side (Sun in the north) | snow odds thin (6 of 9 pixels)
+  0.40   75.25   140.75  Siberia and the Russian Far East   1.00     32     32   0.16   0.00  0.00  9 Aug-18 Aug (32 h) | 60% midnight-Sun side (Sun in the north)
+  0.39   82.05   -21.90  Greenland                          0.91     34     35   0.17   0.22  0.00  29 Aug-7 Sep (34 h) | 58% midnight-Sun side (Sun in the north) | snow odds thin (0 of 9 pixels)
+  0.39   75.75   141.25  Siberia and the Russian Far East   1.00     31     31   0.15   0.00  0.00  9 Aug-18 Aug (31 h) | 67% midnight-Sun side (Sun in the north)
+  0.39   68.95    54.45  Kola and north-west Russia         1.00     31     31   0.15   0.00  0.00  10 Jul-19 Jul (28 h), 21 May-30 May (3 h) | 67% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+  0.39   67.05  -158.85  Alaska                             0.36     83    117   0.42   0.22  0.00  10 Jun-19 Jun (23 h), 20 Jun-29 Jun (22 h), 30 Jun-9 Jul (21 h) | 69% midnight-Sun side (Sun in the north)
+  0.39   78.45  -113.10  Arctic Canada                      0.96     31     31   0.16   0.00  0.00  19 Aug-28 Aug (31 h) | 58% midnight-Sun side (Sun in the north) | snow odds thin (0 of 9 pixels)
+
+Driving in long shadows | Shackleton-de Gerlache connecting ridge (Sun at or below 2.08 deg) | little-known sites only
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.43   82.05   -26.70  Greenland                          0.86     22     36   0.11   0.85  0.00  29 Aug-7 Sep (22 h) | 58% midnight-Sun side (Sun in the north) | snow odds thin (0 of 9 pixels)
+  0.40   81.55   -64.50  North-west Greenland or Ellesmere  1.00     15     35   0.07   0.87  0.00  29 Aug-7 Sep (15 h) | 64% midnight-Sun side (Sun in the north) | snow odds thin (0 of 9 pixels)
+  0.40   70.15  -116.85  Arctic Canada                      0.98     27     31   0.14   0.46  0.00  20 Jul-29 Jul (27 h) | 62% midnight-Sun side (Sun in the north) | snow odds thin (2 of 9 pixels)
+  0.37   73.15   -89.25  Arctic Canada                      0.97     13     28   0.06   0.84  0.00  30 Jul-8 Aug (13 h) | 68% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+  0.37   79.25   -74.70  Arctic Canada                      1.00     14     31   0.07   0.74  0.00  19 Aug-28 Aug (14 h) | 66% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+  0.37   67.65   169.95  Siberia and the Russian Far East   0.69     20     48   0.10   0.72  0.00  30 Jun-9 Jul (9 h), 20 Jun-29 Jun (6 h), 10 Jun-19 Jun (4 h) | 66% midnight-Sun side (Sun in the north)
+  0.36   70.35   -91.65  Arctic Canada                      0.85     19     31   0.10   0.59  0.00  20 Jul-29 Jul (19 h) | 68% midnight-Sun side (Sun in the north) | snow odds thin (2 of 9 pixels)
+  0.36   75.55    57.75  Novaya Zemlya                      0.79     16     27   0.08   0.73  0.00  9 Aug-18 Aug (16 h) | 50% midnight-Sun side (Sun in the north) | snow odds thin (3 of 9 pixels)
+  0.36   74.85   -93.25  Arctic Canada                      1.00     11     29   0.05   0.88  0.00  9 Aug-18 Aug (11 h) | 66% midnight-Sun side (Sun in the north) | snow odds thin (0 of 9 pixels)
+  0.36   69.55   -90.75  Arctic Canada                      0.65     23     49   0.11   0.61  0.00  20 Jul-29 Jul (12 h), 10 Jul-19 Jul (10 h), 17 Nov-26 Nov (0.1 h) | 59% midnight-Sun side (Sun in the north) | snow odds thin (0 of 9 pixels)
+
+Low Sun on bare ground | Malapert Massif (Sun at or below 5.55 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  1.00   68.95    54.45  Kola and north-west Russia         1.00    243    243   1.00   0.00  0.00  10 Jul-19 Jul (56 h), 30 Jun-9 Jul (48 h), 20 Jul-29 Jul (46 h) | 64% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+  0.99   80.15    18.30  Svalbard                           0.99    203    239   1.00   0.12  0.00  19 Aug-28 Aug (66 h), 29 Aug-7 Sep (43 h), 9 Aug-18 Aug (27 h) | 52% midnight-Sun side (Sun in the north) | KNOWN AREA: Svalbard: named in the challenge; used by the AMASE Mars campaigns | snow odds thin (4 of 9 pixels)
+  0.95   70.15  -116.85  Arctic Canada                      0.98    184    203   0.92   0.29  0.00  20 Jul-29 Jul (52 h), 10 Jul-19 Jul (47 h), 30 Jun-9 Jul (38 h) | 67% midnight-Sun side (Sun in the north) | snow odds thin (2 of 9 pixels)
+  0.95   70.25  -115.35  Arctic Canada                      0.98    182    190   0.91   0.14  0.00  20 Jul-29 Jul (53 h), 10 Jul-19 Jul (47 h), 30 Jun-9 Jul (39 h) | 67% midnight-Sun side (Sun in the north) | snow odds thin (4 of 9 pixels)
+  0.93   75.05   141.25  Siberia and the Russian Far East   1.00    174    174   0.87   0.00  0.00  9 Aug-18 Aug (61 h), 30 Jul-8 Aug (51 h), 19 Aug-28 Aug (40 h) | 57% midnight-Sun side (Sun in the north)
+  0.93   68.95  -115.65  Arctic Canada                      0.87    212    217   1.00   0.05  0.00  10 Jul-19 Jul (54 h), 30 Jun-9 Jul (48 h), 20 Jul-29 Jul (44 h) | 64% midnight-Sun side (Sun in the north) | snow odds thin (5 of 9 pixels)
+  0.93   71.35   -93.15  Arctic Canada                      0.96    180    182   0.90   0.02  0.00  20 Jul-29 Jul (52 h), 30 Jul-8 Aug (48 h), 10 Jul-19 Jul (42 h) | 68% midnight-Sun side (Sun in the north)
+  0.93   70.65    30.15  Norway, Sweden or Finland          0.86    215    274   1.00   0.43  0.00  20 Jul-29 Jul (43 h), 10 Jul-19 Jul (37 h), 30 Jul-8 Aug (31 h) | 64% midnight-Sun side (Sun in the north) | snow odds thin (5 of 9 pixels)
+  0.93   78.85    29.10  Svalbard                           0.99    173    224   0.87   0.12  0.00  19 Aug-28 Aug (35 h), 9 Aug-18 Aug (34 h), 29 Aug-7 Sep (26 h) | 52% midnight-Sun side (Sun in the north) | KNOWN AREA: Svalbard: named in the challenge; used by the AMASE Mars campaigns | snow odds thin (3 of 9 pixels)
+  0.92   70.05  -124.35  Arctic Canada                      0.99    170    200   0.85   0.13  0.00  10 Jul-19 Jul (44 h), 20 Jul-29 Jul (39 h), 30 Jun-9 Jul (38 h) | 67% midnight-Sun side (Sun in the north) | snow odds thin (3 of 9 pixels)
+
+Driving in long shadows | Malapert Massif (Sun at or below 5.55 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.72   70.65    30.15  Norway, Sweden or Finland          0.86    215    274   1.00   0.43  0.00  20 Jul-29 Jul (43 h), 10 Jul-19 Jul (37 h), 30 Jul-8 Aug (31 h) | 64% midnight-Sun side (Sun in the north) | snow odds thin (5 of 9 pixels)
+  0.72   82.05   -26.70  Greenland                          0.86    124    161   0.62   0.69  0.00  29 Aug-7 Sep (56 h), 19 Aug-28 Aug (49 h), 8 Sep-17 Sep (18 h) | 51% midnight-Sun side (Sun in the north) | snow odds thin (0 of 9 pixels)
+  0.71   81.55   -64.50  North-west Greenland or Ellesmere  1.00     80    156   0.40   0.89  0.00  29 Aug-7 Sep (34 h), 19 Aug-28 Aug (34 h), 8 Sep-17 Sep (10 h) | 52% midnight-Sun side (Sun in the north) | snow odds thin (0 of 9 pixels)
+  0.69   73.15   -89.25  Arctic Canada                      0.97     99    176   0.49   0.68  0.00  30 Jul-8 Aug (32 h), 20 Jul-29 Jul (28 h), 9 Aug-18 Aug (21 h) | 57% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+  0.67   79.25   -74.70  Arctic Canada                      1.00     95    167   0.47   0.63  0.00  19 Aug-28 Aug (40 h), 29 Aug-7 Sep (24 h), 9 Aug-18 Aug (23 h) | 53% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+  0.66   80.25    21.30  Svalbard                           0.93    114    196   0.57   0.53  0.00  19 Aug-28 Aug (42 h), 29 Aug-7 Sep (24 h), 9 Aug-18 Aug (18 h) | 52% midnight-Sun side (Sun in the north) | KNOWN AREA: Svalbard: named in the challenge; used by the AMASE Mars campaigns | snow odds thin (0 of 9 pixels)
+  0.66   80.05   -86.70  Arctic Canada                      0.91     62    170   0.31   1.00  0.00  19 Aug-28 Aug (22 h), 29 Aug-7 Sep (17 h), 9 Aug-18 Aug (10 h) | 53% midnight-Sun side (Sun in the north) | snow odds thin (2 of 9 pixels)
+  0.65   70.95    28.35  Norway, Sweden or Finland          0.71    185    231   0.92   0.42  0.00  20 Jul-29 Jul (41 h), 10 Jul-19 Jul (36 h), 30 Jul-8 Aug (30 h) | 64% midnight-Sun side (Sun in the north)
+  0.65   74.85   -93.25  Arctic Canada                      1.00     56    123   0.28   0.97  0.00  9 Aug-18 Aug (23 h), 30 Jul-8 Aug (21 h), 20 Jul-29 Jul (11 h) | 55% midnight-Sun side (Sun in the north) | snow odds thin (0 of 9 pixels)
+  0.65   78.85    10.50  Svalbard                           0.64    140    314   0.70   0.60  0.00  19 Aug-28 Aug (33 h), 29 Aug-7 Sep (23 h), 9 Aug-18 Aug (23 h) | 52% midnight-Sun side (Sun in the north) | KNOWN: Ny-Alesund (tier B, 32 km) | snow odds thin (2 of 9 pixels)
+
+Geology training | Malapert Massif (Sun at or below 5.55 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.63   63.15   -50.10  Greenland                          0.42      0      0   0.00   0.71  0.82  none | 100% equator side (Sun in the south: dawn, dusk, low noon) | rock: Fiskenaesset anorthosite complex
+  0.56   63.95   -51.10  Greenland                          0.37      0      0   0.00   0.87  0.55  none | 100% equator side (Sun in the south: dawn, dusk, low noon) | rock: Buksefjorden anorthosite
+  0.50   70.15   -51.15  Greenland                          0.38     14     82   0.07   0.77  0.42  20 Jul-29 Jul (5 h), 10 Jul-19 Jul (4 h), 30 Jun-9 Jul (3 h) | 67% midnight-Sun side (Sun in the north) | rock: Tunulik anorthosite (with Boye So)
+  0.28   64.45   -52.10  Greenland                          0.26     18     22   0.09   0.12  0.67  17 Nov-26 Nov (8 h), 27 Nov-6 Dec (4 h), 7 Dec-16 Dec (3 h) | 100% equator side (Sun in the south: dawn, dusk, low noon) | rock: Akia anorthosite (Godthabsfjord) | snow odds thin (2 of 9 pixels)
+
+Full match | Malapert Massif (Sun at or below 5.55 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.31   70.15   -51.15  Greenland                          0.38     14     82   0.07   0.77  0.42  20 Jul-29 Jul (5 h), 10 Jul-19 Jul (4 h), 30 Jun-9 Jul (3 h) | 67% midnight-Sun side (Sun in the north) | rock: Tunulik anorthosite (with Boye So)
+  0.21   64.45   -52.10  Greenland                          0.26     18     22   0.09   0.12  0.67  17 Nov-26 Nov (8 h), 27 Nov-6 Dec (4 h), 7 Dec-16 Dec (3 h) | 100% equator side (Sun in the south: dawn, dusk, low noon) | rock: Akia anorthosite (Godthabsfjord) | snow odds thin (2 of 9 pixels)
+  0.19   63.35   -50.30  Greenland                          0.36      1      4   0.01   0.71  0.82  27 Nov-6 Dec (0.5 h), 7 Dec-16 Dec (0.4 h), 17 Dec-31 Dec (0.4 h) | 100% equator side (Sun in the south: dawn, dusk, low noon) | rock: Fiskenaesset anorthosite complex
+
+Low Sun on bare ground | Malapert Massif (Sun at or below 5.55 deg) | little-known sites only
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  1.00   68.95    54.45  Kola and north-west Russia         1.00    243    243   1.00   0.00  0.00  10 Jul-19 Jul (56 h), 30 Jun-9 Jul (48 h), 20 Jul-29 Jul (46 h) | 64% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+  0.95   70.15  -116.85  Arctic Canada                      0.98    184    203   0.92   0.29  0.00  20 Jul-29 Jul (52 h), 10 Jul-19 Jul (47 h), 30 Jun-9 Jul (38 h) | 67% midnight-Sun side (Sun in the north) | snow odds thin (2 of 9 pixels)
+  0.95   70.25  -115.35  Arctic Canada                      0.98    182    190   0.91   0.14  0.00  20 Jul-29 Jul (53 h), 10 Jul-19 Jul (47 h), 30 Jun-9 Jul (39 h) | 67% midnight-Sun side (Sun in the north) | snow odds thin (4 of 9 pixels)
+  0.93   75.05   141.25  Siberia and the Russian Far East   1.00    174    174   0.87   0.00  0.00  9 Aug-18 Aug (61 h), 30 Jul-8 Aug (51 h), 19 Aug-28 Aug (40 h) | 57% midnight-Sun side (Sun in the north)
+  0.93   68.95  -115.65  Arctic Canada                      0.87    212    217   1.00   0.05  0.00  10 Jul-19 Jul (54 h), 30 Jun-9 Jul (48 h), 20 Jul-29 Jul (44 h) | 64% midnight-Sun side (Sun in the north) | snow odds thin (5 of 9 pixels)
+  0.93   71.35   -93.15  Arctic Canada                      0.96    180    182   0.90   0.02  0.00  20 Jul-29 Jul (52 h), 30 Jul-8 Aug (48 h), 10 Jul-19 Jul (42 h) | 68% midnight-Sun side (Sun in the north)
+  0.93   70.65    30.15  Norway, Sweden or Finland          0.86    215    274   1.00   0.43  0.00  20 Jul-29 Jul (43 h), 10 Jul-19 Jul (37 h), 30 Jul-8 Aug (31 h) | 64% midnight-Sun side (Sun in the north) | snow odds thin (5 of 9 pixels)
+  0.92   70.05  -124.35  Arctic Canada                      0.99    170    200   0.85   0.13  0.00  10 Jul-19 Jul (44 h), 20 Jul-29 Jul (39 h), 30 Jun-9 Jul (38 h) | 67% midnight-Sun side (Sun in the north) | snow odds thin (3 of 9 pixels)
+  0.91   77.25  -118.25  Arctic Canada                      0.98    170    175   0.85   0.02  0.00  9 Aug-18 Aug (60 h), 19 Aug-28 Aug (55 h), 29 Aug-7 Sep (28 h) | 55% midnight-Sun side (Sun in the north)
+  0.90   79.35   101.70  Severnaya Zemlya                   0.86    191    201   0.95   0.06  0.00  19 Aug-28 Aug (70 h), 9 Aug-18 Aug (41 h), 29 Aug-7 Sep (39 h) | 53% midnight-Sun side (Sun in the north) | snow odds thin (2 of 9 pixels)
+  note: 2 ranked cells share the score 0.904 of the last site shown; among equal scores the cells with more long-window hours come first, so the cells left out score the same with fewer hours.
+
+Driving in long shadows | Malapert Massif (Sun at or below 5.55 deg) | little-known sites only
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.72   70.65    30.15  Norway, Sweden or Finland          0.86    215    274   1.00   0.43  0.00  20 Jul-29 Jul (43 h), 10 Jul-19 Jul (37 h), 30 Jul-8 Aug (31 h) | 64% midnight-Sun side (Sun in the north) | snow odds thin (5 of 9 pixels)
+  0.72   82.05   -26.70  Greenland                          0.86    124    161   0.62   0.69  0.00  29 Aug-7 Sep (56 h), 19 Aug-28 Aug (49 h), 8 Sep-17 Sep (18 h) | 51% midnight-Sun side (Sun in the north) | snow odds thin (0 of 9 pixels)
+  0.71   81.55   -64.50  North-west Greenland or Ellesmere  1.00     80    156   0.40   0.89  0.00  29 Aug-7 Sep (34 h), 19 Aug-28 Aug (34 h), 8 Sep-17 Sep (10 h) | 52% midnight-Sun side (Sun in the north) | snow odds thin (0 of 9 pixels)
+  0.69   73.15   -89.25  Arctic Canada                      0.97     99    176   0.49   0.68  0.00  30 Jul-8 Aug (32 h), 20 Jul-29 Jul (28 h), 9 Aug-18 Aug (21 h) | 57% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+  0.67   79.25   -74.70  Arctic Canada                      1.00     95    167   0.47   0.63  0.00  19 Aug-28 Aug (40 h), 29 Aug-7 Sep (24 h), 9 Aug-18 Aug (23 h) | 53% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+  0.66   80.05   -86.70  Arctic Canada                      0.91     62    170   0.31   1.00  0.00  19 Aug-28 Aug (22 h), 29 Aug-7 Sep (17 h), 9 Aug-18 Aug (10 h) | 53% midnight-Sun side (Sun in the north) | snow odds thin (2 of 9 pixels)
+  0.65   70.95    28.35  Norway, Sweden or Finland          0.71    185    231   0.92   0.42  0.00  20 Jul-29 Jul (41 h), 10 Jul-19 Jul (36 h), 30 Jul-8 Aug (30 h) | 64% midnight-Sun side (Sun in the north)
+  0.65   74.85   -93.25  Arctic Canada                      1.00     56    123   0.28   0.97  0.00  9 Aug-18 Aug (23 h), 30 Jul-8 Aug (21 h), 20 Jul-29 Jul (11 h) | 55% midnight-Sun side (Sun in the north) | snow odds thin (0 of 9 pixels)
+  0.64   70.15  -116.85  Arctic Canada                      0.98    184    203   0.92   0.29  0.00  20 Jul-29 Jul (52 h), 10 Jul-19 Jul (47 h), 30 Jun-9 Jul (38 h) | 67% midnight-Sun side (Sun in the north) | snow odds thin (2 of 9 pixels)
+  0.64   73.65   -83.25  Arctic Canada                      0.91    102    131   0.51   0.56  0.00  30 Jul-8 Aug (40 h), 9 Aug-18 Aug (33 h), 20 Jul-29 Jul (30 h) | 59% midnight-Sun side (Sun in the north) | snow odds thin (4 of 9 pixels)
+
+Low Sun on bare ground | Mons Mouton plateau (Sun at or below 6.11 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  1.00   68.95    54.45  Kola and north-west Russia         1.00    260    261   1.00   0.00  0.00  10 Jul-19 Jul (59 h), 30 Jun-9 Jul (52 h), 20 Jul-29 Jul (49 h) | 64% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+  1.00   77.55    22.75  Svalbard                           1.00    231    324   1.00   0.14  0.00  9 Aug-18 Aug (54 h), 19 Aug-28 Aug (36 h), 30 Jul-8 Aug (29 h) | 54% midnight-Sun side (Sun in the north) | KNOWN AREA: Svalbard: named in the challenge; used by the AMASE Mars campaigns
+  1.00   74.95   141.25  Siberia and the Russian Far East   1.00    199    201   1.00   0.00  0.00  9 Aug-18 Aug (63 h), 30 Jul-8 Aug (56 h), 19 Aug-28 Aug (42 h) | 58% midnight-Sun side (Sun in the north)
+  1.00   70.05  -124.35  Arctic Canada                      0.99    218    259   1.00   0.23  0.00  10 Jul-19 Jul (48 h), 30 Jun-9 Jul (43 h), 20 Jul-29 Jul (42 h) | 65% midnight-Sun side (Sun in the north) | snow odds thin (3 of 9 pixels)
+  0.99   80.15    18.30  Svalbard                           0.99    231    268   1.00   0.20  0.00  19 Aug-28 Aug (72 h), 29 Aug-7 Sep (47 h), 9 Aug-18 Aug (38 h) | 52% midnight-Sun side (Sun in the north) | KNOWN AREA: Svalbard: named in the challenge; used by the AMASE Mars campaigns | snow odds thin (4 of 9 pixels)
+  0.99   70.25  -115.35  Arctic Canada                      0.98    240    250   1.00   0.24  0.00  20 Jul-29 Jul (56 h), 10 Jul-19 Jul (51 h), 30 Jun-9 Jul (44 h) | 65% midnight-Sun side (Sun in the north) | snow odds thin (4 of 9 pixels)
+  0.99   74.95   143.25  Siberia and the Russian Far East   1.00    196    200   0.98   0.00  0.00  9 Aug-18 Aug (62 h), 30 Jul-8 Aug (56 h), 19 Aug-28 Aug (42 h) | 58% midnight-Sun side (Sun in the north)
+  0.99   70.15  -116.85  Arctic Canada                      0.98    240    263   1.00   0.51  0.00  20 Jul-29 Jul (55 h), 10 Jul-19 Jul (50 h), 30 Jun-9 Jul (43 h) | 65% midnight-Sun side (Sun in the north) | snow odds thin (2 of 9 pixels)
+  0.99   75.75   141.25  Siberia and the Russian Far East   1.00    196    196   0.98   0.00  0.00  9 Aug-18 Aug (68 h), 30 Jul-8 Aug (49 h), 19 Aug-28 Aug (47 h) | 55% midnight-Sun side (Sun in the north)
+  0.99   77.25  -118.25  Arctic Canada                      0.98    204    210   1.00   0.04  0.00  9 Aug-18 Aug (65 h), 19 Aug-28 Aug (59 h), 30 Jul-8 Aug (36 h) | 53% midnight-Sun side (Sun in the north)
+  note: 2 ranked cells share the score 0.988 of the last site shown; among equal scores the cells with more long-window hours come first, so the cells left out score the same with fewer hours.
+
+Driving in long shadows | Mons Mouton plateau (Sun at or below 6.11 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.83   82.05   -26.70  Greenland                          0.86    138    178   0.69   0.98  0.00  29 Aug-7 Sep (60 h), 19 Aug-28 Aug (57 h), 8 Sep-17 Sep (20 h) | 52% midnight-Sun side (Sun in the north) | snow odds thin (0 of 9 pixels)
+  0.81   73.15   -89.25  Arctic Canada                      0.97    114    197   0.57   0.97  0.00  30 Jul-8 Aug (35 h), 20 Jul-29 Jul (32 h), 9 Aug-18 Aug (24 h) | 61% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+  0.79   70.15  -116.85  Arctic Canada                      0.98    240    263   1.00   0.51  0.00  20 Jul-29 Jul (55 h), 10 Jul-19 Jul (50 h), 30 Jun-9 Jul (43 h) | 65% midnight-Sun side (Sun in the north) | snow odds thin (2 of 9 pixels)
+  0.79   80.25    21.90  Svalbard                           0.98    138    235   0.69   0.71  0.00  19 Aug-28 Aug (44 h), 9 Aug-18 Aug (30 h), 29 Aug-7 Sep (26 h) | 52% midnight-Sun side (Sun in the north) | KNOWN AREA: Svalbard: named in the challenge; used by the AMASE Mars campaigns | snow odds thin (2 of 9 pixels)
+  0.78   70.65    30.15  Norway, Sweden or Finland          0.86    249    320   1.00   0.55  0.00  20 Jul-29 Jul (46 h), 10 Jul-19 Jul (40 h), 30 Jul-8 Aug (33 h) | 64% midnight-Sun side (Sun in the north) | snow odds thin (5 of 9 pixels)
+  0.78   70.35   -91.65  Arctic Canada                      0.85    167    220   0.83   0.66  0.00  20 Jul-29 Jul (43 h), 10 Jul-19 Jul (41 h), 30 Jun-9 Jul (34 h) | 66% midnight-Sun side (Sun in the north) | snow odds thin (2 of 9 pixels)
+  0.78   73.65   -83.25  Arctic Canada                      0.91    130    164   0.65   0.79  0.00  30 Jul-8 Aug (42 h), 9 Aug-18 Aug (35 h), 20 Jul-29 Jul (34 h) | 57% midnight-Sun side (Sun in the north) | snow odds thin (4 of 9 pixels)
+  0.77   79.25   -74.70  Arctic Canada                      1.00    107    184   0.53   0.85  0.00  19 Aug-28 Aug (44 h), 9 Aug-18 Aug (28 h), 29 Aug-7 Sep (26 h) | 53% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+  0.77   81.55   -64.50  North-west Greenland or Ellesmere  1.00     90    170   0.45   1.00  0.00  19 Aug-28 Aug (38 h), 29 Aug-7 Sep (37 h), 8 Sep-17 Sep (12 h) | 52% midnight-Sun side (Sun in the north) | snow odds thin (0 of 9 pixels)
+  0.76   70.95    28.35  Norway, Sweden or Finland          0.71    217    273   1.00   0.62  0.00  20 Jul-29 Jul (44 h), 10 Jul-19 Jul (39 h), 30 Jul-8 Aug (33 h) | 64% midnight-Sun side (Sun in the north)
+
+Geology training | Mons Mouton plateau (Sun at or below 6.11 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.70   63.15   -50.10  Greenland                          0.42      0      0   0.00   1.00  0.82  none | 100% equator side (Sun in the south: dawn, dusk, low noon) | rock: Fiskenaesset anorthosite complex
+  0.59   63.95   -51.10  Greenland                          0.37      0      0   0.00   1.00  0.55  none | 100% equator side (Sun in the south: dawn, dusk, low noon) | rock: Buksefjorden anorthosite
+  0.54   70.15   -51.15  Greenland                          0.38     22    116   0.11   1.00  0.42  20 Jul-29 Jul (6 h), 30 Jul-8 Aug (5 h), 10 Jul-19 Jul (5 h) | 65% midnight-Sun side (Sun in the north) | rock: Tunulik anorthosite (with Boye So)
+  0.33   64.45   -52.10  Greenland                          0.26     18     23   0.09   0.21  0.67  17 Nov-26 Nov (9 h), 27 Nov-6 Dec (4 h), 7 Dec-16 Dec (3 h) | 100% equator side (Sun in the south: dawn, dusk, low noon) | rock: Akia anorthosite (Godthabsfjord) | snow odds thin (2 of 9 pixels)
+
+Full match | Mons Mouton plateau (Sun at or below 6.11 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.36   70.15   -51.15  Greenland                          0.38     22    116   0.11   1.00  0.42  20 Jul-29 Jul (6 h), 30 Jul-8 Aug (5 h), 10 Jul-19 Jul (5 h) | 65% midnight-Sun side (Sun in the north) | rock: Tunulik anorthosite (with Boye So)
+  0.24   64.45   -52.10  Greenland                          0.26     18     23   0.09   0.21  0.67  17 Nov-26 Nov (9 h), 27 Nov-6 Dec (4 h), 7 Dec-16 Dec (3 h) | 100% equator side (Sun in the south: dawn, dusk, low noon) | rock: Akia anorthosite (Godthabsfjord) | snow odds thin (2 of 9 pixels)
+  0.22   63.35   -50.30  Greenland                          0.36      2      5   0.01   0.90  0.82  17 Nov-26 Nov (0.6 h), 27 Nov-6 Dec (0.5 h), 7 Dec-16 Dec (0.4 h) | 100% equator side (Sun in the south: dawn, dusk, low noon) | rock: Fiskenaesset anorthosite complex
+
+Low Sun on bare ground | Mons Mouton plateau (Sun at or below 6.11 deg) | little-known sites only
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  1.00   68.95    54.45  Kola and north-west Russia         1.00    260    261   1.00   0.00  0.00  10 Jul-19 Jul (59 h), 30 Jun-9 Jul (52 h), 20 Jul-29 Jul (49 h) | 64% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+  1.00   74.95   141.25  Siberia and the Russian Far East   1.00    199    201   1.00   0.00  0.00  9 Aug-18 Aug (63 h), 30 Jul-8 Aug (56 h), 19 Aug-28 Aug (42 h) | 58% midnight-Sun side (Sun in the north)
+  1.00   70.05  -124.35  Arctic Canada                      0.99    218    259   1.00   0.23  0.00  10 Jul-19 Jul (48 h), 30 Jun-9 Jul (43 h), 20 Jul-29 Jul (42 h) | 65% midnight-Sun side (Sun in the north) | snow odds thin (3 of 9 pixels)
+  0.99   70.25  -115.35  Arctic Canada                      0.98    240    250   1.00   0.24  0.00  20 Jul-29 Jul (56 h), 10 Jul-19 Jul (51 h), 30 Jun-9 Jul (44 h) | 65% midnight-Sun side (Sun in the north) | snow odds thin (4 of 9 pixels)
+  0.99   74.95   143.25  Siberia and the Russian Far East   1.00    196    200   0.98   0.00  0.00  9 Aug-18 Aug (62 h), 30 Jul-8 Aug (56 h), 19 Aug-28 Aug (42 h) | 58% midnight-Sun side (Sun in the north)
+  0.99   70.15  -116.85  Arctic Canada                      0.98    240    263   1.00   0.51  0.00  20 Jul-29 Jul (55 h), 10 Jul-19 Jul (50 h), 30 Jun-9 Jul (43 h) | 65% midnight-Sun side (Sun in the north) | snow odds thin (2 of 9 pixels)
+  0.99   75.75   141.25  Siberia and the Russian Far East   1.00    196    196   0.98   0.00  0.00  9 Aug-18 Aug (68 h), 30 Jul-8 Aug (49 h), 19 Aug-28 Aug (47 h) | 55% midnight-Sun side (Sun in the north)
+  0.99   77.25  -118.25  Arctic Canada                      0.98    204    210   1.00   0.04  0.00  9 Aug-18 Aug (65 h), 19 Aug-28 Aug (59 h), 30 Jul-8 Aug (36 h) | 53% midnight-Sun side (Sun in the north)
+  0.98   75.35   142.25  Siberia and the Russian Far East   1.00    193    194   0.97   0.00  0.00  9 Aug-18 Aug (66 h), 30 Jul-8 Aug (54 h), 19 Aug-28 Aug (45 h) | 58% midnight-Sun side (Sun in the north) | snow odds thin (3 of 9 pixels)
+  0.98   77.75   -93.25  Arctic Canada                      1.00    194    195   0.97   0.01  0.00  19 Aug-28 Aug (64 h), 9 Aug-18 Aug (62 h), 29 Aug-7 Sep (30 h) | 54% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+
+Driving in long shadows | Mons Mouton plateau (Sun at or below 6.11 deg) | little-known sites only
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.83   82.05   -26.70  Greenland                          0.86    138    178   0.69   0.98  0.00  29 Aug-7 Sep (60 h), 19 Aug-28 Aug (57 h), 8 Sep-17 Sep (20 h) | 52% midnight-Sun side (Sun in the north) | snow odds thin (0 of 9 pixels)
+  0.81   73.15   -89.25  Arctic Canada                      0.97    114    197   0.57   0.97  0.00  30 Jul-8 Aug (35 h), 20 Jul-29 Jul (32 h), 9 Aug-18 Aug (24 h) | 61% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+  0.79   70.15  -116.85  Arctic Canada                      0.98    240    263   1.00   0.51  0.00  20 Jul-29 Jul (55 h), 10 Jul-19 Jul (50 h), 30 Jun-9 Jul (43 h) | 65% midnight-Sun side (Sun in the north) | snow odds thin (2 of 9 pixels)
+  0.78   70.65    30.15  Norway, Sweden or Finland          0.86    249    320   1.00   0.55  0.00  20 Jul-29 Jul (46 h), 10 Jul-19 Jul (40 h), 30 Jul-8 Aug (33 h) | 64% midnight-Sun side (Sun in the north) | snow odds thin (5 of 9 pixels)
+  0.78   70.35   -91.65  Arctic Canada                      0.85    167    220   0.83   0.66  0.00  20 Jul-29 Jul (43 h), 10 Jul-19 Jul (41 h), 30 Jun-9 Jul (34 h) | 66% midnight-Sun side (Sun in the north) | snow odds thin (2 of 9 pixels)
+  0.78   73.65   -83.25  Arctic Canada                      0.91    130    164   0.65   0.79  0.00  30 Jul-8 Aug (42 h), 9 Aug-18 Aug (35 h), 20 Jul-29 Jul (34 h) | 57% midnight-Sun side (Sun in the north) | snow odds thin (4 of 9 pixels)
+  0.77   79.25   -74.70  Arctic Canada                      1.00    107    184   0.53   0.85  0.00  19 Aug-28 Aug (44 h), 9 Aug-18 Aug (28 h), 29 Aug-7 Sep (26 h) | 53% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+  0.77   81.55   -64.50  North-west Greenland or Ellesmere  1.00     90    170   0.45   1.00  0.00  19 Aug-28 Aug (38 h), 29 Aug-7 Sep (37 h), 8 Sep-17 Sep (12 h) | 52% midnight-Sun side (Sun in the north) | snow odds thin (0 of 9 pixels)
+  0.76   70.95    28.35  Norway, Sweden or Finland          0.71    217    273   1.00   0.62  0.00  20 Jul-29 Jul (44 h), 10 Jul-19 Jul (39 h), 30 Jul-8 Aug (33 h) | 64% midnight-Sun side (Sun in the north)
+  0.75   72.75  -109.05  Arctic Canada                      0.98    125    194   0.63   0.69  0.00  30 Jul-8 Aug (37 h), 20 Jul-29 Jul (35 h), 9 Aug-18 Aug (27 h) | 60% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+
+Low Sun on bare ground | Nobile Rim 2 (Sun at or below 7.59 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  1.00   74.95   143.25  Siberia and the Russian Far East   1.00    405    409   1.00   0.01  0.00  9 Aug-18 Aug (71 h), 30 Jul-8 Aug (67 h), 19 Aug-28 Aug (50 h) | 56% midnight-Sun side (Sun in the north)
+  1.00   74.95   141.25  Siberia and the Russian Far East   1.00    401    403   1.00   0.01  0.00  9 Aug-18 Aug (72 h), 30 Jul-8 Aug (67 h), 19 Aug-28 Aug (50 h) | 56% midnight-Sun side (Sun in the north)
+  1.00   75.35   142.25  Siberia and the Russian Far East   1.00    388    392   1.00   0.01  0.00  9 Aug-18 Aug (76 h), 30 Jul-8 Aug (65 h), 19 Aug-28 Aug (53 h) | 56% midnight-Sun side (Sun in the north) | snow odds thin (3 of 9 pixels)
+  1.00   68.95    54.45  Kola and north-west Russia         1.00    361    362   1.00   0.01  0.00  10 Jul-19 Jul (67 h), 30 Jun-9 Jul (61 h), 20 Jul-29 Jul (56 h) | 62% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+  1.00   77.55    22.75  Svalbard                           1.00    310    404   1.00   0.20  0.00  9 Aug-18 Aug (66 h), 30 Jul-8 Aug (49 h), 19 Aug-28 Aug (47 h) | 55% midnight-Sun side (Sun in the north) | KNOWN AREA: Svalbard: named in the challenge; used by the AMASE Mars campaigns
+  1.00   73.55  -104.75  Arctic Canada                      1.00    296    332   1.00   0.22  0.00  30 Jul-8 Aug (66 h), 20 Jul-29 Jul (58 h), 9 Aug-18 Aug (44 h) | 61% midnight-Sun side (Sun in the north)
+  1.00   74.65   -95.75  Arctic Canada                      1.00    293    333   1.00   0.39  0.00  30 Jul-8 Aug (58 h), 9 Aug-18 Aug (58 h), 20 Jul-29 Jul (46 h) | 57% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+  1.00   75.65   -96.25  Arctic Canada                      1.00    290    315   1.00   0.29  0.00  9 Aug-18 Aug (64 h), 30 Jul-8 Aug (54 h), 19 Aug-28 Aug (42 h) | 56% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+  1.00   72.95  -110.55  Arctic Canada                      1.00    278    300   1.00   0.18  0.00  30 Jul-8 Aug (64 h), 20 Jul-29 Jul (60 h), 10 Jul-19 Jul (48 h) | 62% midnight-Sun side (Sun in the north) | snow odds thin (6 of 9 pixels)
+  1.00   63.75   -17.50  Iceland                            1.00    259    271   1.00   0.01  0.00  17 Nov-26 Nov (46 h), 7 Nov-16 Nov (35 h), 20 Jun-29 Jun (35 h) | 84% equator side (Sun in the south: dawn, dusk, low noon) | KNOWN AREA: Iceland: named in the challenge as widely studied | snow odds thin (2 of 9 pixels)
+  note: 45 ranked cells share the score 1.000 of the last site shown; among equal scores the cells with more long-window hours come first, so the cells left out score the same with fewer hours.
+
+Driving in long shadows | Nobile Rim 2 (Sun at or below 7.59 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.99   73.15   -89.25  Arctic Canada                      0.97    214    351   1.00   0.99  0.00  30 Jul-8 Aug (42 h), 20 Jul-29 Jul (40 h), 10 Jul-19 Jul (32 h) | 62% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+  0.94   82.05   -26.70  Greenland                          0.86    200    250   1.00   0.98  0.00  19 Aug-28 Aug (73 h), 29 Aug-7 Sep (71 h), 9 Aug-18 Aug (30 h) | 53% midnight-Sun side (Sun in the north) | snow odds thin (0 of 9 pixels)
+  0.91   72.85   -85.65  Arctic Canada                      0.91    166    327   0.83   1.00  0.00  30 Jul-8 Aug (30 h), 20 Jul-29 Jul (30 h), 10 Jul-19 Jul (25 h) | 63% midnight-Sun side (Sun in the north) | snow odds thin (3 of 9 pixels)
+  0.91   72.75  -110.25  Arctic Canada                      0.92    174    312   0.87   0.93  0.00  20 Jul-29 Jul (35 h), 30 Jul-8 Aug (33 h), 10 Jul-19 Jul (31 h) | 63% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+  0.91   73.65   -83.25  Arctic Canada                      0.91    238    308   1.00   0.82  0.00  30 Jul-8 Aug (49 h), 20 Jul-29 Jul (44 h), 9 Aug-18 Aug (42 h) | 60% midnight-Sun side (Sun in the north) | snow odds thin (4 of 9 pixels)
+  0.90   76.45   -88.25  Arctic Canada                      0.97    181    300   0.91   0.83  0.00  30 Jul-8 Aug (44 h), 9 Aug-18 Aug (42 h), 19 Aug-28 Aug (30 h) | 55% midnight-Sun side (Sun in the north)
+  0.89   81.55   -64.50  North-west Greenland or Ellesmere  1.00    143    249   0.71   0.99  0.00  19 Aug-28 Aug (48 h), 29 Aug-7 Sep (45 h), 9 Aug-18 Aug (31 h) | 53% midnight-Sun side (Sun in the north) | snow odds thin (0 of 9 pixels)
+  0.89   74.85   -90.75  Arctic Canada                      0.97    191    338   0.95   0.75  0.00  30 Jul-8 Aug (40 h), 20 Jul-29 Jul (35 h), 9 Aug-18 Aug (32 h) | 56% midnight-Sun side (Sun in the north) | KNOWN AREA: Devon Island: classic analog site (Haughton-Mars Project) | snow odds thin (5 of 9 pixels)
+  0.89   73.65   -94.75  Arctic Canada                      0.96    219    314   1.00   0.73  0.00  30 Jul-8 Aug (47 h), 20 Jul-29 Jul (42 h), 9 Aug-18 Aug (34 h) | 60% midnight-Sun side (Sun in the north) | snow odds thin (6 of 9 pixels)
+  0.88   80.25    21.90  Svalbard                           0.98    185    294   0.93   0.75  0.00  19 Aug-28 Aug (53 h), 9 Aug-18 Aug (48 h), 29 Aug-7 Sep (32 h) | 53% midnight-Sun side (Sun in the north) | KNOWN AREA: Svalbard: named in the challenge; used by the AMASE Mars campaigns | snow odds thin (2 of 9 pixels)
+
+Geology training | Nobile Rim 2 (Sun at or below 7.59 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.70   63.15   -50.10  Greenland                          0.42      0      0   0.00   1.00  0.82  none | 100% equator side (Sun in the south: dawn, dusk, low noon) | rock: Fiskenaesset anorthosite complex
+  0.57   63.95   -51.10  Greenland                          0.37      2      8   0.01   0.90  0.55  20 Jun-29 Jun (1 h), 10 Jun-19 Jun (0.7 h) | 84% equator side (Sun in the south: dawn, dusk, low noon) | rock: Buksefjorden anorthosite
+  0.54   70.15   -51.15  Greenland                          0.38     31    137   0.16   1.00  0.42  20 Jul-29 Jul (8 h), 30 Jul-8 Aug (7 h), 10 Jul-19 Jul (7 h) | 62% midnight-Sun side (Sun in the north) | rock: Tunulik anorthosite (with Boye So)
+  0.36   64.45   -52.10  Greenland                          0.26    105    133   0.53   0.27  0.67  30 Jun-9 Jul (31 h), 20 Jun-29 Jun (26 h), 10 Jun-19 Jun (12 h) | 73% equator side (Sun in the south: dawn, dusk, low noon) | rock: Akia anorthosite (Godthabsfjord) | snow odds thin (2 of 9 pixels)
+
+Full match | Nobile Rim 2 (Sun at or below 7.59 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.40   70.15   -51.15  Greenland                          0.38     31    137   0.16   1.00  0.42  20 Jul-29 Jul (8 h), 30 Jul-8 Aug (7 h), 10 Jul-19 Jul (7 h) | 62% midnight-Sun side (Sun in the north) | rock: Tunulik anorthosite (with Boye So)
+  0.40   64.45   -52.10  Greenland                          0.26    105    133   0.53   0.27  0.67  30 Jun-9 Jul (31 h), 20 Jun-29 Jun (26 h), 10 Jun-19 Jun (12 h) | 73% equator side (Sun in the south: dawn, dusk, low noon) | rock: Akia anorthosite (Godthabsfjord) | snow odds thin (2 of 9 pixels)
+  0.31   64.35   -50.90  Greenland                          0.27     15     66   0.07   0.67  0.71  30 Jun-9 Jul (5 h), 20 Jun-29 Jun (4 h), 10 Jun-19 Jun (3 h) | 73% equator side (Sun in the south: dawn, dusk, low noon) | rock: Storo anorthosite (Godthabsfjord) | snow odds thin (5 of 9 pixels)
+  0.25   63.35   -50.30  Greenland                          0.36      3      7   0.01   0.91  0.82  17 Nov-26 Nov (0.9 h), 7 Nov-16 Nov (0.7 h), 27 Nov-6 Dec (0.5 h) | 100% equator side (Sun in the south: dawn, dusk, low noon) | rock: Fiskenaesset anorthosite complex
+
+Low Sun on bare ground | Nobile Rim 2 (Sun at or below 7.59 deg) | little-known sites only
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  1.00   74.95   143.25  Siberia and the Russian Far East   1.00    405    409   1.00   0.01  0.00  9 Aug-18 Aug (71 h), 30 Jul-8 Aug (67 h), 19 Aug-28 Aug (50 h) | 56% midnight-Sun side (Sun in the north)
+  1.00   74.95   141.25  Siberia and the Russian Far East   1.00    401    403   1.00   0.01  0.00  9 Aug-18 Aug (72 h), 30 Jul-8 Aug (67 h), 19 Aug-28 Aug (50 h) | 56% midnight-Sun side (Sun in the north)
+  1.00   75.35   142.25  Siberia and the Russian Far East   1.00    388    392   1.00   0.01  0.00  9 Aug-18 Aug (76 h), 30 Jul-8 Aug (65 h), 19 Aug-28 Aug (53 h) | 56% midnight-Sun side (Sun in the north) | snow odds thin (3 of 9 pixels)
+  1.00   68.95    54.45  Kola and north-west Russia         1.00    361    362   1.00   0.01  0.00  10 Jul-19 Jul (67 h), 30 Jun-9 Jul (61 h), 20 Jul-29 Jul (56 h) | 62% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+  1.00   73.55  -104.75  Arctic Canada                      1.00    296    332   1.00   0.22  0.00  30 Jul-8 Aug (66 h), 20 Jul-29 Jul (58 h), 9 Aug-18 Aug (44 h) | 61% midnight-Sun side (Sun in the north)
+  1.00   74.65   -95.75  Arctic Canada                      1.00    293    333   1.00   0.39  0.00  30 Jul-8 Aug (58 h), 9 Aug-18 Aug (58 h), 20 Jul-29 Jul (46 h) | 57% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+  1.00   75.65   -96.25  Arctic Canada                      1.00    290    315   1.00   0.29  0.00  9 Aug-18 Aug (64 h), 30 Jul-8 Aug (54 h), 19 Aug-28 Aug (42 h) | 56% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+  1.00   72.95  -110.55  Arctic Canada                      1.00    278    300   1.00   0.18  0.00  30 Jul-8 Aug (64 h), 20 Jul-29 Jul (60 h), 10 Jul-19 Jul (48 h) | 62% midnight-Sun side (Sun in the north) | snow odds thin (6 of 9 pixels)
+  1.00   77.85   -96.25  Arctic Canada                      1.00    236    247   1.00   0.01  0.00  9 Aug-18 Aug (74 h), 19 Aug-28 Aug (64 h), 30 Jul-8 Aug (46 h) | 54% midnight-Sun side (Sun in the north) | snow odds thin (2 of 9 pixels)
+  1.00   82.05   -22.50  Greenland                          1.00    219    230   1.00   0.23  0.00  29 Aug-7 Sep (81 h), 19 Aug-28 Aug (74 h), 9 Aug-18 Aug (29 h) | 53% midnight-Sun side (Sun in the north) | snow odds thin (2 of 9 pixels)
+  note: 39 ranked cells share the score 1.000 of the last site shown; among equal scores the cells with more long-window hours come first, so the cells left out score the same with fewer hours.
+
+Driving in long shadows | Nobile Rim 2 (Sun at or below 7.59 deg) | little-known sites only
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.99   73.15   -89.25  Arctic Canada                      0.97    214    351   1.00   0.99  0.00  30 Jul-8 Aug (42 h), 20 Jul-29 Jul (40 h), 10 Jul-19 Jul (32 h) | 62% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+  0.94   82.05   -26.70  Greenland                          0.86    200    250   1.00   0.98  0.00  19 Aug-28 Aug (73 h), 29 Aug-7 Sep (71 h), 9 Aug-18 Aug (30 h) | 53% midnight-Sun side (Sun in the north) | snow odds thin (0 of 9 pixels)
+  0.91   72.85   -85.65  Arctic Canada                      0.91    166    327   0.83   1.00  0.00  30 Jul-8 Aug (30 h), 20 Jul-29 Jul (30 h), 10 Jul-19 Jul (25 h) | 63% midnight-Sun side (Sun in the north) | snow odds thin (3 of 9 pixels)
+  0.91   72.75  -110.25  Arctic Canada                      0.92    174    312   0.87   0.93  0.00  20 Jul-29 Jul (35 h), 30 Jul-8 Aug (33 h), 10 Jul-19 Jul (31 h) | 63% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+  0.91   73.65   -83.25  Arctic Canada                      0.91    238    308   1.00   0.82  0.00  30 Jul-8 Aug (49 h), 20 Jul-29 Jul (44 h), 9 Aug-18 Aug (42 h) | 60% midnight-Sun side (Sun in the north) | snow odds thin (4 of 9 pixels)
+  0.90   76.45   -88.25  Arctic Canada                      0.97    181    300   0.91   0.83  0.00  30 Jul-8 Aug (44 h), 9 Aug-18 Aug (42 h), 19 Aug-28 Aug (30 h) | 55% midnight-Sun side (Sun in the north)
+  0.89   81.55   -64.50  North-west Greenland or Ellesmere  1.00    143    249   0.71   0.99  0.00  19 Aug-28 Aug (48 h), 29 Aug-7 Sep (45 h), 9 Aug-18 Aug (31 h) | 53% midnight-Sun side (Sun in the north) | snow odds thin (0 of 9 pixels)
+  0.89   73.65   -94.75  Arctic Canada                      0.96    219    314   1.00   0.73  0.00  30 Jul-8 Aug (47 h), 20 Jul-29 Jul (42 h), 9 Aug-18 Aug (34 h) | 60% midnight-Sun side (Sun in the north) | snow odds thin (6 of 9 pixels)
+  0.88   73.85   -92.25  Arctic Canada                      0.99    220    319   1.00   0.69  0.00  30 Jul-8 Aug (49 h), 20 Jul-29 Jul (45 h), 9 Aug-18 Aug (33 h) | 58% midnight-Sun side (Sun in the north)
+  0.88   79.25   -74.70  Arctic Canada                      1.00    154    246   0.77   0.88  0.00  19 Aug-28 Aug (53 h), 9 Aug-18 Aug (39 h), 29 Aug-7 Sep (33 h) | 54% midnight-Sun side (Sun in the north) | snow odds thin (1 of 9 pixels)
+  note: 2 ranked cells share the score 0.877 of the last site shown; among equal scores the cells with more long-window hours come first, so the cells left out score the same with fewer hours.
+
+DOUBTFUL SNOW OR NO SNOW DATA: 70 gridded cells, listed and not ranked
+  Long-window snow-free hours per target: with the stale-flag rule / as the maps read / with the terrain horizon.
+  lat     lon      region                     bare  status    stuck pixels      connecting-ridge              malapert           mons-mouton          nobile-rim-2
+   80.15    19.50  Svalbard                   0.75  doubtful      1      5      16/    18/     6     176/   195/   101     198/   218/   119     247/   271/   163
+   80.05    19.50  Svalbard                   0.27  doubtful      1      7      10/    10/     -     107/   114/     -     120/   128/     -     149/   158/     -
+   79.75    12.30  Svalbard                   0.70  doubtful      1      5      19/    23/     -     176/   204/     -     196/   226/     -     253/   291/     -
+   79.75    12.90  Svalbard                   0.38  doubtful      1      6      20/    25/     -     178/   208/     -     198/   231/     -     256/   297/     -
+   79.65    12.30  Svalbard                   0.40  doubtful      1      8      12/    13/     -     115/   121/     -     128/   134/     -     165/   173/     -
+   79.65    12.90  Svalbard                   0.53  doubtful      1      5      22/    28/     -     191/   228/     -     212/   251/     -     274/   324/     -
+   79.55    12.30  Svalbard                   0.25  doubtful      1      9      12/    15/     -     108/   124/     -     120/   137/     -     156/   177/     -
+   79.55    12.90  Svalbard                   0.45  doubtful      1      5      11/    14/     -      90/   109/     -     100/   120/     -     129/   154/     -
+   79.55    13.50  Svalbard                   0.22  doubtful      1      3      26/    34/     -     240/   286/     -     265/   314/     -     342/   404/     -
+   79.45    12.90  Svalbard                   0.20  doubtful      1      9       5/     5/     -      34/    40/     -      38/    44/     -      51/    58/     -
+   79.45    13.50  Svalbard                   0.72  doubtful      1      6      25/    31/     7     220/   258/    54     243/   284/    63     314/   366/    95
+   79.45    18.90  Svalbard                   0.24  doubtful      1      4      13/    15/     -     135/   151/     -     148/   165/     -     186/   208/     -
+   79.35    13.50  Svalbard                   0.51  doubtful      1      9      15/    17/     -     116/   131/     -     127/   144/     -     165/   186/     -
+   79.35    18.90  Svalbard                   0.22  doubtful      1      3      15/    21/     -     145/   186/     -     159/   204/     -     202/   259/     -
+   78.45    11.70  Svalbard                   0.46  doubtful      1      3      41/    42/    20     326/   340/   176     355/   370/   195     459/   478/   266
+   78.25    14.10  Svalbard                   0.51  doubtful      1      4      40/    40/     9     294/   305/   147     337/   349/   180     426/   440/   253
+   77.85   -71.25  North-west Greenland or E  0.22  doubtful      1      5       0/     1/     -      80/    90/     -     116/   127/     -     147/   160/     -
+   77.75   -71.25  North-west Greenland or E  0.92  doubtful      1      2       0/     3/     -      89/   112/     -     121/   149/     -     153/   186/     -
+   76.95    16.75  Svalbard                   0.23  doubtful      1      9       5/     6/     -      50/    54/     -      65/    70/     -      91/    97/     -
+   76.95    17.25  Svalbard                   0.40  doubtful      1      3      21/    24/     4     173/   184/    56     242/   256/    83     348/   366/   138
+   76.45   -82.25  Arctic Canada              0.47  doubtful      1      4       6/     8/     -      39/    49/     -      50/    62/     -      78/    96/     -
+   74.55   -81.25  Arctic Canada              0.51  doubtful      1      4       0/     1/     -      78/    88/     -     111/   122/     -     202/   221/     -
+   74.45    18.75  Bear Island (Bjornoya)     0.56  doubtful      3      3      12/    24/    10     191/   292/   173     243/   359/   222     448/   674/   414
+   74.45    19.25  Bear Island (Bjornoya)     0.62  doubtful      3      5      12/    24/     2     191/   292/   127     243/   359/   169     448/   674/   328
+   73.55   -80.75  Arctic Canada              0.50  doubtful      1      6      15/    16/     -      94/   100/     -     115/   123/     -     201/   213/     -
+   73.35    55.25  Novaya Zemlya              0.42  doubtful      1      6      19/    20/     -     109/   115/     -     124/   131/     -     208/   221/     -
+   72.25   -85.95  Arctic Canada              0.26  doubtful      1      2      28/    35/     -     126/   166/     -     190/   238/     -     285/   362/     -
+   71.25   -96.45  Arctic Canada              0.89  doubtful      2      5      20/    23/    12     180/   195/   137     200/   219/   156     294/   321/   231
+   71.15    -8.25  Jan Mayen                  0.19  doubtful      5      3      29/    65/    23     203/   409/   176     231/   473/   193     341/   682/   268
+   71.15    -7.95  Jan Mayen                  0.24  doubtful      5      1      29/    65/    16     203/   409/   135     231/   473/   153     341/   682/   224
+   71.05    -8.25  Jan Mayen                  0.15  doubtful      5      8       7/    12/     -      45/    71/     -      52/    85/     -      76/   122/     -
+   70.95    -8.85  Jan Mayen                  0.19  doubtful      5      1      32/    70/    18     206/   397/   132     233/   478/   148     340/   684/   214
+   70.95    -8.55  Jan Mayen                  0.53  doubtful      5      3      32/    70/    12     206/   397/    81     233/   478/    97     340/   684/   150
+   70.85    -8.85  Jan Mayen                  0.27  doubtful      5      2      22/    42/     7     114/   221/    40     129/   264/    48     193/   370/    77
+   69.75   -54.75  Greenland                  0.52  doubtful      1      4      25/    27/     -     146/   151/     -     158/   164/     -     230/   239/     -
+   68.45   -85.65  Arctic Canada              0.56  doubtful      1      8      27/    28/     -     130/   136/     -     139/   146/     -     200/   208/     -
+   82.75   -50.70  Greenland                  1.00  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   82.75   -21.30  Greenland                  0.78  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   82.75   -20.70  Greenland                  0.86  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   82.65   -20.70  Greenland                  0.65  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   82.65   -20.10  Greenland                  0.88  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   82.55   -20.10  Greenland                  0.87  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   82.45   -20.70  Greenland                  0.82  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   82.35   -55.50  Greenland                  0.97  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   82.35   -21.30  Greenland                  0.97  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   82.05   -59.70  Greenland                  0.93  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   81.95   -18.90  Greenland                  1.00  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   81.75   -62.10  North-west Greenland or E  1.00  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   81.75   -21.30  Greenland                  0.99  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   81.65   -62.10  North-west Greenland or E  1.00  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   81.65   -19.50  Greenland                  0.65  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   81.55   -61.50  North-west Greenland or E  1.00  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   81.45   -61.50  North-west Greenland or E  0.96  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   81.45   -11.70  Greenland                  0.23  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   81.15   -12.90  Greenland                  0.72  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   81.05   -13.50  Greenland                  0.35  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   81.05   -12.90  Greenland                  1.00  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   80.85   -14.10  Greenland                  0.99  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   80.75   -14.70  Greenland                  0.94  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   80.75   -14.10  Greenland                  1.00  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   80.65   -15.30  Greenland                  1.00  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   80.35   -15.90  Greenland                  0.91  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   80.15   -17.10  Greenland                  0.45  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   70.45    66.75  Novaya Zemlya              0.44  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   69.45   -82.05  Arctic Canada              0.79  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   69.35   -81.75  Arctic Canada              0.20  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   66.15  -169.65  Chukotka                   0.16  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   64.15   -73.70  Arctic Canada              0.70  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   61.25   -48.90  Greenland                  0.61  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+   60.55   -68.30  Arctic Canada              0.36  no data       0      0       -/     -/     -       -/     -/     -       -/     -/     -       -/     -/     -
+
+NAMED SITES: reported on their own, never inside the gridded counts
+  Per target: long-window hours flat / snow-free / open (north); flat / open in the rock season (south); then the terrain score.
+  Qaqortorsuaq anorthosite, Greenland | cell 66.5_-52.2 | bare 0.12 | snow measured | horizon north  6.0 south  5.9 | rock 0.74 (Qaqortorsuaq / White Mountain anorthosite) | not ranked: named-site cell outside the screen, bare under 0.25
+      Shackleton-de Gerlache connecting ridge       180 /    80 /    15   terrain 0.84
+      Malapert Massif                               488 /   158 /    40   terrain 0.90
+      Mons Mouton plateau                           550 /   207 /    55   terrain 1.00
+      Nobile Rim 2                                  785 /   293 /    88   terrain 0.94
+  Fiskenaesset anorthosite, Greenland | cell 63.2_-50.0 | bare 0.26 | snow measured | horizon north  6.0 south  6.2 | rock 0.82 (Fiskenaesset anorthosite complex) | ranked
+      Shackleton-de Gerlache connecting ridge         0 /     0 /     0   terrain 0.81
+      Malapert Massif                               260 /     0 /     0   terrain 0.68
+      Mons Mouton plateau                           312 /     0 /     0   terrain 0.95
+      Nobile Rim 2                                  427 /     0 /     0   terrain 0.96
+  Lofoten anorthosite (Nusfjord), Norway | cell 68.0_13.2 | bare 0.01 | snow doubtful | horizon north 10.1 south  5.3 | rock 0.12 (Lofoten anorthosite, Flakstadoy (Nusfjord)) | not ranked: named-site cell outside the screen, snow doubtful, bare under 0.25
+      Shackleton-de Gerlache connecting ridge       111 /    80 /     9   terrain 0.55
+      Malapert Massif                               527 /   334 /    67   terrain 0.76
+      Mons Mouton plateau                           638 /   409 /    87   terrain 0.71
+      Nobile Rim 2                                  852 /   521 /   124   terrain 0.64
+  Bergen Arcs anorthosite, Norway | cell 60.5_5.2 | bare 0.00 | snow measured | horizon north  3.3 south  3.2 | rock 0.50 (Bergen Arcs anorthosites (Lindas nappe, Holsnoy-Radoy area)) | not ranked: named-site cell outside the screen, bare under 0.25
+      Shackleton-de Gerlache connecting ridge         0 /     0 /     0   terrain 0.89
+      Malapert Massif                                 0 /     0 /     0   terrain 0.70
+      Mons Mouton plateau                           116 /    66 /    30   terrain 1.00
+      Nobile Rim 2                                  300 /   167 /    83   terrain 1.00
+  Bear Island, Norway | cell 74.4_19.0 | bare 0.62 | snow doubtful | horizon north -0.1 south  3.3 | rock 0.00 (None) | not ranked: snow doubtful
+      Shackleton-de Gerlache connecting ridge        53 /    12 /     2   terrain 0.40
+      Malapert Massif                               527 /   191 /   127   terrain 0.36
+      Mons Mouton plateau                           629 /   243 /   169   terrain 0.47
+      Nobile Rim 2                                 1207 /   448 /   328   terrain 0.50
+  Jan Mayen, Norway | cell 70.9_-8.7 | bare 0.53 | snow doubtful | horizon north  4.9 south -0.1 | rock 0.00 (None) | not ranked: snow doubtful
+      Shackleton-de Gerlache connecting ridge       107 /    32 /    12   terrain 0.54
+      Malapert Massif                               588 /   206 /    81   terrain 0.55
+      Mons Mouton plateau                           724 /   233 /    97   terrain 0.65
+      Nobile Rim 2                                 1028 /   340 /   150   terrain 0.65
+  Reykjanes, Iceland | cell 63.8_-22.6 | bare 0.00 | snow measured | horizon north  0.7 south -0.1 | rock 0.00 (None) | not ranked: named-site cell outside the screen, bare under 0.25
+      Shackleton-de Gerlache connecting ridge         0 /     0 /     0   terrain 0.16
+      Malapert Massif                               295 /   135 /   117   terrain 0.13
+      Mons Mouton plateau                           306 /   142 /   124   terrain 0.18
+      Nobile Rim 2                                  503 /   286 /   243   terrain 0.22
+  Skeidararsandur, Iceland | cell 63.9_-17.6 | bare 0.74 | snow measured | horizon north  3.7 south -0.2 | rock 0.00 (None) | ranked
+      Shackleton-de Gerlache connecting ridge         0 /     0 /     0   terrain 0.21
+      Malapert Massif                               294 /    84 /    76   terrain 0.23
+      Mons Mouton plateau                           305 /    88 /    81   terrain 0.26
+      Nobile Rim 2                                  502 /   206 /   144   terrain 0.25
+  Myrdalssandur sand plain, Iceland | cell 63.4_-18.6 | bare 0.90 | snow measured | horizon north  0.3 south -0.1 | rock 0.00 (None) | ranked
+      Shackleton-de Gerlache connecting ridge         0 /     0 /     0   terrain 0.02
+      Malapert Massif                               258 /    92 /    92   terrain 0.02
+      Mons Mouton plateau                           311 /   127 /   126   terrain 0.03
+      Nobile Rim 2                                  426 /   187 /   185   terrain 0.05
+  Haughton crater, Devon Island, Canada | cell 75.3_-90.0 | bare 0.53 | snow measured | horizon north  0.8 south  1.8 | rock 0.00 (None) | ranked
+      Shackleton-de Gerlache connecting ridge        83 /    31 /    13   terrain 0.44
+      Malapert Massif                               524 /   150 /   100   terrain 0.31
+      Mons Mouton plateau                           677 /   188 /   134   terrain 0.49
+      Nobile Rim 2                                 1178 /   328 /   243   terrain 0.53
+  Longyearbyen, Svalbard | cell 78.2_15.6 | bare 0.48 | snow measured | horizon north 12.9 south  7.5 | rock 0.00 (None) | ranked
+      Shackleton-de Gerlache connecting ridge        62 /    14 /     1   terrain 0.57
+      Malapert Massif                               784 /    81 /    16   terrain 0.83
+      Mons Mouton plateau                           874 /    93 /    20   terrain 0.75
+      Nobile Rim 2                                 1071 /   118 /    29   terrain 0.68
+  Kangerlussuaq, Greenland | cell 67.0_-50.7 | bare 0.07 | snow measured | horizon north  7.0 south  5.0 | rock 0.00 (None) | not ranked: named-site cell outside the screen, bare under 0.25
+      Shackleton-de Gerlache connecting ridge       176 /   103 /     5   terrain 0.80
+      Malapert Massif                               502 /   230 /    32   terrain 0.64
+      Mons Mouton plateau                           610 /   266 /    44   terrain 0.93
+      Nobile Rim 2                                  849 /   359 /    82   terrain 0.93
+  Bunger Hills | cell -66.3_100.5 | bare 0.60 | snow unmeasured | horizon north  1.0 south  1.9 | rock 0.00 (None) | ranked
+      Shackleton-de Gerlache connecting ridge        52 /     6   terrain 0.45
+      Malapert Massif                               181 /    67   terrain 0.30
+      Mons Mouton plateau                           232 /    96   terrain 0.50
+      Nobile Rim 2                                  307 /   148   terrain 0.55
+  Vestfold Hills | cell -68.6_78.0 | bare 0.91 | snow unmeasured | horizon north  1.2 south  1.8 | rock 0.00 (None) | ranked
+      Shackleton-de Gerlache connecting ridge        79 /    21   terrain 0.53
+      Malapert Massif                               281 /   151   terrain 0.35
+      Mons Mouton plateau                           300 /   168   terrain 0.59
+      Nobile Rim 2                                  392 /   234   terrain 0.63
+  Larsemann Hills | cell -69.4_76.2 | bare 0.81 | snow unmeasured | horizon north  0.0 south  3.3 | rock 0.00 (None) | not ranked: named-site cell outside the screen
+      Shackleton-de Gerlache connecting ridge        29 /     1   terrain 0.72
+      Malapert Massif                               305 /   115   terrain 0.47
+      Mons Mouton plateau                           329 /   133   terrain 0.83
+      Nobile Rim 2                                  427 /   194   terrain 0.82
+  Schirmacher Oasis | cell -70.8_11.4 | bare 0.18 | snow unmeasured | horizon north -0.0 south  3.8 | rock 0.00 (None) | not ranked: bare under 0.25
+      Shackleton-de Gerlache connecting ridge        30 /     0   terrain 0.38
+      Malapert Massif                               265 /    98   terrain 0.29
+      Mons Mouton plateau                           296 /   122   terrain 0.43
+      Nobile Rim 2                                  411 /   199   terrain 0.47
+  Lake Untersee and the Eliseev anorthosite massif | cell -71.4_13.2 | bare 0.65 | snow unmeasured | horizon north  1.8 south 15.4 | rock 0.50 (Eliseev anorthosite massif at Lake Untersee (Gruber Mountains)) | ranked
+      Shackleton-de Gerlache connecting ridge        30 /     0   terrain 0.51
+      Malapert Massif                               236 /    10   terrain 0.64
+      Mons Mouton plateau                           315 /    18   terrain 0.64
+      Nobile Rim 2                                  440 /    38   terrain 0.63
+  McMurdo Dry Valleys | cell -77.6_161.5 | bare 0.89 | snow unmeasured | horizon north  9.8 south 15.1 | rock 0.00 (None) | ranked
+      Shackleton-de Gerlache connecting ridge        30 /     0   terrain 0.67
+      Malapert Massif                               156 /     8   terrain 0.76
+      Mons Mouton plateau                           171 /    11   terrain 0.82
+      Nobile Rim 2                                  238 /    26   terrain 0.81
+  Windmill Islands | cell -66.3_110.4 | bare 0.14 | snow unmeasured | horizon north -0.2 south  1.3 | rock 0.00 (None) | not ranked: named-site cell outside the screen, bare under 0.25
+      Shackleton-de Gerlache connecting ridge        52 /    11   terrain 0.27
+      Malapert Massif                               181 /    84   terrain 0.16
+      Mons Mouton plateau                           232 /   117   terrain 0.29
+      Nobile Rim 2                                  307 /   175   terrain 0.36
+  Syowa and the Soya Coast | cell -69.1_39.3 | bare 0.52 | snow unmeasured | horizon north  0.5 south  0.4 | rock 0.00 (None) | not ranked: named-site cell outside the screen
+      Shackleton-de Gerlache connecting ridge        53 /    32   terrain 0.25
+      Malapert Massif                               271 /   222   terrain 0.13
+      Mons Mouton plateau                           334 /   271   terrain 0.27
+      Nobile Rim 2                                  390 /   326   terrain 0.34
+  Fildes Peninsula | cell -62.2_-59.0 | bare 0.40 | snow unmeasured | horizon north -0.1 south  1.6 | rock 0.00 (None) | ranked
+      Shackleton-de Gerlache connecting ridge         0 /     0   terrain 0.49
+      Malapert Massif                                 0 /     0   terrain 0.31
+      Mons Mouton plateau                             0 /     0   terrain 0.54
+      Nobile Rim 2                                    0 /     0   terrain 0.59
+  Deception Island | cell -63.0_-60.6 | bare 0.42 | snow unmeasured | horizon north  1.9 south -0.0 | rock 0.00 (None) | ranked
+      Shackleton-de Gerlache connecting ridge         0 /     0   terrain 0.47
+      Malapert Massif                                 0 /     0   terrain 0.32
+      Mons Mouton plateau                             0 /     0   terrain 0.53
+      Nobile Rim 2                                    0 /     0   terrain 0.57
+  Ulu Peninsula, James Ross Island | cell -63.9_-58.0 | bare 1.00 | snow unmeasured | horizon north  2.6 south  4.4 | rock 0.00 (None) | ranked
+      Shackleton-de Gerlache connecting ridge         0 /     0   terrain 0.71
+      Malapert Massif                                 0 /     0   terrain 0.61
+      Mons Mouton plateau                             0 /     0   terrain 0.83
+      Nobile Rim 2                                  101 /    31   terrain 0.85
+  Seymour Island | cell -64.3_-56.8 | bare 1.00 | snow unmeasured | horizon north  1.1 south  2.3 | rock 0.00 (None) | ranked
+      Shackleton-de Gerlache connecting ridge         0 /     0   terrain 0.61
+      Malapert Massif                                 0 /     0   terrain 0.45
+      Mons Mouton plateau                             0 /     0   terrain 0.69
+      Nobile Rim 2                                  146 /    79   terrain 0.72
+  Rothera Point | cell -67.6_-68.4 | bare 0.11 | snow unmeasured | horizon north  4.3 south  0.7 | rock 0.00 (None) | not ranked: named-site cell outside the screen, bare under 0.25
+      Shackleton-de Gerlache connecting ridge       123 /    64   terrain 0.55
+      Malapert Massif                               285 /   160   terrain 0.44
+      Mons Mouton plateau                           302 /   172   terrain 0.63
+      Nobile Rim 2                                  386 /   222   terrain 0.66
+  Jutulsessen at Troll | cell -72.1_2.4 | bare 0.31 | snow unmeasured | horizon north  0.3 south  3.2 | rock 0.00 (None) | ranked
+      Shackleton-de Gerlache connecting ridge        23 /     0   terrain 0.42
+      Malapert Massif                               200 /    69   terrain 0.42
+      Mons Mouton plateau                           282 /   121   terrain 0.50
+      Nobile Rim 2                                  424 /   205   terrain 0.53
+  Northern Foothills, Terra Nova Bay | cell -74.8_164.0 | bare 0.90 | snow unmeasured | horizon north  2.8 south  0.2 | rock 0.00 (None) | not ranked: named-site cell outside the screen
+      Shackleton-de Gerlache connecting ridge        25 /    13   terrain 0.77
+      Malapert Massif                               146 /    92   terrain 0.57
+      Mons Mouton plateau                           159 /   102   terrain 0.88
+      Nobile Rim 2                                  300 /   209   terrain 0.88
+
+SOUTH: snow not measured: hours are for 27 November to 1 March, when the rock maps show the ground bare
+  light = min(1, long_summer_rock_open_hours / 200).
+
+Low Sun on bare ground | Shackleton-de Gerlache connecting ridge (Sun at or below 2.08 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.39  -68.45    78.15  Princess Elizabeth Land            0.89     33     81   0.17   0.31  0.00  27 Nov-6 Dec (12 h), 1 Jan-10 Jan (12 h), 11 Jan-20 Jan (9 h) | 100% midnight-Sun side (Sun in the south)
+  0.36  -67.75   -68.55  Antarctic Peninsula and South She  0.37     71    116   0.36   0.58  0.00  17 Dec-31 Dec (19 h), 27 Nov-6 Dec (18 h), 1 Jan-10 Jan (18 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.29  -66.45   110.55  Wilkes Land                        0.62     26     82   0.13   0.52  0.00  17 Dec-31 Dec (17 h), 7 Dec-16 Dec (10 h) | 100% midnight-Sun side (Sun in the south)
+  0.26  -67.75   -67.05  Antarctic Peninsula and South She  0.65     21    116   0.10   0.33  0.00  17 Dec-31 Dec (7 h), 1 Jan-10 Jan (5 h), 7 Dec-16 Dec (5 h) | 100% midnight-Sun side (Sun in the south)
+  0.25  -73.45    61.75  Enderby and Mac.Robertson Land     0.92     14     31   0.07   0.41  0.00  31 Jan-9 Feb (14 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.24  -66.95    51.15  Enderby and Mac.Robertson Land     0.35     32    107   0.16   0.36  0.00  17 Dec-31 Dec (15 h), 7 Dec-16 Dec (10 h), 1 Jan-10 Jan (8 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.22  -77.55   166.25  Victoria Land                      0.57     17     30   0.08   0.39  0.00  10 Feb-19 Feb (17 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.22  -71.45    67.95  Enderby and Mac.Robertson Land     0.43     22     30   0.11   0.55  0.00  21 Jan-30 Jan (22 h) | 100% midnight-Sun side (Sun in the south)
+  0.21  -67.35    59.55  Enderby and Mac.Robertson Land     0.35     25     99   0.13   0.68  0.00  17 Dec-31 Dec (12 h), 7 Dec-16 Dec (7 h), 1 Jan-10 Jan (6 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.21  -73.45    65.75  Enderby and Mac.Robertson Land     0.45     19     31   0.10   0.38  0.00  31 Jan-9 Feb (19 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+
+Driving in long shadows | Shackleton-de Gerlache connecting ridge (Sun at or below 2.08 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.42  -67.75   -68.55  Antarctic Peninsula and South She  0.37     71    116   0.36   0.58  0.00  17 Dec-31 Dec (19 h), 27 Nov-6 Dec (18 h), 1 Jan-10 Jan (18 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.37  -68.55    78.15  Princess Elizabeth Land            0.91     21     79   0.10   0.53  0.00  1 Jan-10 Jan (8 h), 27 Nov-6 Dec (8 h), 11 Jan-20 Jan (6 h) | 100% midnight-Sun side (Sun in the south)
+  0.35  -66.45   110.55  Wilkes Land                        0.62     26     82   0.13   0.52  0.00  17 Dec-31 Dec (17 h), 7 Dec-16 Dec (10 h) | 100% midnight-Sun side (Sun in the south)
+  0.35  -67.85   -67.35  Antarctic Peninsula and South She  0.55     21     84   0.10   0.76  0.00  27 Nov-6 Dec (8 h), 1 Jan-10 Jan (7 h), 7 Dec-16 Dec (6 h) | 100% midnight-Sun side (Sun in the south)
+  0.31  -67.35    59.55  Enderby and Mac.Robertson Land     0.35     25     99   0.13   0.68  0.00  17 Dec-31 Dec (12 h), 7 Dec-16 Dec (7 h), 1 Jan-10 Jan (6 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.31  -78.25   166.50  Victoria Land                      0.55     16     24   0.08   0.68  0.00  10 Feb-19 Feb (16 h) | 100% midnight-Sun side (Sun in the south)
+  0.30  -67.35   -67.65  Antarctic Peninsula and South She  0.37     20     99   0.10   0.74  0.00  17 Dec-31 Dec (8 h), 7 Dec-16 Dec (6 h), 1 Jan-10 Jan (6 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.30  -71.45    67.95  Enderby and Mac.Robertson Land     0.43     22     30   0.11   0.55  0.00  21 Jan-30 Jan (22 h) | 100% midnight-Sun side (Sun in the south)
+  0.29  -73.45    61.75  Enderby and Mac.Robertson Land     0.92     14     31   0.07   0.41  0.00  31 Jan-9 Feb (14 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.28  -77.65   161.75  Victoria Land                      0.61     10     29   0.05   0.79  0.00  10 Feb-19 Feb (10 h) | 100% midnight-Sun side (Sun in the south) | KNOWN: Blood Falls / Taylor Glacier (tier C, 14 km)
+
+Geology training | Shackleton-de Gerlache connecting ridge (Sun at or below 2.08 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.55  -71.35    13.35  Dronning Maud Land                 0.65      0     30   0.00   0.51  0.50  21 Jan-30 Jan (0.3 h) | 100% midnight-Sun side (Sun in the south) | rock: Eliseev anorthosite massif at Lake Untersee (Gruber Mountains) | KNOWN AREA: Lake Untersee and the Eliseev anorthosite massif: No lunar analog, simulant or training use of the anorthosite found; Lake Untersee inside the massif is studied as a Mars polar and icy-world astrobiology analog
+
+Full match | Shackleton-de Gerlache connecting ridge (Sun at or below 2.08 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.19  -71.35    13.65  Dronning Maud Land                 0.46      3     30   0.01   0.45  0.50  21 Jan-30 Jan (3 h) | 100% midnight-Sun side (Sun in the south) | rock: Eliseev anorthosite massif at Lake Untersee (Gruber Mountains) | KNOWN AREA: Lake Untersee and the Eliseev anorthosite massif: No lunar analog, simulant or training use of the anorthosite found; Lake Untersee inside the massif is studied as a Mars polar and icy-world astrobiology analog
+
+Low Sun on bare ground | Shackleton-de Gerlache connecting ridge (Sun at or below 2.08 deg) | little-known sites only
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.39  -68.45    78.15  Princess Elizabeth Land            0.89     33     81   0.17   0.31  0.00  27 Nov-6 Dec (12 h), 1 Jan-10 Jan (12 h), 11 Jan-20 Jan (9 h) | 100% midnight-Sun side (Sun in the south)
+  0.36  -67.75   -68.55  Antarctic Peninsula and South She  0.37     71    116   0.36   0.58  0.00  17 Dec-31 Dec (19 h), 27 Nov-6 Dec (18 h), 1 Jan-10 Jan (18 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.29  -66.45   110.55  Wilkes Land                        0.62     26     82   0.13   0.52  0.00  17 Dec-31 Dec (17 h), 7 Dec-16 Dec (10 h) | 100% midnight-Sun side (Sun in the south)
+  0.26  -67.75   -67.05  Antarctic Peninsula and South She  0.65     21    116   0.10   0.33  0.00  17 Dec-31 Dec (7 h), 1 Jan-10 Jan (5 h), 7 Dec-16 Dec (5 h) | 100% midnight-Sun side (Sun in the south)
+  0.25  -73.45    61.75  Enderby and Mac.Robertson Land     0.92     14     31   0.07   0.41  0.00  31 Jan-9 Feb (14 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.24  -66.95    51.15  Enderby and Mac.Robertson Land     0.35     32    107   0.16   0.36  0.00  17 Dec-31 Dec (15 h), 7 Dec-16 Dec (10 h), 1 Jan-10 Jan (8 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.22  -77.55   166.25  Victoria Land                      0.57     17     30   0.08   0.39  0.00  10 Feb-19 Feb (17 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.22  -71.45    67.95  Enderby and Mac.Robertson Land     0.43     22     30   0.11   0.55  0.00  21 Jan-30 Jan (22 h) | 100% midnight-Sun side (Sun in the south)
+  0.21  -67.35    59.55  Enderby and Mac.Robertson Land     0.35     25     99   0.13   0.68  0.00  17 Dec-31 Dec (12 h), 7 Dec-16 Dec (7 h), 1 Jan-10 Jan (6 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.21  -73.45    65.75  Enderby and Mac.Robertson Land     0.45     19     31   0.10   0.38  0.00  31 Jan-9 Feb (19 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+
+Driving in long shadows | Shackleton-de Gerlache connecting ridge (Sun at or below 2.08 deg) | little-known sites only
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.42  -67.75   -68.55  Antarctic Peninsula and South She  0.37     71    116   0.36   0.58  0.00  17 Dec-31 Dec (19 h), 27 Nov-6 Dec (18 h), 1 Jan-10 Jan (18 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.37  -68.55    78.15  Princess Elizabeth Land            0.91     21     79   0.10   0.53  0.00  1 Jan-10 Jan (8 h), 27 Nov-6 Dec (8 h), 11 Jan-20 Jan (6 h) | 100% midnight-Sun side (Sun in the south)
+  0.35  -66.45   110.55  Wilkes Land                        0.62     26     82   0.13   0.52  0.00  17 Dec-31 Dec (17 h), 7 Dec-16 Dec (10 h) | 100% midnight-Sun side (Sun in the south)
+  0.35  -67.85   -67.35  Antarctic Peninsula and South She  0.55     21     84   0.10   0.76  0.00  27 Nov-6 Dec (8 h), 1 Jan-10 Jan (7 h), 7 Dec-16 Dec (6 h) | 100% midnight-Sun side (Sun in the south)
+  0.31  -67.35    59.55  Enderby and Mac.Robertson Land     0.35     25     99   0.13   0.68  0.00  17 Dec-31 Dec (12 h), 7 Dec-16 Dec (7 h), 1 Jan-10 Jan (6 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.31  -78.25   166.50  Victoria Land                      0.55     16     24   0.08   0.68  0.00  10 Feb-19 Feb (16 h) | 100% midnight-Sun side (Sun in the south)
+  0.30  -67.35   -67.65  Antarctic Peninsula and South She  0.37     20     99   0.10   0.74  0.00  17 Dec-31 Dec (8 h), 7 Dec-16 Dec (6 h), 1 Jan-10 Jan (6 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.30  -71.45    67.95  Enderby and Mac.Robertson Land     0.43     22     30   0.11   0.55  0.00  21 Jan-30 Jan (22 h) | 100% midnight-Sun side (Sun in the south)
+  0.29  -73.45    61.75  Enderby and Mac.Robertson Land     0.92     14     31   0.07   0.41  0.00  31 Jan-9 Feb (14 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.28  -66.15   100.95  Wilkes Land                        0.84     10     51   0.05   0.53  0.00  17 Dec-31 Dec (10 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  note: 2 ranked cells share the score 0.279 of the last site shown; among equal scores the cells with more long-window hours come first, so the cells left out score the same with fewer hours.
+
+Low Sun on bare ground | Malapert Massif (Sun at or below 5.55 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.94  -68.45    78.15  Princess Elizabeth Land            0.89    198    283   0.99   0.20  0.00  17 Dec-31 Dec (58 h), 7 Dec-16 Dec (38 h), 1 Jan-10 Jan (38 h) | 100% midnight-Sun side (Sun in the south)
+  0.76  -70.75    67.95  Enderby and Mac.Robertson Land     0.79    148    265   0.74   0.37  0.00  17 Dec-31 Dec (29 h), 11 Jan-20 Jan (26 h), 27 Nov-6 Dec (25 h) | 100% midnight-Sun side (Sun in the south)
+  0.71  -71.25    67.35  Enderby and Mac.Robertson Land     0.50    206    241   1.00   0.22  0.00  11 Jan-20 Jan (41 h), 21 Jan-30 Jan (37 h), 27 Nov-6 Dec (36 h) | 100% midnight-Sun side (Sun in the south)
+  0.68  -71.35   170.25  Victoria Land                      0.88    104    236   0.52   0.71  0.00  21 Jan-30 Jan (21 h), 11 Jan-20 Jan (20 h), 27 Nov-6 Dec (18 h) | 100% midnight-Sun side (Sun in the south)
+  0.65  -69.45    39.75  Dronning Maud Land                 0.61    138    303   0.69   0.54  0.00  17 Dec-31 Dec (35 h), 1 Jan-10 Jan (23 h), 7 Dec-16 Dec (23 h) | 100% midnight-Sun side (Sun in the south)
+  0.62  -77.55   163.75  Victoria Land                      0.93     84    156   0.42   0.56  0.00  10 Feb-19 Feb (31 h), 31 Jan-9 Feb (28 h), 20 Feb-1 Mar (24 h) | 100% midnight-Sun side (Sun in the south) | KNOWN: McMurdo Dry Valleys (tier A, 31 km)
+  0.61  -70.35    68.85  Enderby and Mac.Robertson Land     0.38    234    279   1.00   0.17  0.00  17 Dec-31 Dec (48 h), 11 Jan-20 Jan (43 h), 27 Nov-6 Dec (41 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.60  -66.45   110.55  Wilkes Land                        0.62    116    227   0.58   0.33  0.00  17 Dec-31 Dec (43 h), 7 Dec-16 Dec (26 h), 1 Jan-10 Jan (24 h) | 100% midnight-Sun side (Sun in the south)
+  0.58  -72.25    68.55  Enderby and Mac.Robertson Land     0.50    134    195   0.67   0.62  0.00  21 Jan-30 Jan (38 h), 11 Jan-20 Jan (29 h), 31 Jan-9 Feb (28 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.57  -67.75   -68.55  Antarctic Peninsula and South She  0.37    175    286   0.88   0.58  0.00  17 Dec-31 Dec (48 h), 1 Jan-10 Jan (34 h), 7 Dec-16 Dec (33 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+
+Driving in long shadows | Malapert Massif (Sun at or below 5.55 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.69  -71.35   170.25  Victoria Land                      0.88    104    236   0.52   0.71  0.00  21 Jan-30 Jan (21 h), 11 Jan-20 Jan (20 h), 27 Nov-6 Dec (18 h) | 100% midnight-Sun side (Sun in the south)
+  0.62  -68.55    78.15  Princess Elizabeth Land            0.91    151    281   0.76   0.35  0.00  17 Dec-31 Dec (45 h), 7 Dec-16 Dec (30 h), 1 Jan-10 Jan (29 h) | 100% midnight-Sun side (Sun in the south)
+  0.62  -71.45    67.95  Enderby and Mac.Robertson Land     0.43    221    270   1.00   0.54  0.00  21 Jan-30 Jan (45 h), 11 Jan-20 Jan (39 h), 27 Nov-6 Dec (34 h) | 100% midnight-Sun side (Sun in the south)
+  0.61  -69.45    39.75  Dronning Maud Land                 0.61    138    303   0.69   0.54  0.00  17 Dec-31 Dec (35 h), 1 Jan-10 Jan (23 h), 7 Dec-16 Dec (23 h) | 100% midnight-Sun side (Sun in the south)
+  0.61  -67.85   -67.35  Antarctic Peninsula and South She  0.55     93    287   0.47   0.89  0.00  17 Dec-31 Dec (25 h), 1 Jan-10 Jan (18 h), 27 Nov-6 Dec (18 h) | 100% midnight-Sun side (Sun in the south)
+  0.60  -77.55   163.75  Victoria Land                      0.93     84    156   0.42   0.56  0.00  10 Feb-19 Feb (31 h), 31 Jan-9 Feb (28 h), 20 Feb-1 Mar (24 h) | 100% midnight-Sun side (Sun in the south) | KNOWN: McMurdo Dry Valleys (tier A, 31 km)
+  0.60  -70.75    67.95  Enderby and Mac.Robertson Land     0.79    148    265   0.74   0.37  0.00  17 Dec-31 Dec (29 h), 11 Jan-20 Jan (26 h), 27 Nov-6 Dec (25 h) | 100% midnight-Sun side (Sun in the south)
+  0.59  -72.25    68.55  Enderby and Mac.Robertson Land     0.50    134    195   0.67   0.62  0.00  21 Jan-30 Jan (38 h), 11 Jan-20 Jan (29 h), 31 Jan-9 Feb (28 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.57  -67.75   -68.55  Antarctic Peninsula and South She  0.37    175    286   0.88   0.58  0.00  17 Dec-31 Dec (48 h), 1 Jan-10 Jan (34 h), 7 Dec-16 Dec (33 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.57  -78.25   166.50  Victoria Land                      0.55    107    152   0.53   0.62  0.00  10 Feb-19 Feb (49 h), 20 Feb-1 Mar (33 h), 31 Jan-9 Feb (25 h) | 100% midnight-Sun side (Sun in the south)
+
+Geology training | Malapert Massif (Sun at or below 5.55 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.59  -71.35    13.35  Dronning Maud Land                 0.65     10    236   0.05   0.64  0.50  21 Jan-30 Jan (3 h), 11 Jan-20 Jan (2 h), 27 Nov-6 Dec (2 h) | 100% midnight-Sun side (Sun in the south) | rock: Eliseev anorthosite massif at Lake Untersee (Gruber Mountains) | KNOWN AREA: Lake Untersee and the Eliseev anorthosite massif: No lunar analog, simulant or training use of the anorthosite found; Lake Untersee inside the massif is studied as a Mars polar and icy-world astrobiology analog
+
+Full match | Malapert Massif (Sun at or below 5.55 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.39  -71.35    13.65  Dronning Maud Land                 0.46     37    236   0.18   0.53  0.50  21 Jan-30 Jan (8 h), 11 Jan-20 Jan (7 h), 27 Nov-6 Dec (6 h) | 100% midnight-Sun side (Sun in the south) | rock: Eliseev anorthosite massif at Lake Untersee (Gruber Mountains) | KNOWN AREA: Lake Untersee and the Eliseev anorthosite massif: No lunar analog, simulant or training use of the anorthosite found; Lake Untersee inside the massif is studied as a Mars polar and icy-world astrobiology analog
+
+Low Sun on bare ground | Malapert Massif (Sun at or below 5.55 deg) | little-known sites only
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.94  -68.45    78.15  Princess Elizabeth Land            0.89    198    283   0.99   0.20  0.00  17 Dec-31 Dec (58 h), 7 Dec-16 Dec (38 h), 1 Jan-10 Jan (38 h) | 100% midnight-Sun side (Sun in the south)
+  0.76  -70.75    67.95  Enderby and Mac.Robertson Land     0.79    148    265   0.74   0.37  0.00  17 Dec-31 Dec (29 h), 11 Jan-20 Jan (26 h), 27 Nov-6 Dec (25 h) | 100% midnight-Sun side (Sun in the south)
+  0.71  -71.25    67.35  Enderby and Mac.Robertson Land     0.50    206    241   1.00   0.22  0.00  11 Jan-20 Jan (41 h), 21 Jan-30 Jan (37 h), 27 Nov-6 Dec (36 h) | 100% midnight-Sun side (Sun in the south)
+  0.68  -71.35   170.25  Victoria Land                      0.88    104    236   0.52   0.71  0.00  21 Jan-30 Jan (21 h), 11 Jan-20 Jan (20 h), 27 Nov-6 Dec (18 h) | 100% midnight-Sun side (Sun in the south)
+  0.65  -69.45    39.75  Dronning Maud Land                 0.61    138    303   0.69   0.54  0.00  17 Dec-31 Dec (35 h), 1 Jan-10 Jan (23 h), 7 Dec-16 Dec (23 h) | 100% midnight-Sun side (Sun in the south)
+  0.61  -70.35    68.85  Enderby and Mac.Robertson Land     0.38    234    279   1.00   0.17  0.00  17 Dec-31 Dec (48 h), 11 Jan-20 Jan (43 h), 27 Nov-6 Dec (41 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.60  -66.45   110.55  Wilkes Land                        0.62    116    227   0.58   0.33  0.00  17 Dec-31 Dec (43 h), 7 Dec-16 Dec (26 h), 1 Jan-10 Jan (24 h) | 100% midnight-Sun side (Sun in the south)
+  0.58  -72.25    68.55  Enderby and Mac.Robertson Land     0.50    134    195   0.67   0.62  0.00  21 Jan-30 Jan (38 h), 11 Jan-20 Jan (29 h), 31 Jan-9 Feb (28 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.57  -67.75   -68.55  Antarctic Peninsula and South She  0.37    175    286   0.88   0.58  0.00  17 Dec-31 Dec (48 h), 1 Jan-10 Jan (34 h), 7 Dec-16 Dec (33 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.56  -69.95   -70.05  Antarctic Peninsula and South She  0.31    208    292   1.00   0.57  0.00  17 Dec-31 Dec (43 h), 11 Jan-20 Jan (38 h), 27 Nov-6 Dec (36 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  note: 2 ranked cells share the score 0.560 of the last site shown; among equal scores the cells with more long-window hours come first, so the cells left out score the same with fewer hours.
+
+Driving in long shadows | Malapert Massif (Sun at or below 5.55 deg) | little-known sites only
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.69  -71.35   170.25  Victoria Land                      0.88    104    236   0.52   0.71  0.00  21 Jan-30 Jan (21 h), 11 Jan-20 Jan (20 h), 27 Nov-6 Dec (18 h) | 100% midnight-Sun side (Sun in the south)
+  0.62  -68.55    78.15  Princess Elizabeth Land            0.91    151    281   0.76   0.35  0.00  17 Dec-31 Dec (45 h), 7 Dec-16 Dec (30 h), 1 Jan-10 Jan (29 h) | 100% midnight-Sun side (Sun in the south)
+  0.62  -71.45    67.95  Enderby and Mac.Robertson Land     0.43    221    270   1.00   0.54  0.00  21 Jan-30 Jan (45 h), 11 Jan-20 Jan (39 h), 27 Nov-6 Dec (34 h) | 100% midnight-Sun side (Sun in the south)
+  0.61  -69.45    39.75  Dronning Maud Land                 0.61    138    303   0.69   0.54  0.00  17 Dec-31 Dec (35 h), 1 Jan-10 Jan (23 h), 7 Dec-16 Dec (23 h) | 100% midnight-Sun side (Sun in the south)
+  0.61  -67.85   -67.35  Antarctic Peninsula and South She  0.55     93    287   0.47   0.89  0.00  17 Dec-31 Dec (25 h), 1 Jan-10 Jan (18 h), 27 Nov-6 Dec (18 h) | 100% midnight-Sun side (Sun in the south)
+  0.60  -70.75    67.95  Enderby and Mac.Robertson Land     0.79    148    265   0.74   0.37  0.00  17 Dec-31 Dec (29 h), 11 Jan-20 Jan (26 h), 27 Nov-6 Dec (25 h) | 100% midnight-Sun side (Sun in the south)
+  0.59  -72.25    68.55  Enderby and Mac.Robertson Land     0.50    134    195   0.67   0.62  0.00  21 Jan-30 Jan (38 h), 11 Jan-20 Jan (29 h), 31 Jan-9 Feb (28 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.57  -67.75   -68.55  Antarctic Peninsula and South She  0.37    175    286   0.88   0.58  0.00  17 Dec-31 Dec (48 h), 1 Jan-10 Jan (34 h), 7 Dec-16 Dec (33 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.57  -78.25   166.50  Victoria Land                      0.55    107    152   0.53   0.62  0.00  10 Feb-19 Feb (49 h), 20 Feb-1 Mar (33 h), 31 Jan-9 Feb (25 h) | 100% midnight-Sun side (Sun in the south)
+  0.56  -69.95   -70.05  Antarctic Peninsula and South She  0.31    208    292   1.00   0.57  0.00  17 Dec-31 Dec (43 h), 11 Jan-20 Jan (38 h), 27 Nov-6 Dec (36 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  note: 2 ranked cells share the score 0.563 of the last site shown; among equal scores the cells with more long-window hours come first, so the cells left out score the same with fewer hours.
+
+Low Sun on bare ground | Mons Mouton plateau (Sun at or below 6.11 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.94  -68.45    78.15  Princess Elizabeth Land            0.89    216    302   1.00   0.34  0.00  17 Dec-31 Dec (63 h), 7 Dec-16 Dec (42 h), 1 Jan-10 Jan (41 h) | 100% midnight-Sun side (Sun in the south)
+  0.83  -70.75    67.95  Enderby and Mac.Robertson Land     0.79    174    296   0.87   0.65  0.00  17 Dec-31 Dec (37 h), 11 Jan-20 Jan (30 h), 27 Nov-6 Dec (28 h) | 100% midnight-Sun side (Sun in the south)
+  0.79  -71.35   170.25  Victoria Land                      0.88    140    315   0.70   0.63  0.00  21 Jan-30 Jan (23 h), 17 Dec-31 Dec (22 h), 11 Jan-20 Jan (22 h) | 100% midnight-Sun side (Sun in the south)
+  0.71  -71.25    67.35  Enderby and Mac.Robertson Land     0.50    264    319   1.00   0.34  0.00  11 Jan-20 Jan (45 h), 17 Dec-31 Dec (45 h), 27 Nov-6 Dec (41 h) | 100% midnight-Sun side (Sun in the south)
+  0.69  -73.45    61.75  Enderby and Mac.Robertson Land     0.92    106    211   0.53   0.50  0.00  31 Jan-9 Feb (29 h), 21 Jan-30 Jan (28 h), 10 Feb-19 Feb (19 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.69  -69.45    39.75  Dronning Maud Land                 0.61    157    328   0.78   0.76  0.00  17 Dec-31 Dec (40 h), 7 Dec-16 Dec (26 h), 1 Jan-10 Jan (26 h) | 100% midnight-Sun side (Sun in the south)
+  0.67  -77.55   163.75  Victoria Land                      0.93     96    171   0.48   0.89  0.00  10 Feb-19 Feb (35 h), 31 Jan-9 Feb (34 h), 20 Feb-1 Mar (27 h) | 100% midnight-Sun side (Sun in the south) | KNOWN: McMurdo Dry Valleys (tier A, 31 km)
+  0.66  -66.15   100.95  Wilkes Land                        0.84    104    227   0.52   0.58  0.00  17 Dec-31 Dec (38 h), 7 Dec-16 Dec (24 h), 1 Jan-10 Jan (22 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.66  -72.25    68.55  Enderby and Mac.Robertson Land     0.50    173    244   0.86   0.69  0.00  21 Jan-30 Jan (41 h), 11 Jan-20 Jan (33 h), 31 Jan-9 Feb (30 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.63  -66.45   110.55  Wilkes Land                        0.62    127    240   0.64   0.58  0.00  17 Dec-31 Dec (47 h), 7 Dec-16 Dec (29 h), 1 Jan-10 Jan (26 h) | 100% midnight-Sun side (Sun in the south)
+
+Driving in long shadows | Mons Mouton plateau (Sun at or below 6.11 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.77  -68.55    78.15  Princess Elizabeth Land            0.91    168    300   0.84   0.59  0.00  17 Dec-31 Dec (50 h), 7 Dec-16 Dec (33 h), 1 Jan-10 Jan (32 h) | 100% midnight-Sun side (Sun in the south)
+  0.76  -70.75    67.95  Enderby and Mac.Robertson Land     0.79    174    296   0.87   0.65  0.00  17 Dec-31 Dec (37 h), 11 Jan-20 Jan (30 h), 27 Nov-6 Dec (28 h) | 100% midnight-Sun side (Sun in the south)
+  0.73  -77.55   163.75  Victoria Land                      0.93     96    171   0.48   0.89  0.00  10 Feb-19 Feb (35 h), 31 Jan-9 Feb (34 h), 20 Feb-1 Mar (27 h) | 100% midnight-Sun side (Sun in the south) | KNOWN: McMurdo Dry Valleys (tier A, 31 km)
+  0.73  -71.35   170.25  Victoria Land                      0.88    140    315   0.70   0.63  0.00  21 Jan-30 Jan (23 h), 17 Dec-31 Dec (22 h), 11 Jan-20 Jan (22 h) | 100% midnight-Sun side (Sun in the south)
+  0.71  -69.45    39.75  Dronning Maud Land                 0.61    157    328   0.78   0.76  0.00  17 Dec-31 Dec (40 h), 7 Dec-16 Dec (26 h), 1 Jan-10 Jan (26 h) | 100% midnight-Sun side (Sun in the south)
+  0.68  -71.55    67.65  Enderby and Mac.Robertson Land     0.45    183    307   0.92   0.76  0.00  21 Jan-30 Jan (33 h), 11 Jan-20 Jan (30 h), 17 Dec-31 Dec (28 h) | 100% midnight-Sun side (Sun in the south)
+  0.67  -72.25    68.55  Enderby and Mac.Robertson Land     0.50    173    244   0.86   0.69  0.00  21 Jan-30 Jan (41 h), 11 Jan-20 Jan (33 h), 31 Jan-9 Feb (30 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.64  -78.25   166.50  Victoria Land                      0.55    122    171   0.61   0.80  0.00  10 Feb-19 Feb (53 h), 20 Feb-1 Mar (36 h), 31 Jan-9 Feb (33 h) | 100% midnight-Sun side (Sun in the south)
+  0.64  -67.85   -67.35  Antarctic Peninsula and South She  0.55    102    304   0.51   0.95  0.00  17 Dec-31 Dec (28 h), 1 Jan-10 Jan (19 h), 27 Nov-6 Dec (19 h) | 100% midnight-Sun side (Sun in the south)
+  0.63  -66.15   100.95  Wilkes Land                        0.84    104    227   0.52   0.58  0.00  17 Dec-31 Dec (38 h), 7 Dec-16 Dec (24 h), 1 Jan-10 Jan (22 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+
+Geology training | Mons Mouton plateau (Sun at or below 6.11 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.59  -71.35    13.35  Dronning Maud Land                 0.65     18    315   0.09   0.64  0.50  31 Jan-9 Feb (4 h), 21 Jan-30 Jan (3 h), 11 Jan-20 Jan (3 h) | 100% midnight-Sun side (Sun in the south) | rock: Eliseev anorthosite massif at Lake Untersee (Gruber Mountains) | KNOWN AREA: Lake Untersee and the Eliseev anorthosite massif: No lunar analog, simulant or training use of the anorthosite found; Lake Untersee inside the massif is studied as a Mars polar and icy-world astrobiology analog
+
+Full match | Mons Mouton plateau (Sun at or below 6.11 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.43  -71.35    13.65  Dronning Maud Land                 0.46     52    315   0.26   0.55  0.50  21 Jan-30 Jan (9 h), 17 Dec-31 Dec (8 h), 11 Jan-20 Jan (8 h) | 100% midnight-Sun side (Sun in the south) | rock: Eliseev anorthosite massif at Lake Untersee (Gruber Mountains) | KNOWN AREA: Lake Untersee and the Eliseev anorthosite massif: No lunar analog, simulant or training use of the anorthosite found; Lake Untersee inside the massif is studied as a Mars polar and icy-world astrobiology analog
+
+Low Sun on bare ground | Mons Mouton plateau (Sun at or below 6.11 deg) | little-known sites only
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.94  -68.45    78.15  Princess Elizabeth Land            0.89    216    302   1.00   0.34  0.00  17 Dec-31 Dec (63 h), 7 Dec-16 Dec (42 h), 1 Jan-10 Jan (41 h) | 100% midnight-Sun side (Sun in the south)
+  0.83  -70.75    67.95  Enderby and Mac.Robertson Land     0.79    174    296   0.87   0.65  0.00  17 Dec-31 Dec (37 h), 11 Jan-20 Jan (30 h), 27 Nov-6 Dec (28 h) | 100% midnight-Sun side (Sun in the south)
+  0.79  -71.35   170.25  Victoria Land                      0.88    140    315   0.70   0.63  0.00  21 Jan-30 Jan (23 h), 17 Dec-31 Dec (22 h), 11 Jan-20 Jan (22 h) | 100% midnight-Sun side (Sun in the south)
+  0.71  -71.25    67.35  Enderby and Mac.Robertson Land     0.50    264    319   1.00   0.34  0.00  11 Jan-20 Jan (45 h), 17 Dec-31 Dec (45 h), 27 Nov-6 Dec (41 h) | 100% midnight-Sun side (Sun in the south)
+  0.69  -73.45    61.75  Enderby and Mac.Robertson Land     0.92    106    211   0.53   0.50  0.00  31 Jan-9 Feb (29 h), 21 Jan-30 Jan (28 h), 10 Feb-19 Feb (19 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.69  -69.45    39.75  Dronning Maud Land                 0.61    157    328   0.78   0.76  0.00  17 Dec-31 Dec (40 h), 7 Dec-16 Dec (26 h), 1 Jan-10 Jan (26 h) | 100% midnight-Sun side (Sun in the south)
+  0.66  -66.15   100.95  Wilkes Land                        0.84    104    227   0.52   0.58  0.00  17 Dec-31 Dec (38 h), 7 Dec-16 Dec (24 h), 1 Jan-10 Jan (22 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.66  -72.25    68.55  Enderby and Mac.Robertson Land     0.50    173    244   0.86   0.69  0.00  21 Jan-30 Jan (41 h), 11 Jan-20 Jan (33 h), 31 Jan-9 Feb (30 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.63  -66.45   110.55  Wilkes Land                        0.62    127    240   0.64   0.58  0.00  17 Dec-31 Dec (47 h), 7 Dec-16 Dec (29 h), 1 Jan-10 Jan (26 h) | 100% midnight-Sun side (Sun in the south)
+  0.61  -70.35    68.85  Enderby and Mac.Robertson Land     0.38    262    308   1.00   0.25  0.00  17 Dec-31 Dec (56 h), 11 Jan-20 Jan (46 h), 27 Nov-6 Dec (45 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+
+Driving in long shadows | Mons Mouton plateau (Sun at or below 6.11 deg) | little-known sites only
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.77  -68.55    78.15  Princess Elizabeth Land            0.91    168    300   0.84   0.59  0.00  17 Dec-31 Dec (50 h), 7 Dec-16 Dec (33 h), 1 Jan-10 Jan (32 h) | 100% midnight-Sun side (Sun in the south)
+  0.76  -70.75    67.95  Enderby and Mac.Robertson Land     0.79    174    296   0.87   0.65  0.00  17 Dec-31 Dec (37 h), 11 Jan-20 Jan (30 h), 27 Nov-6 Dec (28 h) | 100% midnight-Sun side (Sun in the south)
+  0.73  -71.35   170.25  Victoria Land                      0.88    140    315   0.70   0.63  0.00  21 Jan-30 Jan (23 h), 17 Dec-31 Dec (22 h), 11 Jan-20 Jan (22 h) | 100% midnight-Sun side (Sun in the south)
+  0.71  -69.45    39.75  Dronning Maud Land                 0.61    157    328   0.78   0.76  0.00  17 Dec-31 Dec (40 h), 7 Dec-16 Dec (26 h), 1 Jan-10 Jan (26 h) | 100% midnight-Sun side (Sun in the south)
+  0.68  -71.55    67.65  Enderby and Mac.Robertson Land     0.45    183    307   0.92   0.76  0.00  21 Jan-30 Jan (33 h), 11 Jan-20 Jan (30 h), 17 Dec-31 Dec (28 h) | 100% midnight-Sun side (Sun in the south)
+  0.67  -72.25    68.55  Enderby and Mac.Robertson Land     0.50    173    244   0.86   0.69  0.00  21 Jan-30 Jan (41 h), 11 Jan-20 Jan (33 h), 31 Jan-9 Feb (30 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.64  -78.25   166.50  Victoria Land                      0.55    122    171   0.61   0.80  0.00  10 Feb-19 Feb (53 h), 20 Feb-1 Mar (36 h), 31 Jan-9 Feb (33 h) | 100% midnight-Sun side (Sun in the south)
+  0.64  -67.85   -67.35  Antarctic Peninsula and South She  0.55    102    304   0.51   0.95  0.00  17 Dec-31 Dec (28 h), 1 Jan-10 Jan (19 h), 27 Nov-6 Dec (19 h) | 100% midnight-Sun side (Sun in the south)
+  0.63  -66.15   100.95  Wilkes Land                        0.84    104    227   0.52   0.58  0.00  17 Dec-31 Dec (38 h), 7 Dec-16 Dec (24 h), 1 Jan-10 Jan (22 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.62  -73.45    61.75  Enderby and Mac.Robertson Land     0.92    106    211   0.53   0.50  0.00  31 Jan-9 Feb (29 h), 21 Jan-30 Jan (28 h), 10 Feb-19 Feb (19 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+
+Low Sun on bare ground | Nobile Rim 2 (Sun at or below 7.59 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.96  -73.45    61.75  Enderby and Mac.Robertson Land     0.92    212    411   1.00   0.53  0.00  21 Jan-30 Jan (34 h), 31 Jan-9 Feb (34 h), 11 Jan-20 Jan (27 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.95  -68.55    78.15  Princess Elizabeth Land            0.91    234    392   1.00   0.63  0.00  17 Dec-31 Dec (62 h), 7 Dec-16 Dec (41 h), 1 Jan-10 Jan (39 h) | 100% midnight-Sun side (Sun in the south)
+  0.94  -71.35   170.25  Victoria Land                      0.88    202    440   1.00   0.57  0.00  17 Dec-31 Dec (33 h), 21 Jan-30 Jan (27 h), 11 Jan-20 Jan (27 h) | 100% midnight-Sun side (Sun in the south)
+  0.89  -70.75    67.95  Enderby and Mac.Robertson Land     0.79    259    411   1.00   0.68  0.00  17 Dec-31 Dec (53 h), 11 Jan-20 Jan (38 h), 27 Nov-6 Dec (38 h) | 100% midnight-Sun side (Sun in the south)
+  0.84  -77.55   163.75  Victoria Land                      0.93    151    238   0.75   0.87  0.00  31 Jan-9 Feb (47 h), 10 Feb-19 Feb (44 h), 20 Feb-1 Mar (34 h) | 100% midnight-Sun side (Sun in the south) | KNOWN: McMurdo Dry Valleys (tier A, 31 km)
+  0.81  -66.15   100.95  Wilkes Land                        0.84    157    301   0.78   0.63  0.00  17 Dec-31 Dec (47 h), 7 Dec-16 Dec (30 h), 1 Jan-10 Jan (28 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.78  -69.45    39.75  Dronning Maud Land                 0.61    219    427   1.00   0.77  0.00  17 Dec-31 Dec (51 h), 7 Dec-16 Dec (34 h), 1 Jan-10 Jan (33 h) | 100% midnight-Sun side (Sun in the south)
+  0.76  -73.15    68.25  Enderby and Mac.Robertson Land     0.58    256    425   1.00   0.64  0.00  21 Jan-30 Jan (40 h), 11 Jan-20 Jan (34 h), 31 Jan-9 Feb (34 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.76  -66.45   110.55  Wilkes Land                        0.62    184    316   0.92   0.62  0.00  17 Dec-31 Dec (57 h), 7 Dec-16 Dec (36 h), 1 Jan-10 Jan (33 h) | 100% midnight-Sun side (Sun in the south)
+  0.72  -77.55   166.25  Victoria Land                      0.57    181    238   0.91   0.48  0.00  10 Feb-19 Feb (58 h), 31 Jan-9 Feb (56 h), 20 Feb-1 Mar (37 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+
+Driving in long shadows | Nobile Rim 2 (Sun at or below 7.59 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.85  -77.55   163.75  Victoria Land                      0.93    151    238   0.75   0.87  0.00  31 Jan-9 Feb (47 h), 10 Feb-19 Feb (44 h), 20 Feb-1 Mar (34 h) | 100% midnight-Sun side (Sun in the south) | KNOWN: McMurdo Dry Valleys (tier A, 31 km)
+  0.83  -68.55    78.15  Princess Elizabeth Land            0.91    234    392   1.00   0.63  0.00  17 Dec-31 Dec (62 h), 7 Dec-16 Dec (41 h), 1 Jan-10 Jan (39 h) | 100% midnight-Sun side (Sun in the south)
+  0.81  -70.75    67.95  Enderby and Mac.Robertson Land     0.79    259    411   1.00   0.68  0.00  17 Dec-31 Dec (53 h), 11 Jan-20 Jan (38 h), 27 Nov-6 Dec (38 h) | 100% midnight-Sun side (Sun in the south)
+  0.80  -71.35   170.25  Victoria Land                      0.88    202    440   1.00   0.57  0.00  17 Dec-31 Dec (33 h), 21 Jan-30 Jan (27 h), 11 Jan-20 Jan (27 h) | 100% midnight-Sun side (Sun in the south)
+  0.78  -73.45    61.75  Enderby and Mac.Robertson Land     0.92    212    411   1.00   0.53  0.00  21 Jan-30 Jan (34 h), 31 Jan-9 Feb (34 h), 11 Jan-20 Jan (27 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.78  -69.45    39.75  Dronning Maud Land                 0.61    219    427   1.00   0.77  0.00  17 Dec-31 Dec (51 h), 7 Dec-16 Dec (34 h), 1 Jan-10 Jan (33 h) | 100% midnight-Sun side (Sun in the south)
+  0.74  -66.15   100.95  Wilkes Land                        0.84    157    301   0.78   0.63  0.00  17 Dec-31 Dec (47 h), 7 Dec-16 Dec (30 h), 1 Jan-10 Jan (28 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.73  -78.35   165.30  Victoria Land                      0.85     92    228   0.46   1.00  0.00  10 Feb-19 Feb (30 h), 31 Jan-9 Feb (28 h), 20 Feb-1 Mar (25 h) | 100% midnight-Sun side (Sun in the south)
+  0.73  -77.35   161.25  Victoria Land                      0.97     81    241   0.41   0.97  0.00  31 Jan-9 Feb (26 h), 10 Feb-19 Feb (21 h), 21 Jan-30 Jan (18 h) | 100% midnight-Sun side (Sun in the south) | KNOWN: Don Juan Pond (tier B, 24 km)
+  0.73  -79.85   159.30  Transantarctic Mountains           0.86     90    209   0.45   1.00  0.00  10 Feb-19 Feb (33 h), 20 Feb-1 Mar (30 h), 31 Jan-9 Feb (26 h) | 100% midnight-Sun side (Sun in the south)
+
+Geology training | Nobile Rim 2 (Sun at or below 7.59 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.59  -71.35    13.35  Dronning Maud Land                 0.65     38    440   0.19   0.63  0.50  10 Feb-19 Feb (6 h), 31 Jan-9 Feb (6 h), 17 Dec-31 Dec (5 h) | 100% midnight-Sun side (Sun in the south) | rock: Eliseev anorthosite massif at Lake Untersee (Gruber Mountains) | KNOWN AREA: Lake Untersee and the Eliseev anorthosite massif: No lunar analog, simulant or training use of the anorthosite found; Lake Untersee inside the massif is studied as a Mars polar and icy-world astrobiology analog
+
+Full match | Nobile Rim 2 (Sun at or below 7.59 deg) | all sites
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.49  -71.35    13.65  Dronning Maud Land                 0.46     86    440   0.43   0.57  0.50  17 Dec-31 Dec (15 h), 21 Jan-30 Jan (12 h), 11 Jan-20 Jan (11 h) | 100% midnight-Sun side (Sun in the south) | rock: Eliseev anorthosite massif at Lake Untersee (Gruber Mountains) | KNOWN AREA: Lake Untersee and the Eliseev anorthosite massif: No lunar analog, simulant or training use of the anorthosite found; Lake Untersee inside the massif is studied as a Mars polar and icy-world astrobiology analog
+
+Low Sun on bare ground | Nobile Rim 2 (Sun at or below 7.59 deg) | little-known sites only
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.96  -73.45    61.75  Enderby and Mac.Robertson Land     0.92    212    411   1.00   0.53  0.00  21 Jan-30 Jan (34 h), 31 Jan-9 Feb (34 h), 11 Jan-20 Jan (27 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.95  -68.55    78.15  Princess Elizabeth Land            0.91    234    392   1.00   0.63  0.00  17 Dec-31 Dec (62 h), 7 Dec-16 Dec (41 h), 1 Jan-10 Jan (39 h) | 100% midnight-Sun side (Sun in the south)
+  0.94  -71.35   170.25  Victoria Land                      0.88    202    440   1.00   0.57  0.00  17 Dec-31 Dec (33 h), 21 Jan-30 Jan (27 h), 11 Jan-20 Jan (27 h) | 100% midnight-Sun side (Sun in the south)
+  0.89  -70.75    67.95  Enderby and Mac.Robertson Land     0.79    259    411   1.00   0.68  0.00  17 Dec-31 Dec (53 h), 11 Jan-20 Jan (38 h), 27 Nov-6 Dec (38 h) | 100% midnight-Sun side (Sun in the south)
+  0.81  -66.15   100.95  Wilkes Land                        0.84    157    301   0.78   0.63  0.00  17 Dec-31 Dec (47 h), 7 Dec-16 Dec (30 h), 1 Jan-10 Jan (28 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.78  -69.45    39.75  Dronning Maud Land                 0.61    219    427   1.00   0.77  0.00  17 Dec-31 Dec (51 h), 7 Dec-16 Dec (34 h), 1 Jan-10 Jan (33 h) | 100% midnight-Sun side (Sun in the south)
+  0.76  -73.15    68.25  Enderby and Mac.Robertson Land     0.58    256    425   1.00   0.64  0.00  21 Jan-30 Jan (40 h), 11 Jan-20 Jan (34 h), 31 Jan-9 Feb (34 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.76  -66.45   110.55  Wilkes Land                        0.62    184    316   0.92   0.62  0.00  17 Dec-31 Dec (57 h), 7 Dec-16 Dec (36 h), 1 Jan-10 Jan (33 h) | 100% midnight-Sun side (Sun in the south)
+  0.72  -77.55   166.25  Victoria Land                      0.57    181    238   0.91   0.48  0.00  10 Feb-19 Feb (58 h), 31 Jan-9 Feb (56 h), 20 Feb-1 Mar (37 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.71  -71.95   161.55  Victoria Land                      0.54    190    427   0.95   0.72  0.00  17 Dec-31 Dec (32 h), 11 Jan-20 Jan (26 h), 21 Jan-30 Jan (25 h) | 100% midnight-Sun side (Sun in the south)
+
+Driving in long shadows | Nobile Rim 2 (Sun at or below 7.59 deg) | little-known sites only
+  score  lat     lon      region                             bare  hours   flat  light terrain rock  best ten-day bins | where the Sun stands | notes
+  0.83  -68.55    78.15  Princess Elizabeth Land            0.91    234    392   1.00   0.63  0.00  17 Dec-31 Dec (62 h), 7 Dec-16 Dec (41 h), 1 Jan-10 Jan (39 h) | 100% midnight-Sun side (Sun in the south)
+  0.81  -70.75    67.95  Enderby and Mac.Robertson Land     0.79    259    411   1.00   0.68  0.00  17 Dec-31 Dec (53 h), 11 Jan-20 Jan (38 h), 27 Nov-6 Dec (38 h) | 100% midnight-Sun side (Sun in the south)
+  0.80  -71.35   170.25  Victoria Land                      0.88    202    440   1.00   0.57  0.00  17 Dec-31 Dec (33 h), 21 Jan-30 Jan (27 h), 11 Jan-20 Jan (27 h) | 100% midnight-Sun side (Sun in the south)
+  0.78  -73.45    61.75  Enderby and Mac.Robertson Land     0.92    212    411   1.00   0.53  0.00  21 Jan-30 Jan (34 h), 31 Jan-9 Feb (34 h), 11 Jan-20 Jan (27 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.78  -69.45    39.75  Dronning Maud Land                 0.61    219    427   1.00   0.77  0.00  17 Dec-31 Dec (51 h), 7 Dec-16 Dec (34 h), 1 Jan-10 Jan (33 h) | 100% midnight-Sun side (Sun in the south)
+  0.74  -66.15   100.95  Wilkes Land                        0.84    157    301   0.78   0.63  0.00  17 Dec-31 Dec (47 h), 7 Dec-16 Dec (30 h), 1 Jan-10 Jan (28 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.73  -78.35   165.30  Victoria Land                      0.85     92    228   0.46   1.00  0.00  10 Feb-19 Feb (30 h), 31 Jan-9 Feb (28 h), 20 Feb-1 Mar (25 h) | 100% midnight-Sun side (Sun in the south)
+  0.73  -79.85   159.30  Transantarctic Mountains           0.86     90    209   0.45   1.00  0.00  10 Feb-19 Feb (33 h), 20 Feb-1 Mar (30 h), 31 Jan-9 Feb (26 h) | 100% midnight-Sun side (Sun in the south)
+  0.72  -73.15    68.25  Enderby and Mac.Robertson Land     0.58    256    425   1.00   0.64  0.00  21 Jan-30 Jan (40 h), 11 Jan-20 Jan (34 h), 31 Jan-9 Feb (34 h) | 100% midnight-Sun side (Sun in the south) | rock layers disagree
+  0.72  -71.95   161.55  Victoria Land                      0.54    190    427   0.95   0.72  0.00  17 Dec-31 Dec (32 h), 11 Jan-20 Jan (26 h), 21 Jan-30 Jan (25 h) | 100% midnight-Sun side (Sun in the south)

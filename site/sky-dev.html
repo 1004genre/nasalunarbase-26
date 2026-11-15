@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-dest="moon">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Watch a day of low Sun · local preview</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./sky.css">
+  <style>
+    .sk-dev-header, .sk-dev-card { max-width: 1200px; margin: auto; padding: 16px 20px; }
+    .sk-dev-header { border-bottom: 1px solid var(--hair, rgba(255,255,255,0.08)); }
+    .sk-dev-header p, .sk-dev-card p { color: var(--ink2, #bdcbdc); }
+    .sk-dev-form { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; margin-top: 12px; }
+    .sk-dev-form label { display: grid; gap: 4px; font-size: 13px; flex: 1 1 150px; min-width: 0; }
+    .sk-dev-form input, .sk-dev-form select, .sk-dev-form button { min-width: 0; max-width: 100%; padding: 8px; font: inherit; color: var(--ink, #edf3fa); background: var(--surface, #101d2e); border: 1px solid var(--axis, #748aa4); border-radius: 5px; }
+    .sk-dev-form button { cursor: pointer; }
+    .sk-dev-card { border-top: 1px solid var(--hair, rgba(255,255,255,0.08)); }
+    .sk-dev-card details { margin-top: 12px; padding: 12px; background: var(--surface, #101d2e); border: 1px solid var(--hair, rgba(255,255,255,0.08)); border-radius: 8px; }
+    .sk-dev-card summary { cursor: pointer; }
+    .sk-dev-card summary span { display: block; color: var(--ink2, #bdcbdc); font-size: 14px; }
+    .sk-dev-card details > :last-child { margin-top: 12px; }
+    .sk-dev-status { margin-top: 8px; color: var(--ink2, #bdcbdc); }
+    .sk-dev-announcement { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+    :focus-visible { outline: 3px solid var(--ui, #5cc8f5); outline-offset: 3px; }
+    @media (max-width: 480px) {
+      .sk-dev-header, .sk-dev-card { padding: 12px 14px; }
+      .sk-dev-form label { flex-basis: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header class="sk-dev-header">
+    <details>
+      <summary>Earth Twin Finder · local preview controls</summary>
+      <form class="sk-dev-form" id="sk-dev-form">
+        <label>Area ID<input id="sk-dev-place" name="place" placeholder="Leave empty for the most hours" autocomplete="off"></label>
+        <label>Lunar region<select id="sk-dev-target" name="target"></select></label>
+        <label>Theme<select id="sk-dev-theme" name="theme"><option value="light">Light</option><option value="dark">Dark</option></select></label>
+        <button class="btn" type="submit">Show area</button>
+      </form>
+      <p class="sk-dev-status" id="sk-dev-status" role="status">The local data will open here.</p>
+    </details>
+  </header>
+  <main>
+    <section id="sky-root" aria-label="Watch a day of low Sun"><h1>Watch a day of low Sun</h1></section>
+    <aside class="sk-dev-card" id="sk-dev-card" aria-label="Place card preview"></aside>
+  </main>
+  <p class="sk-dev-announcement" id="sk-dev-announcement" role="status" aria-live="polite"></p>
+  <script type="module">
+    import { mount } from './sky.js';
+
+    // This stand-in follows the page's stored values and its Antarctic rock-season rule.
+    const files = new Map(), jsonFiles = new Map(), listeners = new Set(), cards = new Map();
+    const el = (id) => document.getElementById(id);
+    function loadBin(name) {
+      if (typeof name !== 'string' || !/^[\w.-]+(?:\/[\w.-]+)*$/.test(name) || name.split('/').some((s) => s === '.' || s === '..')) {
+        return Promise.reject(new Error('Use a file inside data.'));
+      }
+      if (!files.has(name)) files.set(name, fetch('./data/' + name, { redirect: 'error' }).then((response) => {
+        if (!response.ok) throw new Error('A local data file could not be read: ' + name);
+        return response.arrayBuffer();
+      }));
+      return files.get(name);
+    }
+    function loadJSON(name) {
+      if (!jsonFiles.has(name)) jsonFiles.set(name, loadBin(name).then((buffer) => JSON.parse(new TextDecoder().decode(buffer))));
+      return jsonFiles.get(name);
+    }
+
+    try {
+      const meta = await loadJSON('meta.json');
+      const [cells, flat, yearlyBuffer, openBuffer, snowBuffer, cloudBuffer, places] = await Promise.all([
+        loadJSON('cells.json'), loadJSON('flat.json'), loadBin('yearly.bin'), loadBin('open.bin'), loadBin('snowfree.bin'),
+        meta.has_cloud ? loadBin('cloud.bin') : null, loadJSON('places.json').catch(() => null),
+      ]);
+      const yearly = new Uint16Array(yearlyBuffer), open = new Uint8Array(openBuffer), snow = new Uint8Array(snowBuffer);
+      const cloud = cloudBuffer ? new Uint8Array(cloudBuffer) : null;
+      const targets = Object.freeze(meta.targets.map((t) => Object.freeze({ id: t.id, name: t.name, limitDeg: t.limit_deg })));
+      const periods = Object.freeze(meta.bins.map((p, index) => Object.freeze({ index, label: p.label, firstDay: p.first_day, lastDay: p.last_day, month: p.month })));
+      const count = periods.length, targetCount = targets.length, fields = cells.yearly.fields;
+      const index = new Map(cells.ids.map((id, i) => [id, i]));
+      const southIndex = new Map(cells.south.cells.map((i, k) => [i, k]));
+      const known = new Set(places?.not_little_known?.areas || []);
+      const query = new URLSearchParams(location.search);
+      const initialPeriod = query.has('period') ? Number(query.get('period')) : null;
+      const initialTime = query.has('time') ? Number(query.get('time')) : null;
+      const state = {
+        view: 'arctic', target: targets.some((t) => t.id === query.get('target')) ? query.get('target') : targets[0].id,
+        step: 3, period: 'year', bin: 0, place: query.get('place') || null,
+        theme: query.get('theme') === 'light' ? 'light' : 'dark', little: false,
+      };
+      if (Number.isInteger(initialPeriod) && initialPeriod >= 0 && initialPeriod < count) {
+        state.period = 'bin'; state.bin = initialPeriod; state.skyPeriod = initialPeriod;
+      }
+      if (Number.isFinite(initialTime) && initialTime >= 0 && initialTime <= 1440) state.skyTime = initialTime;
+
+      const valid = (i) => Number.isInteger(i) && i >= 0 && i < cells.n;
+      const north = (i) => cells.hemisphere[i] === 'N';
+      const targetIndex = (id) => targets.findIndex((t) => t.id === id);
+      function area(i) {
+        if (!valid(i)) return null;
+        return {
+          id: cells.ids[i], lat: cells.lat[i] / 100, lon: cells.lon[i] / 100, hemisphere: cells.hemisphere[i],
+          region: cells.regions[cells.region[i]], bare: cells.bare[i] < 0 ? null : cells.bare[i] / 100,
+          snowStatus: cells.snow_statuses[cells.snow[i]], named: cells.site[i] || null,
+          littleKnown: known.has(i) || cells.known[i] >= 0 ? false : places ? true : null,
+        };
+      }
+      function yearValue(i, field, t) {
+        const f = fields.indexOf(field);
+        if (f < 0) return null;
+        const raw = yearly[(i * targetCount + t) * fields.length + f];
+        return raw === cells.yearly.unknown ? null : raw / cells.yearly.scale[field];
+      }
+      function flatValue(i, b, t) {
+        const row = flat.targets[targets[t].id], raw = b == null ? row.year[cells.flat_row[i]] : row.bins[cells.flat_row[i]][b];
+        return raw == null || raw < 0 ? null : raw / 10;
+      }
+      function binValue(i, b, step, t) {
+        if (step === 1) return flatValue(i, b, t);
+        if (!north(i)) {
+          if (!meta.seasons.rock_season_bins_south.includes(b)) return 0;
+          if (step === 2) return flatValue(i, b, t);
+        }
+        const raw = (step === 2 ? snow : open)[(i * targetCount + t) * count + b];
+        if (raw == null || raw === meta.encoding.unknown) return null;
+        const value = raw * meta.encoding.unit_h;
+        if (step < 4 || value === 0) return value;
+        const covered = cloud?.[i * 12 + periods[b].month - 1];
+        return covered == null || covered === meta.encoding.unknown ? null : value * (1 - covered / 100);
+      }
+      function hours(i, id = state.target, step = state.step, period = state.period) {
+        const t = targetIndex(id); step = Number(step);
+        if (!valid(i) || t < 0 || ![1, 2, 3, 4].includes(step)) return null;
+        if (period === 'bin') return binValue(i, state.bin, step, t);
+        if (typeof period === 'number' || /^\d+$/.test(String(period))) {
+          const b = Number(period);
+          return Number.isInteger(b) && b >= 0 && b < count ? binValue(i, b, step, t) : null;
+        }
+        if (!['year', 'winter', 'summer', 'rock'].includes(period)) return null;
+        if (step === 1) {
+          if (period === 'year') return flatValue(i, null, t);
+          const bins = period === 'winter' ? meta.seasons.winter_bins_north : period === 'summer' ? meta.seasons.summer_bins_north : meta.seasons.rock_season_bins_south;
+          const values = bins.map((b) => flatValue(i, b, t));
+          return values.some((v) => v == null) ? null : values.reduce((a, v) => a + v, 0);
+        }
+        if (!north(i)) {
+          const k = southIndex.get(i), key = step === 2 ? 'rock_flat' : step === 3 ? 'rock_open' : 'rock_clear';
+          const raw = k == null ? null : cells.south.targets[id]?.[key]?.[k];
+          return raw == null || raw < 0 ? null : raw / 10;
+        }
+        const field = step === 2 ? 'snow_free' : step === 3 ? 'open' : 'clear';
+        if (period === 'year') return yearValue(i, field, t);
+        if (period === 'winter') return yearValue(i, field + '_winter', t);
+        if (fields.includes(field + '_summer')) return yearValue(i, field + '_summer', t);
+        const year = yearValue(i, field, t), winter = yearValue(i, field + '_winter', t);
+        return year == null || winter == null ? null : Math.max(0, Math.round((year - winter) * 10) / 10);
+      }
+      function renderCard() {
+        const host = el('sk-dev-card'), i = index.get(state.place);
+        const opened = new Set([...host.querySelectorAll('details[open]')].map((d) => d.dataset.section));
+        host.replaceChildren();
+        if (i == null) return;
+        const heading = document.createElement('h2'); heading.textContent = area(i).named || 'Area ' + state.place;
+        host.append(heading);
+        for (const [id, entry] of cards) {
+          const content = entry.render(i, state.target);
+          if (!(content instanceof Element)) continue;
+          const details = document.createElement('details'), summary = document.createElement('summary'), finding = document.createElement('span');
+          details.classList.add('fold'); details.dataset.section = id; details.open = opened.has(id);
+          summary.append(document.createTextNode(entry.title));
+          finding.textContent = entry.summary?.(i, state.target) || content.querySelector('p')?.textContent || '';
+          summary.append(finding); details.append(summary, content); host.append(details);
+        }
+      }
+      function setState(partial) {
+        for (const [key, value] of Object.entries(partial)) if (!['__proto__', 'constructor', 'prototype'].includes(key)) state[key] = structuredClone(value);
+        if (/^\d+$/.test(String(state.period)) && Number(state.period) < count) { state.bin = Number(state.period); state.period = 'bin'; }
+        const i = index.get(state.place);
+        if (i != null) state.view = north(i) ? 'arctic' : 'antarctic';
+        document.documentElement.dataset.theme = state.theme;
+        el('sk-dev-place').value = state.place || ''; el('sk-dev-target').value = state.target; el('sk-dev-theme').value = state.theme;
+        renderCard();
+        for (const listener of [...listeners]) listener(structuredClone(state));
+      }
+      const api = Object.freeze({
+        version: 1, targets, periods, areaCount: cells.n, areaIndex: (id) => index.get(id) ?? -1, area, hours,
+        periodHours(i, id = state.target, step = state.step) {
+          const t = targetIndex(id);
+          return Float32Array.from({ length: count }, (_, b) => valid(i) && t >= 0 && [1, 2, 3, 4].includes(Number(step)) ? binValue(i, b, Number(step), t) ?? NaN : NaN);
+        },
+        getState: () => structuredClone(state), setState,
+        onState(fn) { listeners.add(fn); return () => listeners.delete(fn); },
+        openPlace(id) { if (index.has(id)) setState({ place: id }); },
+        flyTo(lat, lon, zoom) { setState({ view: lat >= 0 ? 'arctic' : 'antarctic', lat, lon, ...(zoom == null ? {} : { z: zoom }) }); },
+        loadJSON, loadBin,
+        fmtNumber: (x, digits = 0) => x == null || !Number.isFinite(x) ? 'unknown' : x.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits }),
+        fmtHours: (x) => x == null || !Number.isFinite(x) ? 'unknown' : (x > 0 && x < 9.95 ? x.toFixed(1) : Math.round(x).toLocaleString('en-US')) + ' h',
+        theme: () => state.theme,
+        addCardSection(id, title, render, summary) {
+          const entry = { title, render, summary }; cards.set(id, entry); renderCard();
+          return () => { if (cards.get(id) === entry) cards.delete(id); renderCard(); };
+        },
+        addToolsButton(id, label, onPress) {
+          const button = document.createElement('button'); button.type = 'button'; button.textContent = label; button.addEventListener('click', onPress);
+          el('sk-dev-form').append(button); return () => button.remove();
+        },
+        addListNote() { return () => {}; }, addListFilter() { return () => {}; }, setListOrder() { return () => {}; },
+        announce(text) { el('sk-dev-announcement').textContent = text; },
+      });
+      for (const target of targets) {
+        const option = document.createElement('option'); option.value = target.id; option.textContent = target.name; el('sk-dev-target').append(option);
+      }
+      el('sk-dev-form').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const place = el('sk-dev-place').value.trim();
+        if (place && !index.has(place)) { el('sk-dev-status').textContent = 'That area ID is not in the data.'; return; }
+        setState({ place: place || null, target: el('sk-dev-target').value, theme: el('sk-dev-theme').value, skyPeriod: null });
+        el('sk-dev-status').textContent = 'Local data loaded.';
+      });
+      setState({});
+      const instance = await mount(el('sky-root'), api);
+      window.skyDev = { api, instance };
+      document.documentElement.dataset.ready = '1';
+      el('sk-dev-status').textContent = 'Local data loaded.';
+    } catch (error) {
+      el('sk-dev-status').textContent = error.message;
+      const note = document.createElement('p'); note.textContent = 'The preview could not load. See the local preview controls for details.';
+      el('sky-root').append(note);
+      console.error(error);
+    }
+  </script>
+</body>
+</html>

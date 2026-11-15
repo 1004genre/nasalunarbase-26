@@ -1,0 +1,52 @@
+{
+ "written": "2026-11-14T17:23:14",
+ "by": "the count check of version 3: a separate program that imports nothing of twinfinder (its own Sun position at the edges of 1-minute steps with Saemundsson refraction, its own spell finding with crossing times found inside the minute, the band sampled every 6 seconds, its own polar-stereographic reading of the snow grid, the open share read from horizon_cells.json)",
+ "tolerance": "2 percent or 1 hour a year, whichever is larger",
+ "first_principles": {
+  "sun_series": "the project's own (Astronomical Almanac low-precision series, mid leap cycle), written again",
+  "cells": 16184,
+  "targets": 4,
+  "figures_compared": 1294720,
+  "outside_tolerance": 0,
+  "largest_difference_h_a_year": 0.09,
+  "largest_difference_h_in_a_ten_day_bin": 0.014,
+  "largest_difference_long_flat_h_a_year_recomputed_here": 0.03,
+  "snow_summaries_that_differ": 0,
+  "cell_centres_that_differ": 0
+ },
+ "calendar_moved": {
+  "what": "the same recount with the calendar moved 0.14 day later (the plain year 2026 instead of the middle of the 2024 to 2028 leap cycle): yearly long-window flat hours of each cell against grazing_bins.npz",
+  "days": 0.14,
+  "cells": 16184,
+  "targets": {
+   "connecting-ridge": {
+    "cells_with_long_window_flat_hours": 12559,
+    "cells_outside_tolerance": 4933,
+    "largest_difference_h": 9.1,
+    "median_difference_h": 1.7,
+    "p90_difference_h": 4.6
+   },
+   "malapert": {
+    "cells_with_long_window_flat_hours": 15691,
+    "cells_outside_tolerance": 448,
+    "largest_difference_h": 8.1,
+    "median_difference_h": 0.5,
+    "p90_difference_h": 4.1
+   },
+   "mons-mouton": {
+    "cells_with_long_window_flat_hours": 15999,
+    "cells_outside_tolerance": 106,
+    "largest_difference_h": 6.1,
+    "median_difference_h": 0.6,
+    "p90_difference_h": 3.9
+   },
+   "nobile-rim-2": {
+    "cells_with_long_window_flat_hours": 16184,
+    "cells_outside_tolerance": 0,
+    "largest_difference_h": 8.3,
+    "median_difference_h": 0.4,
+    "p90_difference_h": 3.9
+   }
+  }
+ }
+}

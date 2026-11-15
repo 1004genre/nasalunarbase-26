@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Compare Earth squares with Mars sites in a first pass from open data.">
+  <title>Mars first pass · Earth Twin Finder</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./mars.css">
+  <style>
+    .mars-dev-controls { max-width: 1200px; margin: auto; padding: var(--s4, 16px); }
+    .mars-dev-fields { display: flex; flex-wrap: wrap; gap: var(--s3, 12px); }
+    .mars-dev-fields label { display: grid; min-width: 0; gap: var(--s1, 4px); }
+    .mars-dev-fields :is(input, select) { max-width: 100%; min-height: 44px; background: var(--surface, #111620); color: var(--ink, #f0f3f8); border: 1px solid var(--hair, rgba(255,255,255,0.08)); border-radius: var(--radius-s, 10px); }
+    .mars-dev-state { display: block; overflow-wrap: anywhere; margin-top: var(--s3, 12px); }
+  </style>
+  <script type="module">
+    import { mountMars } from './mars.js';
+
+    const params = new URLSearchParams(location.search);
+    const theme = params.get('theme') === 'light' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.dataset.dest = 'mars';
+    const listeners = new Set(), cache = new Map();
+    const readState = () => {
+      const fragment = new URLSearchParams(location.hash.slice(1));
+      return { msite: fragment.has('msite') ? fragment.get('msite') : params.get('site') || '', mgoal: fragment.has('mgoal') ? fragment.get('mgoal') : params.get('goal') || 'full', msquare: fragment.has('msquare') ? fragment.get('msquare') : params.get('square') || '' };
+    };
+    let state = readState();
+    const showState = () => {
+      document.querySelector('.mars-dev-state').textContent = JSON.stringify(state);
+      for (const field of document.querySelectorAll('[data-state]')) field.value = state[field.dataset.state];
+    };
+    const load = (name, binary = false) => {
+      if (!/^[\w./-]+\.(?:bin|json)$/.test(name) || name.startsWith('/') || name.split('/').includes('..')) return Promise.reject(new Error('Only local data files are allowed.'));
+      if (!cache.has(name)) cache.set(name, (async () => {
+        const url = `./data/${name}`;
+        let response;
+        if (typeof DecompressionStream === 'function') response = await fetch(`${url}.gz`, { redirect: 'error' });
+        if (!response?.ok) response = await fetch(url, { redirect: 'error' });
+        if (!response.ok) throw new Error('The local file is unavailable.');
+        let buffer = await response.arrayBuffer();
+        const bytes = new Uint8Array(buffer);
+        if (bytes[0] === 0x1f && bytes[1] === 0x8b) buffer = await new Response(new Blob([buffer]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
+        return binary ? buffer : JSON.parse(new TextDecoder().decode(buffer));
+      })().catch(error => { cache.delete(name); throw error; }));
+      return cache.get(name);
+    };
+    const api = {
+      getState: () => ({ ...state }),
+      setState(partial) {
+        state = { ...state, ...partial };
+        history.replaceState(null, '', `${location.pathname}${location.search}#${new URLSearchParams(state)}`);
+        showState(); listeners.forEach(fn => fn({ ...state }));
+      },
+      onState(fn) { listeners.add(fn); return () => listeners.delete(fn); },
+      loadJSON: name => load(name), loadBin: name => load(name, true), theme: () => theme
+    };
+    window.addEventListener('hashchange', () => { state = readState(); showState(); listeners.forEach(fn => fn({ ...state })); });
+    window.marsDev = { api };
+    document.querySelector('.mars-dev-controls').hidden = params.get('api') !== '1';
+    const module = mountMars(document.getElementById('mars-root'), {
+      theme,
+      api: params.get('api') === '1' ? api : undefined,
+      site: params.get('site') || undefined,
+      goal: params.get('goal') || undefined,
+      square: params.get('square') || undefined,
+    });
+    document.addEventListener('mars:ready', () => {
+      for (const [field, selector, key] of [['msite', '[data-site]', 'site'], ['mgoal', '[data-goal]', 'goal']]) {
+        const select = document.querySelector(`[data-state="${field}"]`);
+        for (const button of document.querySelectorAll(`#mars-root ${selector}`)) select.add(new Option(button.textContent, button.dataset[key]));
+      }
+      document.querySelector('.mars-dev-fields').addEventListener('change', event => {
+        const key = event.target.dataset.state;
+        if (key) api.setState({ [key]: event.target.value });
+      });
+      if (!state.msite) state.msite = document.querySelector('[data-site][aria-pressed=true]')?.dataset.site || '';
+      showState();
+      if (params.get('expand') === 'extras') {
+        document.querySelectorAll('.mars-extra-group').forEach(group => { group.open = true; });
+      }
+      const view = params.get('view');
+      const search = document.querySelector('.mars-search-input');
+      if (params.has('region')) {
+        search.value = params.get('region');
+        search.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+      const target = view === 'square' ? '.mars-square-card' : view === 'map' ? '.mars-map-figure'
+        : view === 'planet' ? '.mars-planet-extra' : view === 'search' ? '.mars-search' : view === 'list' ? '.mars-top-list' : null;
+      if (target) requestAnimationFrame(() => document.querySelector(target)?.scrollIntoView());
+    }, { once: true });
+    window.addEventListener('pagehide', () => module.destroy(), { once: true });
+  </script>
+</head>
+<body>
+  <section class="mars-dev-controls" hidden>
+    <h1>Shared Mars state</h1>
+    <p>Change these fields to check changes from the page.</p>
+    <div class="mars-dev-fields">
+      <label>Mars site<select data-state="msite"></select></label>
+      <label>Goal<select data-state="mgoal"></select></label>
+      <label>Square ID<input data-state="msquare"></label>
+    </div>
+    <output class="mars-dev-state"></output>
+  </section>
+  <main id="mars-root" aria-label="Mars analogs on Earth"></main>
+</body>
+</html>

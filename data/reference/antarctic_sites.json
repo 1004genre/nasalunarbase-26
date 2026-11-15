@@ -1,0 +1,282 @@
+[
+  {
+    "name": "Bunger Hills",
+    "lat": -66.27,
+    "lon": 100.75,
+    "nearest_station": "Bunger Oasis",
+    "nearest_station_km": 0.8,
+    "nearest_station_seasonality": "Seasonal",
+    "nearest_year_round_station": "Mirny",
+    "nearest_year_round_station_km": 345.6,
+    "station_year_round": false,
+    "winter_snow_evidence": "literature: no continuous winter cover",
+    "winter_snow_note": "Scout summary: literature describes no continuous winter snow cover, but a winter albedo above 50% contradicts it. Neither source is on file.",
+    "existing_analog_use": null,
+    "rock_type": null,
+    "source_urls": [
+      "https://add.data.bas.ac.uk/geoserver/add/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=add:antarctic_facilities&outputFormat=application/json&srsName=EPSG:4326"
+    ]
+  },
+  {
+    "name": "Vestfold Hills",
+    "lat": -68.55,
+    "lon": 78.25,
+    "nearest_station": "Davis",
+    "nearest_station_km": 11.8,
+    "nearest_station_seasonality": "Year-Round",
+    "nearest_year_round_station": "Davis",
+    "nearest_year_round_station_km": 11.8,
+    "station_year_round": true,
+    "winter_snow_evidence": "one qualitative report",
+    "winter_snow_note": "Scout summary: one qualitative report; its source is not on file. Davis has no snow-depth column in GHCN-Daily (AYM00089571).",
+    "existing_analog_use": null,
+    "rock_type": null,
+    "source_urls": [
+      "https://add.data.bas.ac.uk/geoserver/add/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=add:antarctic_facilities&outputFormat=application/json&srsName=EPSG:4326"
+    ]
+  },
+  {
+    "name": "Larsemann Hills",
+    "lat": -69.4,
+    "lon": 76.25,
+    "nearest_station": "Bharati",
+    "nearest_station_km": 2.3,
+    "nearest_station_seasonality": "Year-Round",
+    "nearest_year_round_station": "Bharati",
+    "nearest_year_round_station_km": 2.3,
+    "station_year_round": true,
+    "winter_snow_evidence": "station shows snow",
+    "winter_snow_note": "Progress station (5.9 km): 505 April to September snow-depth reports in 4 years between 1988 and 2014, none zero, median depth 20 to 51 mm (GHCN-Daily AYM00089574, the scout's download run through the scout's script). The scout summary listed this site as 'no evidence'; Zhongshan has no snow-depth column and Bharati is not in the download.",
+    "existing_analog_use": null,
+    "rock_type": null,
+    "source_urls": [
+      "https://add.data.bas.ac.uk/geoserver/add/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=add:antarctic_facilities&outputFormat=application/json&srsName=EPSG:4326",
+      "https://www.ncei.noaa.gov/data/global-historical-climatology-network-daily/access/AYM00089574.csv"
+    ]
+  },
+  {
+    "name": "Schirmacher Oasis",
+    "lat": -70.76,
+    "lon": 11.65,
+    "nearest_station": "Maitri",
+    "nearest_station_km": 3.1,
+    "nearest_station_seasonality": "Year-Round",
+    "nearest_year_round_station": "Maitri",
+    "nearest_year_round_station_km": 3.1,
+    "station_year_round": true,
+    "winter_snow_evidence": "literature: no continuous winter cover",
+    "winter_snow_note": "Scout summary: literature describes no continuous winter snow cover; the source is not on file. Novolazarevskaya has 2 winter snow-depth reports in GHCN-Daily (AYM00089512), too few to use.",
+    "existing_analog_use": null,
+    "rock_type": null,
+    "source_urls": [
+      "https://add.data.bas.ac.uk/geoserver/add/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=add:antarctic_facilities&outputFormat=application/json&srsName=EPSG:4326"
+    ]
+  },
+  {
+    "name": "Lake Untersee and the Eliseev anorthosite massif",
+    "lat": -71.34,
+    "lon": 13.45,
+    "nearest_station": "Novolazarevskaya",
+    "nearest_station_km": 85.7,
+    "nearest_station_seasonality": "Year-Round",
+    "nearest_year_round_station": "Novolazarevskaya",
+    "nearest_year_round_station_km": 85.7,
+    "station_year_round": false,
+    "winter_snow_evidence": "no evidence",
+    "winter_snow_note": null,
+    "existing_analog_use": "No lunar analog, simulant or training use of the anorthosite found; Lake Untersee inside the massif is studied as a Mars polar and icy-world astrobiology analog",
+    "rock_type": "anorthosite (norite, anorthosite and anorthosite-norite alternations of the Eliseev massif)",
+    "source_urls": [
+      "https://add.data.bas.ac.uk/geoserver/add/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=add:antarctic_facilities&outputFormat=application/json&srsName=EPSG:4326",
+      "https://en.wikipedia.org/wiki/Lake_Untersee",
+      "https://link.springer.com/10.1038/s41598-020-69116-6"
+    ]
+  },
+  {
+    "name": "McMurdo Dry Valleys",
+    "lat": -77.52,
+    "lon": 161.6,
+    "nearest_station": "McMurdo",
+    "nearest_station_km": 125.6,
+    "nearest_station_seasonality": "Year-Round",
+    "nearest_year_round_station": "McMurdo",
+    "nearest_year_round_station_km": 125.6,
+    "station_year_round": false,
+    "winter_snow_evidence": "measured mostly bare",
+    "winter_snow_note": "Eveland et al. 2013: 75 to 95% of the ground bare at the end of winter (citation from the scout summary; no link on file).",
+    "existing_analog_use": "Cold, dry valleys; endoliths; habitat test 2008-09 (listed in known_analogs.json for both Moon and Mars)",
+    "rock_type": null,
+    "source_urls": [
+      "https://add.data.bas.ac.uk/geoserver/add/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=add:antarctic_facilities&outputFormat=application/json&srsName=EPSG:4326",
+      "https://en.wikipedia.org/wiki/Terrestrial_analogue_site"
+    ]
+  },
+  {
+    "name": "Windmill Islands",
+    "lat": -66.3,
+    "lon": 110.52,
+    "nearest_station": "Casey",
+    "nearest_station_km": 2.0,
+    "nearest_station_seasonality": "Year-Round",
+    "nearest_year_round_station": "Casey",
+    "nearest_year_round_station_km": 2.0,
+    "station_year_round": true,
+    "winter_snow_evidence": "station shows snow",
+    "winter_snow_note": "Casey has no snow-depth column in GHCN-Daily (AYM00089611). Wilkes, the earlier station 4 km away, 1957 to 1962: 674 April to September snow-depth reports, 10% of them zero (AYW00086101).",
+    "existing_analog_use": null,
+    "rock_type": null,
+    "source_urls": [
+      "https://add.data.bas.ac.uk/geoserver/add/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=add:antarctic_facilities&outputFormat=application/json&srsName=EPSG:4326",
+      "https://www.ncei.noaa.gov/data/global-historical-climatology-network-daily/access/AYW00086101.csv"
+    ]
+  },
+  {
+    "name": "Syowa and the Soya Coast",
+    "lat": -69.004,
+    "lon": 39.582,
+    "nearest_station": "Syowa",
+    "nearest_station_km": 0.0,
+    "nearest_station_seasonality": "Year-Round",
+    "nearest_year_round_station": "Syowa",
+    "nearest_year_round_station_km": 0.0,
+    "station_year_round": true,
+    "winter_snow_evidence": "station shows snow",
+    "winter_snow_note": "Syowa: only 5 April to September snow-depth reports in GHCN-Daily, all in 2026, none zero, 40 to 250 mm (AYM00089532).",
+    "existing_analog_use": null,
+    "rock_type": null,
+    "source_urls": [
+      "https://add.data.bas.ac.uk/geoserver/add/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=add:antarctic_facilities&outputFormat=application/json&srsName=EPSG:4326",
+      "https://www.ncei.noaa.gov/data/global-historical-climatology-network-daily/access/AYM00089532.csv"
+    ]
+  },
+  {
+    "name": "Fildes Peninsula",
+    "lat": -62.2,
+    "lon": -58.95,
+    "nearest_station": "Bellingshausen",
+    "nearest_station_km": 0.6,
+    "nearest_station_seasonality": "Year-Round",
+    "nearest_year_round_station": "Bellingshausen",
+    "nearest_year_round_station_km": 0.6,
+    "station_year_round": true,
+    "winter_snow_evidence": "station shows snow",
+    "winter_snow_note": "Bellingshausen: 2,301 April to September snow-depth reports in 18 years between 1988 and 2026, 1% of them zero (GHCN-Daily AYM00089050).",
+    "existing_analog_use": null,
+    "rock_type": null,
+    "source_urls": [
+      "https://add.data.bas.ac.uk/geoserver/add/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=add:antarctic_facilities&outputFormat=application/json&srsName=EPSG:4326",
+      "https://www.ncei.noaa.gov/data/global-historical-climatology-network-daily/access/AYM00089050.csv"
+    ]
+  },
+  {
+    "name": "Deception Island",
+    "lat": -62.95,
+    "lon": -60.6,
+    "nearest_station": "Gabriel de Castilla",
+    "nearest_station_km": 4.9,
+    "nearest_station_seasonality": "Seasonal",
+    "nearest_year_round_station": "Arturo Prat Antarctic Naval Base",
+    "nearest_year_round_station_km": 70.9,
+    "station_year_round": false,
+    "winter_snow_evidence": "no evidence",
+    "winter_snow_note": null,
+    "existing_analog_use": null,
+    "rock_type": null,
+    "source_urls": [
+      "https://add.data.bas.ac.uk/geoserver/add/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=add:antarctic_facilities&outputFormat=application/json&srsName=EPSG:4326"
+    ]
+  },
+  {
+    "name": "Ulu Peninsula, James Ross Island",
+    "lat": -63.85,
+    "lon": -57.9,
+    "nearest_station": "Johann Gregor Mendel",
+    "nearest_station_km": 5.6,
+    "nearest_station_seasonality": "Seasonal",
+    "nearest_year_round_station": "Antarctic Receiving Station (GARS)",
+    "nearest_year_round_station_km": 58.8,
+    "station_year_round": false,
+    "winter_snow_evidence": "no evidence",
+    "winter_snow_note": null,
+    "existing_analog_use": null,
+    "rock_type": null,
+    "source_urls": [
+      "https://add.data.bas.ac.uk/geoserver/add/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=add:antarctic_facilities&outputFormat=application/json&srsName=EPSG:4326"
+    ]
+  },
+  {
+    "name": "Seymour Island",
+    "lat": -64.25,
+    "lon": -56.65,
+    "nearest_station": "Marambio",
+    "nearest_station_km": 1.6,
+    "nearest_station_seasonality": "Year-Round",
+    "nearest_year_round_station": "Marambio",
+    "nearest_year_round_station_km": 1.6,
+    "station_year_round": true,
+    "winter_snow_evidence": "station shows snow",
+    "winter_snow_note": "Marambio: 999 April to September snow-depth reports in 18 years between 1973 and 2026, under 1% of them zero, median depth 30 to 50 mm (GHCN-Daily AYM00089055, the scout's download run through the scout's script; no written scout note on file).",
+    "existing_analog_use": null,
+    "rock_type": null,
+    "source_urls": [
+      "https://add.data.bas.ac.uk/geoserver/add/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=add:antarctic_facilities&outputFormat=application/json&srsName=EPSG:4326",
+      "https://www.ncei.noaa.gov/data/global-historical-climatology-network-daily/access/AYM00089055.csv"
+    ]
+  },
+  {
+    "name": "Rothera Point",
+    "lat": -67.57,
+    "lon": -68.13,
+    "nearest_station": "Rothera",
+    "nearest_station_km": 0.2,
+    "nearest_station_seasonality": "Year-Round",
+    "nearest_year_round_station": "Rothera",
+    "nearest_year_round_station_km": 0.2,
+    "station_year_round": true,
+    "winter_snow_evidence": "station shows snow",
+    "winter_snow_note": "Rothera: 507 April to September snow-depth reports in 13 years between 1989 and 2007, none zero (GHCN-Daily AYM00089062).",
+    "existing_analog_use": null,
+    "rock_type": null,
+    "source_urls": [
+      "https://add.data.bas.ac.uk/geoserver/add/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=add:antarctic_facilities&outputFormat=application/json&srsName=EPSG:4326",
+      "https://www.ncei.noaa.gov/data/global-historical-climatology-network-daily/access/AYM00089062.csv"
+    ]
+  },
+  {
+    "name": "Jutulsessen at Troll",
+    "lat": -72.01,
+    "lon": 2.53,
+    "nearest_station": "Troll",
+    "nearest_station_km": 0.2,
+    "nearest_station_seasonality": "Year-Round",
+    "nearest_year_round_station": "Troll",
+    "nearest_year_round_station_km": 0.2,
+    "station_year_round": true,
+    "winter_snow_evidence": "one qualitative report",
+    "winter_snow_note": "Scout summary: one qualitative report; its source is not on file. Troll: 163 April to September snow-depth reports between 2019 and 2026, 87% of them zero (GHCN-Daily AYM00089504).",
+    "existing_analog_use": null,
+    "rock_type": null,
+    "source_urls": [
+      "https://add.data.bas.ac.uk/geoserver/add/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=add:antarctic_facilities&outputFormat=application/json&srsName=EPSG:4326",
+      "https://www.ncei.noaa.gov/data/global-historical-climatology-network-daily/access/AYM00089504.csv"
+    ]
+  },
+  {
+    "name": "Northern Foothills, Terra Nova Bay",
+    "lat": -74.75,
+    "lon": 164.0,
+    "nearest_station": "Mario Zucchelli",
+    "nearest_station_km": 7.0,
+    "nearest_station_seasonality": "Seasonal",
+    "nearest_year_round_station": "Jang Bogo",
+    "nearest_year_round_station_km": 15.3,
+    "station_year_round": true,
+    "winter_snow_evidence": "no evidence",
+    "winter_snow_note": "Baia Terra Nova has no winter snow-depth reports in GHCN-Daily (AYM00089662).",
+    "existing_analog_use": null,
+    "rock_type": null,
+    "source_urls": [
+      "https://add.data.bas.ac.uk/geoserver/add/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=add:antarctic_facilities&outputFormat=application/json&srsName=EPSG:4326"
+    ]
+  }
+]

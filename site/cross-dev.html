@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-dest="moon">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Mars stand-in · Development page</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./cross.css">
+  <style>
+    .cx-dev { max-width: 920px; padding: 20px; margin: auto; }
+    .cx-dev h1 { font-size: 24px; }
+    .cx-dev-controls { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; margin: 16px 0; }
+    .cx-dev-controls label { display: grid; gap: 4px; flex: 1 1 150px; min-width: 0; }
+    .cx-dev-controls input, .cx-dev-controls select, .cx-dev-controls button { min-width: 0; min-height: 44px; padding: 8px; font: inherit; border: 1px solid var(--hair, rgba(255,255,255,0.08)); border-radius: 7px; color: var(--ink, #edf3fa); background: var(--surface, #101d2e); }
+    .cx-dev-controls button { cursor: pointer; }
+    .cx-dev-card { border: 1px solid var(--hair, rgba(255,255,255,0.08)); border-radius: 12px; padding: 16px; background: var(--surface, #101d2e); }
+    .cx-dev-card > summary { cursor: pointer; padding: 8px 0 14px; }
+    .cx-dev-card > summary strong, .cx-dev-card > summary span { display: block; }
+    .cx-dev-card > summary span { margin-top: 6px; font-size: 13px; color: var(--ink2, #bdcbdc); }
+    .cx-dev-status { margin: 10px 0; color: var(--ink2, #bdcbdc); overflow-wrap: anywhere; }
+    :focus-visible { outline: 3px solid var(--ui, #5cc8f5); outline-offset: 3px; }
+    @media (max-width: 400px) { .cx-dev { padding: 14px; } .cx-dev-card { padding: 12px; } }
+  </style>
+</head>
+<body>
+<main class="cx-dev">
+  <header class="cx-dev-header">
+    <h1>This place as a Mars stand-in</h1>
+    <p>This preview uses the local data and the page API.</p>
+    <form class="cx-dev-controls">
+      <label>Area ID<input name="place" required spellcheck="false"></label>
+      <label>Theme<select name="theme"><option value="light">Light</option><option value="dark">Dark</option></select></label>
+      <button class="btn" type="submit">Open area</button>
+    </form>
+  </header>
+  <p class="cx-dev-status" role="status">The local data will open here.</p>
+  <div id="cross-root" hidden></div>
+  <div id="cx-card"></div>
+</main>
+<script type="module">
+import { mount } from './cross.js';
+const params = new URLSearchParams(location.search), cache = new Map();
+const status = document.querySelector('.cx-dev-status'), form = document.querySelector('form');
+const state = { place: params.get('place'), theme: params.get('theme') === 'light' ? 'light' : 'dark' };
+function load(name, binary = false) {
+  if (!/^[\w./-]+$/.test(name) || name.startsWith('/') || name.split('/').includes('..')) return Promise.reject(new Error('Only local data files are allowed.'));
+  const key = `${binary}:${name}`;
+  if (!cache.has(key)) cache.set(key, (async () => {
+    let response;
+    if (typeof DecompressionStream === 'function' && /\.(bin|json)$/.test(name)) response = await fetch(`./data/${name}.gz`, { redirect: 'error' });
+    if (!response?.ok) response = await fetch(`./data/${name}`, { redirect: 'error' });
+    if (!response.ok) throw new Error('Local data is unavailable.');
+    let buffer = await response.arrayBuffer(); const bytes = new Uint8Array(buffer);
+    if (bytes[0] === 0x1f && bytes[1] === 0x8b) buffer = await new Response(new Blob([buffer]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
+    return binary ? buffer : JSON.parse(new TextDecoder().decode(buffer));
+  })().catch(error => { cache.delete(key); throw error; }));
+  return cache.get(key);
+}
+try {
+  const cells = await load('cells.json');
+  state.place ||= cells.ids[0];
+  const sections = new Map(), indexes = new Map(cells.ids.map((id, i) => [id, i]));
+  // Match api.area(): IDs name the areas, while these columns hold their centres.
+  const area = i => indexes.has(cells.ids[i]) ? { id: cells.ids[i], lat: cells.lat[i] / 100, lon: cells.lon[i] / 100 } : null;
+  function render() {
+    document.documentElement.dataset.theme = state.theme;
+    form.elements.place.value = state.place; form.elements.theme.value = state.theme;
+    const index = indexes.get(state.place), host = document.getElementById('cx-card'); host.replaceChildren();
+    status.textContent = index == null ? 'No area has that ID.' : `Area ${state.place}`;
+    if (index == null) return;
+    for (const [id, part] of sections) {
+      const content = part.render(index, state.target);
+      const details = document.createElement('details'); details.className = 'cx-dev-card fold'; details.dataset.cardSection = id;
+      details.open = params.get('folded') !== '1';
+      const summary = document.createElement('summary'), title = document.createElement('strong'), line = document.createElement('span');
+      title.textContent = part.title; line.textContent = part.summary?.(index, state.target) || '';
+      summary.append(title, line); details.append(summary, content); host.append(details);
+    }
+  }
+  const api = {
+    version: 1, areaCount: cells.ids.length, area, areaIndex: id => indexes.get(id) ?? -1,
+    loadJSON: name => load(name), loadBin: name => load(name, true),
+    getState: () => ({ ...state }), theme: () => state.theme,
+    fmtNumber: (value, digits = 0) => Number.isFinite(value) ? value.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits }) : 'unknown',
+    setState(partial) {
+      if (partial.go === 'mars') {
+        const hash = new URLSearchParams({ place: state.place, theme: state.theme, ...Object.fromEntries(Object.entries(partial).filter(([, value]) => value != null)) });
+        location.href = `./index.html#${hash}`; return;
+      }
+      Object.assign(state, partial); render();
+    },
+    addCardSection(id, title, renderPart, summary) {
+      sections.set(id, { title, render: renderPart, summary }); render();
+      return () => { sections.delete(id); render(); };
+    }
+  };
+  if (params.get('legacy') === '1') {
+    const register = api.addCardSection;
+    api.addCardSection = function(id, title, renderPart) { return register(id, title, renderPart); };
+  }
+  form.addEventListener('submit', event => {
+    event.preventDefault(); state.place = form.elements.place.value.trim(); state.theme = form.elements.theme.value;
+    params.set('place', state.place); params.set('theme', state.theme); history.replaceState(null, '', `?${params}`); render();
+  });
+  const instance = await mount(document.getElementById('cross-root'), api);
+  if (params.get('only') === 'card') document.querySelector('header').hidden = true;
+  document.documentElement.dataset.ready = 'true';
+  window.addEventListener('pagehide', () => instance.destroy(), { once: true });
+} catch { status.textContent = 'The development page could not load its local data.'; }
+</script>
+</body>
+</html>

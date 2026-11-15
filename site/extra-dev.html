@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-dest="moon">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Power and steady influences · Development page</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="extra.css">
+  <style>
+    .ex-dev { max-width: 1200px; margin: auto; padding: 24px 20px; }
+    .ex-dev-header > p { color: var(--ink2, #b9c8d8); margin-top: 8px; }
+    .ex-dev-controls { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0; align-items: end; }
+    .ex-dev-controls label { display: grid; gap: 5px; flex: 1 1 160px; min-width: 0; }
+    .ex-dev-controls input, .ex-dev-controls select, .ex-dev button { font: inherit; color: var(--ink, #eef4fa); background: var(--raised, #182638); border: 1px solid var(--border, rgba(150,175,200,0.3)); border-radius: 7px; min-width: 0; min-height: 44px; padding: 8px 11px; }
+    .ex-dev-controls input, .ex-dev-controls select { width: 100%; }
+    .ex-dev button { cursor: pointer; }
+    .ex-dev button:hover { border-color: var(--ink2, #b9c8d8); }
+    .ex-dev :focus-visible { outline: 3px solid var(--ui, #5cc8f5); outline-offset: 3px; }
+    .ex-dev-section { padding: 20px; margin-top: 24px; border: 1px solid var(--border, rgba(150,175,200,0.3)); border-radius: 14px; background: var(--surface, #111c2a); min-width: 0; }
+    .ex-dev-card { max-width: 900px; }
+    .ex-dev-card > p { margin: 6px 0 20px; color: var(--ink2, #b9c8d8); }
+    .ex-dev-card-part + .ex-dev-card-part { border-top: 1px solid var(--border, rgba(150,175,200,0.3)); margin-top: 20px; padding-top: 20px; }
+    .ex-dev-card-part > h3 { margin-bottom: 12px; }
+    .ex-dev-list { margin: 12px 0 0; padding: 0; list-style: none; }
+    .ex-dev-list li { padding: 12px 0; border-top: 1px solid var(--border, rgba(150,175,200,0.3)); }
+    .ex-dev-list small { display: block; margin-top: 6px; color: var(--ink2, #b9c8d8); overflow-wrap: anywhere; }
+    .ex-dev-list button { text-align: left; }
+    .ex-dev-filters { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .ex-dev-filters label { display: flex; align-items: center; gap: 8px; min-height: 44px; cursor: pointer; }
+    .ex-dev-filters input { width: 20px; height: 20px; accent-color: var(--accent, #f2b33d); }
+    .ex-dev-status { color: var(--ink2, #b9c8d8); overflow-wrap: anywhere; }
+    .ex-dev-status:empty { display: none; }
+    .ex-dev [hidden] { display: none !important; }
+    .ex-dev-summary { margin-bottom: 10px; font-weight: 600; }
+    @media (max-width: 560px) { .ex-dev { padding: 16px 12px; } .ex-dev-section { padding: 14px; } }
+    @media (prefers-reduced-motion: reduce) { .ex-dev * { scroll-behavior: auto !important; transition: none !important; animation: none !important; } }
+  </style>
+</head>
+<body>
+<main class="ex-dev">
+  <header class="ex-dev-header" id="ex-dev-header">
+    <h1>Power and steady influences</h1>
+    <p>This development page uses local data and the module API.</p>
+    <form class="ex-dev-controls" id="ex-dev-controls">
+      <label>Lunar region<select id="ex-dev-target"></select></label>
+      <label>Theme<select id="ex-dev-theme"><option value="light">Light</option><option value="dark">Dark</option></select></label>
+      <label>Area ID<input id="ex-dev-place" name="place" autocomplete="off" spellcheck="false" required></label>
+      <button class="btn" type="submit">Open area</button>
+    </form>
+    <div id="ex-dev-tools"></div>
+  </header>
+  <p id="ex-dev-status" class="ex-dev-status" role="status" aria-live="polite">The data is not ready.</p>
+  <section id="extra-root" aria-label="Power and steady influences"></section>
+  <section id="ex-dev-card" class="ex-dev-section ex-dev-card card" aria-label="Place card"></section>
+  <section id="ex-dev-lists" class="ex-dev-section card" aria-label="List helpers">
+    <h2>List helpers</h2>
+    <p>Select an area to open its place card.</p>
+    <div id="ex-dev-filters" class="ex-dev-filters"></div>
+    <ul id="ex-dev-list" class="ex-dev-list"></ul>
+    <p id="ex-dev-list-status" class="ex-dev-status" aria-live="polite"></p>
+  </section>
+</main>
+<script type="module">
+import { mount } from './extra.js';
+
+const byId = id => document.getElementById(id);
+const node = (tag, text, className) => {
+  const element = document.createElement(tag);
+  if (text != null) element.textContent = text;
+  if (className) element.className = className;
+  return element;
+};
+const query = new URLSearchParams(location.search);
+const cache = new Map();
+function load(name, binary = false) {
+  if (!/^[a-zA-Z0-9_./-]+$/.test(name) || name.startsWith('/') || name.split('/').includes('..')) {
+    return Promise.reject(new Error('Only local data files are permitted.'));
+  }
+  const key = (binary ? 'bin:' : 'json:') + name;
+  if (!cache.has(key)) cache.set(key, fetch('data/' + name, { redirect: 'error' }).then(response => {
+    if (!response.ok) throw new Error(name + ' could not be read.');
+    return binary ? response.arrayBuffer() : response.json();
+  }));
+  return cache.get(key);
+}
+
+try {
+  const [meta, cells] = await Promise.all([load('meta.json'), load('cells.json')]);
+  const targets = meta.targets.map(target => ({ id: target.id, name: target.name, limitDeg: target.limit_deg }));
+  const periods = meta.bins.map((period, index) => ({ index, label: period.label, firstDay: period.first_day, lastDay: period.last_day, month: period.month }));
+  const indexes = new Map(cells.ids.map((id, index) => [id, index]));
+  const state = { view: 'arctic', target: targets[0].id, step: 3, period: 'year', place: '75.3_-90.0', little: false, theme: 'dark', ...Object.fromEntries(query) };
+  if (!targets.some(target => target.id === state.target)) state.target = targets[0].id;
+  if (!indexes.has(state.place)) state.place = cells.ids[0];
+  if (!['light', 'dark'].includes(state.theme)) state.theme = 'dark';
+  const subscribers = new Set(), sections = new Map(), notes = new Set(), filters = new Map(), orders = new Map();
+  let moduleReady = false;
+  const number = (value, digits = 0) => typeof value === 'number' && Number.isFinite(value)
+    ? new Intl.NumberFormat('en-US', { maximumFractionDigits: digits }).format(value) : 'unknown';
+  const area = i => !Number.isInteger(i) || i < 0 || i >= cells.ids.length ? null : ({
+    id: cells.ids[i], lat: cells.lat[i] / 100, lon: cells.lon[i] / 100, hemisphere: cells.hemisphere[i],
+    region: cells.regions[cells.region[i]], bare: cells.bare[i] < 0 ? null : cells.bare[i] / 100,
+    snowStatus: cells.snow_statuses[cells.snow[i]], named: cells.site[i] || null, littleKnown: cells.known[i] < 0,
+  });
+  const representativeIds = ['63.8_-22.6', '75.3_-90.0', '68.9_54.3', cells.ids.find((id, i) => cells.hemisphere[i] === 'S')];
+  function renderCard() {
+    const card = byId('ex-dev-card'), i = indexes.get(state.place), chosen = area(i);
+    card.replaceChildren();
+    if (!chosen) return;
+    card.append(node('h2', chosen.named || chosen.region || 'Selected area'));
+    card.append(node('p', 'Area ' + chosen.id + ' · ' + targets.find(target => target.id === state.target).name));
+    for (const [id, part] of sections) {
+      const content = part.render(i, state.target);
+      if (!content) continue;
+      const section = node('section', null, 'ex-dev-card-part');
+      section.id = 'ex-dev-card-' + id;
+      section.dataset.cardSection = id;
+      section.append(node('h3', part.title));
+      if (part.summary) section.append(node('p', part.summary(i, state.target), 'ex-dev-summary'));
+      section.append(content); card.append(section);
+    }
+  }
+  function renderLists() {
+    const list = byId('ex-dev-list'); list.replaceChildren();
+    let rows = [...new Set([...representativeIds, state.place])].map(id => indexes.get(id)).filter(Number.isInteger);
+    rows = rows.filter(i => [...filters.values()].every(filter => !filter.active || filter.test(i, state.target)));
+    const order = orders.get(state.order);
+    if (order) rows.sort((a, b) => (order.score(b, state.target) ?? -Infinity) - (order.score(a, state.target) ?? -Infinity));
+    for (const i of rows) {
+      const chosen = area(i), li = node('li'), button = node('button', (chosen.named || chosen.region || 'Area') + ' · ' + chosen.id);
+      button.classList.add('btn'); button.type = 'button'; button.addEventListener('click', () => api.openPlace(chosen.id)); li.append(button);
+      for (const note of notes) { const text = note(i, state.target); if (text) li.append(node('small', text)); }
+      list.append(li);
+    }
+    byId('ex-dev-list-status').textContent = rows.length ? '' : 'No areas in this list pass this filter.';
+  }
+  function showOnly() {
+    const only = state.only;
+    byId('ex-dev-header').hidden = ['card', 'overview', 'lists'].includes(only);
+    byId('extra-root').hidden = !!only && only !== 'overview';
+    byId('ex-dev-card').hidden = !!only && only !== 'card';
+    byId('ex-dev-lists').hidden = !!only && only !== 'lists';
+  }
+  function render() {
+    document.documentElement.dataset.theme = state.theme;
+    byId('ex-dev-target').value = state.target; byId('ex-dev-theme').value = state.theme;
+    byId('ex-dev-place').value = state.place;
+    renderCard(); renderLists(); showOnly();
+  }
+  const api = {
+    version: 1, targets, periods, areaCount: cells.ids.length,
+    getState: () => ({ ...state }),
+    setState: partial => {
+      Object.assign(state, partial);
+      if (!targets.some(target => target.id === state.target)) state.target = targets[0].id;
+      if (indexes.has(state.place)) state.view = area(indexes.get(state.place)).hemisphere === 'S' ? 'antarctic' : 'arctic';
+      for (const subscriber of subscribers) subscriber({ ...state });
+      render();
+    },
+    onState: callback => { subscribers.add(callback); return () => subscribers.delete(callback); },
+    areaIndex: id => indexes.get(id) ?? -1, area,
+    hours: () => null,
+    periodHours: () => new Float32Array(periods.length).fill(NaN),
+    openPlace: id => {
+      if (!indexes.has(id)) { api.announce('That area is not in the data.'); return; }
+      api.setState({ place: id, only: state.only === 'lists' ? 'card' : state.only });
+      byId('ex-dev-card').scrollIntoView({ block: 'start', behavior: 'auto' });
+    },
+    flyTo: (lat, lon, zoom) => { api.setState({ lat, lon, zoom }); api.announce('Map movement is not drawn on this development page.'); },
+    loadJSON: name => load(name), loadBin: name => load(name, true),
+    fmtNumber: number, fmtHours: value => typeof value === 'number' && Number.isFinite(value) ? number(value, 1) + ' h' : 'unknown',
+    theme: () => state.theme,
+    addToolsButton: (id, label, onPress) => {
+      const button = node('button', label); button.classList.add('btn'); button.type = 'button'; button.dataset.tool = id;
+      button.addEventListener('click', onPress); byId('ex-dev-tools').append(button); return () => button.remove();
+    },
+    addCardSection: (id, title, renderPart, summary) => {
+      const entry = { title, render: renderPart, summary }; sections.set(id, entry);
+      if (moduleReady) renderCard();
+      return () => { if (sections.get(id) === entry) sections.delete(id); if (moduleReady) renderCard(); };
+    },
+    addListNote: callback => { notes.add(callback); if (moduleReady) renderLists(); return () => { notes.delete(callback); if (moduleReady) renderLists(); }; },
+    addListFilter: (id, label, test) => {
+      filters.get(id)?.wrapper.remove();
+      const wrapper = node('label'), input = node('input'); input.type = 'checkbox';
+      const entry = { test, wrapper, active: String(state.filters || '').split(',').includes(id) };
+      input.checked = entry.active;
+      input.addEventListener('change', () => { entry.active = input.checked; state.filters = [...filters].filter(([, value]) => value.active).map(([key]) => key).join(','); renderLists(); });
+      wrapper.append(input, document.createTextNode(label)); filters.set(id, entry); byId('ex-dev-filters').append(wrapper);
+      if (moduleReady) renderLists();
+      return () => { if (filters.get(id) === entry) filters.delete(id); wrapper.remove(); if (moduleReady) renderLists(); };
+    },
+    setListOrder: (id, label, score) => {
+      if (typeof score === 'function') orders.set(id, { label, score }); else orders.delete(id);
+      if (moduleReady) renderLists(); return () => { orders.delete(id); if (moduleReady) renderLists(); };
+    },
+    announce: message => { byId('ex-dev-status').textContent = message; },
+  };
+  for (const target of targets) { const option = node('option', target.name); option.value = target.id; byId('ex-dev-target').append(option); }
+  byId('ex-dev-target').addEventListener('change', event => api.setState({ target: event.target.value }));
+  byId('ex-dev-theme').addEventListener('change', event => api.setState({ theme: event.target.value }));
+  byId('ex-dev-controls').addEventListener('submit', event => { event.preventDefault(); api.openPlace(byId('ex-dev-place').value.trim()); });
+  document.documentElement.dataset.theme = state.theme;
+  window.extraDev = { api, state, sections, filters, notes, render, cells, meta };
+  window.extraDev.module = await mount(byId('extra-root'), api);
+  moduleReady = true; render();
+  byId('ex-dev-status').textContent = '';
+  document.documentElement.dataset.ready = '1';
+} catch (error) {
+  byId('ex-dev-status').textContent = 'This part could not load: ' + error.message;
+  document.documentElement.dataset.error = error.message;
+  console.error(error);
+}
+</script>
+</body>
+</html>

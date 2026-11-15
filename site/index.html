@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en" data-dest="moon" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Earth Twin Finder</title>
+<meta name="description" content="Find places on Earth with the low Sun of the Moon's south pole, and a first pass for Mars.">
+<meta name="color-scheme" content="dark light">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#experiment-section">Go to the experiment</a>
+<header class="topbar" id="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#destination-section">Earth Twin Finder</a>
+    <nav class="step-rail" id="step-rail" aria-label="Steps">
+      <a href="#experiment-section" aria-current="step">Experiment</a>
+      <a href="#places-section">Places</a>
+      <a href="#when-section">When</a>
+      <a href="#plan-section">Plan</a>
+      <a href="#deeper-section">Go deeper</a>
+    </nav>
+    <div class="top-actions">
+      <button type="button" class="btn btn-ghost" data-action="tour" hidden>Tour (60 s)</button>
+      <button type="button" class="btn btn-ghost" data-action="demo" hidden>Demo (30 s)</button>
+      <button type="button" class="btn btn-ghost" data-action="search">Search</button>
+      <button type="button" class="btn btn-ghost" id="theme-toggle" aria-label="Use the light look" aria-pressed="false">Light</button>
+    </div>
+  </div>
+</header>
+<main>
+<section class="hero info-strip" id="destination-section" aria-labelledby="headline">
+  <div class="info-copy">
+    <p class="eyebrow">Earth Twin Finder</p>
+    <h1 id="headline">Find places on Earth for Moon and Mars tests.</h1>
+    <p class="purpose" id="purpose">Select a base. Set what your experiment needs. The page finds the places and the dates.</p>
+    <p class="subline" id="subline" hidden></p>
+    <p class="status" id="load-status" role="status">The page will show the data here.</p>
+  </div>
+  <div class="info-data">
+    <div class="destination-control" id="destination-picker" aria-label="Destination"></div>
+    <dl class="info-figures" aria-label="Data on this page">
+      <div><dt>Lunar regions · Mars sites</dt><dd id="info-destinations">unknown</dd></div>
+      <div><dt>Areas on Earth</dt><dd id="info-areas">unknown</dd></div>
+      <div><dt>Factors</dt><dd id="info-factors">unknown</dd></div>
+    </dl>
+  </div>
+</section>
+<section class="experiment-section" id="experiment-section" aria-label="Make your experiment">
+  <section id="ask-root" class="module-section" aria-label="Make your experiment">
+    <h2>Make your experiment</h2>
+    <p class="status">The page will show the options here.</p>
+  </section>
+  <section id="ask-words" class="module-section experiment-bubble" aria-label="Tell the AI about your experiment">
+    <h2>Tell the AI about your experiment</h2>
+    <p class="status">The page will show the text box here.</p>
+  </section>
+</section>
+<section class="places-section" id="places-section" aria-labelledby="places-heading">
+  <header class="section-head"><div><h2 id="places-heading">Places on Earth</h2><p class="finding">See the places on the globe. Open a place to see its figures and dates.</p></div></header>
+  <div class="places-grid">
+    <div class="hero-stage">
+      <div id="globes-root" aria-label="The destination and its places on Earth">
+        <figure class="stage-still">
+          <canvas id="stage-fallback" width="720" height="720" role="img" aria-label="Polar map of Earth for the lunar region"></canvas>
+          <figcaption><details class="fold stage-about"><summary>About this picture</summary><p class="caption drawn">Drawn by code from open data; the code was written with AI assistance.</p></details></figcaption>
+        </figure>
+      </div>
+      <p class="stage-finding" id="stage-finding" aria-live="polite">Select a destination to see its places on Earth.</p>
+      <div class="stage-controls">
+        <div class="seg" id="stage-switch" role="group" aria-label="Map view">
+          <button type="button" data-stage="globe" aria-pressed="true">Globe</button>
+          <button type="button" data-stage="flat" aria-pressed="false">Flat maps</button>
+        </div>
+      </div>
+    </div>
+    <div class="places-results">
+      <section id="ask-results" aria-label="Places that match your experiment" hidden></section>
+<section id="answer-section" aria-labelledby="answer-title">
+  <h3 id="answer-title">Best places</h3>
+  <div class="answer-columns">
+    <div class="answer-column expanded" id="answer-moon">
+      <div class="answer-heading">
+        <div><h3 id="answer-moon-title">For the light of the lunar region</h3><p>Without the hours that snow and hills hide</p></div>
+        <button type="button" class="answer-toggle" data-answer-toggle="moon" aria-expanded="true" aria-controls="answer-moon-rest">Show less</button>
+      </div>
+      <div id="answer-moon-first"><p class="status">The page will show the places here.</p></div>
+      <div class="answer-rest" id="answer-moon-rest"></div>
+    </div>
+    <div class="answer-column expanded" id="answer-mars" hidden>
+      <div class="answer-heading">
+        <div><h3>For Mars</h3><p id="answer-mars-scale"></p></div>
+        <button type="button" class="answer-toggle" data-answer-toggle="mars" aria-expanded="true" aria-controls="answer-mars-rest">Show less</button>
+      </div>
+      <div id="answer-mars-first"></div>
+      <div class="answer-rest" id="answer-mars-rest"></div>
+    </div>
+  </div>
+</section>
+      <div class="hero-actions">
+        <button type="button" class="btn btn-ghost next-step" id="hero-next" data-next="when">When can you go?</button>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="bar" id="bar" role="region" aria-label="Destination and steps">
+  <div class="bar-inner">
+    <div class="destination-control" id="bar-dest" aria-label="Destination"></div>
+    <div class="bar-group" data-mode="moon"><span class="bar-label" id="lbl-step">Remove hours</span>
+      <div class="seg" id="bar-step" role="group" aria-labelledby="lbl-step"></div></div>
+    <div class="bar-group" data-mode="mars" hidden><span class="bar-label" id="lbl-mgoal">Goal</span>
+      <div class="seg" id="bar-mgoal" role="group" aria-labelledby="lbl-mgoal"></div></div>
+  </div>
+</div>
+<section id="closer-section" class="closer-card" data-mode="moon" aria-labelledby="closer-heading">
+  <header class="section-head"><div><h2 id="closer-heading">Look closer</h2><p class="finding" id="map-finding"></p></div></header>
+  <div class="closer-grid">
+<section data-mode="moon" id="map-section">
+  <div class="map-layout">
+    <figure class="map-figure">
+      <h3 id="map-title" aria-live="polite">&nbsp;</h3>
+
+      <div class="controls" id="map-controls">
+        <div class="control"><span class="control-label" id="lbl-view">Pole</span>
+          <div class="seg" id="ctl-view" role="group" aria-labelledby="lbl-view"></div></div>
+        <div class="control"><span class="control-label" id="lbl-period">Period</span>
+          <div class="seg" id="ctl-period" role="group" aria-labelledby="lbl-period"></div></div>
+        <div class="control slider-control" id="slider-control" hidden>
+          <label class="control-label" for="ctl-bin">Ten-day period: <strong id="bin-label"></strong></label>
+          <div class="slider-row">
+            <button type="button" id="ctl-play" class="btn" aria-pressed="false">Play</button>
+            <input type="range" id="ctl-bin" min="0" max="35" step="1" value="21">
+          </div>
+        </div>
+      </div>
+      <div class="map-wrap" id="map-wrap">
+        <canvas id="map" tabindex="0" role="application" aria-describedby="map-summary map-keys"></canvas>
+        <div class="map-note" id="map-note" hidden></div>
+        <div class="zoom">
+          <button type="button" class="btn" id="zoom-in" aria-label="Zoom in">+</button>
+          <button type="button" class="btn" id="zoom-out" aria-label="Zoom out">&minus;</button>
+          <button type="button" class="btn" id="zoom-reset" aria-label="Show the whole polar view">Reset</button>
+        </div>
+        <div class="tip" id="tip" hidden></div>
+      </div>
+      <div class="map-legend" id="map-legend"></div>
+      <div class="take map-take">
+        <label class="check"><input type="checkbox" id="ctl-little"> <span id="little-label">Hide known analog sites</span></label>
+        <button type="button" class="btn" data-copy-link>Copy the link to this view</button>
+        <span class="take-status" role="status"></span>
+      </div>
+      <p class="sr-only" id="map-summary"></p>
+      <details class="fold"><summary>How to read this map</summary><details class="fold map-guides"><summary>Guided map views</summary><div class="guides" id="guides" role="group" aria-label="Guided views"></div></details><div class="howto" id="map-keys"></div><details class="fold picture-credit"><summary>About this picture</summary><p class="caption drawn"></p><p class="caption" id="map-credit" hidden></p></details></details>
+
+    </figure>
+  </div>
+</section>
+
+<section data-mode="moon" id="lists-section">
+  <header class="section-head"><div><h3>Short lists</h3><p class="finding" id="lists-finding">Select a place to open its place card.</p></div></header>
+  <div id="list-extensions" role="group" aria-label="List filters and order" hidden></div>
+  <div class="tabs" id="tabs" role="tablist" aria-label="Short lists"></div>
+  <div class="tab-panel" id="tab-panel" role="tabpanel" tabindex="0"></div>
+  <!-- Take the data away: the list on screen as a file, and the link to this view -->
+  <div class="take" id="take" role="group" aria-label="Save the data">
+    <details class="menu" id="save-menu">
+      <summary class="btn">Save this list</summary>
+      <div class="menu-items">
+        <button type="button" class="btn" data-save="csv">CSV, for a spreadsheet</button>
+        <button type="button" class="btn" data-save="geojson">GeoJSON, for a map</button>
+      </div>
+    </details>
+    <button type="button" class="btn" data-copy-link>Copy the link to this view</button>
+    <span class="take-status" role="status"></span>
+  </div>
+  <p class="caption" id="take-note"></p>
+</section>
+  </div>
+</section>
+
+<div class="time-row" id="time-row" data-mode="moon">
+<section data-mode="moon" id="when-section">
+
+  <header class="section-head"><div><h2>When?</h2><p class="finding" id="when-finding"></p></div></header>
+  <figure class="chart">
+    <figcaption>
+      <h3 id="when-title" aria-live="polite">&nbsp;</h3>
+    </figcaption>
+    <div class="legend" id="when-legend"></div>
+    <div class="plot" id="when-plot"></div>
+    <details class="fold"><summary>How to read this chart</summary><p class="howto press" id="when-press"></p><p class="howto" id="when-howto"></p><p class="howto" id="when-comparison"></p></details>
+    <details class="table-view"><summary>Show these numbers as a table</summary><div id="when-table"></div></details>
+    <p class="caption drawn"></p>
+  </figure>
+
+  <details class="fold"><summary>What removes the hours?</summary><div class="figures" id="figures" aria-live="polite"></div><div class="short" id="short"></div></details>
+</section>
+
+<section id="place-section" data-mode="moon">
+  <details class="fold place-overview"><summary>The place and its hours</summary>
+    <p class="finding" id="place-finding">Select a place to see its hours of low Sun.</p>
+    <div id="place-summary"></div>
+    <button type="button" class="btn btn-primary" data-open-current>Open the full place card</button>
+  </details>
+<section id="sky-root" class="module-section" aria-label="Watch a day of low Sun">
+  <h2>Watch a day of low Sun</h2>
+  <p class="lede">Select a place and a date. Then see where the Sun goes.</p>
+</section>
+</section>
+</div>
+
+<section id="plan-section" data-mode="moon">
+  <header class="section-head"><div><h2>Plan</h2><p class="finding" id="plan-finding">Use the places and dates to plan your work.</p></div></header>
+  <div class="tabs plan-tabs" id="plan-tabs" role="tablist" aria-label="Plan your test">
+    <button type="button" class="tab" id="plan-tab-rehearse" data-plan-tab="rehearse" role="tab" aria-controls="pl-choices" aria-selected="true" tabindex="0">Rehearse</button>
+    <button type="button" class="tab" id="plan-tab-compare" data-plan-tab="compare" role="tab" aria-controls="pl-compare" aria-selected="false" tabindex="-1">Compare places</button>
+    <button type="button" class="tab" id="plan-tab-year" data-plan-tab="year" role="tab" aria-controls="pl-year" aria-selected="false" tabindex="-1">Year plan</button>
+    <button type="button" class="tab" id="plan-tab-tools" data-plan-tab="tools" role="tab" aria-controls="tools-root" aria-selected="false" tabindex="-1">Tools</button>
+  </div>
+<section id="planner-root" class="module-section" aria-label="Planner">
+  <h2 id="planner-heading">Planner</h2>
+  <p class="lede">Select a task to rehearse. Compare places. Plan the dates.</p>
+</section>
+  <div class="tools-row" id="tools-row" role="group" aria-labelledby="tools-label" hidden>
+    <span id="tools-label">Tools</span>
+    <div id="tools-buttons"></div>
+  </div>
+<section id="tools-root" class="module-section tab-panel" role="tabpanel" aria-labelledby="plan-tab-tools" hidden>
+  <h2 id="tools-heading">Tools</h2>
+  <p class="lede">Search for places. Check the evidence. Save the results.</p>
+</section>
+  <button type="button" class="btn next-step" data-next="deeper">Go deeper</button>
+</section>
+
+<section id="mars-root" class="module-section" data-mode="mars" hidden aria-label="Mars">
+  <header class="section-head"><span class="step-number">2</span><div><h2 id="mars-heading">Where are the Mars matches?</h2><p class="finding" id="mars-finding">This is a first pass. Select a Mars site to see the squares on Earth.</p></div></header>
+  <p class="lede">Select a square to see what matches the Mars site.</p>
+  <button type="button" class="btn next-step" data-next="deeper">Go deeper</button>
+</section>
+
+<p class="mode-note" data-mode="moon">These steps are for the Moon. For Mars, select a Mars site.</p>
+
+<section id="deeper-section">
+  <header class="section-head"><span class="step-number" aria-hidden="true">+</span><div><h2>Go deeper</h2><p class="finding">Open a part to see the method, the evidence or the limits.</p></div></header>
+  <div class="deeper-grid">
+    <button type="button" class="deeper-card card" data-deep="factors-root" aria-controls="factors-root" aria-expanded="false"><strong>Every factor</strong><span>See which conditions match, and which conditions do not.</span></button>
+    <button type="button" class="deeper-card card" data-deep="extra-root" aria-controls="extra-root" aria-expanded="false"><strong>Power and steady influences</strong><span>See the rough estimates for power and other conditions.</span></button>
+    <button type="button" class="deeper-card card" data-deep="env-root" aria-controls="env-root" aria-expanded="false"><strong>Sunlight, UV, clear days and haze</strong><span>See how these conditions change through the year.</span></button>
+    <button type="button" class="deeper-card card" data-deep="light-section" aria-controls="light-section" aria-expanded="false"><strong>The light that we copy</strong><span>Compare the Sun at the lunar region and at a place on Earth.</span></button>
+    <button type="button" class="deeper-card card" data-deep="where-section" aria-controls="where-section" aria-expanded="false"><strong>Where the low Sun lasts</strong><span>See how the hours of low Sun change with latitude.</span></button>
+    <button type="button" class="deeper-card card" data-deep="limits-section" aria-controls="limits-section" aria-expanded="false"><strong>What Earth cannot copy</strong><span>See the differences that remain at each place.</span></button>
+    <button type="button" class="deeper-card card" data-deep="sure-section" aria-controls="sure-section" aria-expanded="false"><strong>How accurate are the results?</strong><span>See the checks and the limits of the data.</span></button>
+    <button type="button" class="deeper-card card" data-deep="fold-earlier" aria-controls="fold-earlier" aria-expanded="false"><strong>Earlier work</strong><span>See how other teams rehearse under a low Sun.</span></button>
+    <button type="button" class="deeper-card card" data-deep="fold-sources" aria-controls="fold-sources" aria-expanded="false"><strong>Data sources and credit lines</strong><span>Read the sources and their credit lines.</span></button>
+    <button type="button" class="deeper-card card" data-deep="fold-licence" aria-controls="fold-licence" aria-expanded="false"><strong>Licence</strong><span>Read the terms for the code and the data.</span></button>
+    <button type="button" class="deeper-card card" data-deep="fold-ai" aria-controls="fold-ai" aria-expanded="false"><strong>How AI was used</strong><span>Read how AI tools helped to make this page.</span></button>
+    <button type="button" class="deeper-card card" data-deep="fold-who" aria-controls="fold-who" aria-expanded="false"><strong>Who can use this page?</strong><span>See which teams can use the places and dates.</span></button>
+    <button type="button" class="deeper-card card" data-deep="fold-mars" aria-controls="fold-mars" aria-expanded="false"><strong>How do the Moon and Mars searches relate?</strong><span>See what each search compares on Earth.</span></button>
+  </div>
+  <button type="button" class="btn next-step" data-next="destination">Select another destination</button>
+</section>
+
+<section id="factors-root" class="deep-section module-section" aria-label="Every factor" hidden>
+  <h2>Every factor</h2>
+  <button type="button" class="btn next-step" data-next="deeper">Return to Go deeper</button>
+</section>
+
+<section id="extra-root" class="deep-section module-section" aria-label="Power and steady influences" hidden>
+  <h2>Power and steady influences</h2>
+  <button type="button" class="btn next-step" data-next="deeper">Return to Go deeper</button>
+</section>
+
+<section id="env-root" class="deep-section module-section" aria-label="Sunlight, UV, clear days and haze through the year" hidden>
+  <h2>Sunlight, UV, clear days and haze through the year</h2>
+  <button type="button" class="btn next-step" data-next="deeper">Return to Go deeper</button>
+</section>
+
+<section id="light-section" class="deep-section" hidden>
+  <h2>The light that we copy</h2>
+  <p class="lede" id="light-lede"></p>
+  <div class="sun-cards" id="sun-cards"></div>
+  <p class="caption" id="light-caption"></p>
+  <!-- The Sun-path picture: drawn by app.js from data/sunpath.json when the reader comes near -->
+  <figure class="chart sunpath" id="sunpath-figure">
+    <figcaption>
+      <h3 id="sunpath-title">How fast does the Sun move?</h3>
+    </figcaption>
+    <div class="legend" id="sunpath-legend"></div>
+    <div class="plot" id="sunpath-plot"><p class="status">The page draws the Sun-path picture when you open this part.</p></div>
+    <p class="howto" id="sunpath-howto"></p>
+    <p class="cautions" id="sunpath-cautions"></p>
+    <details class="table-view" id="sunpath-more" hidden><summary>More cautions about this picture</summary><ul id="sunpath-more-list"></ul></details>
+    <details class="table-view" id="sunpath-table-wrap" hidden><summary>Show the dots as a table</summary><div id="sunpath-table"></div></details>
+    <p class="caption" id="sunpath-caption"></p>
+  </figure>
+  <button type="button" class="btn next-step" data-next="deeper">Return to Go deeper</button>
+</section>
+
+<section id="where-section" class="deep-section" hidden>
+  <h2>Where does the low Sun last?</h2>
+  <figure class="chart">
+    <figcaption>
+      <h3 id="where-title">&nbsp;</h3>
+      <p class="howto" id="where-howto"></p>
+    </figcaption>
+    <div class="legend" id="where-legend"></div>
+    <div class="plot" id="where-plot"></div>
+    <details class="table-view"><summary>Show these numbers as a table</summary><div id="where-table"></div></details>
+    <p class="caption drawn"></p>
+  </figure>
+  <button type="button" class="btn next-step" data-next="deeper">Return to Go deeper</button>
+</section>
+
+<section id="limits-section" class="deep-section prose limits" hidden>
+  <h2>What Earth cannot copy</h2>
+  <div id="limits-text"></div>
+  <div id="cannot"></div>
+  <button type="button" class="btn next-step" data-next="deeper">Return to Go deeper</button>
+</section>
+
+<section id="sure-section" class="deep-section" hidden>
+  <h2>How accurate are the results?</h2>
+  <p class="lede" id="sure-lede"></p>
+  <div id="sure"><p class="status">The page shows the checks when you open this part.</p></div>
+  <h3 class="sure-rest">Other limits of the data</h3>
+  <div id="sure-text" class="prose"></div>
+  <button type="button" class="btn next-step" data-next="deeper">Return to Go deeper</button>
+</section>
+
+<div id="cross-root" hidden></div>
+
+<section id="more-section" class="closing deep-section" hidden>
+  <details class="fold" id="fold-mars">
+    <summary><h2>How the Moon search relates to Mars</h2><span class="fold-s">Each search starts with the conditions at a site. It then looks for a match on Earth.</span></summary>
+    <div class="prose">
+      <p>The challenge names the Moon and Mars. The Moon search starts with the highest Sun at each lunar region. It then checks Earth areas for these conditions:</p><ul><li>Hours of low Sun</li><li>Snow</li><li>Terrain</li><li>Cloud</li></ul><p>Mars has these conditions:</p><ul><li>Air</li><li>Dust</li><li>A day close to Earth's day</li></ul><p>A match there can cover more than the Sun's height. The Mars section explains what its first pass compares and what Earth cannot match.</p>
+    </div>
+  </details>
+  <details class="fold" id="fold-who">
+    <summary><h2>Who this is for</h2><span class="fold-s">Teams can plan field tests under a low Sun.</span></summary>
+    <div class="prose">
+      <ul>
+        <li><strong>Rover and navigation teams.</strong> They must have long shadows on real ground for hours, not a lamp in a hall.</li>
+        <li><strong>Camera and vision teams.</strong> They must have a real low Sun in the frame to test exposure and glare.</li>
+        <li><strong>Crew trainers and field geologists.</strong> They plan walks and drives. They must know the dates and the time of day.</li>
+        <li><strong>Students and teachers.</strong> They can open each place and see why summer nights give the low Sun and winter does not.</li>
+      </ul>
+      <p>The page says where and when to look. It is not a site survey. The people who go must check these items:</p><ul><li>Permits</li><li>Access</li><li>The weather on the day</li><li>Safety</li></ul>
+    </div>
+  </details>
+  <details class="fold" id="fold-earlier">
+    <summary><h2>Earlier work</h2><span class="fold-s">Teams use lamps at night or indoors to rehearse under a low Sun. One rover test used the Arctic summer Sun.</span></summary>
+    <div class="prose">
+      <ul>
+        <li>In July 2001, Carnegie Mellon's Hyperion rover followed the Sun around Haughton crater on Devon Island. The rover worked with NASA's Haughton-Mars Project (<a href="https://www.ri.cmu.edu/project/sun-synchronous-navigation" rel="noopener">CMU Robotics Institute</a>). It used the 24-hour daylight of the Arctic summer. That is not the same as a Sun that stays inside a lunar band. The Haughton area is on the map and in the short lists.</li>
+        <li>Lee and others (2009) describe the rover tests of the Haughton-Mars Project (<a href="https://publications.ri.cmu.edu/storage/publications/pub_files/2009/3/2498-analogs.pdf" rel="noopener">paper</a>). It is the only professional source we found that gives polar summer light as a reason to select a site.</li>
+        <li>NASA rehearses south-pole light at night with one lamp. The D-RATS test of 2022 used a portable lamp (<a href="https://ntrs.nasa.gov/api/citations/20230017073/downloads/D-RATS%202022%20Test%20Report%20Final.pdf" rel="noopener">NASA test report</a>). The JETT5 moonwalk rehearsal of May 2024 used a spotlight (<a href="https://www.usgs.gov/centers/astrogeology-science-center/news/artemis-iii-mission-tests-san-francisco-volcanic-field" rel="noopener">USGS</a>).</li>
+        <li>Others build the light in a hall or on a prepared field of approximately 77 m² to 1 hectare. Examples are <a href="https://orbilu.uni.lu/bitstream/10993/45539/1/IAC-20%2cA3%2c2B%2c3%2cx60946.pdf" rel="noopener">LunaLab in Luxembourg</a>, <a href="https://www.dlr.de/en/latest/news/2024/training-facility-for-astronautical-and-robotic-missions-to-the-moon" rel="noopener">the LUNA hall of DLR and ESA</a>. Other examples are <a href="https://ntrs.nasa.gov/citations/20250000128" rel="noopener">NASA's IPEx test area at Kennedy Space Center</a> and <a href="https://www.astrobotic.com/astrobotic-unveils-terrestrial-moonscape-for-payload-testing/" rel="noopener">Astrobotic's field in Mojave</a>.</li>
+        <li>A natural site adds kilometres of real ground under the real Sun. The conditions are not controlled. The weather changes. The Sun moves much faster than on the Moon. The air softens the shadows.</li>
+        <li>Two NASA studies say why this light is difficult. In a virtual drive under a Sun 1.2° high, the worst direction was toward the Sun (<a href="https://ntrs.nasa.gov/api/citations/20240011393/downloads/Lighiting%20Study%20IEEE%20Paper%20FINAL-1.pdf" rel="noopener">Litaker and others, 2024</a>). A review of the risks from this light says that screens cannot copy real glare (<a href="https://ntrs.nasa.gov/api/citations/20230006313/downloads/IAASS%202023%20Paper_Final_24apr23.pdf" rel="noopener">Null and others, 2023</a>).</li>
+        <li>The <a href="https://freight.cargo.site/m/D1821053255089660420449933921929/The-Catalogue-of-Planetary-Analogues.pdf" rel="noopener">Catalogue of Planetary Analogues</a> (The Open University for ESA, 2012) lists 30 sites. Its "Insolation" field gives hours of sunshine or energy, never the Sun's height.</li>
+        <li>Rover prototypes built for the lunar poles, such as JPL's ERNEST, must use this kind of light to test their cameras.</li>
+        <li>Other teams also calculate the light at the lunar south pole. Some teams show where and when it occurs. We read the available entries and archives. None maps the Sun's height at these lunar regions on Earth with both hills and snow.</li>
+      </ul>
+    </div>
+  </details>
+  <details class="fold" id="fold-sources">
+    <summary><h2>Data sources and credit lines</h2><span class="fold-s">Each data source has a link and its exact credit line.</span></summary>
+    <div class="prose">
+      <div id="sources-full"></div>
+      <ul id="sources"></ul>
+    </div>
+  </details>
+  <details class="fold" id="fold-licence">
+    <summary><h2>Licence</h2><span class="fold-s">This part gives the licence of the code, of our result files and of the source data.</span></summary>
+    <div class="prose">
+      <p id="licence-line">Code and page: Apache License 2.0. The data keeps the licences of its sources, listed above.</p>
+      <p>We made this page for the NASA Space Apps Challenge <span id="year"></span>.</p>
+    </div>
+  </details>
+  <details class="fold" id="fold-ai">
+    <summary><h2>How AI was used</h2><span class="fold-s">AI tools researched, wrote the code and drafted the text. The team lead selected the challenge and the direction.</span></summary>
+    <div class="prose">
+      <p>An AI assistant, Claude (made by Anthropic), researched the challenge and earlier work and proposed directions. It wrote the analysis code and most of this page, and drafted the text.</p>
+      <p>A second AI tool for code, OpenAI Codex, wrote parts of the code of this page from written task sheets. The team lead selected the challenge and the direction. The team lead decided which factors to add, and decides what to submit.</p>
+      <p>Code draws each chart and the map from open data. That code calculates each number. The page reads each number from data files when it loads. No person types a result into the page. No language model makes the results. AI did not make the images on this page.</p>
+    </div>
+  </details>
+  <p class="caption" id="generated"></p>
+</section>
+</main>
+<aside class="results-bar" id="results-bar" aria-label="Experiment results" hidden>
+  <div class="results-bar-inner">
+    <div class="results-bar-summary"><span id="results-bar-label"></span><strong id="results-bar-place"></strong></div>
+    <button type="button" class="btn results-bar-show" id="results-bar-show" data-next="places">Show on the globe</button>
+  </div>
+</aside>
+<button type="button" class="drawer-backdrop" id="drawer-backdrop" aria-label="Close the place card" tabindex="-1" hidden></button>
+<aside class="card drawer sheet" id="card" role="dialog" aria-modal="true" aria-label="Place card" tabindex="-1" hidden></aside>
+<footer class="footer" id="footer">
+  <p id="footer-licence">Code and page: Apache License 2.0. The data keeps the licences of its sources, listed above.</p>
+  <p>This is not a NASA product.</p>
+  <p class="caption drawn">Drawn by code from open data; the code was written with AI assistance.</p>
+</footer>
+<p id="page-announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+<dialog id="moon" class="moon" aria-labelledby="moon-title">
+  <button type="button" class="btn close" id="moon-close" aria-label="Close the lunar region card">Close</button>
+  <div id="moon-body" tabindex="0"></div>
+</dialog>
+<noscript><p class="status">This page uses JavaScript to draw the map and charts from its data files.</p></noscript>
+<script src="secure-fallback.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>

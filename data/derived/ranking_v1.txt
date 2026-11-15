@@ -1,0 +1,153 @@
+scored cells: 1053; wrote data/derived/cells_scored.json
+
+Driving in long shadows | Shackleton-de Gerlache connecting ridge (Sun never above 2.1 deg) | all sites
+  score  lat     lon      region                             bare  days snowfree usable terrain rock  window / notes
+  0.36   74.45    19.25  Bear Island (Bjornoya)             0.62   13   0.51       7   0.36  0.00  8 Feb-13 Feb, 30 Oct-5 Nov | snow odds thin (5 of 9 pixels)
+  0.32   70.85    -8.85  Jan Mayen                          0.27   15   0.30       5   0.80  0.00  26 Jan-1 Feb, 11 Nov-18 Nov | snow odds thin (2 of 9 pixels)
+  0.30   79.75    12.30  Svalbard                           0.69   12   0.13       2   0.76  0.00  23 Feb-28 Feb, 15 Oct-20 Oct | KNOWN: Bockfjord Volcanic Complex (Sverrefjellet), Svalbard (tier A, 41 km) | snow odds thin (5 of 9 pixels)
+  0.30   78.75    11.10  Svalbard                           0.69   12   0.21       3   0.45  0.00  20 Feb-25 Feb, 18 Oct-23 Oct | KNOWN: Ny-Alesund (tier B, 26 km) | snow odds thin (4 of 9 pixels)
+  0.29   80.15    23.10  Svalbard                           0.90   12   0.11       1   0.67  0.00  24 Feb-1 Mar, 14 Oct-19 Oct | KNOWN REGION: used by the AMASE Mars campaigns | snow odds thin (4 of 9 pixels)
+  0.29   79.55    15.30  Svalbard                           0.70   11   0.18       2   0.53  0.00  23 Feb-27 Feb, 16 Oct-21 Oct | KNOWN: Bockfjord Volcanic Complex (Sverrefjellet), Svalbard (tier A, 42 km) | snow odds thin (3 of 9 pixels)
+  0.28   78.65    15.30  Svalbard                           0.54   12   0.19       2   0.54  0.00  20 Feb-25 Feb, 18 Oct-23 Oct | KNOWN REGION: used by the AMASE Mars campaigns | snow odds thin (2 of 9 pixels)
+  0.28   78.05    18.90  Svalbard                           0.70   12   0.09       1   0.82  0.00  18 Feb-23 Feb, 20 Oct-25 Oct | KNOWN REGION: used by the AMASE Mars campaigns | snow odds thin (5 of 9 pixels)
+  0.28   80.45    20.10  Svalbard                           0.85   11   0.10       1   0.67  0.00  25 Feb-2 Mar, 14 Oct-18 Oct | KNOWN REGION: used by the AMASE Mars campaigns | snow odds thin (5 of 9 pixels)
+  0.26   79.25    11.70  Svalbard                           0.77   10   0.14       1   0.51  0.00  22 Feb-26 Feb, 17 Oct-21 Oct | KNOWN: Ny-Alesund (tier B, 36 km) | snow odds thin (4 of 9 pixels)
+
+Driving in long shadows | Shackleton-de Gerlache connecting ridge (Sun never above 2.1 deg) | little-known sites only
+  score  lat     lon      region                             bare  days snowfree usable terrain rock  window / notes
+  0.36   74.45    19.25  Bear Island (Bjornoya)             0.62   13   0.51       7   0.36  0.00  8 Feb-13 Feb, 30 Oct-5 Nov | snow odds thin (5 of 9 pixels)
+  0.32   70.85    -8.85  Jan Mayen                          0.27   15   0.30       5   0.80  0.00  26 Jan-1 Feb, 11 Nov-18 Nov | snow odds thin (2 of 9 pixels)
+  0.25   75.45    62.25  Novaya Zemlya                      0.96   13   0.08       1   0.47  0.00  11 Feb-16 Feb, 27 Oct-2 Nov | snow odds thin (5 of 9 pixels)
+  0.23   70.15  -116.85  Arctic Canada                      0.98   17   0.05       1   0.41  0.00  23 Jan-30 Jan, 13 Nov-21 Nov | snow odds thin (2 of 9 pixels)
+  0.23   75.65    58.25  Novaya Zemlya                      0.84   12   0.05       1   0.63  0.00  11 Feb-16 Feb, 27 Oct-1 Nov
+  0.22   72.85   -85.65  Arctic Canada                      0.91   14   0.03       0   0.80  0.00  2 Feb-8 Feb, 4 Nov-10 Nov | snow odds thin (3 of 9 pixels)
+  0.22   71.25   -96.45  Arctic Canada                      0.89   15   0.06       1   0.41  0.00  27 Jan-3 Feb, 10 Nov-16 Nov | snow odds thin (5 of 9 pixels)
+  0.21   69.95    24.75  Norway, Sweden or Finland          0.33   17   0.07       1   0.65  0.00  22 Jan-29 Jan, 14 Nov-22 Nov
+  0.21   72.25   -85.95  Arctic Canada                      0.26   14   0.13       2   0.58  0.00  31 Jan-6 Feb, 6 Nov-12 Nov | snow odds thin (2 of 9 pixels)
+  0.20   72.95    54.15  Novaya Zemlya                      0.51   13   0.05       1   0.73  0.00  3 Feb-8 Feb, 4 Nov-10 Nov
+
+Full match | Shackleton-de Gerlache connecting ridge (Sun never above 2.1 deg) | all sites
+  no cell scores above zero
+
+Geology training | Shackleton-de Gerlache connecting ridge (Sun never above 2.1 deg) | all sites
+  score  lat     lon      region                             bare  days snowfree usable terrain rock  window / notes
+  0.59   63.15   -50.10  Greenland                          0.42    0      -       0   0.78  0.62  never | rock: Fiskenaesset anorthosite complex
+  0.53   63.95   -51.10  Greenland                          0.37    0      -       0   0.71  0.55  never | rock: Buksefjorden anorthosite
+  0.50   70.15   -51.15  Greenland                          0.38   17   0.00       0   0.76  0.42  23 Jan-30 Jan, 13 Nov-21 Nov | rock: Tunulik anorthosite (with Boye So)
+  0.31   64.45   -52.10  Greenland                          0.26    0      -       0   0.17  0.67  never | rock: Akia anorthosite (Godthabsfjord) | snow odds thin (2 of 9 pixels)
+
+Driving in long shadows | Malapert Massif (Sun never above 5.5 deg) | all sites
+  score  lat     lon      region                             bare  days snowfree usable terrain rock  window / notes
+  0.46   74.45    19.25  Bear Island (Bjornoya)             0.62   33   0.50      17   0.29  0.00  8 Feb-23 Feb, 20 Oct-5 Nov | snow odds thin (5 of 9 pixels)
+  0.44   79.55    15.30  Svalbard                           0.70   29   0.18       5   0.69  0.00  23 Feb-8 Mar, 7 Oct-21 Oct | KNOWN: Bockfjord Volcanic Complex (Sverrefjellet), Svalbard (tier A, 42 km) | snow odds thin (3 of 9 pixels)
+  0.43   63.15   -64.90  Arctic Canada                      0.86   47   0.08       4   0.75  0.00  29 Nov-14 Jan | snow odds thin (5 of 9 pixels)
+  0.43   70.85    -8.85  Jan Mayen                          0.27   38   0.30      11   0.77  0.00  26 Jan-13 Feb, 31 Oct-18 Nov | snow odds thin (2 of 9 pixels)
+  0.43   78.65    16.50  Svalbard                           0.76   30   0.15       5   0.69  0.00  20 Feb-6 Mar, 9 Oct-23 Oct | KNOWN REGION: used by the AMASE Mars campaigns | snow odds thin (6 of 9 pixels)
+  0.42   78.75    10.50  Svalbard                           0.74   30   0.21       6   0.46  0.00  20 Feb-6 Mar, 9 Oct-23 Oct | KNOWN: Ny-Alesund (tier B, 36 km) | snow odds thin (2 of 9 pixels)
+  0.41   63.95   -17.50  Iceland                            0.74   56   0.27      15   0.18  0.00  25 Nov-19 Jan | KNOWN REGION: named in the challenge as widely studied
+  0.41   64.35   -64.90  Arctic Canada                      0.88   59   0.05       3   0.77  0.00  23 Nov-20 Jan | snow odds thin (2 of 9 pixels)
+  0.40   80.45    20.10  Svalbard                           0.85   30   0.13       4   0.60  0.00  25 Feb-11 Mar, 4 Oct-18 Oct | KNOWN REGION: used by the AMASE Mars campaigns | snow odds thin (5 of 9 pixels)
+  0.40   78.05    18.90  Svalbard                           0.70   30   0.13       4   0.72  0.00  18 Feb-4 Mar, 11 Oct-25 Oct | KNOWN REGION: used by the AMASE Mars campaigns | snow odds thin (5 of 9 pixels)
+
+Driving in long shadows | Malapert Massif (Sun never above 5.5 deg) | little-known sites only
+  score  lat     lon      region                             bare  days snowfree usable terrain rock  window / notes
+  0.46   74.45    19.25  Bear Island (Bjornoya)             0.62   33   0.50      17   0.29  0.00  8 Feb-23 Feb, 20 Oct-5 Nov | snow odds thin (5 of 9 pixels)
+  0.43   63.15   -64.90  Arctic Canada                      0.86   47   0.08       4   0.75  0.00  29 Nov-14 Jan | snow odds thin (5 of 9 pixels)
+  0.43   70.85    -8.85  Jan Mayen                          0.27   38   0.30      11   0.77  0.00  26 Jan-13 Feb, 31 Oct-18 Nov | snow odds thin (2 of 9 pixels)
+  0.41   64.35   -64.90  Arctic Canada                      0.88   59   0.05       3   0.77  0.00  23 Nov-20 Jan | snow odds thin (2 of 9 pixels)
+  0.34   75.35    57.75  Novaya Zemlya                      0.58   32   0.10       3   0.66  0.00  10 Feb-25 Feb, 18 Oct-2 Nov | snow odds thin (6 of 9 pixels)
+  0.34   62.65   -66.70  Arctic Canada                      0.55   41   0.10       4   0.51  0.00  2 Dec-11 Jan | snow odds thin (4 of 9 pixels)
+  0.31   75.45    62.25  Novaya Zemlya                      0.96   32   0.10       3   0.30  0.00  11 Feb-26 Feb, 18 Oct-2 Nov | snow odds thin (5 of 9 pixels)
+  0.31   62.95   -67.50  Arctic Canada                      0.56   45   0.06       3   0.61  0.00  30 Nov-13 Jan | snow odds thin (5 of 9 pixels)
+  0.31   64.05   -77.70  Arctic Canada                      0.77   57   0.05       3   0.39  0.00  24 Nov-19 Jan | snow odds thin (2 of 9 pixels)
+  0.30   63.65   -65.10  Arctic Canada                      0.72   53   0.03       2   0.71  0.00  26 Nov-17 Jan
+
+Full match | Malapert Massif (Sun never above 5.5 deg) | all sites
+  score  lat     lon      region                             bare  days snowfree usable terrain rock  window / notes
+  0.24   63.35   -50.30  Greenland                          0.36   49   0.02       1   0.58  0.62  28 Nov-15 Jan | rock: Fiskenaesset anorthosite complex
+  0.23   64.45   -52.10  Greenland                          0.26   60   0.07       4   0.10  0.67  23 Nov-21 Jan | rock: Akia anorthosite (Godthabsfjord) | snow odds thin (2 of 9 pixels)
+
+Geology training | Malapert Massif (Sun never above 5.5 deg) | all sites
+  score  lat     lon      region                             bare  days snowfree usable terrain rock  window / notes
+  0.53   63.15   -50.10  Greenland                          0.42   47   0.00       0   0.58  0.62  29 Nov-14 Jan | rock: Fiskenaesset anorthosite complex
+  0.52   63.95   -51.10  Greenland                          0.37   56   0.00       0   0.70  0.55  25 Nov-19 Jan | rock: Buksefjorden anorthosite
+  0.46   70.15   -51.15  Greenland                          0.38   39   0.00       0   0.62  0.42  23 Jan-10 Feb, 2 Nov-21 Nov | rock: Tunulik anorthosite (with Boye So)
+  0.26   64.45   -52.10  Greenland                          0.26   60   0.07       4   0.10  0.67  23 Nov-21 Jan | rock: Akia anorthosite (Godthabsfjord) | snow odds thin (2 of 9 pixels)
+
+Driving in long shadows | Mons Mouton plateau (Sun never above 6.1 deg) | all sites
+  score  lat     lon      region                             bare  days snowfree usable terrain rock  window / notes
+  0.50   74.45    19.25  Bear Island (Bjornoya)             0.62   35   0.50      18   0.35  0.00  8 Feb-24 Feb, 19 Oct-5 Nov | snow odds thin (5 of 9 pixels)
+  0.46   63.15   -64.90  Arctic Canada                      0.86   53   0.08       4   0.78  0.00  26 Nov-17 Jan | snow odds thin (5 of 9 pixels)
+  0.45   70.85    -8.85  Jan Mayen                          0.27   41   0.30      12   0.82  0.00  26 Jan-14 Feb, 29 Oct-18 Nov | snow odds thin (2 of 9 pixels)
+  0.45   63.45   -18.90  Iceland                            0.39   56   0.29      16   0.44  0.00  25 Nov-19 Jan | KNOWN: Fimmvorduhals (tier B, 34 km)
+  0.45   78.05    18.90  Svalbard                           0.70   34   0.14       5   0.81  0.00  18 Feb-6 Mar, 9 Oct-25 Oct | KNOWN REGION: used by the AMASE Mars campaigns | snow odds thin (5 of 9 pixels)
+  0.44   79.55    15.30  Svalbard                           0.70   33   0.19       6   0.59  0.00  23 Feb-10 Mar, 5 Oct-21 Oct | KNOWN: Bockfjord Volcanic Complex (Sverrefjellet), Svalbard (tier A, 42 km) | snow odds thin (3 of 9 pixels)
+  0.43   78.75    11.10  Svalbard                           0.69   34   0.24       8   0.43  0.00  20 Feb-8 Mar, 7 Oct-23 Oct | KNOWN: Ny-Alesund (tier B, 26 km) | snow odds thin (4 of 9 pixels)
+  0.43   79.65    11.10  Svalbard                           0.72   32   0.16       5   0.65  0.00  23 Feb-10 Mar, 5 Oct-20 Oct | KNOWN REGION: used by the AMASE Mars campaigns | snow odds thin (5 of 9 pixels)
+  0.43   80.45    20.10  Svalbard                           0.85   32   0.13       4   0.68  0.00  25 Feb-12 Mar, 3 Oct-18 Oct | KNOWN REGION: used by the AMASE Mars campaigns | snow odds thin (5 of 9 pixels)
+  0.43   63.95   -17.50  Iceland                            0.74   61   0.28      17   0.19  0.00  22 Nov-21 Jan | KNOWN REGION: named in the challenge as widely studied
+
+Driving in long shadows | Mons Mouton plateau (Sun never above 6.1 deg) | little-known sites only
+  score  lat     lon      region                             bare  days snowfree usable terrain rock  window / notes
+  0.50   74.45    19.25  Bear Island (Bjornoya)             0.62   35   0.50      18   0.35  0.00  8 Feb-24 Feb, 19 Oct-5 Nov | snow odds thin (5 of 9 pixels)
+  0.46   63.15   -64.90  Arctic Canada                      0.86   53   0.08       4   0.78  0.00  26 Nov-17 Jan | snow odds thin (5 of 9 pixels)
+  0.45   70.85    -8.85  Jan Mayen                          0.27   41   0.30      12   0.82  0.00  26 Jan-14 Feb, 29 Oct-18 Nov | snow odds thin (2 of 9 pixels)
+  0.40   64.35   -64.90  Arctic Canada                      0.88   64   0.05       3   0.68  0.00  21 Nov-23 Jan | snow odds thin (2 of 9 pixels)
+  0.38   75.45    62.25  Novaya Zemlya                      0.96   35   0.11       4   0.44  0.00  11 Feb-27 Feb, 16 Oct-2 Nov | snow odds thin (5 of 9 pixels)
+  0.36   64.05   -77.70  Arctic Canada                      0.77   62   0.05       3   0.61  0.00  22 Nov-22 Jan | snow odds thin (2 of 9 pixels)
+  0.36   75.35    57.75  Novaya Zemlya                      0.58   36   0.10       4   0.65  0.00  10 Feb-27 Feb, 16 Oct-2 Nov | snow odds thin (6 of 9 pixels)
+  0.36   62.75   -70.10  Arctic Canada                      0.92   49   0.07       3   0.45  0.00  28 Nov-15 Jan | snow odds thin (3 of 9 pixels)
+  0.33   62.65   -66.70  Arctic Canada                      0.55   48   0.10       5   0.42  0.00  29 Nov-15 Jan | snow odds thin (4 of 9 pixels)
+  0.33   76.65   -21.25  Greenland                          0.88   34   0.05       2   0.74  0.00  14 Feb-2 Mar, 13 Oct-29 Oct | snow odds thin (1 of 9 pixels)
+
+Full match | Mons Mouton plateau (Sun never above 6.1 deg) | all sites
+  score  lat     lon      region                             bare  days snowfree usable terrain rock  window / notes
+  0.26   63.35   -50.30  Greenland                          0.36   55   0.02       1   0.67  0.62  25 Nov-18 Jan | rock: Fiskenaesset anorthosite complex
+  0.26   64.45   -52.10  Greenland                          0.26   65   0.08       5   0.16  0.67  20 Nov-23 Jan | rock: Akia anorthosite (Godthabsfjord) | snow odds thin (2 of 9 pixels)
+
+Geology training | Mons Mouton plateau (Sun never above 6.1 deg) | all sites
+  score  lat     lon      region                             bare  days snowfree usable terrain rock  window / notes
+  0.58   63.15   -50.10  Greenland                          0.42   53   0.00       0   0.76  0.62  26 Nov-17 Jan | rock: Fiskenaesset anorthosite complex
+  0.53   63.95   -51.10  Greenland                          0.37   61   0.00       0   0.75  0.55  22 Nov-21 Jan | rock: Buksefjorden anorthosite
+  0.49   70.15   -51.15  Greenland                          0.38   43   0.00       0   0.75  0.42  23 Jan-12 Feb, 31 Oct-21 Nov | rock: Tunulik anorthosite (with Boye So)
+  0.30   64.45   -52.10  Greenland                          0.26   65   0.08       5   0.16  0.67  20 Nov-23 Jan | rock: Akia anorthosite (Godthabsfjord) | snow odds thin (2 of 9 pixels)
+
+Driving in long shadows | Nobile Rim 2 (Sun never above 7.6 deg) | all sites
+  score  lat     lon      region                             bare  days snowfree usable terrain rock  window / notes
+  0.58   74.45    19.25  Bear Island (Bjornoya)             0.62   43   0.52      22   0.42  0.00  8 Feb-28 Feb, 15 Oct-5 Nov | snow odds thin (5 of 9 pixels)
+  0.52   63.45   -18.90  Iceland                            0.39   69   0.30      21   0.52  0.00  18 Nov-25 Jan | KNOWN: Fimmvorduhals (tier B, 34 km)
+  0.51   78.15    18.90  Svalbard                           0.76   41   0.16       7   0.79  0.00  19 Feb-10 Mar, 5 Oct-25 Oct | KNOWN REGION: used by the AMASE Mars campaigns
+  0.50   78.75    11.10  Svalbard                           0.69   40   0.25      10   0.54  0.00  20 Feb-11 Mar, 4 Oct-23 Oct | KNOWN: Ny-Alesund (tier B, 26 km) | snow odds thin (4 of 9 pixels)
+  0.50   79.65    11.10  Svalbard                           0.72   40   0.17       7   0.75  0.00  23 Feb-14 Mar, 1 Oct-20 Oct | KNOWN REGION: used by the AMASE Mars campaigns | snow odds thin (5 of 9 pixels)
+  0.49   63.15   -64.90  Arctic Canada                      0.86   67   0.08       5   0.78  0.00  19 Nov-24 Jan | snow odds thin (5 of 9 pixels)
+  0.48   78.65    15.30  Svalbard                           0.54   40   0.25      10   0.63  0.00  20 Feb-11 Mar, 4 Oct-23 Oct | KNOWN REGION: used by the AMASE Mars campaigns | snow odds thin (2 of 9 pixels)
+  0.48   63.95   -17.50  Iceland                            0.74   73   0.28      21   0.21  0.00  16 Nov-27 Jan | KNOWN REGION: named in the challenge as widely studied
+  0.48   70.85    -8.85  Jan Mayen                          0.27   49   0.30      15   0.82  0.00  26 Jan-18 Feb, 25 Oct-18 Nov | snow odds thin (2 of 9 pixels)
+  0.48   80.45    20.10  Svalbard                           0.85   40   0.13       5   0.77  0.00  25 Feb-16 Mar, 29 Sep-18 Oct | KNOWN REGION: used by the AMASE Mars campaigns | snow odds thin (5 of 9 pixels)
+
+Driving in long shadows | Nobile Rim 2 (Sun never above 7.6 deg) | little-known sites only
+  score  lat     lon      region                             bare  days snowfree usable terrain rock  window / notes
+  0.58   74.45    19.25  Bear Island (Bjornoya)             0.62   43   0.52      22   0.42  0.00  8 Feb-28 Feb, 15 Oct-5 Nov | snow odds thin (5 of 9 pixels)
+  0.49   63.15   -64.90  Arctic Canada                      0.86   67   0.08       5   0.78  0.00  19 Nov-24 Jan | snow odds thin (5 of 9 pixels)
+  0.48   70.85    -8.85  Jan Mayen                          0.27   49   0.30      15   0.82  0.00  26 Jan-18 Feb, 25 Oct-18 Nov | snow odds thin (2 of 9 pixels)
+  0.45   75.45    62.25  Novaya Zemlya                      0.96   43   0.12       5   0.54  0.00  11 Feb-3 Mar, 12 Oct-2 Nov | snow odds thin (5 of 9 pixels)
+  0.42   64.35   -64.90  Arctic Canada                      0.88   76   0.05       4   0.65  0.00  15 Nov-29 Jan | snow odds thin (2 of 9 pixels)
+  0.41   62.75   -70.10  Arctic Canada                      0.92   63   0.07       4   0.55  0.00  21 Nov-22 Jan | snow odds thin (3 of 9 pixels)
+  0.41   75.65    58.25  Novaya Zemlya                      0.84   42   0.08       3   0.73  0.00  11 Feb-3 Mar, 12 Oct-1 Nov
+  0.40   64.05   -77.70  Arctic Canada                      0.77   74   0.05       4   0.69  0.00  16 Nov-28 Jan | snow odds thin (2 of 9 pixels)
+  0.39   76.65   -21.25  Greenland                          0.88   42   0.06       2   0.82  0.00  14 Feb-6 Mar, 9 Oct-29 Oct | snow odds thin (1 of 9 pixels)
+  0.38   70.65    30.15  Norway, Sweden or Finland          0.86   51   0.07       4   0.51  0.00  25 Jan-18 Feb, 25 Oct-19 Nov | snow odds thin (5 of 9 pixels)
+
+Full match | Nobile Rim 2 (Sun never above 7.6 deg) | all sites
+  score  lat     lon      region                             bare  days snowfree usable terrain rock  window / notes
+  0.30   64.45   -52.10  Greenland                          0.26   77   0.08       6   0.23  0.67  14 Nov-29 Jan | rock: Akia anorthosite (Godthabsfjord) | snow odds thin (2 of 9 pixels)
+  0.28   63.35   -50.30  Greenland                          0.36   68   0.02       1   0.77  0.62  19 Nov-25 Jan | rock: Fiskenaesset anorthosite complex
+  0.14   70.05   -51.45  Greenland                          0.30   52   0.00       0   0.77  0.42  22 Jan-16 Feb, 27 Oct-21 Nov | rock: Tunulik anorthosite (with Boye So)
+  0.14   64.35   -50.90  Greenland                          0.27   76   0.00       0   0.57  0.71  15 Nov-29 Jan | rock: Storo anorthosite (Godthabsfjord) | snow odds thin (5 of 9 pixels)
+
+Geology training | Nobile Rim 2 (Sun never above 7.6 deg) | all sites
+  score  lat     lon      region                             bare  days snowfree usable terrain rock  window / notes
+  0.61   63.15   -50.10  Greenland                          0.42   67   0.00       0   0.86  0.62  19 Nov-24 Jan | rock: Fiskenaesset anorthosite complex
+  0.54   63.95   -51.10  Greenland                          0.37   73   0.00       0   0.76  0.55  16 Nov-27 Jan | rock: Buksefjorden anorthosite
+  0.52   70.15   -51.15  Greenland                          0.38   51   0.00       0   0.85  0.42  23 Jan-16 Feb, 27 Oct-21 Nov | rock: Tunulik anorthosite (with Boye So)
+  0.34   64.45   -52.10  Greenland                          0.26   77   0.08       6   0.23  0.67  14 Nov-29 Jan | rock: Akia anorthosite (Godthabsfjord) | snow odds thin (2 of 9 pixels)

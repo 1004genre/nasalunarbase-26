@@ -1,0 +1,83 @@
+# What stays out of the public repository.
+# docs/PUBLIC-COPY.md gives each folder and file of the public copy, the sizes and the reasons.
+# docs/PUBLISHING-CHECK.md gives the terms of the sources.
+
+# Raw downloads: approximately 12 GB, and the terms of the COMNAP file forbid republishing it.
+# Two lines: in a copy of the project, data/raw can be a link (symlink). Git does not match a
+# link with "data/raw/", and the link holds a computer path with a user name.
+data/raw
+data/raw/
+
+# Python environment, caches and build leftovers
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+dist/
+build/
+
+# Unfinished downloads and half-written files (the scripts write "<name>.part" first)
+*.part
+*.part.*
+*.tmp
+
+# Result files of data/derived: approximately 1.2 GB on 15 November 2026. Three files are larger
+# than GitHub's limit of 100 MiB (cells_scored.json, mars_cells.json, grazing_cells.json).
+# Only two groups go in (docs/PUBLIC-COPY.md, section 4):
+#   the result files that the documents link to or name for a figure, and
+#   the files of earlier versions that no script can make again (docs/REPRODUCE.md, section 3).
+# The scripts make the other files again (docs/REPRODUCE.md, sections 4 to 8).
+data/derived/*
+!data/derived/RESULTS-FINAL.md
+!data/derived/RESULTS.md
+!data/derived/RESULTS-all-regions.md
+!data/derived/MARS-RESULTS.md
+!data/derived/AI-NOTE.txt
+!data/derived/checks.json
+!data/derived/factor_matrix.json
+!data/derived/latitude_profile.json
+!data/derived/mars_sites.json
+!data/derived/moon_cards.json
+!data/derived/moon_targets.json
+!data/derived/planet_factors.json
+!data/derived/validation.json
+!data/derived/validation_extras.json
+!data/derived/winter_leads.json
+!data/derived/mars_sites_base.json
+!data/derived/light_cells_v1.json
+!data/derived/cells_scored_v1.json
+!data/derived/ranking_v1.txt
+!data/derived/validation_v1.json
+!data/derived/cells_scored_v2.json
+!data/derived/validation_v2.json
+!data/derived/ranking_v2.txt
+!data/derived/RESULTS_v2.md
+!data/derived/count_check_v3.json
+
+# Working notes and task sheets: private (docs/PUBLIC-COPY.md, section 2).
+# Nine of these files hold a computer path with a user name.
+research_notes/
+reports/
+docs/superpowers/
+handoff/
+
+# Working folders of the main project. This copy does not have them; never publish them.
+variants/
+candidates/
+test-data/
+
+# Operating system and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Local settings, secrets and logs
+.env
+.env.*
+*.log
+.claude/

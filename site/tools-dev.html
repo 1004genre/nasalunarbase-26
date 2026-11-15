@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Earth Twin Finder — Tools development page</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="tools.css">
+  <style>
+    .tl-dev-shell { max-width: 1160px; margin: auto; padding: 24px 20px 100px; }
+    .tl-dev-shell > * + * { margin-top: 24px; }
+    .tl-dev-shell h1 { margin-bottom: 8px; }
+    .tl-dev-muted { color: var(--ink2, #bcc9d8); font-size: 14px; }
+    .tl-dev-controls, .tl-dev-buttons, .tl-dev-filters { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; }
+    .tl-dev-controls label { display: grid; gap: 4px; min-width: 0; max-width: 100%; font-size: 14px; }
+    .tl-dev-controls select, .tl-dev-button { max-width: 100%; min-height: 42px; padding: 8px 11px; color: var(--ink, #eef3f9); background: var(--surface, #111b2b); border: 1px solid var(--border, #34445b); border-radius: var(--radius-s, 10px); font: inherit; }
+    .tl-dev-button { cursor: pointer; text-align: left; }
+    .tl-dev-button:hover { border-color: var(--ink2, #bcc9d8); }
+    .tl-dev-box { padding: 20px; border: 1px solid var(--border, #34445b); border-radius: var(--radius, 16px); background: var(--surface, #111b2b); min-width: 0; }
+    .tl-dev-box > * + * { margin-top: 10px; }
+    .tl-dev-list { list-style: none; padding: 0; display: grid; gap: 10px; }
+    .tl-dev-list li { display: grid; gap: 4px; padding: 10px 0; border-bottom: 1px solid var(--border, #34445b); }
+    .tl-dev-list .tl-dev-button { width: fit-content; }
+    .tl-dev-card { scroll-margin-top: 16px; }
+    .tl-dev-card > section { padding-top: 16px; border-top: 1px solid var(--border, #34445b); }
+    .tl-dev-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+    .tl-dev-status { min-height: 1.5em; overflow-wrap: anywhere; }
+    @media screen {
+      body[data-preview] .tl-dev-shell > :is(.tl-dev-controls, .tl-dev-status, .tl-dev-buttons, #tl-dev-list-section, #sure-section),
+      body[data-preview] .tl-dev-shell > header p,
+      body[data-preview] .tl-panel:not([data-preview-panel]) { display: none; }
+      body[data-preview] .tl-dev-shell { padding-top: 18px; }
+      body[data-preview] .tl-dev-shell > header h1 { font-size: 20px; color: var(--ink2, #bcc9d8); }
+      body[data-preview] #tools-root { margin-top: 14px; padding-top: 10px; }
+      body[data-preview]:not([data-preview="take"]) #tl-dev-card { display: none; }
+      body[data-preview="take"] #tools-root { display: none; }
+    }
+    @media (max-width: 560px) { .tl-dev-shell { padding: 16px 14px 100px; } .tl-dev-box { padding: 14px; } }
+  </style>
+</head>
+<body>
+<main class="tl-dev-shell">
+  <header>
+    <h1>Earth Twin Finder: Tools</h1>
+    <p class="tl-dev-muted">This development page uses the data and module contract of the main page.</p>
+    <p class="tl-dev-muted">The map is represented by a location line here. Open the main page to see the map.</p>
+  </header>
+  <div class="tl-dev-controls">
+    <label>Lunar region<select id="tl-dev-target"></select></label>
+    <label>Step<select id="tl-dev-step"><option value="1">Sun only</option><option value="2">Snow-free ground</option><option value="3">After hills</option><option value="4">Typical cloud</option></select></label>
+    <label>Period<select id="tl-dev-period"><option value="year">Whole year</option><option value="summer">Summer half</option><option value="winter">Winter half</option><option value="rock">Rock season</option><option value="bin">One ten-day period</option></select></label>
+    <label>Ten-day period<select id="tl-dev-bin"></select></label>
+    <label>View<select id="tl-dev-view"><option value="arctic">Arctic</option><option value="antarctic">Antarctica</option></select></label>
+    <label>Theme<select id="tl-dev-theme"><option value="light">Light</option><option value="dark">Dark</option></select></label>
+  </div>
+  <p id="tl-dev-status" class="tl-dev-status tl-dev-muted" role="status">The data will open.</p>
+  <nav id="tl-dev-buttons" class="tl-dev-buttons" aria-label="Tools"></nav>
+  <section id="tools-root" aria-label="Tools module"></section>
+  <section id="tl-dev-list-section" class="tl-dev-box">
+    <h2>Places from the page's short lists</h2>
+    <div id="tl-dev-filters" class="tl-dev-filters"></div>
+    <ol id="tl-dev-list" class="tl-dev-list"></ol>
+  </section>
+  <article id="tl-dev-card" class="tl-dev-box tl-dev-card" hidden></article>
+  <section id="sure-section" class="tl-dev-box"><h2>How accurate are the results?</h2><p>The main page holds the checks and their evidence.</p><p><a href="index.html#go=sure">Read the checks on the main page</a></p></section>
+  <p id="tl-dev-announcement" class="tl-dev-hidden" role="status" aria-live="polite"></p>
+</main>
+<script type="module">
+  import { mount } from './tools.js';
+
+  const byId = id => document.getElementById(id);
+  const query = new URLSearchParams(location.search);
+  const cache = new Map();
+  const read = (name, binary = false) => {
+    if (!/^[a-zA-Z0-9_.-]+$/.test(name)) return Promise.reject(new Error('Invalid data filename.'));
+    const key = `${binary ? 'bin' : 'json'}:${name}`;
+    if (!cache.has(key)) cache.set(key, fetch(`data/${name}`).then(response => {
+      if (!response.ok) throw new Error(`Could not load ${name}.`);
+      return binary ? response.arrayBuffer() : response.json();
+    }));
+    return cache.get(key);
+  };
+  const make = (tag, text, className) => {
+    const node = document.createElement(tag);
+    if (text != null) node.textContent = text;
+    if (className) node.className = className;
+    return node;
+  };
+
+  try {
+    const [meta, cells, flat, sites, yearBuffer, snowBuffer, terrainBuffer, cloudBuffer] = await Promise.all([
+      read('meta.json'), read('cells.json'), read('flat.json'), read('sites.json'),
+      read('yearly.bin', true), read('snowfree.bin', true), read('open.bin', true),
+      read('meta.json').then(info => info.has_cloud ? read('cloud.bin', true) : null),
+    ]);
+    const years = new DataView(yearBuffer), snow = new Uint8Array(snowBuffer);
+    const terrain = new Uint8Array(terrainBuffer), cloud = cloudBuffer ? new Uint8Array(cloudBuffer) : null;
+    const targets = meta.targets.map(t => ({ id: t.id, name: t.name, limitDeg: t.limit_deg }));
+    const periods = meta.bins.map((b, index) => ({ index, label: b.label, firstDay: b.first_day, lastDay: b.last_day, month: b.month }));
+    const indices = new Map(cells.ids.map((id, i) => [id, i]));
+    const southIndices = new Map(cells.south.cells.map((i, row) => [i, row]));
+    const state = { dest: 'moon', view: 'arctic', target: targets[0].id,
+      step: 3, period: 'year', bin: 0, place: null, little: false, tab: 'summer', theme: query.get('theme') === 'light' ? 'light' : 'dark', z: 1, x: 0, y: 0, go: null, only: null, moon: null, filters: '', order: null };
+    const stateKeys = new Set(Object.keys(state));
+    const encodeState = () => {
+      const fragment = new URLSearchParams({ view: state.view, target: state.target, step: state.step,
+        period: state.period === 'bin' ? String(state.bin) : state.period });
+      for (const key of ['place', 'theme', 'only', 'moon', 'go', 'filters']) if (state[key]) fragment.set(key, state[key]);
+      if (state.little) fragment.set('little', '1');
+      if (state.tab !== 'summer') fragment.set('tab', state.tab);
+      if (state.order != null) fragment.set('order', state.order);
+      if (state.z > 1.01 || state.x || state.y) {
+        fragment.set('z', Number(state.z).toFixed(2));
+        fragment.set('x', Math.round(state.x * 1000));
+        fragment.set('y', Math.round(state.y * 1000));
+      }
+      for (const [key, value] of Object.entries(state)) {
+        if (stateKeys.has(key) || value == null) continue;
+        fragment.set(key, typeof value === 'string' && !value.startsWith('~') ? value : `~${JSON.stringify(value)}`);
+      }
+      return fragment.toString();
+    };
+    const listeners = new Set(), cards = new Map(), notes = new Set(), filters = new Map(), buttons = new Map(), orders = new Map(), actions = new Map();
+    let order = null;
+    const finite = value => typeof value === 'number' && Number.isFinite(value);
+    const format = (value, digits = 0) => finite(value) ? value.toLocaleString('en-US', { maximumFractionDigits: digits }) : 'unknown';
+    const formatHours = value => finite(value) ? `${format(value, value > 0 && value < 10 ? 1 : 0)} h` : 'unknown';
+    const targetIndex = id => targets.findIndex(t => t.id === id);
+    const byteHours = (values, i, t, b) => {
+      const value = values[(i * targets.length + t) * periods.length + b];
+      return value == null || value === meta.encoding.unknown ? null : value * meta.encoding.unit_h;
+    };
+    const periodValue = (i, targetId, step, b) => {
+      const t = targetIndex(targetId);
+      if (i < 0 || i >= cells.n || t < 0 || b < 0 || b >= periods.length) return null;
+      const sun = flat.targets[targetId]?.bins[cells.flat_row[i]]?.[b];
+      if (step === 1) return finite(sun) && sun >= 0 ? sun / 10 : null;
+      if (cells.hemisphere[i] === 'S') {
+        if (!meta.seasons.rock_season_bins_south.includes(b)) return 0;
+        if (step === 2) return finite(sun) && sun >= 0 ? sun / 10 : null;
+      } else if (step === 2) return byteHours(snow, i, t, b);
+      const hours = byteHours(terrain, i, t, b);
+      if (step === 3 || hours == null || hours === 0) return hours;
+      const cover = cloud?.[i * 12 + periods[b].month - 1];
+      return cover == null || cover === meta.encoding.unknown ? null : hours * (1 - cover / 100);
+    };
+    const annual = (i, targetId, field) => {
+      const t = targetIndex(targetId), column = cells.yearly.fields.indexOf(field);
+      if (t < 0 || column < 0) return null;
+      const value = years.getUint16(((i * targets.length + t) * cells.yearly.fields.length + column) * 2, true);
+      return value === cells.yearly.unknown ? null : value / cells.yearly.scale[field];
+    };
+    const hours = (i, targetId, step, period) => {
+      if (!Number.isInteger(i) || i < 0 || i >= cells.n) return null;
+      if (period === 'bin') return periodValue(i, targetId, step, state.bin);
+      if (Number.isInteger(period)) return periodValue(i, targetId, step, period);
+      if (step === 1) {
+        if (period === 'year') {
+          const value = flat.targets[targetId]?.year[cells.flat_row[i]];
+          return finite(value) && value >= 0 ? value / 10 : null;
+        }
+        const bins = period === 'summer' ? meta.seasons.summer_bins_north : period === 'winter' ? meta.seasons.winter_bins_north : meta.seasons.rock_season_bins_south;
+        const values = bins.map(b => periodValue(i, targetId, step, b));
+        return values.every(finite) ? values.reduce((sum, value) => sum + value, 0) : null;
+      }
+      if (cells.hemisphere[i] === 'S') {
+        const field = step === 2 ? 'rock_flat' : step === 3 ? 'rock_open' : 'rock_clear';
+        const value = cells.south.targets[targetId]?.[field]?.[southIndices.get(i)];
+        return finite(value) && value >= 0 ? value / 10 : null;
+      }
+      const field = step === 2 ? 'snow_free' : step === 3 ? 'open' : 'clear';
+      return annual(i, targetId, field + (period === 'winter' ? '_winter' : period === 'summer' ? '_summer' : ''));
+    };
+    const area = i => i >= 0 && i < cells.n ? {
+      id: cells.ids[i], lat: cells.lat[i] / 100, lon: cells.lon[i] / 100,
+      hemisphere: cells.hemisphere[i], region: cells.regions[cells.region[i]],
+      bare: cells.bare[i] < 0 ? null : cells.bare[i] / 100,
+      snowStatus: cells.snow_statuses[cells.snow[i]], named: cells.site[i] || null,
+      littleKnown: cells.known[i] === -1,
+    } : null;
+    function renderCard() {
+      const host = byId('tl-dev-card'), i = indices.get(state.place);
+      host.hidden = i == null;
+      host.replaceChildren();
+      if (i == null) return;
+      const place = area(i);
+      host.append(make('h2', place.named || place.region));
+      host.append(make('p', `${format(place.lat, 2)}°, ${format(place.lon, 2)}° · ${targets.find(t => t.id === state.target)?.name}`));
+      host.append(make('p', `${formatHours(hours(i, state.target, state.step, state.period))} for the selected step and period.`));
+      for (const { title, render } of cards.values()) {
+        const content = render(i, state.target);
+        if (!content) continue;
+        const section = make('section');
+        section.append(make('h3', title), content);
+        host.append(section);
+      }
+    }
+    function renderList() {
+      const host = byId('tl-dev-list');
+      let rows = (sites.top[state.target]?.[state.view === 'antarctic' ? 'south_lighting' : state.period === 'winter' ? 'winter' : 'north_lighting'] || []).map(row => row.cell);
+      rows = rows.filter(i => [...filters.values()].every(filter => !filter.input.checked || filter.test(i, state.target)));
+      if (order && orders.has(order)) rows.sort((a, b) => (orders.get(order).score(b, state.target) ?? -Infinity) - (orders.get(order).score(a, state.target) ?? -Infinity));
+      host.replaceChildren();
+      for (const i of rows) {
+        const place = area(i), item = make('li');
+        const button = make('button', place.named || place.region, 'tl-dev-button');
+        button.type = 'button'; button.addEventListener('click', () => api.openPlace(place.id));
+        item.append(button, make('span', `${format(place.lat, 2)}°, ${format(place.lon, 2)}° · ${formatHours(hours(i, state.target, state.step, state.period))}`, 'tl-dev-muted'));
+        for (const note of notes) { const text = note(i, state.target); if (text) item.append(make('span', text, 'tl-dev-muted')); }
+        host.append(item);
+      }
+      if (!rows.length) host.append(make('li', 'No areas pass the current filter.'));
+    }
+    function render() {
+      document.documentElement.dataset.theme = state.theme;
+      for (const key of ['target', 'step', 'period', 'bin', 'view', 'theme']) byId(`tl-dev-${key}`).value = String(state[key]);
+      renderList(); renderCard();
+    }
+    const api = {
+      version: 1, targets, periods, areaCount: cells.n, areaIndex: id => indices.get(id) ?? -1, area,
+      getState: () => ({ ...state }),
+      setState(partial) {
+        Object.assign(state, partial);
+        if (/^\d+$/.test(String(state.period)) && Number(state.period) < periods.length) {
+          state.bin = Number(state.period); state.period = 'bin';
+        }
+        if (state.step === 4 && !meta.has_cloud) state.step = 3;
+        history.replaceState(null, '', `${location.pathname}${location.search}#${encodeState()}`);
+        render(); listeners.forEach(listener => listener({ ...state }));
+      },
+      onState(fn) { listeners.add(fn); return () => listeners.delete(fn); }, hours,
+      periodHours: (i, targetId, step) => Float32Array.from(periods, (_, b) => periodValue(i, targetId, step, b) ?? NaN),
+      openPlace(id) { if (!indices.has(id)) return; api.setState({ place: id, view: area(indices.get(id)).hemisphere === 'S' ? 'antarctic' : 'arctic' }); byId('tl-dev-card').scrollIntoView({ block: 'start' }); },
+      flyTo(lat, lon, zoom) { byId('tl-dev-status').textContent = `Map location: ${format(lat, 2)}°, ${format(lon, 2)}°${finite(zoom) ? `; zoom ${format(zoom, 1)}` : ''}.`; },
+      loadJSON: name => read(name), loadBin: name => read(name, true), fmtHours: formatHours, fmtNumber: format, theme: () => state.theme,
+      registerAction(name, fn) { actions.set(name, fn); return () => { if (actions.get(name) === fn) actions.delete(name); }; },
+      addToolsButton(id, label, onPress) {
+        buttons.get(id)?.remove();
+        const button = make('button', label, 'tl-dev-button'); button.type = 'button'; button.dataset.tool = id;
+        button.addEventListener('click', onPress); buttons.set(id, button); byId('tl-dev-buttons').append(button);
+        return () => { button.remove(); buttons.delete(id); };
+      },
+      addCardSection(id, title, render) { cards.set(id, { title, render }); renderCard(); return () => { cards.delete(id); renderCard(); }; },
+      addListNote(fn) { notes.add(fn); renderList(); return () => { notes.delete(fn); renderList(); }; },
+      addListFilter(id, label, test) {
+        const host = make('label'), input = make('input'); input.type = 'checkbox'; input.dataset.filter = id;
+        host.append(input, document.createTextNode(` ${label}`)); input.addEventListener('change', renderList);
+        filters.set(id, { input, test }); byId('tl-dev-filters').append(host); renderList();
+        return () => { filters.delete(id); host.remove(); renderList(); };
+      },
+      setListOrder(id, label, score) {
+        orders.set(id, { score }); const button = make('button', label, 'tl-dev-button'); button.type = 'button';
+        button.addEventListener('click', () => { order = id; renderList(); }); byId('tl-dev-filters').append(button);
+        return () => { orders.delete(id); button.remove(); if (order === id) order = null; renderList(); };
+      },
+      announce(text) { byId('tl-dev-announcement').textContent = text; },
+    };
+    for (const target of targets) { const option = make('option', target.name); option.value = target.id; byId('tl-dev-target').append(option); }
+    if (!meta.has_cloud) byId('tl-dev-step').querySelector('option[value="4"]').remove();
+    for (const period of periods) { const option = make('option', period.label); option.value = String(period.index); byId('tl-dev-bin').append(option); }
+    for (const key of ['target', 'step', 'period', 'bin', 'view', 'theme']) byId(`tl-dev-${key}`).addEventListener('change', event => api.setState({ [key]: ['step', 'bin'].includes(key) ? Number(event.target.value) : event.target.value }));
+    window.devApi = api;
+    window.devActions = actions;
+    render();
+    window.devModule = await mount(byId('tools-root'), api);
+    byId('tl-dev-status').textContent = 'Ready. All figures come from the page data.';
+    const feature = query.has('print') ? 'take' : query.get('feature');
+    const preview = ['famous', 'basis', 'search', 'glossary', 'tour', 'take', 'winter'].includes(feature);
+    if (preview) {
+      document.body.dataset.preview = feature;
+      document.querySelector('.tl-dev-shell > header h1').textContent = 'Earth Twin Finder · Tools';
+      const visiblePanel = byId(`tl-${feature === 'tour' ? 'famous' : feature}`);
+      if (visiblePanel) { visiblePanel.dataset.previewPanel = 'true'; visiblePanel.open = true; }
+    }
+    const waitFor = async check => {
+      const deadline = performance.now() + 12000;
+      while (!check() && performance.now() < deadline) await new Promise(resolve => setTimeout(resolve, 50));
+    };
+    if (feature === 'take' || query.has('print')) {
+      const i = sites.top[state.target]?.north_lighting[0]?.cell;
+      if (i != null) api.openPlace(cells.ids[i]);
+      const summaryFold = byId('tl-dev-card').querySelector('.tl-inner-fold');
+      if (summaryFold) summaryFold.open = true;
+    } else if (feature !== 'tour' && buttons.has(feature)) buttons.get(feature).click();
+    else if (feature === 'famous' || feature === 'winter') (byId(`tl-${feature}`) || byId('tools-root')).scrollIntoView({ block: 'start' });
+    if (feature === 'basis') {
+      await waitFor(() => byId('tl-basis').querySelector('.tl-inner-fold'));
+      const assumptions = byId('tl-basis').querySelector('.tl-inner-fold');
+      if (assumptions) assumptions.open = true;
+    }
+    if (feature === 'search') {
+      const input = byId('tl-place-input');
+      input.value = 'Devon';
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      await waitFor(() => byId('tl-search-results').childElementCount);
+    }
+    if (query.has('print')) {
+      window.print = () => {};
+      const deadline = performance.now() + 12000;
+      while (performance.now() < deadline) {
+        const summary = byId('tl-dev-card').querySelector('.tl-summary');
+        const button = [...byId('tl-dev-card').querySelectorAll('button')].find(node => node.textContent.trim() === 'Print this place');
+        if (summary && (summary.value || summary.textContent).trim() && button && !button.disabled) { button.click(); break; }
+        await new Promise(resolve => setTimeout(resolve, 50));
+      }
+    }
+    if (preview) {
+      window.scrollTo(0, 0);
+      await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      window.scrollTo(0, 0);
+      if (feature === 'tour') buttons.get('tour')?.click();
+    }
+    document.documentElement.dataset.ready = 'true';
+  } catch (error) {
+    byId('tl-dev-status').textContent = `The development page could not load: ${error.message}`;
+    console.error(error);
+  }
+</script>
+</body>
+</html>

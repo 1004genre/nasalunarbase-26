@@ -1,0 +1,409 @@
+{
+ "checks": [
+  {
+   "check": "Lofoten sits on listed anorthosite (rock above 0)",
+   "passed": true
+  },
+  {
+   "check": "Mistastin sits on listed anorthosite (rock above 0)",
+   "passed": true
+  },
+  {
+   "check": "Mistastin gets no low-Sun days for any target",
+   "passed": true
+  },
+  {
+   "check": "Qaqortorsuaq low-Sun days for Malapert match the calendar (75 to 80)",
+   "passed": true
+  }
+ ],
+ "named_sites": [
+  {
+   "name": "Qaqortorsuaq anorthosite, Greenland",
+   "lat": 66.5833,
+   "lon": -52.2,
+   "bare": 0.119,
+   "lichen": 0.756,
+   "rock": 0.736,
+   "rock_body": "Qaqortorsuaq / White Mountain anorthosite",
+   "known": null,
+   "targets": {
+    "connecting-ridge": {
+     "light_days": 44,
+     "windows": [
+      [
+       358,
+       14
+      ],
+      [
+       333,
+       354
+      ]
+     ],
+     "snow_free": 0.0,
+     "usable_days": 0.0,
+     "terrain": 0.863
+    },
+    "malapert": {
+     "light_days": 75,
+     "windows": [
+      [
+       358,
+       30
+      ],
+      [
+       318,
+       354
+      ]
+     ],
+     "snow_free": 0.0,
+     "usable_days": 0.0,
+     "terrain": 0.697
+    },
+    "mons-mouton": {
+     "light_days": 79,
+     "windows": [
+      [
+       358,
+       32
+      ],
+      [
+       316,
+       354
+      ]
+     ],
+     "snow_free": 0.0,
+     "usable_days": 0.0,
+     "terrain": 0.861
+    },
+    "nobile-rim-2": {
+     "light_days": 89,
+     "windows": [
+      [
+       358,
+       37
+      ],
+      [
+       311,
+       354
+      ]
+     ],
+     "snow_free": 0.0,
+     "usable_days": 0.0,
+     "terrain": 0.904
+    }
+   }
+  },
+  {
+   "name": "Fiskenaesset anorthosite, Greenland",
+   "lat": 63.25,
+   "lon": -50.0,
+   "bare": 0.256,
+   "lichen": 0.603,
+   "rock": 0.617,
+   "rock_body": "Fiskenaesset anorthosite complex",
+   "known": null,
+   "targets": {
+    "connecting-ridge": {
+     "light_days": 0,
+     "windows": [],
+     "snow_free": null,
+     "usable_days": 0.0,
+     "terrain": 0.689
+    },
+    "malapert": {
+     "light_days": 48,
+     "windows": [
+      [
+       333,
+       15
+      ]
+     ],
+     "snow_free": 0.0,
+     "usable_days": 0.0,
+     "terrain": 0.617
+    },
+    "mons-mouton": {
+     "light_days": 54,
+     "windows": [
+      [
+       330,
+       18
+      ]
+     ],
+     "snow_free": 0.0,
+     "usable_days": 0.0,
+     "terrain": 0.693
+    },
+    "nobile-rim-2": {
+     "light_days": 68,
+     "windows": [
+      [
+       323,
+       25
+      ]
+     ],
+     "snow_free": 0.0,
+     "usable_days": 0.0,
+     "terrain": 0.756
+    }
+   }
+  },
+  {
+   "name": "Lofoten anorthosite (Nusfjord), Norway",
+   "lat": 68.04,
+   "lon": 13.35,
+   "bare": 0.014,
+   "lichen": 0.0,
+   "rock": 0.5,
+   "rock_body": "Lofoten anorthosite, Flakstadoy (Nusfjord)",
+   "known": "Lofoten anorthosite (PANGAEA, Nusfjord)",
+   "targets": {
+    "connecting-ridge": {
+     "light_days": 22,
+     "windows": [
+      [
+       11,
+       21
+      ],
+      [
+       326,
+       336
+      ]
+     ],
+     "snow_free": 0.31136363270607864,
+     "usable_days": 6.84999991953373,
+     "terrain": 0.491
+    },
+    "malapert": {
+     "light_days": 49,
+     "windows": [
+      [
+       11,
+       35
+      ],
+      [
+       313,
+       336
+      ]
+     ],
+     "snow_free": 0.3255102029260324,
+     "usable_days": 15.949999943375587,
+     "terrain": 0.6
+    },
+    "mons-mouton": {
+     "light_days": 53,
+     "windows": [
+      [
+       11,
+       37
+      ],
+      [
+       311,
+       336
+      ]
+     ],
+     "snow_free": 0.32358490492937697,
+     "usable_days": 17.14999996125698,
+     "terrain": 0.526
+    },
+    "nobile-rim-2": {
+     "light_days": 62,
+     "windows": [
+      [
+       11,
+       41
+      ],
+      [
+       306,
+       336
+      ]
+     ],
+     "snow_free": 0.3169354838469336,
+     "usable_days": 19.649999998509884,
+     "terrain": 0.537
+    }
+   }
+  },
+  {
+   "name": "Mistastin crater rim, Labrador",
+   "lat": 55.95,
+   "lon": -63.15,
+   "bare": null,
+   "lichen": null,
+   "rock": 0.5,
+   "rock_body": "Mistastin / Kamestastin crater (anorthosite-bearing target)",
+   "known": "Mistastin (Kamestastin) crater",
+   "targets": {
+    "connecting-ridge": {
+     "light_days": 0,
+     "windows": [],
+     "snow_free": null,
+     "usable_days": 0.0,
+     "terrain": 0.47
+    },
+    "malapert": {
+     "light_days": 0,
+     "windows": [],
+     "snow_free": null,
+     "usable_days": 0.0,
+     "terrain": 0.299
+    },
+    "mons-mouton": {
+     "light_days": 0,
+     "windows": [],
+     "snow_free": null,
+     "usable_days": 0.0,
+     "terrain": 0.44
+    },
+    "nobile-rim-2": {
+     "light_days": 0,
+     "windows": [],
+     "snow_free": null,
+     "usable_days": 0.0,
+     "terrain": 0.535
+    }
+   }
+  }
+ ],
+ "stability": {
+  "connecting-ridge": {
+   "baseline_sites": 10,
+   "bare screen 0.15": 9,
+   "bare screen 0.35": 9,
+   "full marks at 20 usable days": 10,
+   "full marks at 45 usable days": 10
+  },
+  "malapert": {
+   "baseline_sites": 10,
+   "bare screen 0.15": 10,
+   "bare screen 0.35": 9,
+   "full marks at 20 usable days": 10,
+   "full marks at 45 usable days": 10
+  },
+  "mons-mouton": {
+   "baseline_sites": 10,
+   "bare screen 0.15": 10,
+   "bare screen 0.35": 9,
+   "full marks at 20 usable days": 10,
+   "full marks at 45 usable days": 10
+  },
+  "nobile-rim-2": {
+   "baseline_sites": 10,
+   "bare screen 0.15": 10,
+   "bare screen 0.35": 9,
+   "full marks at 20 usable days": 9,
+   "full marks at 45 usable days": 9
+  }
+ },
+ "little_known": {
+  "connecting-ridge": [
+   {
+    "lat": 74.45,
+    "lon": 19.25,
+    "region": "Bear Island (Bjornoya)"
+   },
+   {
+    "lat": 70.85,
+    "lon": -8.85,
+    "region": "Jan Mayen"
+   },
+   {
+    "lat": 75.45,
+    "lon": 62.25,
+    "region": "Novaya Zemlya"
+   },
+   {
+    "lat": 70.15,
+    "lon": -116.85,
+    "region": "Arctic Canada"
+   },
+   {
+    "lat": 75.65,
+    "lon": 58.25,
+    "region": "Novaya Zemlya"
+   }
+  ],
+  "malapert": [
+   {
+    "lat": 74.45,
+    "lon": 19.25,
+    "region": "Bear Island (Bjornoya)"
+   },
+   {
+    "lat": 63.15,
+    "lon": -64.9,
+    "region": "Arctic Canada"
+   },
+   {
+    "lat": 70.85,
+    "lon": -8.85,
+    "region": "Jan Mayen"
+   },
+   {
+    "lat": 64.35,
+    "lon": -64.9,
+    "region": "Arctic Canada"
+   },
+   {
+    "lat": 75.35,
+    "lon": 57.75,
+    "region": "Novaya Zemlya"
+   }
+  ],
+  "mons-mouton": [
+   {
+    "lat": 74.45,
+    "lon": 19.25,
+    "region": "Bear Island (Bjornoya)"
+   },
+   {
+    "lat": 63.15,
+    "lon": -64.9,
+    "region": "Arctic Canada"
+   },
+   {
+    "lat": 70.85,
+    "lon": -8.85,
+    "region": "Jan Mayen"
+   },
+   {
+    "lat": 64.35,
+    "lon": -64.9,
+    "region": "Arctic Canada"
+   },
+   {
+    "lat": 75.45,
+    "lon": 62.25,
+    "region": "Novaya Zemlya"
+   }
+  ],
+  "nobile-rim-2": [
+   {
+    "lat": 74.45,
+    "lon": 19.25,
+    "region": "Bear Island (Bjornoya)"
+   },
+   {
+    "lat": 63.15,
+    "lon": -64.9,
+    "region": "Arctic Canada"
+   },
+   {
+    "lat": 70.85,
+    "lon": -8.85,
+    "region": "Jan Mayen"
+   },
+   {
+    "lat": 75.45,
+    "lon": 62.25,
+    "region": "Novaya Zemlya"
+   },
+   {
+    "lat": 64.35,
+    "lon": -64.9,
+    "region": "Arctic Canada"
+   }
+  ]
+ }
+}

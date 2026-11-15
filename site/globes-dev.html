@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-dest="moon">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Earth Twin Finder · globe preview</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./globes.css">
+  <style>
+    body { margin: 0; }
+    .gb-dev-header, .gb-dev-main { width: min(100%, 900px); margin: auto; box-sizing: border-box; }
+    .gb-dev-header { padding: 12px 16px; }
+    .gb-dev-header summary { cursor: pointer; }
+    .gb-dev-form { display: flex; flex-wrap: wrap; gap: 12px; padding: 12px 0; }
+    .gb-dev-form label { display: grid; gap: 4px; flex: 1 1 150px; min-width: 0; }
+    .gb-dev-form select, .gb-dev-form input, .gb-dev-form button { font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 8px; min-width: 0; max-width: 100%; }
+    .gb-dev-form :focus-visible, .gb-dev-header summary:focus-visible { outline: 3px solid var(--focus, #7edce9); outline-offset: 3px; }
+    .gb-dev-form button { cursor: pointer; align-self: end; }
+    .gb-dev-state, .gb-dev-place, .gb-dev-flat { overflow-wrap: anywhere; margin: 16px; color: var(--ink2); }
+    .gb-dev-still { min-height: 260px; display: grid; place-content: center; text-align: center; color: #e8eff5; background: radial-gradient(ellipse, #243746, #080d16 70%); border-radius: 16px; }
+    .gb-dev-live { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+    #globes-root { padding: 0; min-height: 0; height: min(760px, calc(100svh - 100px)); margin: 0; }
+    @media (max-width: 600px) { #globes-root { height: 720px; } }
+    @media (max-width: 480px) { .gb-dev-header { padding: 8px 12px; } .gb-dev-form label { flex-basis: 100%; } }
+  </style>
+</head>
+<body>
+  <header class="gb-dev-header">
+    <details>
+      <summary>Earth Twin Finder · preview controls</summary>
+      <form class="gb-dev-form" id="gb-dev-form">
+        <label>Destination<select name="dest"><option value="moon">Moon</option><option value="mars">Mars</option></select></label>
+        <label>Lunar region<select name="target"></select></label>
+        <label>Mars site<select name="msite"></select></label>
+        <label>Goal<select name="mgoal"><option value="full">Full</option><option value="landscape">Landscape</option><option value="environment">Environment</option></select></label>
+        <label>Step<select name="step"><option value="1">1 · Sun only</option><option value="2">2 · Without snow</option><option value="3">3 · Without hills</option><option value="4">4 · Typical cloud</option></select></label>
+        <label>Theme<select name="theme"><option value="dark">Dark</option><option value="light">Light</option></select></label>
+        <label>Place ID<input name="place" autocomplete="off"></label>
+        <button type="submit">Show the place</button>
+        <button type="button" id="gb-dev-matches">Show result marks</button>
+        <button type="button" id="gb-dev-clear">Clear result marks</button>
+      </form>
+    </details>
+  </header>
+  <main class="gb-dev-main">
+    <section id="globes-root" aria-label="The Earth, the Moon and Mars">
+      <div class="gb-dev-still"><p>The Earth, the Moon and Mars</p><p>Read the places below the globes.</p></div>
+    </section>
+    <p class="gb-dev-state" id="gb-dev-state" role="status">Read the local data.</p>
+    <p class="gb-dev-place" id="gb-dev-place"></p>
+    <section class="gb-dev-flat" id="map" hidden><p>Open the real page for the flat maps.</p><a href="./index.html#stage=flat&amp;go=map">Open the flat maps</a></section>
+    <section class="gb-dev-flat" id="mars" hidden><p>Open the real page for the Mars section.</p><a id="gb-dev-mars-link" href="./index.html#dest=mars&amp;go=mars">Open the Mars section</a><span id="mars-square"></span></section>
+  </main>
+  <p class="gb-dev-live" id="gb-dev-live" role="status" aria-live="polite"></p>
+  <script type="module">
+    import { mount } from './globes.js';
+
+    const byId = id => document.getElementById(id);
+    const form = byId('gb-dev-form'), files = new Map(), jsonFiles = new Map(), listeners = new Set(), matchListeners = new Set();
+    let matches = null;
+    const finite = value => typeof value === 'number' && Number.isFinite(value);
+    function loadBin(name) {
+      if (typeof name !== 'string' || !/^[\w.-]+(?:\/[\w.-]+)*$/.test(name) || name.split('/').some(part => part === '.' || part === '..')) {
+        return Promise.reject(new Error('Use a file inside data.'));
+      }
+      if (!files.has(name)) files.set(name, (async () => {
+        if (typeof DecompressionStream === 'function') {
+          const response = await fetch('./data/' + name + '.gz', { redirect: 'error' }).catch(() => null);
+          if (response?.ok) {
+            const buffer = await response.arrayBuffer(), bytes = new Uint8Array(buffer);
+            return bytes[0] === 0x1f && bytes[1] === 0x8b
+              ? new Response(new Blob([buffer]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer()
+              : buffer;
+          }
+        }
+        const response = await fetch('./data/' + name, { redirect: 'error' });
+        if (!response.ok) throw new Error('A local data file could not be read.');
+        return response.arrayBuffer();
+      })());
+      return files.get(name);
+    }
+    function loadJSON(name) {
+      if (!jsonFiles.has(name)) jsonFiles.set(name, loadBin(name).then(buffer => JSON.parse(new TextDecoder().decode(buffer))));
+      return jsonFiles.get(name);
+    }
+    try {
+      const meta = await loadJSON('meta.json');
+      const [cells, flat, mars, yearlyBuffer, snowBuffer, openBuffer, cloudBuffer, places] = await Promise.all([
+        loadJSON('cells.json'), loadJSON('flat.json'), loadJSON('mars.json'), loadBin('yearly.bin'),
+        loadBin('snowfree.bin'), loadBin('open.bin'), meta.has_cloud ? loadBin('cloud.bin') : null,
+        loadJSON('places.json').catch(() => null),
+      ]);
+      const yearly = new DataView(yearlyBuffer), snow = new Uint8Array(snowBuffer), open = new Uint8Array(openBuffer);
+      const cloud = cloudBuffer ? new Uint8Array(cloudBuffer) : null;
+      const targets = Object.freeze(meta.targets.map(t => Object.freeze({ id: t.id, name: t.name, limitDeg: t.limit_deg })));
+      const periods = Object.freeze(meta.bins.map((p, index) => Object.freeze({ index, label: p.label, firstDay: p.first_day, lastDay: p.last_day, month: p.month })));
+      const fields = cells.yearly.fields, targetCount = targets.length, periodCount = periods.length;
+      const areaIndex = new Map(cells.ids.map((id, index) => [id, index]));
+      const southIndex = new Map(cells.south.cells.map((i, index) => [i, index]));
+      const known = new Set(places?.not_little_known?.areas || []);
+      const initial = new URLSearchParams(location.search);
+      new URLSearchParams(location.hash.slice(1)).forEach((value, key) => initial.set(key, value));
+      const state = {
+        dest: 'moon', target: targets[0].id, msite: mars.sites[0].id, mgoal: 'full', msquare: '', stage: 'globe',
+        step: 3, period: 'year', bin: 0, place: '', theme: 'dark', view: 'arctic',
+      };
+      const stateKeys = new Set([...Object.keys(state), 'go', 'z', 'x', 'y']);
+      initial.forEach((value, key) => { if (stateKeys.has(key)) state[key] = value; });
+      function normalize() {
+        if (!targets.some(t => t.id === state.target)) state.target = targets[0].id;
+        if (!mars.sites.some(s => s.id === state.msite)) state.msite = mars.sites[0].id;
+        if (!['full', 'landscape', 'environment'].includes(state.mgoal)) state.mgoal = 'full';
+        state.dest = state.dest === 'mars' ? 'mars' : 'moon';
+        state.theme = state.theme === 'light' ? 'light' : 'dark';
+        state.stage = state.stage === 'flat' ? 'flat' : 'globe';
+        state.step = [1, 2, 3, 4].includes(Number(state.step)) ? Number(state.step) : 3;
+        if (!meta.has_cloud && state.step === 4) state.step = 3;
+        if (/^\d+$/.test(String(state.period))) { state.bin = Number(state.period); state.period = 'bin'; }
+        state.bin = Number.isInteger(Number(state.bin)) && Number(state.bin) >= 0 && Number(state.bin) < periodCount ? Number(state.bin) : 0;
+      }
+      normalize();
+      const validArea = i => Number.isInteger(i) && i >= 0 && i < cells.n;
+      function area(i) {
+        if (!validArea(i)) return null;
+        return {
+          id: cells.ids[i], lat: cells.lat[i] / 100, lon: cells.lon[i] / 100, hemisphere: cells.hemisphere[i],
+          region: cells.regions[cells.region[i]], named: cells.site[i] || null,
+          bare: cells.bare[i] < 0 ? null : cells.bare[i] / 100, snowStatus: cells.snow_statuses[cells.snow[i]],
+          littleKnown: known.has(i) || cells.known[i] >= 0 ? false : places ? true : null,
+        };
+      }
+      function yearlyValue(i, field, t) {
+        const f = fields.indexOf(field);
+        if (f < 0) return null;
+        const raw = yearly.getUint16(((i * targetCount + t) * fields.length + f) * 2, true);
+        return raw === cells.yearly.unknown ? null : raw / cells.yearly.scale[field];
+      }
+      // Flat values and southern totals use tenths of an hour, as their files state.
+      function flatValue(i, b, t) {
+        const row = flat.targets[targets[t].id];
+        const raw = b == null ? row.year[cells.flat_row[i]] : row.bins[cells.flat_row[i]][b];
+        return raw == null || raw < 0 ? null : raw / 10;
+      }
+      function binValue(i, b, step, t) {
+        if (step === 1) return flatValue(i, b, t);
+        if (cells.hemisphere[i] === 'S') {
+          if (!meta.seasons.rock_season_bins_south.includes(b)) return 0;
+          if (step === 2) return flatValue(i, b, t);
+        }
+        const raw = (step === 2 ? snow : open)[(i * targetCount + t) * periodCount + b];
+        if (raw == null || raw === meta.encoding.unknown) return null;
+        const value = raw * meta.encoding.unit_h;
+        if (step < 4 || value === 0) return value;
+        const covered = cloud?.[i * 12 + periods[b].month - 1];
+        return covered == null || covered === meta.encoding.unknown ? null : value * (1 - covered / 100);
+      }
+      function hours(i, id = state.target, step = state.step, period = state.period) {
+        const t = targets.findIndex(target => target.id === id); step = Number(step);
+        if (!validArea(i) || t < 0 || ![1, 2, 3, 4].includes(step)) return null;
+        if (period === 'bin') return binValue(i, state.bin, step, t);
+        if (typeof period === 'number' || /^\d+$/.test(String(period))) {
+          const b = Number(period);
+          return Number.isInteger(b) && b >= 0 && b < periodCount ? binValue(i, b, step, t) : null;
+        }
+        if (!['year', 'winter', 'summer', 'rock'].includes(period)) return null;
+        if (step === 1) {
+          if (period === 'year') return flatValue(i, null, t);
+          const bins = period === 'winter' ? meta.seasons.winter_bins_north : period === 'summer' ? meta.seasons.summer_bins_north : meta.seasons.rock_season_bins_south;
+          const values = bins.map(b => flatValue(i, b, t));
+          return values.some(value => value == null) ? null : values.reduce((sum, value) => sum + value, 0);
+        }
+        if (cells.hemisphere[i] === 'S') {
+          const index = southIndex.get(i), key = step === 2 ? 'rock_flat' : step === 3 ? 'rock_open' : 'rock_clear';
+          const raw = index == null ? null : cells.south.targets[id]?.[key]?.[index];
+          return raw == null || raw < 0 ? null : raw / 10;
+        }
+        const field = step === 2 ? 'snow_free' : step === 3 ? 'open' : 'clear';
+        if (period === 'year') return yearlyValue(i, field, t);
+        if (period === 'winter') return yearlyValue(i, field + '_winter', t);
+        if (fields.includes(field + '_summer')) return yearlyValue(i, field + '_summer', t);
+        const year = yearlyValue(i, field, t), winter = yearlyValue(i, field + '_winter', t);
+        return year == null || winter == null ? null : Math.max(0, Math.round((year - winter) * 10) / 10);
+      }
+      function answer(target = state.target) {
+        return Array.from({ length: cells.n }, (_, i) => ({ i, h: hours(i, target, state.step, 'year') }))
+          .filter(row => finite(row.h) && row.h > 0).sort((a, b) => b.h - a.h || a.i - b.i).slice(0, 5)
+          .map(({ i }) => ({ label: area(i).named || `${area(i).region} · ${area(i).id}`, area: i }));
+      }
+      function sync() {
+        document.documentElement.dataset.theme = state.theme;
+        document.documentElement.dataset.dest = state.dest;
+        for (const key of ['dest', 'target', 'msite', 'mgoal', 'step', 'theme', 'place']) form.elements.namedItem(key).value = state[key] ?? '';
+        const destination = state.dest === 'mars' ? mars.sites.find(s => s.id === state.msite).name : targets.find(t => t.id === state.target).name;
+        byId('gb-dev-state').textContent = `${destination}. Step ${state.step}. ${state.dest === 'mars' ? 'Goal: ' + state.mgoal + '.' : ''}`;
+        const selected = area(areaIndex.get(state.place));
+        byId('gb-dev-place').textContent = selected ? `Open place: ${selected.named || selected.region} · ${selected.id}.` : state.msquare ? `Open square: ${state.msquare}.` : '';
+        byId('map').hidden = state.stage !== 'flat' || state.dest !== 'moon';
+        byId('mars').hidden = state.dest !== 'mars' || !(state.msquare || state.stage === 'flat');
+        byId('gb-dev-mars-link').href = './index.html#' + new URLSearchParams({ dest: 'mars', msite: state.msite, mgoal: state.mgoal, msquare: state.msquare, go: 'mars' });
+      }
+      function setState(partial) {
+        for (const [key, value] of Object.entries(partial)) {
+          if (!['__proto__', 'constructor', 'prototype'].includes(key)) state[key] = structuredClone(value);
+        }
+        normalize(); sync();
+        history.replaceState(null, '', location.pathname + location.search + '#' + new URLSearchParams(Object.entries(state).filter(([, value]) => value != null)));
+        for (const listener of listeners) listener({ ...state });
+      }
+      const fmtNumber = (value, digits = 0) => finite(value) ? value.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits }) : 'unknown';
+      const api = {
+        version: 1, targets, periods, areaCount: cells.n, area, areaIndex: id => areaIndex.get(id) ?? -1,
+        getState: () => ({ ...state }), setState, onState: listener => { listeners.add(listener); return () => listeners.delete(listener); },
+        setMatches: value => { matches = value; for (const listener of matchListeners) listener(matches); },
+        onMatches: listener => { matchListeners.add(listener); listener(matches); return () => matchListeners.delete(listener); },
+        hours, answer, periodHours: (i, id = state.target, step = state.step) => Float32Array.from(periods, (_, b) => hours(i, id, step, b) ?? NaN),
+        openPlace: id => { if (areaIndex.has(id)) setState({ place: id, view: area(areaIndex.get(id)).hemisphere === 'N' ? 'arctic' : 'antarctic' }); },
+        flyTo: (lat, lon, zoom) => setState({ view: lat >= 0 ? 'arctic' : 'antarctic', x: lon, y: lat, ...(zoom == null ? {} : { z: zoom }) }),
+        loadJSON, loadBin, fmtNumber, fmtHours: value => finite(value) ? `${fmtNumber(value, value > 0 && value < 1 ? 1 : 0)} h` : 'unknown',
+        theme: () => state.theme, announce: message => { byId('gb-dev-live').textContent = message; },
+      };
+      window.gbDevApi = api;
+      function showMatches() {
+        const marsRows = mars.best_places[state.msite]?.[state.mgoal] || [];
+        const areas = state.dest === 'mars'
+          ? marsRows.map(row => mars.squares.ids.indexOf(row.id)).filter(i => i >= 0)
+          : Array.from({ length: cells.n }, (_, i) => i).filter(i => finite(hours(i, state.target, state.step, 'year')))
+            .sort((a, b) => hours(b, state.target, state.step, 'year') - hours(a, state.target, state.step, 'year')).slice(0, 20);
+        const highest = areas.length ? hours(areas[0], state.target, state.step, 'year') : null;
+        const scores = state.dest === 'mars' ? areas.map(i => marsRows.find(row => row.id === mars.squares.ids[i]).score)
+          : areas.map(i => highest > 0 ? hours(i, state.target, state.step, 'year') / highest : 0);
+        api.setMatches({ label: 'Preview results', areas, scores, mode: state.dest });
+      }
+      byId('gb-dev-matches').addEventListener('click', showMatches);
+      byId('gb-dev-clear').addEventListener('click', () => api.setMatches(null));
+      for (const [key, rows] of [['target', targets], ['msite', mars.sites]]) {
+        for (const row of rows) form.elements.namedItem(key).add(new Option(row.name, row.id));
+      }
+      if (!meta.has_cloud) form.elements.step.querySelector('[value="4"]').disabled = true;
+      form.addEventListener('change', event => {
+        const key = event.target.name;
+        if (key && key !== 'place') setState({ [key]: event.target.value, ...(key === 'target' ? { dest: 'moon' } : key === 'msite' ? { dest: 'mars' } : {}) });
+      });
+      form.addEventListener('submit', event => { event.preventDefault(); api.openPlace(form.elements.place.value.trim()); });
+      addEventListener('hashchange', () => {
+        const partial = Object.fromEntries([...new URLSearchParams(location.hash.slice(1))].filter(([key]) => stateKeys.has(key)));
+        setState(partial);
+      });
+      sync();
+      window.gbDevModule = await mount(byId('globes-root'), api);
+      if (initial.get('matches') === '1') showMatches();
+      document.documentElement.dataset.ready = '1';
+    } catch {
+      byId('gb-dev-state').textContent = 'The globe preview cannot read all necessary local files.';
+      document.documentElement.dataset.ready = 'error';
+    }
+  </script>
+</body>
+</html>

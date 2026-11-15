@@ -1,0 +1,104 @@
+/* Factor matrix module: the table of every factor and the "More about this place" card part.
+   Colours come only from the page's variables in style.css, so both themes work. */
+
+.fx-matrix { min-width: 0; padding: var(--pad-card, 16px); border: 1px solid var(--hair, rgba(255,255,255,0.08)); border-radius: var(--radius, 16px); background: var(--surface, #111c2a); box-shadow: var(--shadow, 0 16px 40px rgba(0,0,0,0.18)); }
+.fx-counts { margin: var(--s2, 8px) 0 var(--s1, 4px); font-size: var(--text, 15px); font-weight: 560; color: var(--ink, #eef4fa); max-width: 100ch; }
+.fx-note { margin: var(--s1, 4px) 0 0; font-size: 13.5px; color: var(--ink2, #b9c8d8); max-width: 90ch; overflow-wrap: anywhere; }
+.fx-caption { margin-top: var(--s2, 8px); }
+
+.fx-table-wrap { max-width: 100%; min-width: 0; }
+.fx-table { width: 100%; border-collapse: collapse; margin-top: var(--s3, 12px); font-size: 14px; table-layout: fixed; }
+.fx-table th, .fx-table td { text-align: left; vertical-align: top; padding: var(--s2, 8px) var(--s3, 12px); border-bottom: 1px solid var(--grid, rgba(150,175,200,0.18)); overflow-wrap: anywhere; }
+.fx-table thead th { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink2, #b9c8d8); font-weight: 650; border-bottom: 1px solid var(--axis, #758aa1); }
+.fx-table thead th:nth-child(1) { width: 55%; }
+.fx-table thead th:nth-child(2) { width: 45%; }
+.fx-group th { background: var(--moon-soft, rgba(242,179,61,0.12)); color: var(--ink, #eef4fa); font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 680; padding: var(--s2, 8px) var(--s3, 12px); }
+.fx-name b { display: block; font-weight: 640; color: var(--ink, #eef4fa); }
+.fx-what, .fx-not, .fx-line { display: block; color: var(--ink2, #b9c8d8); font-size: 13px; margin-top: 2px; }
+.fx-not { color: var(--muted, #a6b8ca); }
+
+.fx-status { display: inline-block; font-size: 12px; line-height: 1.3; padding: 2px var(--s2, 8px); border-radius: var(--radius-s, 10px); border: 1px solid var(--border, rgba(150,175,200,0.3)); background: var(--raised, #182638); color: var(--ink, #eef4fa); font-weight: 560; }
+.fx-status[data-status="measured and used in the ranking"] { background: var(--moon-soft, rgba(242,179,61,0.12)); color: var(--ink, #eef4fa); border-color: var(--moon, #f2b33d); }
+.fx-status[data-status="measured and shown"] { background: var(--moon-soft, rgba(242,179,61,0.12)); color: var(--ink, #eef4fa); border-color: var(--moon-soft, rgba(242,179,61,0.12)); }
+.fx-status[data-status="rough estimate by our own rule"] { border-style: dashed; border-color: var(--ink2, #b9c8d8); }
+.fx-status[data-status="planet side only"] { color: var(--ink2, #b9c8d8); }
+.fx-status[data-status="not built"], .fx-status[data-status="being built"] { color: var(--muted, #a6b8ca); background: transparent; border-color: var(--ghost2, #52677e); }
+
+/* the card part */
+.fx-fold { margin-top: 2px; font-size: var(--text, 15px); }
+.fx-fold > summary { cursor: pointer; color: var(--ink2, #b9c8d8); padding: var(--s1, 4px) 0; }
+.fx-fold > summary:hover { color: var(--ink, #eef4fa); }
+.fx-inner { margin-top: var(--s2, 8px); min-width: 0; }
+.fx-group-part { margin-top: var(--s3, 12px); padding-top: var(--s2, 8px); border-top: 1px solid var(--grid, rgba(150,175,200,0.18)); }
+.fx-group-part h5, .fx-nav h5 { margin: 0 0 var(--s1, 4px); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink, #eef4fa); font-weight: 680; }
+.fx-row { margin-top: var(--s2, 8px); }
+.fx-row-title { margin: 0; display: flex; flex-wrap: wrap; gap: var(--s1, 4px) var(--s2, 8px); align-items: baseline; }
+.fx-row-title b { font-weight: 620; }
+.fx-figs { list-style: none; margin: var(--s1, 4px) 0 0; padding: 0; }
+.fx-fig { display: flex; flex-wrap: wrap; gap: 2px var(--s2, 8px); align-items: baseline; padding: 3px 0; border-bottom: 1px dotted var(--grid, rgba(150,175,200,0.18)); min-width: 0; }
+.fx-label { flex: 1 1 14em; color: var(--ink2, #b9c8d8); min-width: 0; overflow-wrap: anywhere; }
+.fx-val { font-variant-numeric: tabular-nums; font-weight: 560; overflow-wrap: anywhere; min-width: 0; }
+.fx-unknown { color: var(--muted, #a6b8ca); font-weight: 400; font-style: italic; }
+.fx-tag { font-size: 11.5px; color: var(--muted, #a6b8ca); border: 1px solid var(--border, rgba(150,175,200,0.3)); border-radius: var(--radius-s, 10px); padding: 0 var(--s1, 4px); white-space: nowrap; }
+.fx-moon { flex-basis: 100%; font-size: 13px; color: var(--ink2, #b9c8d8); padding-left: var(--s3, 12px); border-left: 2px solid var(--moon, #f2b33d); overflow-wrap: anywhere; }
+.fx-planet .fx-label { color: var(--ink, #eef4fa); }
+
+.fx-nav { margin-top: var(--s3, 12px); padding: var(--s3, 12px) var(--s3, 12px); background: var(--raised, #182638); border: 1px solid var(--border, rgba(150,175,200,0.3)); border-radius: var(--radius-s, 10px); }
+.fx-navtable { width: 100%; border-collapse: collapse; font-size: 13.5px; table-layout: fixed; }
+.fx-navtable th, .fx-navtable td { text-align: left; vertical-align: top; padding: var(--s1, 4px) var(--s2, 8px); border-bottom: 1px solid var(--grid, rgba(150,175,200,0.18)); overflow-wrap: anywhere; }
+.fx-navtable thead th { font-size: 11.5px; color: var(--ink2, #b9c8d8); text-transform: uppercase; letter-spacing: 0.04em; }
+.fx-navtable tbody th { font-weight: 560; color: var(--ink2, #b9c8d8); width: 34%; }
+
+/* narrow screens: the matrix table becomes one block per factor, nothing scrolls sideways */
+@media (max-width: 720px) {
+  .fx-table, .fx-table tbody, .fx-table tr, .fx-table td, .fx-table th { display: block; width: 100%; }
+  .fx-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .fx-table tr { border-bottom: 1px solid var(--axis, #758aa1); padding: var(--s2, 8px) 0; }
+  .fx-table td { border-bottom: none; padding: 3px var(--s1, 4px); }
+  .fx-table td[data-label]:not(.fx-name)::before { content: attr(data-label); display: block; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted, #a6b8ca); }
+  .fx-group { border-bottom: none; }
+}
+@media (max-width: 420px) {
+  .fx-navtable, .fx-navtable thead, .fx-navtable tbody, .fx-navtable tr, .fx-navtable th, .fx-navtable td { display: block; width: 100%; }
+  .fx-navtable thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .fx-navtable tbody th { width: 100%; padding-bottom: 0; border-bottom: none; }
+  .fx-navtable td { border-bottom: none; padding-top: 1px; padding-bottom: 1px; }
+  .fx-navtable td::before { content: attr(data-label) ": "; color: var(--muted, #a6b8ca); font-style: normal; }
+  .fx-navtable tr { border-bottom: 1px solid var(--grid, rgba(150,175,200,0.18)); padding: var(--s1, 4px) 0; }
+}
+
+.fx-section-head { margin-bottom: var(--s3, 12px); }
+.fx-section-head h2 { margin: var(--s2, 8px) 0; }
+.fx-finding { max-width: 72ch; color: var(--ink2, #b9c8d8); }
+.fx-counts { list-style: none; padding: 0; display: grid; gap: var(--s2, 8px); margin: 0 0 var(--pad-card, 16px); }
+.fx-counts li { padding-left: var(--s3, 12px); border-left: 2px solid var(--hair, rgba(255,255,255,0.08)); }
+.fx-moon-source { border-left: 2px solid var(--moon, #f2b33d); padding-left: var(--s2, 8px); }
+.fx-mars-source { border-left: 2px solid var(--mars, #e2693b); padding-left: var(--s2, 8px); }
+.fx-fold > summary { min-height: var(--row, 36px); }
+.fx-fold > summary:focus-visible, .fx-matrix :focus-visible { outline: 3px solid var(--ui, #5cc8f5); outline-offset: 3px; border-radius: var(--radius-s, 10px); }
+.fx-nav { border-color: var(--hair, rgba(255,255,255,0.08)); }
+.fx-status, .fx-tag { white-space: normal; max-width: 100%; overflow-wrap: anywhere; }
+@media (max-width: 720px) { .fx-matrix { padding: var(--pad-card, 16px); } }
+@media (prefers-reduced-motion: reduce) { .fx-matrix *, .fx-fold * { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+
+/* Compact factors, including when the host puts this module in a narrow card. */
+#factors-root { min-width: 0; width: 100%; max-width: 100%; padding: var(--pad-section, 24px); font-size: var(--text, 15px); container-type: inline-size; }
+.fx-matrix *, .fx-fold * { box-sizing: border-box; }
+.fx-matrix [hidden] { display: none !important; }
+.fx-table th, .fx-table td { padding: var(--s1, 4px) var(--s2, 8px); min-height: var(--row, 36px); }
+.fx-table th { height: var(--row, 36px); }
+.fx-counts { grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+.fx-guide > summary, .fx-detail > summary { cursor: pointer; min-height: var(--row, 36px); padding: var(--s1, 4px) 24px var(--s1, 4px) 0; }
+.fx-detail { margin-top: var(--s1, 4px); font-size: 13px; }
+.fx-detail > summary { color: var(--ink2, #b9c8d8); }
+.fx-detail[open] { padding-bottom: var(--s2, 8px); }
+.fx-show-all { min-height: var(--row, 36px); margin-top: var(--s2, 8px); max-width: 100%; }
+.fx-fig { min-height: var(--row, 36px); align-items: center; }
+@container (max-width: 720px) {
+  .fx-table, .fx-table tbody, .fx-table tr, .fx-table td, .fx-table th { display: block; width: 100%; }
+  .fx-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .fx-table tr { border-bottom: 1px solid var(--axis, #758aa1); padding: var(--s2, 8px) 0; }
+  .fx-table td { border-bottom: none; padding: 3px var(--s1, 4px); }
+  .fx-table td[data-label]:not(.fx-name)::before { content: attr(data-label); display: block; font-size: 11.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted, #a6b8ca); }
+  .fx-group { border-bottom: none; }
+}

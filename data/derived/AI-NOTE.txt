@@ -1,0 +1,8 @@
+About the files in this folder
+
+Every file in this folder was made by computer code from open data.
+The code was written with AI assistance: Claude (made by Anthropic) wrote the
+data pipeline, and OpenAI Codex wrote parts of the web page's code.
+No file here is AI-generated art, and no figure was invented by an AI model:
+each figure is computed from the sources named in the project's sources file.
+Rough estimates are marked as rough estimates where they appear.

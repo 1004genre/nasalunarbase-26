@@ -1,0 +1,8928 @@
+{
+ "meta": {
+  "written": "2026-11-14T14:39:06",
+  "cells_scored_written": "2026-11-14T14:39:06",
+  "grazing_cells_with_a_horizon": 1682,
+  "scored_records": 1690,
+  "scored_records_with_a_horizon": 1682,
+  "light_basis_of_stability_and_top_cells": "open",
+  "provisional": false,
+  "stretch_min_h": 2.0,
+  "full_hours": 200.0,
+  "rank_min_bare": 0.25
+ },
+ "checks": [
+  {
+   "check": "old usable-day counts are [0, 49, 52, 57]",
+   "passed": true,
+   "found": [
+    0,
+    49,
+    52,
+    57
+   ]
+  },
+  {
+   "check": "long-window hours recomputed from the ten-day bins match the cells file within 0.1 h",
+   "passed": true,
+   "found": {
+    "largest_difference_h": 0.1,
+    "known_in_one_only": 0
+   }
+  },
+  {
+   "check": "the stability baseline is the top 10 that ranking.txt prints",
+   "passed": true,
+   "found": []
+  },
+  {
+   "check": "Haughton has grazing hours in July for the highest target and its snow-free odds are known",
+   "passed": true,
+   "found": {
+    "flat_hours_july": 65.5,
+    "snow_free_odds": [
+     0.45,
+     0.883,
+     1.0
+    ]
+   }
+  }
+ ],
+ "named_sites": {
+  "note": "Hours per target are flat (no snow, no terrain), snow_free and open, each for the year and the local winter and summer halves, as every hour ('all') and long windows only ('long'). In the south the snow is unmeasured (snow_free is null) and open hours count the terrain only.",
+  "sites": [
+   {
+    "name": "Qaqortorsuaq anorthosite, Greenland",
+    "lat": 66.5833,
+    "lon": -52.2,
+    "cell": "66.5_-52.2",
+    "rock": {
+     "score": 0.736,
+     "body": "Qaqortorsuaq / White Mountain anorthosite"
+    },
+    "in_grazing_cells": true,
+    "hemisphere": "N",
+    "region": "Greenland",
+    "gridded": false,
+    "bare": 0.1189710610932476,
+    "land_share": 0.7199074074074074,
+    "snow": {
+     "status": "measured",
+     "source": "3x3",
+     "land_pixels": 5,
+     "stuck_winters": 0
+    },
+    "horizon": {
+     "north_deg": 5.96,
+     "south_deg": 5.91,
+     "valid_share": 0.652,
+     "pixel_m": 60.0
+    },
+    "terrain": {
+     "median_slope_deg": 15.0,
+     "p90_slope_deg": 31.26,
+     "relief_m": 979.3
+    },
+    "targets": {
+     "connecting-ridge": {
+      "flat": {
+       "all": {
+        "year": 549.8,
+        "winter_half": 271.9,
+        "summer_half": 277.9
+       },
+       "long": {
+        "year": 179.5,
+        "winter_half": 83.1,
+        "summer_half": 96.4
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 189.5,
+        "winter_half": 5.1,
+        "summer_half": 184.4
+       },
+       "long": {
+        "year": 79.6,
+        "winter_half": 0.0,
+        "summer_half": 79.6
+       }
+      },
+      "open": {
+       "all": {
+        "year": 30.8,
+        "winter_half": 0.5,
+        "summer_half": 30.3
+       },
+       "long": {
+        "year": 15.4,
+        "winter_half": 0.0,
+        "summer_half": 15.4
+       }
+      },
+      "longest_stretch_h": 3.33,
+      "best_stretch_bin": 16,
+      "poleward_share": 0.537,
+      "top_bins": [
+       [
+        17,
+        5.7
+       ],
+       [
+        18,
+        5.2
+       ],
+       [
+        16,
+        4.4
+       ]
+      ],
+      "all_day_days": 42,
+      "usable_days": 0.0,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.747,
+      "terrain": 0.838
+     },
+     "malapert": {
+      "flat": {
+       "all": {
+        "year": 1122.8,
+        "winter_half": 549.0,
+        "summer_half": 573.8
+       },
+       "long": {
+        "year": 488.0,
+        "winter_half": 273.8,
+        "summer_half": 214.2
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 385.8,
+        "winter_half": 13.3,
+        "summer_half": 372.5
+       },
+       "long": {
+        "year": 157.7,
+        "winter_half": 0.0,
+        "summer_half": 157.7
+       }
+      },
+      "open": {
+       "all": {
+        "year": 96.2,
+        "winter_half": 3.2,
+        "summer_half": 93.0
+       },
+       "long": {
+        "year": 40.0,
+        "winter_half": 0.0,
+        "summer_half": 40.0
+       }
+      },
+      "longest_stretch_h": 5.7,
+      "best_stretch_bin": 16,
+      "poleward_share": 0.439,
+      "top_bins": [
+       [
+        17,
+        12.8
+       ],
+       [
+        18,
+        12.3
+       ],
+       [
+        16,
+        9.9
+       ]
+      ],
+      "all_day_days": 76,
+      "usable_days": 0.0,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.725,
+      "terrain": 0.896
+     },
+     "mons-mouton": {
+      "flat": {
+       "all": {
+        "year": 1202.3,
+        "winter_half": 586.4,
+        "summer_half": 615.9
+       },
+       "long": {
+        "year": 549.5,
+        "winter_half": 282.4,
+        "summer_half": 267.1
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 413.6,
+        "winter_half": 14.7,
+        "summer_half": 398.9
+       },
+       "long": {
+        "year": 206.6,
+        "winter_half": 0.0,
+        "summer_half": 206.6
+       }
+      },
+      "open": {
+       "all": {
+        "year": 110.1,
+        "winter_half": 4.0,
+        "summer_half": 106.1
+       },
+       "long": {
+        "year": 55.1,
+        "winter_half": 0.0,
+        "summer_half": 55.1
+       }
+      },
+      "longest_stretch_h": 6.0,
+      "best_stretch_bin": 16,
+      "poleward_share": 0.486,
+      "top_bins": [
+       [
+        17,
+        14.1
+       ],
+       [
+        18,
+        13.6
+       ],
+       [
+        19,
+        10.9
+       ]
+      ],
+      "all_day_days": 80,
+      "usable_days": 0.0,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.776,
+      "terrain": 1.0
+     },
+     "nobile-rim-2": {
+      "flat": {
+       "all": {
+        "year": 1401.8,
+        "winter_half": 678.6,
+        "summer_half": 723.2
+       },
+       "long": {
+        "year": 785.1,
+        "winter_half": 397.3,
+        "summer_half": 387.8
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 484.4,
+        "winter_half": 18.4,
+        "summer_half": 466.0
+       },
+       "long": {
+        "year": 292.7,
+        "winter_half": 0.0,
+        "summer_half": 292.7
+       }
+      },
+      "open": {
+       "all": {
+        "year": 147.8,
+        "winter_half": 6.2,
+        "summer_half": 141.6
+       },
+       "long": {
+        "year": 88.1,
+        "winter_half": 0.0,
+        "summer_half": 88.1
+       }
+      },
+      "longest_stretch_h": 6.73,
+      "best_stretch_bin": 16,
+      "poleward_share": 0.494,
+      "top_bins": [
+       [
+        17,
+        17.4
+       ],
+       [
+        18,
+        17.1
+       ],
+       [
+        19,
+        14.3
+       ]
+      ],
+      "all_day_days": 91,
+      "usable_days": 0.0,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.791,
+      "terrain": 0.936
+     }
+    }
+   },
+   {
+    "name": "Fiskenaesset anorthosite, Greenland",
+    "lat": 63.25,
+    "lon": -50.0,
+    "cell": "63.2_-50.0",
+    "rock": {
+     "score": 0.82,
+     "body": "Fiskenaesset anorthosite complex"
+    },
+    "in_grazing_cells": true,
+    "hemisphere": "N",
+    "region": "Greenland",
+    "gridded": true,
+    "bare": 0.25572519083969464,
+    "land_share": 0.9097222222222222,
+    "snow": {
+     "status": "measured",
+     "source": "3x3",
+     "land_pixels": 9,
+     "stuck_winters": 0
+    },
+    "horizon": {
+     "north_deg": 6.04,
+     "south_deg": 6.25,
+     "valid_share": 1.0,
+     "pixel_m": 60.0
+    },
+    "terrain": {
+     "median_slope_deg": 10.19,
+     "p90_slope_deg": 30.9,
+     "relief_m": 847.4
+    },
+    "targets": {
+     "connecting-ridge": {
+      "flat": {
+       "all": {
+        "year": 362.5,
+        "winter_half": 188.7,
+        "summer_half": 173.8
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 65.3,
+        "winter_half": 7.4,
+        "summer_half": 57.9
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "open": {
+       "all": {
+        "year": 7.2,
+        "winter_half": 0.9,
+        "summer_half": 6.4
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 0.83,
+      "best_stretch_bin": 35,
+      "poleward_share": null,
+      "top_bins": [],
+      "all_day_days": 0,
+      "usable_days": 0.0,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.724,
+      "terrain": 0.812
+     },
+     "malapert": {
+      "flat": {
+       "all": {
+        "year": 967.1,
+        "winter_half": 557.5,
+        "summer_half": 409.6
+       },
+       "long": {
+        "year": 259.7,
+        "winter_half": 259.7,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 157.9,
+        "winter_half": 19.4,
+        "summer_half": 138.5
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "open": {
+       "all": {
+        "year": 41.8,
+        "winter_half": 5.4,
+        "summer_half": 36.4
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 5.1,
+      "best_stretch_bin": 33,
+      "poleward_share": 0.0,
+      "top_bins": [],
+      "all_day_days": 46,
+      "usable_days": 0.0,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.55,
+      "terrain": 0.68
+     },
+     "mons-mouton": {
+      "flat": {
+       "all": {
+        "year": 1047.2,
+        "winter_half": 602.4,
+        "summer_half": 444.8
+       },
+       "long": {
+        "year": 311.8,
+        "winter_half": 311.8,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 172.1,
+        "winter_half": 21.4,
+        "summer_half": 150.7
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "open": {
+       "all": {
+        "year": 49.7,
+        "winter_half": 6.5,
+        "summer_half": 43.2
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 5.35,
+      "best_stretch_bin": 1,
+      "poleward_share": 0.0,
+      "top_bins": [],
+      "all_day_days": 52,
+      "usable_days": 0.0,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.706,
+      "terrain": 0.945
+     },
+     "nobile-rim-2": {
+      "flat": {
+       "all": {
+        "year": 1245.4,
+        "winter_half": 709.9,
+        "summer_half": 535.5
+       },
+       "long": {
+        "year": 427.2,
+        "winter_half": 427.2,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 209.1,
+        "winter_half": 26.8,
+        "summer_half": 182.3
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "open": {
+       "all": {
+        "year": 71.8,
+        "winter_half": 9.6,
+        "summer_half": 62.2
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 5.9,
+      "best_stretch_bin": 32,
+      "poleward_share": 0.0,
+      "top_bins": [],
+      "all_day_days": 66,
+      "usable_days": 0.0,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.813,
+      "terrain": 0.962
+     }
+    }
+   },
+   {
+    "name": "Lofoten anorthosite (Nusfjord), Norway",
+    "lat": 68.04,
+    "lon": 13.35,
+    "cell": "68.0_13.2",
+    "rock": {
+     "score": 0.12,
+     "body": "Lofoten anorthosite, Flakstadoy (Nusfjord)"
+    },
+    "in_grazing_cells": true,
+    "hemisphere": "N",
+    "region": "Norway, Sweden or Finland",
+    "gridded": false,
+    "bare": 0.013761467889908258,
+    "land_share": 0.5046296296296297,
+    "snow": {
+     "status": "doubtful",
+     "source": "3x3",
+     "land_pixels": 2,
+     "stuck_winters": 1
+    },
+    "horizon": {
+     "north_deg": 10.1,
+     "south_deg": 5.3,
+     "valid_share": 0.532,
+     "pixel_m": 60.0
+    },
+    "terrain": {
+     "median_slope_deg": 23.58,
+     "p90_slope_deg": 42.28,
+     "relief_m": 596.9
+    },
+    "targets": {
+     "connecting-ridge": {
+      "flat": {
+       "all": {
+        "year": 492.8,
+        "winter_half": 216.3,
+        "summer_half": 276.5
+       },
+       "long": {
+        "year": 110.9,
+        "winter_half": 29.1,
+        "summer_half": 81.8
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 284.2,
+        "winter_half": 60.7,
+        "summer_half": 223.5
+       },
+       "long": {
+        "year": 80.0,
+        "winter_half": 3.2,
+        "summer_half": 76.7
+       }
+      },
+      "open": {
+       "all": {
+        "year": 40.3,
+        "winter_half": 14.2,
+        "summer_half": 26.1
+       },
+       "long": {
+        "year": 8.8,
+        "winter_half": 0.9,
+        "summer_half": 7.9
+       }
+      },
+      "longest_stretch_h": 3.27,
+      "best_stretch_bin": 19,
+      "poleward_share": 0.737,
+      "top_bins": [
+       [
+        19,
+        3.2
+       ],
+       [
+        18,
+        2.4
+       ],
+       [
+        15,
+        2.2
+       ]
+      ],
+      "all_day_days": 28,
+      "usable_days": 5.9,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.491,
+      "terrain": 0.551
+     },
+     "malapert": {
+      "flat": {
+       "all": {
+        "year": 1101.9,
+        "winter_half": 473.0,
+        "summer_half": 628.9
+       },
+       "long": {
+        "year": 527.2,
+        "winter_half": 214.8,
+        "summer_half": 312.3
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 650.8,
+        "winter_half": 139.4,
+        "summer_half": 511.4
+       },
+       "long": {
+        "year": 334.2,
+        "winter_half": 50.7,
+        "summer_half": 283.6
+       }
+      },
+      "open": {
+       "all": {
+        "year": 135.8,
+        "winter_half": 39.6,
+        "summer_half": 96.2
+       },
+       "long": {
+        "year": 66.9,
+        "winter_half": 16.2,
+        "summer_half": 50.7
+       }
+      },
+      "longest_stretch_h": 5.77,
+      "best_stretch_bin": 19,
+      "poleward_share": 0.592,
+      "top_bins": [
+       [
+        18,
+        9.5
+       ],
+       [
+        16,
+        9.4
+       ],
+       [
+        17,
+        9.3
+       ]
+      ],
+      "all_day_days": 57,
+      "usable_days": 13.5,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.615,
+      "terrain": 0.76
+     },
+     "mons-mouton": {
+      "flat": {
+       "all": {
+        "year": 1184.2,
+        "winter_half": 508.4,
+        "summer_half": 675.7
+       },
+       "long": {
+        "year": 638.3,
+        "winter_half": 265.6,
+        "summer_half": 372.7
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 699.2,
+        "winter_half": 150.4,
+        "summer_half": 548.8
+       },
+       "long": {
+        "year": 408.6,
+        "winter_half": 66.4,
+        "summer_half": 342.2
+       }
+      },
+      "open": {
+       "all": {
+        "year": 153.2,
+        "winter_half": 44.1,
+        "summer_half": 109.1
+       },
+       "long": {
+        "year": 86.7,
+        "winter_half": 21.4,
+        "summer_half": 65.3
+       }
+      },
+      "longest_stretch_h": 6.1,
+      "best_stretch_bin": 19,
+      "poleward_share": 0.584,
+      "top_bins": [
+       [
+        18,
+        10.7
+       ],
+       [
+        16,
+        10.6
+       ],
+       [
+        17,
+        10.6
+       ]
+      ],
+      "all_day_days": 61,
+      "usable_days": 14.5,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.531,
+      "terrain": 0.711
+     },
+     "nobile-rim-2": {
+      "flat": {
+       "all": {
+        "year": 1389.7,
+        "winter_half": 596.1,
+        "summer_half": 793.6
+       },
+       "long": {
+        "year": 851.9,
+        "winter_half": 380.3,
+        "summer_half": 471.5
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 821.1,
+        "winter_half": 178.4,
+        "summer_half": 642.7
+       },
+       "long": {
+        "year": 520.8,
+        "winter_half": 104.8,
+        "summer_half": 416.0
+       }
+      },
+      "open": {
+       "all": {
+        "year": 199.2,
+        "winter_half": 56.0,
+        "summer_half": 143.1
+       },
+       "long": {
+        "year": 124.1,
+        "winter_half": 34.9,
+        "summer_half": 89.2
+       }
+      },
+      "longest_stretch_h": 6.83,
+      "best_stretch_bin": 19,
+      "poleward_share": 0.554,
+      "top_bins": [
+       [
+        16,
+        13.7
+       ],
+       [
+        17,
+        13.7
+       ],
+       [
+        18,
+        13.7
+       ]
+      ],
+      "all_day_days": 70,
+      "usable_days": 16.4,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.537,
+      "terrain": 0.635
+     }
+    }
+   },
+   {
+    "name": "Bergen Arcs anorthosite, Norway",
+    "lat": 60.58,
+    "lon": 5.25,
+    "cell": "60.5_5.2",
+    "rock": {
+     "score": 0.5,
+     "body": "Bergen Arcs anorthosites (Lindas nappe, Holsnoy-Radoy area)"
+    },
+    "in_grazing_cells": true,
+    "hemisphere": "N",
+    "region": "Norway, Sweden or Finland",
+    "gridded": false,
+    "bare": 0.0,
+    "land_share": 0.6319444444444444,
+    "snow": {
+     "status": "measured",
+     "source": "3x3",
+     "land_pixels": 4,
+     "stuck_winters": 1
+    },
+    "horizon": {
+     "north_deg": 3.33,
+     "south_deg": 3.22,
+     "valid_share": 0.632,
+     "pixel_m": 60.0
+    },
+    "terrain": {
+     "median_slope_deg": 9.08,
+     "p90_slope_deg": 20.58,
+     "relief_m": 289.8
+    },
+    "targets": {
+     "connecting-ridge": {
+      "flat": {
+       "all": {
+        "year": 299.7,
+        "winter_half": 153.8,
+        "summer_half": 145.9
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 244.5,
+        "winter_half": 101.6,
+        "summer_half": 142.9
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "open": {
+       "all": {
+        "year": 35.9,
+        "winter_half": 13.9,
+        "summer_half": 21.9
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 0.57,
+      "best_stretch_bin": 35,
+      "poleward_share": null,
+      "top_bins": [],
+      "all_day_days": 0,
+      "usable_days": 0.0,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.793,
+      "terrain": 0.89
+     },
+     "malapert": {
+      "flat": {
+       "all": {
+        "year": 791.0,
+        "winter_half": 438.5,
+        "summer_half": 352.6
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 631.9,
+        "winter_half": 286.8,
+        "summer_half": 345.1
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "open": {
+       "all": {
+        "year": 221.0,
+        "winter_half": 105.5,
+        "summer_half": 115.6
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 1.93,
+      "best_stretch_bin": 35,
+      "poleward_share": null,
+      "top_bins": [],
+      "all_day_days": 0,
+      "usable_days": 0.0,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.569,
+      "terrain": 0.704
+     },
+     "mons-mouton": {
+      "flat": {
+       "all": {
+        "year": 886.4,
+        "winter_half": 502.5,
+        "summer_half": 383.9
+       },
+       "long": {
+        "year": 116.3,
+        "winter_half": 116.3,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 702.9,
+        "winter_half": 327.2,
+        "summer_half": 375.8
+       },
+       "long": {
+        "year": 66.3,
+        "winter_half": 66.3,
+        "summer_half": 0.0
+       }
+      },
+      "open": {
+       "all": {
+        "year": 267.3,
+        "winter_half": 131.8,
+        "summer_half": 135.5
+       },
+       "long": {
+        "year": 29.9,
+        "winter_half": 29.9,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 2.47,
+      "best_stretch_bin": 35,
+      "poleward_share": 0.0,
+      "top_bins": [
+       [
+        35,
+        18.7
+       ],
+       [
+        34,
+        11.1
+       ]
+      ],
+      "all_day_days": 0,
+      "usable_days": 0.0,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.767,
+      "terrain": 1.0
+     },
+     "nobile-rim-2": {
+      "flat": {
+       "all": {
+        "year": 1121.2,
+        "winter_half": 656.0,
+        "summer_half": 465.1
+       },
+       "long": {
+        "year": 300.4,
+        "winter_half": 300.4,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 881.2,
+        "winter_half": 426.0,
+        "summer_half": 455.2
+       },
+       "long": {
+        "year": 167.3,
+        "winter_half": 167.3,
+        "summer_half": 0.0
+       }
+      },
+      "open": {
+       "all": {
+        "year": 388.3,
+        "winter_half": 198.7,
+        "summer_half": 189.6
+       },
+       "long": {
+        "year": 83.4,
+        "winter_half": 83.4,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 5.9,
+      "best_stretch_bin": 0,
+      "poleward_share": 0.0,
+      "top_bins": [
+       [
+        35,
+        22.9
+       ],
+       [
+        33,
+        21.0
+       ],
+       [
+        34,
+        16.6
+       ]
+      ],
+      "all_day_days": 38,
+      "usable_days": 21.6,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.874,
+      "terrain": 1.0
+     }
+    }
+   },
+   {
+    "name": "Bear Island, Norway",
+    "lat": 74.45,
+    "lon": 19.25,
+    "cell": "74.4_19.0",
+    "rock": {
+     "score": 0.0,
+     "body": null
+    },
+    "in_grazing_cells": true,
+    "hemisphere": "N",
+    "region": "Bear Island (Bjornoya)",
+    "gridded": true,
+    "bare": 0.6166134185303515,
+    "land_share": 0.43472222222222223,
+    "snow": {
+     "status": "doubtful",
+     "source": "3x3",
+     "land_pixels": 5,
+     "stuck_winters": 3
+    },
+    "horizon": {
+     "north_deg": -0.1,
+     "south_deg": 3.31,
+     "valid_share": 0.451,
+     "pixel_m": 60.0
+    },
+    "terrain": {
+     "median_slope_deg": 2.38,
+     "p90_slope_deg": 17.44,
+     "relief_m": 318.4
+    },
+    "targets": {
+     "connecting-ridge": {
+      "flat": {
+       "all": {
+        "year": 335.3,
+        "winter_half": 166.2,
+        "summer_half": 169.1
+       },
+       "long": {
+        "year": 52.7,
+        "winter_half": 28.9,
+        "summer_half": 23.7
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 125.8,
+        "winter_half": 46.5,
+        "summer_half": 79.3
+       },
+       "long": {
+        "year": 12.4,
+        "winter_half": 12.4,
+        "summer_half": 0.0
+       }
+      },
+      "open": {
+       "all": {
+        "year": 66.8,
+        "winter_half": 13.2,
+        "summer_half": 53.6
+       },
+       "long": {
+        "year": 1.9,
+        "winter_half": 1.9,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 2.87,
+      "best_stretch_bin": 12,
+      "poleward_share": 0.45,
+      "top_bins": [
+       [
+        30,
+        1.9
+       ]
+      ],
+      "all_day_days": 15,
+      "usable_days": 4.4,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.356,
+      "terrain": 0.399
+     },
+     "malapert": {
+      "flat": {
+       "all": {
+        "year": 874.0,
+        "winter_half": 379.7,
+        "summer_half": 494.3
+       },
+       "long": {
+        "year": 527.1,
+        "winter_half": 237.8,
+        "summer_half": 289.2
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 327.3,
+        "winter_half": 106.5,
+        "summer_half": 220.8
+       },
+       "long": {
+        "year": 191.2,
+        "winter_half": 80.3,
+        "summer_half": 110.9
+       }
+      },
+      "open": {
+       "all": {
+        "year": 223.1,
+        "winter_half": 49.2,
+        "summer_half": 173.9
+       },
+       "long": {
+        "year": 126.6,
+        "winter_half": 34.2,
+        "summer_half": 92.5
+       }
+      },
+      "longest_stretch_h": 6.23,
+      "best_stretch_bin": 12,
+      "poleward_share": 0.549,
+      "top_bins": [
+       [
+        22,
+        37.8
+       ],
+       [
+        21,
+        37.1
+       ],
+       [
+        20,
+        17.6
+       ]
+      ],
+      "all_day_days": 35,
+      "usable_days": 10.0,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.29,
+      "terrain": 0.359
+     },
+     "mons-mouton": {
+      "flat": {
+       "all": {
+        "year": 965.8,
+        "winter_half": 409.4,
+        "summer_half": 556.3
+       },
+       "long": {
+        "year": 628.8,
+        "winter_half": 253.6,
+        "summer_half": 375.2
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 360.6,
+        "winter_half": 115.3,
+        "summer_half": 245.2
+       },
+       "long": {
+        "year": 243.3,
+        "winter_half": 86.5,
+        "summer_half": 156.8
+       }
+      },
+      "open": {
+       "all": {
+        "year": 251.5,
+        "winter_half": 56.0,
+        "summer_half": 195.4
+       },
+       "long": {
+        "year": 169.0,
+        "winter_half": 38.9,
+        "summer_half": 130.1
+       }
+      },
+      "longest_stretch_h": 6.62,
+      "best_stretch_bin": 12,
+      "poleward_share": 0.597,
+      "top_bins": [
+       [
+        22,
+        40.5
+       ],
+       [
+        21,
+        40.2
+       ],
+       [
+        23,
+        27.6
+       ]
+      ],
+      "all_day_days": 39,
+      "usable_days": 11.0,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.349,
+      "terrain": 0.467
+     },
+     "nobile-rim-2": {
+      "flat": {
+       "all": {
+        "year": 1231.8,
+        "winter_half": 482.2,
+        "summer_half": 749.6
+       },
+       "long": {
+        "year": 1206.9,
+        "winter_half": 469.5,
+        "summer_half": 737.4
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 454.5,
+        "winter_half": 138.1,
+        "summer_half": 316.4
+       },
+       "long": {
+        "year": 447.5,
+        "winter_half": 136.3,
+        "summer_half": 311.2
+       }
+      },
+      "open": {
+       "all": {
+        "year": 332.9,
+        "winter_half": 74.1,
+        "summer_half": 258.8
+       },
+       "long": {
+        "year": 328.1,
+        "winter_half": 73.9,
+        "summer_half": 254.2
+       }
+      },
+      "longest_stretch_h": 7.6,
+      "best_stretch_bin": 12,
+      "poleward_share": 0.574,
+      "top_bins": [
+       [
+        21,
+        47.7
+       ],
+       [
+        22,
+        47.3
+       ],
+       [
+        23,
+        33.6
+       ]
+      ],
+      "all_day_days": 47,
+      "usable_days": 14.1,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.424,
+      "terrain": 0.502
+     }
+    }
+   },
+   {
+    "name": "Jan Mayen, Norway",
+    "lat": 70.95,
+    "lon": -8.55,
+    "cell": "70.9_-8.7",
+    "rock": {
+     "score": 0.0,
+     "body": null
+    },
+    "in_grazing_cells": true,
+    "hemisphere": "N",
+    "region": "Jan Mayen",
+    "gridded": true,
+    "bare": 0.5309734513274337,
+    "land_share": 0.26157407407407407,
+    "snow": {
+     "status": "doubtful",
+     "source": "3x3",
+     "land_pixels": 3,
+     "stuck_winters": 5
+    },
+    "horizon": {
+     "north_deg": 4.92,
+     "south_deg": -0.05,
+     "valid_share": 0.299,
+     "pixel_m": 60.0
+    },
+    "terrain": {
+     "median_slope_deg": 3.16,
+     "p90_slope_deg": 21.35,
+     "relief_m": 191.3
+    },
+    "targets": {
+     "connecting-ridge": {
+      "flat": {
+       "all": {
+        "year": 377.1,
+        "winter_half": 182.3,
+        "summer_half": 194.7
+       },
+       "long": {
+        "year": 107.1,
+        "winter_half": 50.1,
+        "summer_half": 57.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 130.3,
+        "winter_half": 24.5,
+        "summer_half": 105.9
+       },
+       "long": {
+        "year": 32.2,
+        "winter_half": 5.9,
+        "summer_half": 26.3
+       }
+      },
+      "open": {
+       "all": {
+        "year": 37.1,
+        "winter_half": 11.2,
+        "summer_half": 25.9
+       },
+       "long": {
+        "year": 11.7,
+        "winter_half": 3.9,
+        "summer_half": 7.8
+       }
+      },
+      "longest_stretch_h": 3.15,
+      "best_stretch_bin": 13,
+      "poleward_share": 0.532,
+      "top_bins": [
+       [
+        20,
+        7.8
+       ],
+       [
+        31,
+        3.9
+       ]
+      ],
+      "all_day_days": 18,
+      "usable_days": 1.8,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.48,
+      "terrain": 0.539
+     },
+     "malapert": {
+      "flat": {
+       "all": {
+        "year": 1051.6,
+        "winter_half": 414.7,
+        "summer_half": 636.9
+       },
+       "long": {
+        "year": 588.0,
+        "winter_half": 209.0,
+        "summer_half": 379.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 379.3,
+        "winter_half": 58.2,
+        "summer_half": 321.1
+       },
+       "long": {
+        "year": 205.8,
+        "winter_half": 18.3,
+        "summer_half": 187.5
+       }
+      },
+      "open": {
+       "all": {
+        "year": 148.1,
+        "winter_half": 32.5,
+        "summer_half": 115.5
+       },
+       "long": {
+        "year": 81.0,
+        "winter_half": 12.3,
+        "summer_half": 68.7
+       }
+      },
+      "longest_stretch_h": 5.93,
+      "best_stretch_bin": 13,
+      "poleward_share": 0.645,
+      "top_bins": [
+       [
+        20,
+        20.0
+       ],
+       [
+        19,
+        16.0
+       ],
+       [
+        21,
+        13.5
+       ]
+      ],
+      "all_day_days": 41,
+      "usable_days": 4.2,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.441,
+      "terrain": 0.545
+     },
+     "mons-mouton": {
+      "flat": {
+       "all": {
+        "year": 1148.4,
+        "winter_half": 447.2,
+        "summer_half": 701.2
+       },
+       "long": {
+        "year": 724.0,
+        "winter_half": 261.3,
+        "summer_half": 462.7
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 414.1,
+        "winter_half": 63.3,
+        "summer_half": 350.8
+       },
+       "long": {
+        "year": 232.6,
+        "winter_half": 27.5,
+        "summer_half": 205.1
+       }
+      },
+      "open": {
+       "all": {
+        "year": 170.3,
+        "winter_half": 36.4,
+        "summer_half": 133.9
+       },
+       "long": {
+        "year": 96.7,
+        "winter_half": 18.0,
+        "summer_half": 78.7
+       }
+      },
+      "longest_stretch_h": 6.3,
+      "best_stretch_bin": 13,
+      "poleward_share": 0.639,
+      "top_bins": [
+       [
+        20,
+        22.0
+       ],
+       [
+        19,
+        18.3
+       ],
+       [
+        21,
+        15.1
+       ]
+      ],
+      "all_day_days": 45,
+      "usable_days": 4.6,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.483,
+      "terrain": 0.647
+     },
+     "nobile-rim-2": {
+      "flat": {
+       "all": {
+        "year": 1381.1,
+        "winter_half": 527.8,
+        "summer_half": 853.3
+       },
+       "long": {
+        "year": 1027.6,
+        "winter_half": 381.6,
+        "summer_half": 646.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 499.5,
+        "winter_half": 76.5,
+        "summer_half": 423.0
+       },
+       "long": {
+        "year": 340.3,
+        "winter_half": 52.2,
+        "summer_half": 288.1
+       }
+      },
+      "open": {
+       "all": {
+        "year": 228.5,
+        "winter_half": 46.7,
+        "summer_half": 181.8
+       },
+       "long": {
+        "year": 150.2,
+        "winter_half": 33.1,
+        "summer_half": 117.1
+       }
+      },
+      "longest_stretch_h": 7.13,
+      "best_stretch_bin": 13,
+      "poleward_share": 0.629,
+      "top_bins": [
+       [
+        20,
+        26.8
+       ],
+       [
+        19,
+        23.9
+       ],
+       [
+        21,
+        20.0
+       ]
+      ],
+      "all_day_days": 53,
+      "usable_days": 5.4,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.547,
+      "terrain": 0.647
+     }
+    }
+   },
+   {
+    "name": "Reykjanes, Iceland",
+    "lat": 63.88,
+    "lon": -22.45,
+    "cell": "63.8_-22.6",
+    "rock": {
+     "score": 0.0,
+     "body": null
+    },
+    "in_grazing_cells": true,
+    "hemisphere": "N",
+    "region": "Iceland",
+    "gridded": false,
+    "bare": 0.0,
+    "land_share": 0.7847222222222222,
+    "snow": {
+     "status": "measured",
+     "source": "3x3",
+     "land_pixels": 6,
+     "stuck_winters": 1
+    },
+    "horizon": {
+     "north_deg": 0.74,
+     "south_deg": -0.07,
+     "valid_share": 0.809,
+     "pixel_m": 60.0
+    },
+    "terrain": {
+     "median_slope_deg": 1.16,
+     "p90_slope_deg": 3.28,
+     "relief_m": 71.2
+    },
+    "targets": {
+     "connecting-ridge": {
+      "flat": {
+       "all": {
+        "year": 384.6,
+        "winter_half": 201.8,
+        "summer_half": 182.8
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 282.3,
+        "winter_half": 102.3,
+        "summer_half": 180.0
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "open": {
+       "all": {
+        "year": 148.4,
+        "winter_half": 68.8,
+        "summer_half": 79.6
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 0.97,
+      "best_stretch_bin": 35,
+      "poleward_share": null,
+      "top_bins": [],
+      "all_day_days": 0,
+      "usable_days": 0.0,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.14,
+      "terrain": 0.157
+     },
+     "malapert": {
+      "flat": {
+       "all": {
+        "year": 993.6,
+        "winter_half": 566.8,
+        "summer_half": 426.8
+       },
+       "long": {
+        "year": 295.0,
+        "winter_half": 295.0,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 709.8,
+        "winter_half": 290.0,
+        "summer_half": 419.8
+       },
+       "long": {
+        "year": 135.0,
+        "winter_half": 135.0,
+        "summer_half": 0.0
+       }
+      },
+      "open": {
+       "all": {
+        "year": 540.9,
+        "winter_half": 243.0,
+        "summer_half": 297.8
+       },
+       "long": {
+        "year": 117.3,
+        "winter_half": 117.3,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 5.1,
+      "best_stretch_bin": 1,
+      "poleward_share": 0.0,
+      "top_bins": [
+       [
+        33,
+        33.3
+       ],
+       [
+        32,
+        30.7
+       ],
+       [
+        35,
+        17.6
+       ]
+      ],
+      "all_day_days": 53,
+      "usable_days": 22.3,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.107,
+      "terrain": 0.132
+     },
+     "mons-mouton": {
+      "flat": {
+       "all": {
+        "year": 1072.6,
+        "winter_half": 609.5,
+        "summer_half": 463.0
+       },
+       "long": {
+        "year": 306.3,
+        "winter_half": 306.3,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 769.5,
+        "winter_half": 314.2,
+        "summer_half": 455.4
+       },
+       "long": {
+        "year": 141.9,
+        "winter_half": 141.9,
+        "summer_half": 0.0
+       }
+      },
+      "open": {
+       "all": {
+        "year": 598.5,
+        "winter_half": 266.4,
+        "summer_half": 332.1
+       },
+       "long": {
+        "year": 124.0,
+        "winter_half": 124.0,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 5.35,
+      "best_stretch_bin": 1,
+      "poleward_share": 0.0,
+      "top_bins": [
+       [
+        32,
+        36.3
+       ],
+       [
+        33,
+        33.3
+       ],
+       [
+        35,
+        17.6
+       ]
+      ],
+      "all_day_days": 58,
+      "usable_days": 24.6,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.135,
+      "terrain": 0.181
+     },
+     "nobile-rim-2": {
+      "flat": {
+       "all": {
+        "year": 1269.8,
+        "winter_half": 713.5,
+        "summer_half": 556.3
+       },
+       "long": {
+        "year": 502.9,
+        "winter_half": 421.0,
+        "summer_half": 81.8
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 920.6,
+        "winter_half": 373.8,
+        "summer_half": 546.9
+       },
+       "long": {
+        "year": 286.3,
+        "winter_half": 204.4,
+        "summer_half": 81.8
+       }
+      },
+      "open": {
+       "all": {
+        "year": 744.9,
+        "winter_half": 324.3,
+        "summer_half": 420.7
+       },
+       "long": {
+        "year": 242.9,
+        "winter_half": 180.9,
+        "summer_half": 62.0
+       }
+      },
+      "longest_stretch_h": 5.87,
+      "best_stretch_bin": 32,
+      "poleward_share": 0.163,
+      "top_bins": [
+       [
+        32,
+        43.8
+       ],
+       [
+        31,
+        37.9
+       ],
+       [
+        33,
+        33.3
+       ]
+      ],
+      "all_day_days": 71,
+      "usable_days": 31.8,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.184,
+      "terrain": 0.218
+     }
+    }
+   },
+   {
+    "name": "Skeidararsandur, Iceland",
+    "lat": 63.95,
+    "lon": -17.5,
+    "cell": "63.9_-17.6",
+    "rock": {
+     "score": 0.0,
+     "body": null
+    },
+    "in_grazing_cells": true,
+    "hemisphere": "N",
+    "region": "Iceland",
+    "gridded": true,
+    "bare": 0.7361111111111112,
+    "land_share": 1.0,
+    "snow": {
+     "status": "measured",
+     "source": "3x3",
+     "land_pixels": 9,
+     "stuck_winters": 0
+    },
+    "horizon": {
+     "north_deg": 3.72,
+     "south_deg": -0.17,
+     "valid_share": 0.983,
+     "pixel_m": 60.0
+    },
+    "terrain": {
+     "median_slope_deg": 0.3,
+     "p90_slope_deg": 17.07,
+     "relief_m": 482.7
+    },
+    "targets": {
+     "connecting-ridge": {
+      "flat": {
+       "all": {
+        "year": 388.9,
+        "winter_half": 204.4,
+        "summer_half": 184.5
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 244.2,
+        "winter_half": 73.9,
+        "summer_half": 170.3
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "open": {
+       "all": {
+        "year": 76.1,
+        "winter_half": 53.6,
+        "summer_half": 22.4
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 1.0,
+      "best_stretch_bin": 35,
+      "poleward_share": null,
+      "top_bins": [],
+      "all_day_days": 0,
+      "usable_days": 0.0,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.185,
+      "terrain": 0.208
+     },
+     "malapert": {
+      "flat": {
+       "all": {
+        "year": 997.7,
+        "winter_half": 567.8,
+        "summer_half": 429.9
+       },
+       "long": {
+        "year": 294.1,
+        "winter_half": 294.1,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 601.4,
+        "winter_half": 205.6,
+        "summer_half": 395.8
+       },
+       "long": {
+        "year": 83.5,
+        "winter_half": 83.5,
+        "summer_half": 0.0
+       }
+      },
+      "open": {
+       "all": {
+        "year": 318.3,
+        "winter_half": 170.6,
+        "summer_half": 147.7
+       },
+       "long": {
+        "year": 76.5,
+        "winter_half": 76.5,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 5.12,
+      "best_stretch_bin": 1,
+      "poleward_share": 0.0,
+      "top_bins": [
+       [
+        32,
+        19.2
+       ],
+       [
+        35,
+        15.1
+       ],
+       [
+        33,
+        13.7
+       ]
+      ],
+      "all_day_days": 54,
+      "usable_days": 13.8,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.185,
+      "terrain": 0.229
+     },
+     "mons-mouton": {
+      "flat": {
+       "all": {
+        "year": 1077.0,
+        "winter_half": 610.7,
+        "summer_half": 466.3
+       },
+       "long": {
+        "year": 305.0,
+        "winter_half": 305.0,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 652.8,
+        "winter_half": 223.6,
+        "summer_half": 429.1
+       },
+       "long": {
+        "year": 88.0,
+        "winter_half": 88.0,
+        "summer_half": 0.0
+       }
+      },
+      "open": {
+       "all": {
+        "year": 358.4,
+        "winter_half": 187.0,
+        "summer_half": 171.4
+       },
+       "long": {
+        "year": 80.8,
+        "winter_half": 80.8,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 5.38,
+      "best_stretch_bin": 1,
+      "poleward_share": 0.0,
+      "top_bins": [
+       [
+        32,
+        22.5
+       ],
+       [
+        35,
+        15.1
+       ],
+       [
+        33,
+        13.7
+       ]
+      ],
+      "all_day_days": 60,
+      "usable_days": 16.1,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.191,
+      "terrain": 0.256
+     },
+     "nobile-rim-2": {
+      "flat": {
+       "all": {
+        "year": 1273.6,
+        "winter_half": 713.6,
+        "summer_half": 560.0
+       },
+       "long": {
+        "year": 502.1,
+        "winter_half": 419.4,
+        "summer_half": 82.7
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 782.2,
+        "winter_half": 267.2,
+        "summer_half": 514.9
+       },
+       "long": {
+        "year": 206.2,
+        "winter_half": 125.3,
+        "summer_half": 80.9
+       }
+      },
+      "open": {
+       "all": {
+        "year": 461.6,
+        "winter_half": 226.9,
+        "summer_half": 234.7
+       },
+       "long": {
+        "year": 143.6,
+        "winter_half": 115.0,
+        "summer_half": 28.6
+       }
+      },
+      "longest_stretch_h": 5.97,
+      "best_stretch_bin": 2,
+      "poleward_share": 0.165,
+      "top_bins": [
+       [
+        32,
+        26.4
+       ],
+       [
+        31,
+        21.0
+       ],
+       [
+        35,
+        15.1
+       ]
+      ],
+      "all_day_days": 72,
+      "usable_days": 20.0,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.215,
+      "terrain": 0.254
+     }
+    }
+   },
+   {
+    "name": "Myrdalssandur sand plain, Iceland",
+    "lat": 63.45,
+    "lon": -18.6,
+    "cell": "63.4_-18.6",
+    "rock": {
+     "score": 0.0,
+     "body": null
+    },
+    "in_grazing_cells": true,
+    "hemisphere": "N",
+    "region": "Iceland",
+    "gridded": true,
+    "bare": 0.8968609865470852,
+    "land_share": 0.7743055555555556,
+    "snow": {
+     "status": "measured",
+     "source": "3x3",
+     "land_pixels": 7,
+     "stuck_winters": 0
+    },
+    "horizon": {
+     "north_deg": 0.34,
+     "south_deg": -0.12,
+     "valid_share": 0.796,
+     "pixel_m": 60.0
+    },
+    "terrain": {
+     "median_slope_deg": 0.28,
+     "p90_slope_deg": 0.83,
+     "relief_m": 35.5
+    },
+    "targets": {
+     "connecting-ridge": {
+      "flat": {
+       "all": {
+        "year": 369.3,
+        "winter_half": 192.6,
+        "summer_half": 176.7
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 264.9,
+        "winter_half": 93.4,
+        "summer_half": 171.5
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "open": {
+       "all": {
+        "year": 189.9,
+        "winter_half": 85.2,
+        "summer_half": 104.7
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 0.87,
+      "best_stretch_bin": 35,
+      "poleward_share": null,
+      "top_bins": [],
+      "all_day_days": 0,
+      "usable_days": 0.0,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.022,
+      "terrain": 0.025
+     },
+     "malapert": {
+      "flat": {
+       "all": {
+        "year": 976.2,
+        "winter_half": 561.1,
+        "summer_half": 415.1
+       },
+       "long": {
+        "year": 258.5,
+        "winter_half": 258.5,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 672.1,
+        "winter_half": 269.7,
+        "summer_half": 402.4
+       },
+       "long": {
+        "year": 92.2,
+        "winter_half": 92.2,
+        "summer_half": 0.0
+       }
+      },
+      "open": {
+       "all": {
+        "year": 595.7,
+        "winter_half": 261.5,
+        "summer_half": 334.2
+       },
+       "long": {
+        "year": 91.6,
+        "winter_half": 91.6,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 5.1,
+      "best_stretch_bin": 33,
+      "poleward_share": 0.0,
+      "top_bins": [
+       [
+        33,
+        27.1
+       ],
+       [
+        35,
+        22.7
+       ],
+       [
+        1,
+        16.3
+       ]
+      ],
+      "all_day_days": 48,
+      "usable_days": 16.8,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.017,
+      "terrain": 0.021
+     },
+     "mons-mouton": {
+      "flat": {
+       "all": {
+        "year": 1055.9,
+        "winter_half": 605.2,
+        "summer_half": 450.6
+       },
+       "long": {
+        "year": 310.6,
+        "winter_half": 310.6,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 731.1,
+        "winter_half": 294.3,
+        "summer_half": 436.7
+       },
+       "long": {
+        "year": 126.6,
+        "winter_half": 126.6,
+        "summer_half": 0.0
+       }
+      },
+      "open": {
+       "all": {
+        "year": 654.7,
+        "winter_half": 286.1,
+        "summer_half": 368.5
+       },
+       "long": {
+        "year": 125.8,
+        "winter_half": 125.8,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 5.35,
+      "best_stretch_bin": 1,
+      "poleward_share": 0.0,
+      "top_bins": [
+       [
+        32,
+        32.0
+       ],
+       [
+        33,
+        27.2
+       ],
+       [
+        35,
+        22.7
+       ]
+      ],
+      "all_day_days": 54,
+      "usable_days": 19.8,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.022,
+      "terrain": 0.029
+     },
+     "nobile-rim-2": {
+      "flat": {
+       "all": {
+        "year": 1253.5,
+        "winter_half": 711.4,
+        "summer_half": 542.1
+       },
+       "long": {
+        "year": 425.6,
+        "winter_half": 425.6,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 879.0,
+        "winter_half": 353.7,
+        "summer_half": 525.2
+       },
+       "long": {
+        "year": 186.6,
+        "winter_half": 186.6,
+        "summer_half": 0.0
+       }
+      },
+      "open": {
+       "all": {
+        "year": 802.6,
+        "winter_half": 345.5,
+        "summer_half": 457.0
+       },
+       "long": {
+        "year": 185.4,
+        "winter_half": 185.4,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 5.92,
+      "best_stretch_bin": 32,
+      "poleward_share": 0.0,
+      "top_bins": [
+       [
+        32,
+        41.5
+       ],
+       [
+        31,
+        32.2
+       ],
+       [
+        33,
+        27.2
+       ]
+      ],
+      "all_day_days": 68,
+      "usable_days": 27.0,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.041,
+      "terrain": 0.049
+     }
+    }
+   },
+   {
+    "name": "Haughton crater, Devon Island, Canada",
+    "lat": 75.38,
+    "lon": -89.67,
+    "cell": "75.3_-90.0",
+    "rock": {
+     "score": 0.0,
+     "body": null
+    },
+    "in_grazing_cells": true,
+    "hemisphere": "N",
+    "region": "Arctic Canada",
+    "gridded": true,
+    "bare": 0.5333333333333333,
+    "land_share": 1.0,
+    "snow": {
+     "status": "measured",
+     "source": "3x3",
+     "land_pixels": 9,
+     "stuck_winters": 0
+    },
+    "horizon": {
+     "north_deg": 0.77,
+     "south_deg": 1.79,
+     "valid_share": 1.0,
+     "pixel_m": 60.0
+    },
+    "terrain": {
+     "median_slope_deg": 3.41,
+     "p90_slope_deg": 9.55,
+     "relief_m": 142.0
+    },
+    "targets": {
+     "connecting-ridge": {
+      "flat": {
+       "all": {
+        "year": 327.7,
+        "winter_half": 163.5,
+        "summer_half": 164.2
+       },
+       "long": {
+        "year": 83.3,
+        "winter_half": 51.1,
+        "summer_half": 32.2
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 73.8,
+        "winter_half": 1.3,
+        "summer_half": 72.5
+       },
+       "long": {
+        "year": 30.8,
+        "winter_half": 0.0,
+        "summer_half": 30.8
+       }
+      },
+      "open": {
+       "all": {
+        "year": 27.8,
+        "winter_half": 0.3,
+        "summer_half": 27.5
+       },
+       "long": {
+        "year": 13.4,
+        "winter_half": 0.0,
+        "summer_half": 13.4
+       }
+      },
+      "longest_stretch_h": 3.22,
+      "best_stretch_bin": 22,
+      "poleward_share": 0.387,
+      "top_bins": [
+       [
+        22,
+        13.4
+       ]
+      ],
+      "all_day_days": 14,
+      "usable_days": 0.0,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.39,
+      "terrain": 0.438
+     },
+     "malapert": {
+      "flat": {
+       "all": {
+        "year": 851.6,
+        "winter_half": 373.3,
+        "summer_half": 478.3
+       },
+       "long": {
+        "year": 523.5,
+        "winter_half": 230.5,
+        "summer_half": 293.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 219.6,
+        "winter_half": 3.6,
+        "summer_half": 216.0
+       },
+       "long": {
+        "year": 149.9,
+        "winter_half": 0.0,
+        "summer_half": 149.9
+       }
+      },
+      "open": {
+       "all": {
+        "year": 144.3,
+        "winter_half": 2.0,
+        "summer_half": 142.3
+       },
+       "long": {
+        "year": 100.3,
+        "winter_half": 0.0,
+        "summer_half": 100.3
+       }
+      },
+      "longest_stretch_h": 6.53,
+      "best_stretch_bin": 22,
+      "poleward_share": 0.56,
+      "top_bins": [
+       [
+        21,
+        39.3
+       ],
+       [
+        22,
+        36.6
+       ],
+       [
+        23,
+        24.4
+       ]
+      ],
+      "all_day_days": 35,
+      "usable_days": 0.0,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.254,
+      "terrain": 0.314
+     },
+     "mons-mouton": {
+      "flat": {
+       "all": {
+        "year": 939.3,
+        "winter_half": 401.9,
+        "summer_half": 537.3
+       },
+       "long": {
+        "year": 676.6,
+        "winter_half": 287.1,
+        "summer_half": 389.5
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 247.4,
+        "winter_half": 4.0,
+        "summer_half": 243.4
+       },
+       "long": {
+        "year": 187.9,
+        "winter_half": 0.0,
+        "summer_half": 187.9
+       }
+      },
+      "open": {
+       "all": {
+        "year": 169.4,
+        "winter_half": 2.3,
+        "summer_half": 167.1
+       },
+       "long": {
+        "year": 134.0,
+        "winter_half": 0.0,
+        "summer_half": 134.0
+       }
+      },
+      "longest_stretch_h": 6.93,
+      "best_stretch_bin": 22,
+      "poleward_share": 0.576,
+      "top_bins": [
+       [
+        21,
+        44.0
+       ],
+       [
+        22,
+        39.9
+       ],
+       [
+        23,
+        27.3
+       ]
+      ],
+      "all_day_days": 37,
+      "usable_days": 0.0,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.366,
+      "terrain": 0.49
+     },
+     "nobile-rim-2": {
+      "flat": {
+       "all": {
+        "year": 1183.9,
+        "winter_half": 472.6,
+        "summer_half": 711.3
+       },
+       "long": {
+        "year": 1178.3,
+        "winter_half": 468.8,
+        "summer_half": 709.5
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 327.7,
+        "winter_half": 5.1,
+        "summer_half": 322.6
+       },
+       "long": {
+        "year": 327.7,
+        "winter_half": 5.1,
+        "summer_half": 322.6
+       }
+      },
+      "open": {
+       "all": {
+        "year": 242.9,
+        "winter_half": 3.4,
+        "summer_half": 239.5
+       },
+       "long": {
+        "year": 242.9,
+        "winter_half": 3.4,
+        "summer_half": 239.5
+       }
+      },
+      "longest_stretch_h": 7.93,
+      "best_stretch_bin": 22,
+      "poleward_share": 0.562,
+      "top_bins": [
+       [
+        21,
+        54.8
+       ],
+       [
+        22,
+        48.2
+       ],
+       [
+        20,
+        41.0
+       ]
+      ],
+      "all_day_days": 45,
+      "usable_days": 0.0,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.451,
+      "terrain": 0.534
+     }
+    }
+   },
+   {
+    "name": "Longyearbyen, Svalbard",
+    "lat": 78.2,
+    "lon": 15.6,
+    "cell": "78.2_15.6",
+    "rock": {
+     "score": 0.0,
+     "body": null
+    },
+    "in_grazing_cells": true,
+    "hemisphere": "N",
+    "region": "Svalbard",
+    "gridded": true,
+    "bare": 0.4791929382093317,
+    "land_share": 0.9178240740740741,
+    "snow": {
+     "status": "measured",
+     "source": "3x3",
+     "land_pixels": 7,
+     "stuck_winters": 0
+    },
+    "horizon": {
+     "north_deg": 12.89,
+     "south_deg": 7.51,
+     "valid_share": 0.969,
+     "pixel_m": 60.0
+    },
+    "terrain": {
+     "median_slope_deg": 18.76,
+     "p90_slope_deg": 31.68,
+     "relief_m": 839.4
+    },
+    "targets": {
+     "connecting-ridge": {
+      "flat": {
+       "all": {
+        "year": 312.0,
+        "winter_half": 158.1,
+        "summer_half": 153.9
+       },
+       "long": {
+        "year": 62.3,
+        "winter_half": 27.2,
+        "summer_half": 35.1
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 29.0,
+        "winter_half": 0.5,
+        "summer_half": 28.5
+       },
+       "long": {
+        "year": 13.5,
+        "winter_half": 0.0,
+        "summer_half": 13.5
+       }
+      },
+      "open": {
+       "all": {
+        "year": 3.6,
+        "winter_half": 0.0,
+        "summer_half": 3.6
+       },
+       "long": {
+        "year": 1.1,
+        "winter_half": 0.0,
+        "summer_half": 1.1
+       }
+      },
+      "longest_stretch_h": 3.43,
+      "best_stretch_bin": 23,
+      "poleward_share": 0.563,
+      "top_bins": [
+       [
+        23,
+        1.1
+       ]
+      ],
+      "all_day_days": 14,
+      "usable_days": 0.0,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.51,
+      "terrain": 0.572
+     },
+     "malapert": {
+      "flat": {
+       "all": {
+        "year": 802.8,
+        "winter_half": 355.5,
+        "summer_half": 447.3
+       },
+       "long": {
+        "year": 783.5,
+        "winter_half": 346.6,
+        "summer_half": 436.9
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 83.8,
+        "winter_half": 1.4,
+        "summer_half": 82.4
+       },
+       "long": {
+        "year": 81.0,
+        "winter_half": 1.4,
+        "summer_half": 79.6
+       }
+      },
+      "open": {
+       "all": {
+        "year": 16.3,
+        "winter_half": 0.3,
+        "summer_half": 16.0
+       },
+       "long": {
+        "year": 15.9,
+        "winter_half": 0.3,
+        "summer_half": 15.6
+       }
+      },
+      "longest_stretch_h": 7.23,
+      "best_stretch_bin": 23,
+      "poleward_share": 0.527,
+      "top_bins": [
+       [
+        23,
+        4.2
+       ],
+       [
+        24,
+        3.7
+       ],
+       [
+        22,
+        3.3
+       ]
+      ],
+      "all_day_days": 33,
+      "usable_days": 0.0,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.669,
+      "terrain": 0.827
+     },
+     "mons-mouton": {
+      "flat": {
+       "all": {
+        "year": 882.4,
+        "winter_half": 381.3,
+        "summer_half": 501.1
+       },
+       "long": {
+        "year": 873.6,
+        "winter_half": 372.4,
+        "summer_half": 501.1
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 93.1,
+        "winter_half": 1.6,
+        "summer_half": 91.5
+       },
+       "long": {
+        "year": 93.1,
+        "winter_half": 1.6,
+        "summer_half": 91.5
+       }
+      },
+      "open": {
+       "all": {
+        "year": 19.5,
+        "winter_half": 0.4,
+        "summer_half": 19.1
+       },
+       "long": {
+        "year": 19.5,
+        "winter_half": 0.4,
+        "summer_half": 19.1
+       }
+      },
+      "longest_stretch_h": 7.7,
+      "best_stretch_bin": 23,
+      "poleward_share": 0.536,
+      "top_bins": [
+       [
+        23,
+        4.9
+       ],
+       [
+        24,
+        4.2
+       ],
+       [
+        22,
+        4.0
+       ]
+      ],
+      "all_day_days": 36,
+      "usable_days": 0.0,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.557,
+      "terrain": 0.746
+     },
+     "nobile-rim-2": {
+      "flat": {
+       "all": {
+        "year": 1099.6,
+        "winter_half": 444.0,
+        "summer_half": 655.6
+       },
+       "long": {
+        "year": 1071.2,
+        "winter_half": 435.2,
+        "summer_half": 636.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 118.9,
+        "winter_half": 2.2,
+        "summer_half": 116.6
+       },
+       "long": {
+        "year": 118.1,
+        "winter_half": 2.2,
+        "summer_half": 115.8
+       }
+      },
+      "open": {
+       "all": {
+        "year": 29.2,
+        "winter_half": 0.7,
+        "summer_half": 28.5
+       },
+       "long": {
+        "year": 29.0,
+        "winter_half": 0.7,
+        "summer_half": 28.3
+       }
+      },
+      "longest_stretch_h": 8.83,
+      "best_stretch_bin": 23,
+      "poleward_share": 0.535,
+      "top_bins": [
+       [
+        23,
+        6.6
+       ],
+       [
+        22,
+        5.9
+       ],
+       [
+        24,
+        5.7
+       ]
+      ],
+      "all_day_days": 44,
+      "usable_days": 0.1,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.573,
+      "terrain": 0.678
+     }
+    }
+   },
+   {
+    "name": "Kangerlussuaq, Greenland",
+    "lat": 67.01,
+    "lon": -50.7,
+    "cell": "67.0_-50.7",
+    "rock": {
+     "score": 0.0,
+     "body": null
+    },
+    "in_grazing_cells": true,
+    "hemisphere": "N",
+    "region": "Greenland",
+    "gridded": false,
+    "bare": 0.07084468664850137,
+    "land_share": 0.8495370370370371,
+    "snow": {
+     "status": "measured",
+     "source": "3x3",
+     "land_pixels": 7,
+     "stuck_winters": 0
+    },
+    "horizon": {
+     "north_deg": 7.01,
+     "south_deg": 5.03,
+     "valid_share": 1.0,
+     "pixel_m": 60.0
+    },
+    "terrain": {
+     "median_slope_deg": 7.36,
+     "p90_slope_deg": 18.32,
+     "relief_m": 426.5
+    },
+    "targets": {
+     "connecting-ridge": {
+      "flat": {
+       "all": {
+        "year": 543.2,
+        "winter_half": 256.2,
+        "summer_half": 286.9
+       },
+       "long": {
+        "year": 175.8,
+        "winter_half": 53.9,
+        "summer_half": 121.9
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 218.4,
+        "winter_half": 5.0,
+        "summer_half": 213.4
+       },
+       "long": {
+        "year": 103.0,
+        "winter_half": 0.0,
+        "summer_half": 103.0
+       }
+      },
+      "open": {
+       "all": {
+        "year": 14.0,
+        "winter_half": 0.9,
+        "summer_half": 13.1
+       },
+       "long": {
+        "year": 4.7,
+        "winter_half": 0.0,
+        "summer_half": 4.7
+       }
+      },
+      "longest_stretch_h": 3.37,
+      "best_stretch_bin": 15,
+      "poleward_share": 0.693,
+      "top_bins": [
+       [
+        17,
+        1.5
+       ],
+       [
+        18,
+        1.3
+       ],
+       [
+        16,
+        1.2
+       ]
+      ],
+      "all_day_days": 48,
+      "usable_days": 0.0,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.711,
+      "terrain": 0.798
+     },
+     "malapert": {
+      "flat": {
+       "all": {
+        "year": 1123.0,
+        "winter_half": 525.6,
+        "summer_half": 597.4
+       },
+       "long": {
+        "year": 502.3,
+        "winter_half": 238.3,
+        "summer_half": 264.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 448.9,
+        "winter_half": 13.1,
+        "summer_half": 435.8
+       },
+       "long": {
+        "year": 230.3,
+        "winter_half": 0.0,
+        "summer_half": 230.3
+       }
+      },
+      "open": {
+       "all": {
+        "year": 94.3,
+        "winter_half": 5.3,
+        "summer_half": 89.0
+       },
+       "long": {
+        "year": 32.5,
+        "winter_half": 0.0,
+        "summer_half": 32.5
+       }
+      },
+      "longest_stretch_h": 5.77,
+      "best_stretch_bin": 15,
+      "poleward_share": 0.526,
+      "top_bins": [
+       [
+        17,
+        7.8
+       ],
+       [
+        18,
+        7.4
+       ],
+       [
+        19,
+        6.7
+       ]
+      ],
+      "all_day_days": 80,
+      "usable_days": 0.0,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.518,
+      "terrain": 0.64
+     },
+     "mons-mouton": {
+      "flat": {
+       "all": {
+        "year": 1203.2,
+        "winter_half": 562.2,
+        "summer_half": 640.9
+       },
+       "long": {
+        "year": 609.7,
+        "winter_half": 289.0,
+        "summer_half": 320.7
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 480.9,
+        "winter_half": 14.4,
+        "summer_half": 466.4
+       },
+       "long": {
+        "year": 266.4,
+        "winter_half": 0.0,
+        "summer_half": 266.4
+       }
+      },
+      "open": {
+       "all": {
+        "year": 114.1,
+        "winter_half": 6.3,
+        "summer_half": 107.8
+       },
+       "long": {
+        "year": 43.8,
+        "winter_half": 0.0,
+        "summer_half": 43.8
+       }
+      },
+      "longest_stretch_h": 6.05,
+      "best_stretch_bin": 15,
+      "poleward_share": 0.526,
+      "top_bins": [
+       [
+        17,
+        9.3
+       ],
+       [
+        18,
+        8.9
+       ],
+       [
+        19,
+        8.2
+       ]
+      ],
+      "all_day_days": 84,
+      "usable_days": 0.0,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.691,
+      "terrain": 0.925
+     },
+     "nobile-rim-2": {
+      "flat": {
+       "all": {
+        "year": 1404.2,
+        "winter_half": 652.8,
+        "summer_half": 751.4
+       },
+       "long": {
+        "year": 849.2,
+        "winter_half": 402.8,
+        "summer_half": 446.5
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": 562.0,
+        "winter_half": 18.0,
+        "summer_half": 544.0
+       },
+       "long": {
+        "year": 358.7,
+        "winter_half": 0.0,
+        "summer_half": 358.7
+       }
+      },
+      "open": {
+       "all": {
+        "year": 169.1,
+        "winter_half": 9.0,
+        "summer_half": 160.1
+       },
+       "long": {
+        "year": 81.7,
+        "winter_half": 0.0,
+        "summer_half": 81.7
+       }
+      },
+      "longest_stretch_h": 6.8,
+      "best_stretch_bin": 15,
+      "poleward_share": 0.526,
+      "top_bins": [
+       [
+        17,
+        13.7
+       ],
+       [
+        18,
+        13.3
+       ],
+       [
+        19,
+        12.4
+       ]
+      ],
+      "all_day_days": 94,
+      "usable_days": 0.0,
+      "summer_rock_hours": null,
+      "long_summer_rock_hours": null,
+      "long_summer_rock_open_hours": null,
+      "terrain_overlap": 0.782,
+      "terrain": 0.925
+     }
+    }
+   },
+   {
+    "name": "Bunger Hills",
+    "lat": -66.27,
+    "lon": 100.75,
+    "cell": "-66.3_100.5",
+    "rock": {
+     "score": 0.0,
+     "body": null
+    },
+    "winter_snow_evidence": "literature: no continuous winter cover",
+    "in_grazing_cells": true,
+    "hemisphere": "S",
+    "region": "Wilkes Land",
+    "gridded": true,
+    "bare": 0.6022123836967334,
+    "land_share": 0.8769444444444444,
+    "snow": {
+     "status": "unmeasured",
+     "source": null,
+     "land_pixels": null,
+     "stuck_winters": null
+    },
+    "horizon": {
+     "north_deg": 1.04,
+     "south_deg": 1.86,
+     "valid_share": 0.922,
+     "pixel_m": 60.0
+    },
+    "terrain": {
+     "median_slope_deg": 3.2,
+     "p90_slope_deg": 9.2,
+     "relief_m": 90.6
+    },
+    "targets": {
+     "connecting-ridge": {
+      "flat": {
+       "all": {
+        "year": 542.5,
+        "winter_half": 279.2,
+        "summer_half": 263.3
+       },
+       "long": {
+        "year": 159.6,
+        "winter_half": 107.9,
+        "summer_half": 51.6
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 161.0,
+        "winter_half": 107.1,
+        "summer_half": 53.9
+       },
+       "long": {
+        "year": 44.7,
+        "winter_half": 38.2,
+        "summer_half": 6.5
+       }
+      },
+      "longest_stretch_h": 3.47,
+      "best_stretch_bin": 35,
+      "poleward_share": 0.324,
+      "top_bins": [
+       [
+        35,
+        51.6
+       ],
+       [
+        15,
+        31.5
+       ],
+       [
+        18,
+        29.1
+       ]
+      ],
+      "all_day_days": 41,
+      "usable_days": null,
+      "summer_rock_hours": 179.3,
+      "long_summer_rock_hours": 51.6,
+      "long_summer_rock_open_hours": 6.5,
+      "terrain_overlap": 0.405,
+      "terrain": 0.454
+     },
+     "malapert": {
+      "flat": {
+       "all": {
+        "year": 1111.2,
+        "winter_half": 557.7,
+        "summer_half": 553.5
+       },
+       "long": {
+        "year": 473.6,
+        "winter_half": 292.7,
+        "summer_half": 180.9
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 587.7,
+        "winter_half": 319.3,
+        "summer_half": 268.3
+       },
+       "long": {
+        "year": 216.6,
+        "winter_half": 149.2,
+        "summer_half": 67.3
+       }
+      },
+      "longest_stretch_h": 5.8,
+      "best_stretch_bin": 35,
+      "poleward_share": 0.382,
+      "top_bins": [
+       [
+        35,
+        85.9
+       ],
+       [
+        13,
+        51.9
+       ],
+       [
+        34,
+        51.7
+       ]
+      ],
+      "all_day_days": 79,
+      "usable_days": null,
+      "summer_rock_hours": 350.0,
+      "long_summer_rock_hours": 180.9,
+      "long_summer_rock_open_hours": 67.3,
+      "terrain_overlap": 0.246,
+      "terrain": 0.304
+     },
+     "mons-mouton": {
+      "flat": {
+       "all": {
+        "year": 1189.6,
+        "winter_half": 594.1,
+        "summer_half": 595.5
+       },
+       "long": {
+        "year": 617.0,
+        "winter_half": 385.0,
+        "summer_half": 232.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 658.4,
+        "winter_half": 352.2,
+        "summer_half": 306.2
+       },
+       "long": {
+        "year": 309.2,
+        "winter_half": 213.7,
+        "summer_half": 95.6
+       }
+      },
+      "longest_stretch_h": 6.07,
+      "best_stretch_bin": 35,
+      "poleward_share": 0.376,
+      "top_bins": [
+       [
+        35,
+        90.3
+       ],
+       [
+        34,
+        54.5
+       ],
+       [
+        13,
+        54.4
+       ]
+      ],
+      "all_day_days": 83,
+      "usable_days": null,
+      "summer_rock_hours": 373.6,
+      "long_summer_rock_hours": 232.0,
+      "long_summer_rock_open_hours": 95.6,
+      "terrain_overlap": 0.376,
+      "terrain": 0.503
+     },
+     "nobile-rim-2": {
+      "flat": {
+       "all": {
+        "year": 1386.8,
+        "winter_half": 684.0,
+        "summer_half": 702.7
+       },
+       "long": {
+        "year": 847.0,
+        "winter_half": 500.6,
+        "summer_half": 346.4
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 840.0,
+        "winter_half": 434.9,
+        "summer_half": 405.2
+       },
+       "long": {
+        "year": 474.4,
+        "winter_half": 303.4,
+        "summer_half": 171.0
+       }
+      },
+      "longest_stretch_h": 6.8,
+      "best_stretch_bin": 35,
+      "poleward_share": 0.409,
+      "top_bins": [
+       [
+        35,
+        101.1
+       ],
+       [
+        34,
+        61.6
+       ],
+       [
+        21,
+        61.6
+       ]
+      ],
+      "all_day_days": 95,
+      "usable_days": null,
+      "summer_rock_hours": 433.1,
+      "long_summer_rock_hours": 306.6,
+      "long_summer_rock_open_hours": 147.9,
+      "terrain_overlap": 0.467,
+      "terrain": 0.552
+     }
+    }
+   },
+   {
+    "name": "Vestfold Hills",
+    "lat": -68.55,
+    "lon": 78.25,
+    "cell": "-68.6_78.0",
+    "rock": {
+     "score": 0.0,
+     "body": null
+    },
+    "winter_snow_evidence": "one qualitative report",
+    "in_grazing_cells": true,
+    "hemisphere": "S",
+    "region": "Princess Elizabeth Land",
+    "gridded": true,
+    "bare": 0.9098474085797456,
+    "land_share": 0.740925925925926,
+    "snow": {
+     "status": "unmeasured",
+     "source": null,
+     "land_pixels": null,
+     "stuck_winters": null
+    },
+    "horizon": {
+     "north_deg": 1.19,
+     "south_deg": 1.84,
+     "valid_share": 0.759,
+     "pixel_m": 60.0
+    },
+    "terrain": {
+     "median_slope_deg": 4.23,
+     "p90_slope_deg": 10.47,
+     "relief_m": 77.5
+    },
+    "targets": {
+     "connecting-ridge": {
+      "flat": {
+       "all": {
+        "year": 448.8,
+        "winter_half": 204.4,
+        "summer_half": 244.4
+       },
+       "long": {
+        "year": 131.5,
+        "winter_half": 52.5,
+        "summer_half": 78.9
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 130.7,
+        "winter_half": 69.3,
+        "summer_half": 61.4
+       },
+       "long": {
+        "year": 40.1,
+        "winter_half": 19.1,
+        "summer_half": 21.0
+       }
+      },
+      "longest_stretch_h": 3.13,
+      "best_stretch_bin": 1,
+      "poleward_share": 0.6,
+      "top_bins": [
+       [
+        1,
+        30.1
+       ],
+       [
+        20,
+        29.1
+       ],
+       [
+        33,
+        28.4
+       ]
+      ],
+      "all_day_days": 26,
+      "usable_days": null,
+      "summer_rock_hours": 140.4,
+      "long_summer_rock_hours": 78.9,
+      "long_summer_rock_open_hours": 21.0,
+      "terrain_overlap": 0.473,
+      "terrain": 0.531
+     },
+     "malapert": {
+      "flat": {
+       "all": {
+        "year": 1083.1,
+        "winter_half": 447.4,
+        "summer_half": 635.7
+       },
+       "long": {
+        "year": 535.0,
+        "winter_half": 208.7,
+        "summer_half": 326.3
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 567.3,
+        "winter_half": 242.8,
+        "summer_half": 324.4
+       },
+       "long": {
+        "year": 282.8,
+        "winter_half": 112.5,
+        "summer_half": 170.3
+       }
+      },
+      "longest_stretch_h": 5.72,
+      "best_stretch_bin": 1,
+      "poleward_share": 0.61,
+      "top_bins": [
+       [
+        35,
+        70.2
+       ],
+       [
+        33,
+        55.8
+       ],
+       [
+        1,
+        53.9
+       ]
+      ],
+      "all_day_days": 55,
+      "usable_days": null,
+      "summer_rock_hours": 395.4,
+      "long_summer_rock_hours": 281.1,
+      "long_summer_rock_open_hours": 151.4,
+      "terrain_overlap": 0.287,
+      "terrain": 0.355
+     },
+     "mons-mouton": {
+      "flat": {
+       "all": {
+        "year": 1165.3,
+        "winter_half": 480.4,
+        "summer_half": 684.9
+       },
+       "long": {
+        "year": 607.9,
+        "winter_half": 259.6,
+        "summer_half": 348.4
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 637.9,
+        "winter_half": 271.3,
+        "summer_half": 366.6
+       },
+       "long": {
+        "year": 335.9,
+        "winter_half": 146.6,
+        "summer_half": 189.3
+       }
+      },
+      "longest_stretch_h": 6.05,
+      "best_stretch_bin": 1,
+      "poleward_share": 0.573,
+      "top_bins": [
+       [
+        35,
+        75.9
+       ],
+       [
+        33,
+        59.1
+       ],
+       [
+        1,
+        57.0
+       ]
+      ],
+      "all_day_days": 59,
+      "usable_days": null,
+      "summer_rock_hours": 424.0,
+      "long_summer_rock_hours": 300.2,
+      "long_summer_rock_open_hours": 167.9,
+      "terrain_overlap": 0.44,
+      "terrain": 0.589
+     },
+     "nobile-rim-2": {
+      "flat": {
+       "all": {
+        "year": 1370.4,
+        "winter_half": 561.5,
+        "summer_half": 808.9
+       },
+       "long": {
+        "year": 866.0,
+        "winter_half": 376.8,
+        "summer_half": 489.2
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 818.3,
+        "winter_half": 342.9,
+        "summer_half": 475.5
+       },
+       "long": {
+        "year": 515.5,
+        "winter_half": 231.0,
+        "summer_half": 284.5
+       }
+      },
+      "longest_stretch_h": 6.83,
+      "best_stretch_bin": 1,
+      "poleward_share": 0.565,
+      "top_bins": [
+       [
+        35,
+        89.4
+       ],
+       [
+        33,
+        67.1
+       ],
+       [
+        1,
+        64.6
+       ]
+      ],
+      "all_day_days": 69,
+      "usable_days": null,
+      "summer_rock_hours": 494.4,
+      "long_summer_rock_hours": 392.3,
+      "long_summer_rock_open_hours": 233.5,
+      "terrain_overlap": 0.535,
+      "terrain": 0.633
+     }
+    }
+   },
+   {
+    "name": "Larsemann Hills",
+    "lat": -69.4,
+    "lon": 76.25,
+    "cell": "-69.4_76.2",
+    "rock": {
+     "score": 0.0,
+     "body": null
+    },
+    "winter_snow_evidence": "station shows snow",
+    "in_grazing_cells": true,
+    "hemisphere": "S",
+    "region": "Princess Elizabeth Land",
+    "gridded": false,
+    "bare": 0.8131178945078129,
+    "land_share": 0.14333333333333334,
+    "snow": {
+     "status": "unmeasured",
+     "source": null,
+     "land_pixels": null,
+     "stuck_winters": null
+    },
+    "horizon": {
+     "north_deg": 0.03,
+     "south_deg": 3.28,
+     "valid_share": 0.133,
+     "pixel_m": 60.0
+    },
+    "terrain": {
+     "median_slope_deg": 6.67,
+     "p90_slope_deg": 13.13,
+     "relief_m": 79.6
+    },
+    "targets": {
+     "connecting-ridge": {
+      "flat": {
+       "all": {
+        "year": 414.4,
+        "winter_half": 192.9,
+        "summer_half": 221.5
+       },
+       "long": {
+        "year": 117.5,
+        "winter_half": 58.7,
+        "summer_half": 58.7
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 114.2,
+        "winter_half": 94.9,
+        "summer_half": 19.3
+       },
+       "long": {
+        "year": 35.9,
+        "winter_half": 33.9,
+        "summer_half": 2.0
+       }
+      },
+      "longest_stretch_h": 3.1,
+      "best_stretch_bin": 1,
+      "poleward_share": 0.5,
+      "top_bins": [
+       [
+        13,
+        29.6
+       ],
+       [
+        32,
+        29.4
+       ],
+       [
+        1,
+        29.3
+       ]
+      ],
+      "all_day_days": 24,
+      "usable_days": null,
+      "summer_rock_hours": 106.9,
+      "long_summer_rock_hours": 29.3,
+      "long_summer_rock_open_hours": 1.0,
+      "terrain_overlap": 0.641,
+      "terrain": 0.719
+     },
+     "malapert": {
+      "flat": {
+       "all": {
+        "year": 1072.7,
+        "winter_half": 426.6,
+        "summer_half": 646.0
+       },
+       "long": {
+        "year": 575.0,
+        "winter_half": 216.5,
+        "summer_half": 358.5
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 509.9,
+        "winter_half": 268.7,
+        "summer_half": 241.2
+       },
+       "long": {
+        "year": 271.1,
+        "winter_half": 142.5,
+        "summer_half": 128.6
+       }
+      },
+      "longest_stretch_h": 5.78,
+      "best_stretch_bin": 1,
+      "poleward_share": 0.623,
+      "top_bins": [
+       [
+        35,
+        62.6
+       ],
+       [
+        1,
+        56.9
+       ],
+       [
+        12,
+        53.9
+       ]
+      ],
+      "all_day_days": 50,
+      "usable_days": null,
+      "summer_rock_hours": 387.4,
+      "long_summer_rock_hours": 305.2,
+      "long_summer_rock_open_hours": 115.4,
+      "terrain_overlap": 0.382,
+      "terrain": 0.472
+     },
+     "mons-mouton": {
+      "flat": {
+       "all": {
+        "year": 1157.5,
+        "winter_half": 458.6,
+        "summer_half": 698.9
+       },
+       "long": {
+        "year": 655.2,
+        "winter_half": 269.4,
+        "summer_half": 385.8
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 577.0,
+        "winter_half": 296.0,
+        "summer_half": 281.0
+       },
+       "long": {
+        "year": 329.2,
+        "winter_half": 180.9,
+        "summer_half": 148.3
+       }
+      },
+      "longest_stretch_h": 6.1,
+      "best_stretch_bin": 1,
+      "poleward_share": 0.589,
+      "top_bins": [
+       [
+        35,
+        69.1
+       ],
+       [
+        1,
+        60.2
+       ],
+       [
+        32,
+        56.4
+       ]
+      ],
+      "all_day_days": 54,
+      "usable_days": null,
+      "summer_rock_hours": 418.7,
+      "long_summer_rock_hours": 329.4,
+      "long_summer_rock_open_hours": 132.8,
+      "terrain_overlap": 0.618,
+      "terrain": 0.827
+     },
+     "nobile-rim-2": {
+      "flat": {
+       "all": {
+        "year": 1368.0,
+        "winter_half": 537.4,
+        "summer_half": 830.6
+       },
+       "long": {
+        "year": 923.8,
+        "winter_half": 387.4,
+        "summer_half": 536.4
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 749.2,
+        "winter_half": 364.6,
+        "summer_half": 384.6
+       },
+       "long": {
+        "year": 503.7,
+        "winter_half": 270.0,
+        "summer_half": 233.8
+       }
+      },
+      "longest_stretch_h": 6.9,
+      "best_stretch_bin": 1,
+      "poleward_share": 0.581,
+      "top_bins": [
+       [
+        35,
+        84.0
+       ],
+       [
+        1,
+        68.3
+       ],
+       [
+        22,
+        64.5
+       ]
+      ],
+      "all_day_days": 64,
+      "usable_days": null,
+      "summer_rock_hours": 494.5,
+      "long_summer_rock_hours": 427.3,
+      "long_summer_rock_open_hours": 193.8,
+      "terrain_overlap": 0.693,
+      "terrain": 0.82
+     }
+    }
+   },
+   {
+    "name": "Schirmacher Oasis",
+    "lat": -70.76,
+    "lon": 11.65,
+    "cell": "-70.8_11.4",
+    "rock": {
+     "score": 0.0,
+     "body": null
+    },
+    "winter_snow_evidence": "literature: no continuous winter cover",
+    "in_grazing_cells": true,
+    "hemisphere": "S",
+    "region": "Dronning Maud Land",
+    "gridded": true,
+    "bare": 0.1846703371406516,
+    "land_share": 1.0,
+    "snow": {
+     "status": "unmeasured",
+     "source": null,
+     "land_pixels": null,
+     "stuck_winters": null
+    },
+    "horizon": {
+     "north_deg": -0.01,
+     "south_deg": 3.75,
+     "valid_share": 1.0,
+     "pixel_m": 60.0
+    },
+    "terrain": {
+     "median_slope_deg": 2.57,
+     "p90_slope_deg": 9.21,
+     "relief_m": 415.7
+    },
+    "targets": {
+     "connecting-ridge": {
+      "flat": {
+       "all": {
+        "year": 379.3,
+        "winter_half": 177.8,
+        "summer_half": 201.5
+       },
+       "long": {
+        "year": 74.5,
+        "winter_half": 20.6,
+        "summer_half": 53.9
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 150.8,
+        "winter_half": 126.9,
+        "summer_half": 24.0
+       },
+       "long": {
+        "year": 14.2,
+        "winter_half": 14.2,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 3.05,
+      "best_stretch_bin": 2,
+      "poleward_share": 0.723,
+      "top_bins": [
+       [
+        2,
+        29.8
+       ],
+       [
+        32,
+        24.0
+       ],
+       [
+        13,
+        20.6
+       ]
+      ],
+      "all_day_days": 19,
+      "usable_days": null,
+      "summer_rock_hours": 78.9,
+      "long_summer_rock_hours": 29.8,
+      "long_summer_rock_open_hours": 0.0,
+      "terrain_overlap": 0.34,
+      "terrain": 0.382
+     },
+     "malapert": {
+      "flat": {
+       "all": {
+        "year": 1042.0,
+        "winter_half": 399.2,
+        "summer_half": 642.8
+       },
+       "long": {
+        "year": 580.2,
+        "winter_half": 213.5,
+        "summer_half": 366.6
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 598.9,
+        "winter_half": 334.3,
+        "summer_half": 264.5
+       },
+       "long": {
+        "year": 302.5,
+        "winter_half": 181.7,
+        "summer_half": 120.9
+       }
+      },
+      "longest_stretch_h": 5.87,
+      "best_stretch_bin": 2,
+      "poleward_share": 0.632,
+      "top_bins": [
+       [
+        32,
+        56.2
+       ],
+       [
+        2,
+        55.1
+       ],
+       [
+        22,
+        54.8
+       ]
+      ],
+      "all_day_days": 45,
+      "usable_days": null,
+      "summer_rock_hours": 356.7,
+      "long_summer_rock_hours": 264.7,
+      "long_summer_rock_open_hours": 98.4,
+      "terrain_overlap": 0.238,
+      "terrain": 0.294
+     },
+     "mons-mouton": {
+      "flat": {
+       "all": {
+        "year": 1134.5,
+        "winter_half": 429.4,
+        "summer_half": 705.1
+       },
+       "long": {
+        "year": 668.8,
+        "winter_half": 264.5,
+        "summer_half": 404.3
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 680.1,
+        "winter_half": 363.7,
+        "summer_half": 316.4
+       },
+       "long": {
+        "year": 377.9,
+        "winter_half": 227.8,
+        "summer_half": 150.1
+       }
+      },
+      "longest_stretch_h": 6.22,
+      "best_stretch_bin": 2,
+      "poleward_share": 0.605,
+      "top_bins": [
+       [
+        32,
+        59.8
+       ],
+       [
+        22,
+        58.7
+       ],
+       [
+        2,
+        58.4
+       ]
+      ],
+      "all_day_days": 48,
+      "usable_days": null,
+      "summer_rock_hours": 395.5,
+      "long_summer_rock_hours": 295.8,
+      "long_summer_rock_open_hours": 122.3,
+      "terrain_overlap": 0.323,
+      "terrain": 0.432
+     },
+     "nobile-rim-2": {
+      "flat": {
+       "all": {
+        "year": 1358.6,
+        "winter_half": 503.5,
+        "summer_half": 855.1
+       },
+       "long": {
+        "year": 963.6,
+        "winter_half": 385.5,
+        "summer_half": 578.1
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 883.6,
+        "winter_half": 436.3,
+        "summer_half": 447.3
+       },
+       "long": {
+        "year": 599.5,
+        "winter_half": 338.9,
+        "summer_half": 260.6
+       }
+      },
+      "longest_stretch_h": 7.05,
+      "best_stretch_bin": 2,
+      "poleward_share": 0.6,
+      "top_bins": [
+       [
+        35,
+        72.6
+       ],
+       [
+        32,
+        68.5
+       ],
+       [
+        2,
+        66.4
+       ]
+      ],
+      "all_day_days": 57,
+      "usable_days": null,
+      "summer_rock_hours": 484.6,
+      "long_summer_rock_hours": 411.4,
+      "long_summer_rock_open_hours": 199.0,
+      "terrain_overlap": 0.4,
+      "terrain": 0.473
+     }
+    }
+   },
+   {
+    "name": "Lake Untersee and the Eliseev anorthosite massif",
+    "lat": -71.34,
+    "lon": 13.45,
+    "cell": "-71.4_13.2",
+    "rock": {
+     "score": 0.5,
+     "body": "Eliseev anorthosite massif at Lake Untersee (Gruber Mountains)"
+    },
+    "winter_snow_evidence": "no evidence",
+    "in_grazing_cells": true,
+    "hemisphere": "S",
+    "region": "Dronning Maud Land",
+    "gridded": true,
+    "bare": 0.6509127014292058,
+    "land_share": 1.0,
+    "snow": {
+     "status": "unmeasured",
+     "source": null,
+     "land_pixels": null,
+     "stuck_winters": null
+    },
+    "horizon": {
+     "north_deg": 1.79,
+     "south_deg": 15.44,
+     "valid_share": 1.0,
+     "pixel_m": 60.0
+    },
+    "terrain": {
+     "median_slope_deg": 17.21,
+     "p90_slope_deg": 38.97,
+     "relief_m": 1497.4
+    },
+    "targets": {
+     "connecting-ridge": {
+      "flat": {
+       "all": {
+        "year": 369.8,
+        "winter_half": 173.7,
+        "summer_half": 196.1
+       },
+       "long": {
+        "year": 59.8,
+        "winter_half": 30.1,
+        "summer_half": 29.7
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 71.7,
+        "winter_half": 61.6,
+        "summer_half": 10.1
+       },
+       "long": {
+        "year": 13.1,
+        "winter_half": 12.8,
+        "summer_half": 0.3
+       }
+      },
+      "longest_stretch_h": 2.93,
+      "best_stretch_bin": 2,
+      "poleward_share": 0.497,
+      "top_bins": [
+       [
+        21,
+        30.1
+       ],
+       [
+        2,
+        29.7
+       ]
+      ],
+      "all_day_days": 19,
+      "usable_days": null,
+      "summer_rock_hours": 75.4,
+      "long_summer_rock_hours": 29.7,
+      "long_summer_rock_open_hours": 0.3,
+      "terrain_overlap": 0.453,
+      "terrain": 0.508
+     },
+     "malapert": {
+      "flat": {
+       "all": {
+        "year": 1019.4,
+        "winter_half": 389.8,
+        "summer_half": 629.6
+       },
+       "long": {
+        "year": 529.4,
+        "winter_half": 188.7,
+        "summer_half": 340.7
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 232.1,
+        "winter_half": 170.3,
+        "summer_half": 61.7
+       },
+       "long": {
+        "year": 107.3,
+        "winter_half": 92.1,
+        "summer_half": 15.2
+       }
+      },
+      "longest_stretch_h": 5.88,
+      "best_stretch_bin": 2,
+      "poleward_share": 0.644,
+      "top_bins": [
+       [
+        2,
+        57.9
+       ],
+       [
+        22,
+        56.0
+       ],
+       [
+        11,
+        54.1
+       ]
+      ],
+      "all_day_days": 43,
+      "usable_days": null,
+      "summer_rock_hours": 333.3,
+      "long_summer_rock_hours": 235.7,
+      "long_summer_rock_open_hours": 10.0,
+      "terrain_overlap": 0.521,
+      "terrain": 0.644
+     },
+     "mons-mouton": {
+      "flat": {
+       "all": {
+        "year": 1118.5,
+        "winter_half": 419.4,
+        "summer_half": 699.1
+       },
+       "long": {
+        "year": 668.3,
+        "winter_half": 241.2,
+        "summer_half": 427.1
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 263.5,
+        "winter_half": 187.9,
+        "summer_half": 75.6
+       },
+       "long": {
+        "year": 143.7,
+        "winter_half": 119.1,
+        "summer_half": 24.6
+       }
+      },
+      "longest_stretch_h": 6.23,
+      "best_stretch_bin": 2,
+      "poleward_share": 0.639,
+      "top_bins": [
+       [
+        2,
+        61.4
+       ],
+       [
+        11,
+        58.7
+       ],
+       [
+        22,
+        57.2
+       ]
+      ],
+      "all_day_days": 47,
+      "usable_days": null,
+      "summer_rock_hours": 378.1,
+      "long_summer_rock_hours": 315.1,
+      "long_summer_rock_open_hours": 18.2,
+      "terrain_overlap": 0.475,
+      "terrain": 0.636
+     },
+     "nobile-rim-2": {
+      "flat": {
+       "all": {
+        "year": 1352.0,
+        "winter_half": 491.9,
+        "summer_half": 860.1
+       },
+       "long": {
+        "year": 1017.6,
+        "winter_half": 404.2,
+        "summer_half": 613.4
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 347.0,
+        "winter_half": 232.4,
+        "summer_half": 114.6
+       },
+       "long": {
+        "year": 254.7,
+        "winter_half": 200.8,
+        "summer_half": 53.9
+       }
+      },
+      "longest_stretch_h": 7.1,
+      "best_stretch_bin": 2,
+      "poleward_share": 0.603,
+      "top_bins": [
+       [
+        2,
+        69.8
+       ],
+       [
+        35,
+        66.7
+       ],
+       [
+        32,
+        66.2
+       ]
+      ],
+      "all_day_days": 56,
+      "usable_days": null,
+      "summer_rock_hours": 475.8,
+      "long_summer_rock_hours": 439.9,
+      "long_summer_rock_open_hours": 38.0,
+      "terrain_overlap": 0.53,
+      "terrain": 0.627
+     }
+    }
+   },
+   {
+    "name": "McMurdo Dry Valleys",
+    "lat": -77.52,
+    "lon": 161.6,
+    "cell": "-77.6_161.5",
+    "rock": {
+     "score": 0.0,
+     "body": null
+    },
+    "winter_snow_evidence": "measured mostly bare",
+    "in_grazing_cells": true,
+    "hemisphere": "S",
+    "region": "Victoria Land",
+    "gridded": true,
+    "bare": 0.8853544498478795,
+    "land_share": 1.0,
+    "snow": {
+     "status": "unmeasured",
+     "source": null,
+     "land_pixels": null,
+     "stuck_winters": null
+    },
+    "horizon": {
+     "north_deg": 9.75,
+     "south_deg": 15.11,
+     "valid_share": 1.0,
+     "pixel_m": 60.0
+    },
+    "terrain": {
+     "median_slope_deg": 14.83,
+     "p90_slope_deg": 31.6,
+     "relief_m": 1582.1
+    },
+    "targets": {
+     "connecting-ridge": {
+      "flat": {
+       "all": {
+        "year": 314.2,
+        "winter_half": 142.8,
+        "summer_half": 171.4
+       },
+       "long": {
+        "year": 63.3,
+        "winter_half": 33.2,
+        "summer_half": 30.1
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 17.6,
+        "winter_half": 13.5,
+        "summer_half": 4.1
+       },
+       "long": {
+        "year": 3.3,
+        "winter_half": 3.0,
+        "summer_half": 0.3
+       }
+      },
+      "longest_stretch_h": 3.03,
+      "best_stretch_bin": 4,
+      "poleward_share": 0.476,
+      "top_bins": [
+       [
+        23,
+        33.2
+       ],
+       [
+        4,
+        30.1
+       ]
+      ],
+      "all_day_days": 14,
+      "usable_days": null,
+      "summer_rock_hours": 51.3,
+      "long_summer_rock_hours": 30.1,
+      "long_summer_rock_open_hours": 0.3,
+      "terrain_overlap": 0.597,
+      "terrain": 0.67
+     },
+     "malapert": {
+      "flat": {
+       "all": {
+        "year": 804.7,
+        "winter_half": 314.3,
+        "summer_half": 490.4
+       },
+       "long": {
+        "year": 625.4,
+        "winter_half": 266.9,
+        "summer_half": 358.5
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 101.5,
+        "winter_half": 55.8,
+        "summer_half": 45.7
+       },
+       "long": {
+        "year": 71.8,
+        "winter_half": 47.2,
+        "summer_half": 24.5
+       }
+      },
+      "longest_stretch_h": 6.87,
+      "best_stretch_bin": 4,
+      "poleward_share": 0.507,
+      "top_bins": [
+       [
+        4,
+        67.8
+       ],
+       [
+        24,
+        66.7
+       ],
+       [
+        29,
+        62.0
+       ]
+      ],
+      "all_day_days": 34,
+      "usable_days": null,
+      "summer_rock_hours": 158.2,
+      "long_summer_rock_hours": 156.3,
+      "long_summer_rock_open_hours": 7.6,
+      "terrain_overlap": 0.613,
+      "terrain": 0.758
+     },
+     "mons-mouton": {
+      "flat": {
+       "all": {
+        "year": 885.2,
+        "winter_half": 336.2,
+        "summer_half": 549.0
+       },
+       "long": {
+        "year": 868.8,
+        "winter_half": 327.0,
+        "summer_half": 541.7
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 125.9,
+        "winter_half": 63.6,
+        "summer_half": 62.3
+       },
+       "long": {
+        "year": 124.4,
+        "winter_half": 63.0,
+        "summer_half": 61.4
+       }
+      },
+      "longest_stretch_h": 7.3,
+      "best_stretch_bin": 4,
+      "poleward_share": 0.524,
+      "top_bins": [
+       [
+        4,
+        72.2
+       ],
+       [
+        24,
+        71.0
+       ],
+       [
+        9,
+        68.0
+       ]
+      ],
+      "all_day_days": 37,
+      "usable_days": null,
+      "summer_rock_hours": 178.6,
+      "long_summer_rock_hours": 171.4,
+      "long_summer_rock_open_hours": 10.9,
+      "terrain_overlap": 0.613,
+      "terrain": 0.821
+     },
+     "nobile-rim-2": {
+      "flat": {
+       "all": {
+        "year": 1101.9,
+        "winter_half": 385.4,
+        "summer_half": 716.5
+       },
+       "long": {
+        "year": 1083.2,
+        "winter_half": 376.2,
+        "summer_half": 707.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 197.2,
+        "winter_half": 82.0,
+        "summer_half": 115.2
+       },
+       "long": {
+        "year": 195.1,
+        "winter_half": 81.4,
+        "summer_half": 113.7
+       }
+      },
+      "longest_stretch_h": 8.43,
+      "best_stretch_bin": 4,
+      "poleward_share": 0.532,
+      "top_bins": [
+       [
+        4,
+        83.0
+       ],
+       [
+        9,
+        81.9
+       ],
+       [
+        29,
+        76.1
+       ]
+      ],
+      "all_day_days": 45,
+      "usable_days": null,
+      "summer_rock_hours": 238.1,
+      "long_summer_rock_hours": 238.1,
+      "long_summer_rock_open_hours": 26.3,
+      "terrain_overlap": 0.683,
+      "terrain": 0.808
+     }
+    }
+   },
+   {
+    "name": "Windmill Islands",
+    "lat": -66.3,
+    "lon": 110.52,
+    "cell": "-66.3_110.4",
+    "rock": {
+     "score": 0.0,
+     "body": null
+    },
+    "winter_snow_evidence": "station shows snow",
+    "in_grazing_cells": true,
+    "hemisphere": "S",
+    "region": "Wilkes Land",
+    "gridded": false,
+    "bare": 0.13698705290304583,
+    "land_share": 0.38787037037037037,
+    "snow": {
+     "status": "unmeasured",
+     "source": null,
+     "land_pixels": null,
+     "stuck_winters": null
+    },
+    "horizon": {
+     "north_deg": -0.2,
+     "south_deg": 1.31,
+     "valid_share": 0.371,
+     "pixel_m": 60.0
+    },
+    "terrain": {
+     "median_slope_deg": 3.04,
+     "p90_slope_deg": 5.82,
+     "relief_m": 219.9
+    },
+    "targets": {
+     "connecting-ridge": {
+      "flat": {
+       "all": {
+        "year": 542.5,
+        "winter_half": 279.2,
+        "summer_half": 263.3
+       },
+       "long": {
+        "year": 159.6,
+        "winter_half": 107.9,
+        "summer_half": 51.6
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 284.8,
+        "winter_half": 198.2,
+        "summer_half": 86.6
+       },
+       "long": {
+        "year": 98.3,
+        "winter_half": 87.5,
+        "summer_half": 10.8
+       }
+      },
+      "longest_stretch_h": 3.47,
+      "best_stretch_bin": 35,
+      "poleward_share": 0.324,
+      "top_bins": [
+       [
+        35,
+        51.6
+       ],
+       [
+        15,
+        31.5
+       ],
+       [
+        18,
+        29.1
+       ]
+      ],
+      "all_day_days": 41,
+      "usable_days": null,
+      "summer_rock_hours": 179.3,
+      "long_summer_rock_hours": 51.6,
+      "long_summer_rock_open_hours": 10.8,
+      "terrain_overlap": 0.242,
+      "terrain": 0.272
+     },
+     "malapert": {
+      "flat": {
+       "all": {
+        "year": 1111.2,
+        "winter_half": 557.7,
+        "summer_half": 553.5
+       },
+       "long": {
+        "year": 473.6,
+        "winter_half": 292.7,
+        "summer_half": 180.9
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 769.4,
+        "winter_half": 461.6,
+        "summer_half": 307.8
+       },
+       "long": {
+        "year": 335.9,
+        "winter_half": 252.2,
+        "summer_half": 83.7
+       }
+      },
+      "longest_stretch_h": 5.8,
+      "best_stretch_bin": 35,
+      "poleward_share": 0.382,
+      "top_bins": [
+       [
+        35,
+        85.9
+       ],
+       [
+        13,
+        51.9
+       ],
+       [
+        34,
+        51.7
+       ]
+      ],
+      "all_day_days": 79,
+      "usable_days": null,
+      "summer_rock_hours": 350.0,
+      "long_summer_rock_hours": 180.9,
+      "long_summer_rock_open_hours": 83.7,
+      "terrain_overlap": 0.13,
+      "terrain": 0.161
+     },
+     "mons-mouton": {
+      "flat": {
+       "all": {
+        "year": 1189.6,
+        "winter_half": 594.1,
+        "summer_half": 595.5
+       },
+       "long": {
+        "year": 617.0,
+        "winter_half": 385.0,
+        "summer_half": 232.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 845.8,
+        "winter_half": 497.9,
+        "summer_half": 347.9
+       },
+       "long": {
+        "year": 451.4,
+        "winter_half": 334.7,
+        "summer_half": 116.7
+       }
+      },
+      "longest_stretch_h": 6.07,
+      "best_stretch_bin": 35,
+      "poleward_share": 0.376,
+      "top_bins": [
+       [
+        35,
+        90.3
+       ],
+       [
+        34,
+        54.5
+       ],
+       [
+        13,
+        54.4
+       ]
+      ],
+      "all_day_days": 83,
+      "usable_days": null,
+      "summer_rock_hours": 373.6,
+      "long_summer_rock_hours": 232.0,
+      "long_summer_rock_open_hours": 116.7,
+      "terrain_overlap": 0.218,
+      "terrain": 0.292
+     },
+     "nobile-rim-2": {
+      "flat": {
+       "all": {
+        "year": 1386.8,
+        "winter_half": 684.0,
+        "summer_half": 702.7
+       },
+       "long": {
+        "year": 847.0,
+        "winter_half": 500.6,
+        "summer_half": 346.4
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 1040.0,
+        "winter_half": 587.5,
+        "summer_half": 452.4
+       },
+       "long": {
+        "year": 641.0,
+        "winter_half": 439.8,
+        "summer_half": 201.2
+       }
+      },
+      "longest_stretch_h": 6.8,
+      "best_stretch_bin": 35,
+      "poleward_share": 0.409,
+      "top_bins": [
+       [
+        35,
+        101.1
+       ],
+       [
+        34,
+        61.6
+       ],
+       [
+        21,
+        61.6
+       ]
+      ],
+      "all_day_days": 95,
+      "usable_days": null,
+      "summer_rock_hours": 433.1,
+      "long_summer_rock_hours": 306.6,
+      "long_summer_rock_open_hours": 174.9,
+      "terrain_overlap": 0.303,
+      "terrain": 0.358
+     }
+    }
+   },
+   {
+    "name": "Syowa and the Soya Coast",
+    "lat": -69.004,
+    "lon": 39.582,
+    "cell": "-69.1_39.3",
+    "rock": {
+     "score": 0.0,
+     "body": null
+    },
+    "winter_snow_evidence": "station shows snow",
+    "in_grazing_cells": true,
+    "hemisphere": "S",
+    "region": "Dronning Maud Land",
+    "gridded": false,
+    "bare": 0.5200574805884033,
+    "land_share": 0.09898148148148149,
+    "snow": {
+     "status": "unmeasured",
+     "source": null,
+     "land_pixels": null,
+     "stuck_winters": null
+    },
+    "horizon": {
+     "north_deg": 0.51,
+     "south_deg": 0.43,
+     "valid_share": 0.108,
+     "pixel_m": 60.0
+    },
+    "terrain": {
+     "median_slope_deg": 3.05,
+     "p90_slope_deg": 5.43,
+     "relief_m": 27.5
+    },
+    "targets": {
+     "connecting-ridge": {
+      "flat": {
+       "all": {
+        "year": 425.4,
+        "winter_half": 197.0,
+        "summer_half": 228.5
+       },
+       "long": {
+        "year": 83.3,
+        "winter_half": 30.2,
+        "summer_half": 53.1
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 201.0,
+        "winter_half": 97.0,
+        "summer_half": 104.0
+       },
+       "long": {
+        "year": 48.3,
+        "winter_half": 16.8,
+        "summer_half": 31.5
+       }
+      },
+      "longest_stretch_h": 3.18,
+      "best_stretch_bin": 1,
+      "poleward_share": 0.638,
+      "top_bins": [
+       [
+        1,
+        30.8
+       ],
+       [
+        20,
+        30.2
+       ],
+       [
+        33,
+        22.3
+       ]
+      ],
+      "all_day_days": 25,
+      "usable_days": null,
+      "summer_rock_hours": 117.5,
+      "long_summer_rock_hours": 53.1,
+      "long_summer_rock_open_hours": 31.5,
+      "terrain_overlap": 0.226,
+      "terrain": 0.254
+     },
+     "malapert": {
+      "flat": {
+       "all": {
+        "year": 1077.1,
+        "winter_half": 433.8,
+        "summer_half": 643.3
+       },
+       "long": {
+        "year": 542.5,
+        "winter_half": 220.4,
+        "summer_half": 322.1
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 775.4,
+        "winter_half": 307.5,
+        "summer_half": 467.9
+       },
+       "long": {
+        "year": 416.4,
+        "winter_half": 161.6,
+        "summer_half": 254.8
+       }
+      },
+      "longest_stretch_h": 5.8,
+      "best_stretch_bin": 1,
+      "poleward_share": 0.594,
+      "top_bins": [
+       [
+        35,
+        65.6
+       ],
+       [
+        1,
+        56.8
+       ],
+       [
+        12,
+        53.7
+       ]
+      ],
+      "all_day_days": 52,
+      "usable_days": null,
+      "summer_rock_hours": 391.3,
+      "long_summer_rock_hours": 271.4,
+      "long_summer_rock_open_hours": 221.8,
+      "terrain_overlap": 0.109,
+      "terrain": 0.135
+     },
+     "mons-mouton": {
+      "flat": {
+       "all": {
+        "year": 1160.8,
+        "winter_half": 466.2,
+        "summer_half": 694.7
+       },
+       "long": {
+        "year": 660.1,
+        "winter_half": 272.4,
+        "summer_half": 387.8
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 857.8,
+        "winter_half": 339.4,
+        "summer_half": 518.3
+       },
+       "long": {
+        "year": 511.8,
+        "winter_half": 204.8,
+        "summer_half": 307.0
+       }
+      },
+      "longest_stretch_h": 6.12,
+      "best_stretch_bin": 1,
+      "poleward_share": 0.587,
+      "top_bins": [
+       [
+        35,
+        71.8
+       ],
+       [
+        1,
+        60.0
+       ],
+       [
+        33,
+        56.9
+       ]
+      ],
+      "all_day_days": 56,
+      "usable_days": null,
+      "summer_rock_hours": 421.5,
+      "long_summer_rock_hours": 334.1,
+      "long_summer_rock_open_hours": 271.0,
+      "terrain_overlap": 0.202,
+      "terrain": 0.27
+     },
+     "nobile-rim-2": {
+      "flat": {
+       "all": {
+        "year": 1369.1,
+        "winter_half": 545.8,
+        "summer_half": 823.3
+       },
+       "long": {
+        "year": 884.6,
+        "winter_half": 390.1,
+        "summer_half": 494.6
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 1063.8,
+        "winter_half": 418.3,
+        "summer_half": 645.5
+       },
+       "long": {
+        "year": 708.3,
+        "winter_half": 306.3,
+        "summer_half": 402.1
+       }
+      },
+      "longest_stretch_h": 6.92,
+      "best_stretch_bin": 1,
+      "poleward_share": 0.559,
+      "top_bins": [
+       [
+        35,
+        86.1
+       ],
+       [
+        1,
+        67.9
+       ],
+       [
+        33,
+        65.3
+       ]
+      ],
+      "all_day_days": 66,
+      "usable_days": null,
+      "summer_rock_hours": 495.2,
+      "long_summer_rock_hours": 389.7,
+      "long_summer_rock_open_hours": 326.2,
+      "terrain_overlap": 0.287,
+      "terrain": 0.34
+     }
+    }
+   },
+   {
+    "name": "Fildes Peninsula",
+    "lat": -62.2,
+    "lon": -58.95,
+    "cell": "-62.2_-59.0",
+    "rock": {
+     "score": 0.0,
+     "body": null
+    },
+    "winter_snow_evidence": "station shows snow",
+    "in_grazing_cells": true,
+    "hemisphere": "S",
+    "region": "Antarctic Peninsula and South Shetlands",
+    "gridded": true,
+    "bare": 0.4022008656876203,
+    "land_share": 0.474375,
+    "snow": {
+     "status": "unmeasured",
+     "source": null,
+     "land_pixels": null,
+     "stuck_winters": null
+    },
+    "horizon": {
+     "north_deg": -0.14,
+     "south_deg": 1.62,
+     "valid_share": 0.518,
+     "pixel_m": 60.0
+    },
+    "terrain": {
+     "median_slope_deg": 4.73,
+     "p90_slope_deg": 9.3,
+     "relief_m": 248.7
+    },
+    "targets": {
+     "connecting-ridge": {
+      "flat": {
+       "all": {
+        "year": 332.5,
+        "winter_half": 170.9,
+        "summer_half": 161.7
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 143.4,
+        "winter_half": 79.1,
+        "summer_half": 64.3
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 0.68,
+      "best_stretch_bin": 17,
+      "poleward_share": null,
+      "top_bins": [],
+      "all_day_days": 0,
+      "usable_days": null,
+      "summer_rock_hours": 94.0,
+      "long_summer_rock_hours": 0.0,
+      "long_summer_rock_open_hours": 0.0,
+      "terrain_overlap": 0.436,
+      "terrain": 0.489
+     },
+     "malapert": {
+      "flat": {
+       "all": {
+        "year": 921.1,
+        "winter_half": 533.6,
+        "summer_half": 387.4
+       },
+       "long": {
+        "year": 201.2,
+        "winter_half": 201.2,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 577.0,
+        "winter_half": 351.8,
+        "summer_half": 225.2
+       },
+       "long": {
+        "year": 141.9,
+        "winter_half": 141.9,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 5.17,
+      "best_stretch_bin": 18,
+      "poleward_share": 0.0,
+      "top_bins": [
+       [
+        18,
+        51.8
+       ],
+       [
+        16,
+        50.4
+       ],
+       [
+        17,
+        49.9
+       ]
+      ],
+      "all_day_days": 33,
+      "usable_days": null,
+      "summer_rock_hours": 220.1,
+      "long_summer_rock_hours": 0.0,
+      "long_summer_rock_open_hours": 0.0,
+      "terrain_overlap": 0.249,
+      "terrain": 0.308
+     },
+     "mons-mouton": {
+      "flat": {
+       "all": {
+        "year": 1005.8,
+        "winter_half": 584.3,
+        "summer_half": 421.6
+       },
+       "long": {
+        "year": 295.8,
+        "winter_half": 295.8,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 652.4,
+        "winter_half": 396.6,
+        "summer_half": 255.8
+       },
+       "long": {
+        "year": 210.9,
+        "winter_half": 210.9,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 5.38,
+      "best_stretch_bin": 15,
+      "poleward_share": 0.0,
+      "top_bins": [
+       [
+        15,
+        54.0
+       ],
+       [
+        18,
+        52.6
+       ],
+       [
+        16,
+        50.4
+       ]
+      ],
+      "all_day_days": 43,
+      "usable_days": null,
+      "summer_rock_hours": 238.7,
+      "long_summer_rock_hours": 0.0,
+      "long_summer_rock_open_hours": 0.0,
+      "terrain_overlap": 0.402,
+      "terrain": 0.538
+     },
+     "nobile-rim-2": {
+      "flat": {
+       "all": {
+        "year": 1210.3,
+        "winter_half": 700.4,
+        "summer_half": 509.9
+       },
+       "long": {
+        "year": 418.1,
+        "winter_half": 418.1,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 838.8,
+        "winter_half": 501.8,
+        "summer_half": 337.0
+       },
+       "long": {
+        "year": 306.6,
+        "winter_half": 306.6,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 5.95,
+      "best_stretch_bin": 14,
+      "poleward_share": 0.0,
+      "top_bins": [
+       [
+        14,
+        59.3
+       ],
+       [
+        19,
+        58.1
+       ],
+       [
+        15,
+        54.0
+       ]
+      ],
+      "all_day_days": 61,
+      "usable_days": null,
+      "summer_rock_hours": 286.5,
+      "long_summer_rock_hours": 0.0,
+      "long_summer_rock_open_hours": 0.0,
+      "terrain_overlap": 0.496,
+      "terrain": 0.587
+     }
+    }
+   },
+   {
+    "name": "Deception Island",
+    "lat": -62.95,
+    "lon": -60.6,
+    "cell": "-63.0_-60.6",
+    "rock": {
+     "score": 0.0,
+     "body": null
+    },
+    "winter_snow_evidence": "no evidence",
+    "in_grazing_cells": true,
+    "hemisphere": "S",
+    "region": "Antarctic Peninsula and South Shetlands",
+    "gridded": true,
+    "bare": 0.4242622519850941,
+    "land_share": 0.345625,
+    "snow": {
+     "status": "unmeasured",
+     "source": null,
+     "land_pixels": null,
+     "stuck_winters": null
+    },
+    "horizon": {
+     "north_deg": 1.95,
+     "south_deg": -0.02,
+     "valid_share": 0.359,
+     "pixel_m": 60.0
+    },
+    "terrain": {
+     "median_slope_deg": 3.25,
+     "p90_slope_deg": 10.19,
+     "relief_m": 242.5
+    },
+    "targets": {
+     "connecting-ridge": {
+      "flat": {
+       "all": {
+        "year": 354.0,
+        "winter_half": 183.3,
+        "summer_half": 170.7
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 152.8,
+        "winter_half": 65.7,
+        "summer_half": 87.1
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 0.8,
+      "best_stretch_bin": 17,
+      "poleward_share": null,
+      "top_bins": [],
+      "all_day_days": 0,
+      "usable_days": null,
+      "summer_rock_hours": 100.5,
+      "long_summer_rock_hours": 0.0,
+      "long_summer_rock_open_hours": 0.0,
+      "terrain_overlap": 0.419,
+      "terrain": 0.47
+     },
+     "malapert": {
+      "flat": {
+       "all": {
+        "year": 962.5,
+        "winter_half": 556.8,
+        "summer_half": 405.7
+       },
+       "long": {
+        "year": 283.3,
+        "winter_half": 283.3,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 615.3,
+        "winter_half": 340.1,
+        "summer_half": 275.2
+       },
+       "long": {
+        "year": 164.3,
+        "winter_half": 164.3,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 5.08,
+      "best_stretch_bin": 15,
+      "poleward_share": 0.0,
+      "top_bins": [
+       [
+        15,
+        50.8
+       ],
+       [
+        18,
+        49.3
+       ],
+       [
+        19,
+        47.6
+       ]
+      ],
+      "all_day_days": 45,
+      "usable_days": null,
+      "summer_rock_hours": 232.7,
+      "long_summer_rock_hours": 0.0,
+      "long_summer_rock_open_hours": 0.0,
+      "terrain_overlap": 0.259,
+      "terrain": 0.32
+     },
+     "mons-mouton": {
+      "flat": {
+       "all": {
+        "year": 1043.6,
+        "winter_half": 602.6,
+        "summer_half": 441.1
+       },
+       "long": {
+        "year": 297.0,
+        "winter_half": 297.0,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 688.7,
+        "winter_half": 381.4,
+        "summer_half": 307.2
+       },
+       "long": {
+        "year": 177.1,
+        "winter_half": 177.1,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 5.37,
+      "best_stretch_bin": 19,
+      "poleward_share": 0.0,
+      "top_bins": [
+       [
+        19,
+        53.4
+       ],
+       [
+        15,
+        50.8
+       ],
+       [
+        14,
+        50.3
+       ]
+      ],
+      "all_day_days": 53,
+      "usable_days": null,
+      "summer_rock_hours": 252.1,
+      "long_summer_rock_hours": 0.0,
+      "long_summer_rock_open_hours": 0.0,
+      "terrain_overlap": 0.395,
+      "terrain": 0.529
+     },
+     "nobile-rim-2": {
+      "flat": {
+       "all": {
+        "year": 1243.5,
+        "winter_half": 711.1,
+        "summer_half": 532.4
+       },
+       "long": {
+        "year": 414.8,
+        "winter_half": 414.8,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 872.7,
+        "winter_half": 481.6,
+        "summer_half": 391.2
+       },
+       "long": {
+        "year": 266.6,
+        "winter_half": 266.6,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 5.97,
+      "best_stretch_bin": 20,
+      "poleward_share": 0.0,
+      "top_bins": [
+       [
+        14,
+        57.5
+       ],
+       [
+        20,
+        57.0
+       ],
+       [
+        19,
+        55.2
+       ]
+      ],
+      "all_day_days": 69,
+      "usable_days": null,
+      "summer_rock_hours": 301.7,
+      "long_summer_rock_hours": 0.0,
+      "long_summer_rock_open_hours": 0.0,
+      "terrain_overlap": 0.479,
+      "terrain": 0.567
+     }
+    }
+   },
+   {
+    "name": "Ulu Peninsula, James Ross Island",
+    "lat": -63.85,
+    "lon": -57.9,
+    "cell": "-63.9_-58.0",
+    "rock": {
+     "score": 0.0,
+     "body": null
+    },
+    "winter_snow_evidence": "no evidence",
+    "in_grazing_cells": true,
+    "hemisphere": "S",
+    "region": "Antarctic Peninsula and South Shetlands",
+    "gridded": true,
+    "bare": 1.0,
+    "land_share": 0.8424417683147291,
+    "snow": {
+     "status": "unmeasured",
+     "source": null,
+     "land_pixels": null,
+     "stuck_winters": null
+    },
+    "horizon": {
+     "north_deg": 2.58,
+     "south_deg": 4.42,
+     "valid_share": 0.846,
+     "pixel_m": 60.0
+    },
+    "terrain": {
+     "median_slope_deg": 7.23,
+     "p90_slope_deg": 23.57,
+     "relief_m": 455.0
+    },
+    "targets": {
+     "connecting-ridge": {
+      "flat": {
+       "all": {
+        "year": 385.8,
+        "winter_half": 202.6,
+        "summer_half": 183.2
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 80.5,
+        "winter_half": 58.9,
+        "summer_half": 21.6
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 0.97,
+      "best_stretch_bin": 17,
+      "poleward_share": null,
+      "top_bins": [],
+      "all_day_days": 0,
+      "usable_days": null,
+      "summer_rock_hours": 110.0,
+      "long_summer_rock_hours": 0.0,
+      "long_summer_rock_open_hours": 0.0,
+      "terrain_overlap": 0.635,
+      "terrain": 0.713
+     },
+     "malapert": {
+      "flat": {
+       "all": {
+        "year": 1001.9,
+        "winter_half": 571.8,
+        "summer_half": 430.1
+       },
+       "long": {
+        "year": 277.7,
+        "winter_half": 277.7,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 372.1,
+        "winter_half": 256.5,
+        "summer_half": 115.6
+       },
+       "long": {
+        "year": 125.0,
+        "winter_half": 125.0,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 5.17,
+      "best_stretch_bin": 14,
+      "poleward_share": 0.0,
+      "top_bins": [
+       [
+        19,
+        51.6
+       ],
+       [
+        14,
+        50.3
+       ],
+       [
+        15,
+        46.8
+       ]
+      ],
+      "all_day_days": 57,
+      "usable_days": null,
+      "summer_rock_hours": 250.0,
+      "long_summer_rock_hours": 0.0,
+      "long_summer_rock_open_hours": 0.0,
+      "terrain_overlap": 0.491,
+      "terrain": 0.607
+     },
+     "mons-mouton": {
+      "flat": {
+       "all": {
+        "year": 1081.2,
+        "winter_half": 614.2,
+        "summer_half": 467.0
+       },
+       "long": {
+        "year": 328.4,
+        "winter_half": 328.4,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 422.0,
+        "winter_half": 285.4,
+        "summer_half": 136.6
+       },
+       "long": {
+        "year": 152.6,
+        "winter_half": 152.6,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 5.42,
+      "best_stretch_bin": 14,
+      "poleward_share": 0.0,
+      "top_bins": [
+       [
+        14,
+        54.1
+       ],
+       [
+        19,
+        51.6
+       ],
+       [
+        20,
+        47.0
+       ]
+      ],
+      "all_day_days": 63,
+      "usable_days": null,
+      "summer_rock_hours": 270.4,
+      "long_summer_rock_hours": 0.0,
+      "long_summer_rock_open_hours": 0.0,
+      "terrain_overlap": 0.619,
+      "terrain": 0.829
+     },
+     "nobile-rim-2": {
+      "flat": {
+       "all": {
+        "year": 1278.0,
+        "winter_half": 715.9,
+        "summer_half": 562.0
+       },
+       "long": {
+        "year": 587.0,
+        "winter_half": 485.7,
+        "summer_half": 101.3
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 551.3,
+        "winter_half": 357.2,
+        "summer_half": 194.0
+       },
+       "long": {
+        "year": 274.9,
+        "winter_half": 243.8,
+        "summer_half": 31.1
+       }
+      },
+      "longest_stretch_h": 6.02,
+      "best_stretch_bin": 20,
+      "poleward_share": 0.173,
+      "top_bins": [
+       [
+        35,
+        61.5
+       ],
+       [
+        20,
+        60.2
+       ],
+       [
+        13,
+        58.3
+       ]
+      ],
+      "all_day_days": 76,
+      "usable_days": null,
+      "summer_rock_hours": 322.3,
+      "long_summer_rock_hours": 101.3,
+      "long_summer_rock_open_hours": 31.1,
+      "terrain_overlap": 0.716,
+      "terrain": 0.847
+     }
+    }
+   },
+   {
+    "name": "Seymour Island",
+    "lat": -64.25,
+    "lon": -56.65,
+    "cell": "-64.3_-56.8",
+    "rock": {
+     "score": 0.0,
+     "body": null
+    },
+    "winter_snow_evidence": "station shows snow",
+    "in_grazing_cells": true,
+    "hemisphere": "S",
+    "region": "Antarctic Peninsula and South Shetlands",
+    "gridded": true,
+    "bare": 1.0,
+    "land_share": 0.4609240299362645,
+    "snow": {
+     "status": "unmeasured",
+     "source": null,
+     "land_pixels": null,
+     "stuck_winters": null
+    },
+    "horizon": {
+     "north_deg": 1.11,
+     "south_deg": 2.28,
+     "valid_share": 0.474,
+     "pixel_m": 60.0
+    },
+    "terrain": {
+     "median_slope_deg": 4.66,
+     "p90_slope_deg": 13.61,
+     "relief_m": 181.2
+    },
+    "targets": {
+     "connecting-ridge": {
+      "flat": {
+       "all": {
+        "year": 404.8,
+        "winter_half": 214.8,
+        "summer_half": 190.0
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 147.5,
+        "winter_half": 84.2,
+        "summer_half": 63.3
+       },
+       "long": {
+        "year": 0.0,
+        "winter_half": 0.0,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 1.1,
+      "best_stretch_bin": 17,
+      "poleward_share": null,
+      "top_bins": [],
+      "all_day_days": 0,
+      "usable_days": null,
+      "summer_rock_hours": 115.2,
+      "long_summer_rock_hours": 0.0,
+      "long_summer_rock_open_hours": 0.0,
+      "terrain_overlap": 0.542,
+      "terrain": 0.608
+     },
+     "malapert": {
+      "flat": {
+       "all": {
+        "year": 1017.8,
+        "winter_half": 575.1,
+        "summer_half": 442.7
+       },
+       "long": {
+        "year": 311.6,
+        "winter_half": 311.6,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 558.2,
+        "winter_half": 334.5,
+        "summer_half": 223.7
+       },
+       "long": {
+        "year": 182.7,
+        "winter_half": 182.7,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 5.17,
+      "best_stretch_bin": 14,
+      "poleward_share": 0.0,
+      "top_bins": [
+       [
+        14,
+        51.6
+       ],
+       [
+        19,
+        49.9
+       ],
+       [
+        15,
+        44.8
+       ]
+      ],
+      "all_day_days": 61,
+      "usable_days": null,
+      "summer_rock_hours": 259.3,
+      "long_summer_rock_hours": 0.0,
+      "long_summer_rock_open_hours": 0.0,
+      "terrain_overlap": 0.363,
+      "terrain": 0.449
+     },
+     "mons-mouton": {
+      "flat": {
+       "all": {
+        "year": 1096.8,
+        "winter_half": 616.5,
+        "summer_half": 480.3
+       },
+       "long": {
+        "year": 364.5,
+        "winter_half": 364.5,
+        "summer_half": 0.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 622.8,
+        "winter_half": 369.1,
+        "summer_half": 253.7
+       },
+       "long": {
+        "year": 219.2,
+        "winter_half": 219.2,
+        "summer_half": 0.0
+       }
+      },
+      "longest_stretch_h": 5.23,
+      "best_stretch_bin": 14,
+      "poleward_share": 0.0,
+      "top_bins": [
+       [
+        14,
+        52.5
+       ],
+       [
+        20,
+        50.4
+       ],
+       [
+        19,
+        49.9
+       ]
+      ],
+      "all_day_days": 67,
+      "usable_days": null,
+      "summer_rock_hours": 280.1,
+      "long_summer_rock_hours": 0.0,
+      "long_summer_rock_open_hours": 0.0,
+      "terrain_overlap": 0.512,
+      "terrain": 0.686
+     },
+     "nobile-rim-2": {
+      "flat": {
+       "all": {
+        "year": 1292.4,
+        "winter_half": 715.3,
+        "summer_half": 577.2
+       },
+       "long": {
+        "year": 625.7,
+        "winter_half": 479.8,
+        "summer_half": 145.8
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 787.1,
+        "winter_half": 453.6,
+        "summer_half": 333.5
+       },
+       "long": {
+        "year": 382.6,
+        "winter_half": 303.2,
+        "summer_half": 79.4
+       }
+      },
+      "longest_stretch_h": 5.98,
+      "best_stretch_bin": 13,
+      "poleward_share": 0.233,
+      "top_bins": [
+       [
+        35,
+        64.5
+       ],
+       [
+        13,
+        59.8
+       ],
+       [
+        20,
+        58.8
+       ]
+      ],
+      "all_day_days": 79,
+      "usable_days": null,
+      "summer_rock_hours": 333.1,
+      "long_summer_rock_hours": 145.8,
+      "long_summer_rock_open_hours": 79.4,
+      "terrain_overlap": 0.605,
+      "terrain": 0.716
+     }
+    }
+   },
+   {
+    "name": "Rothera Point",
+    "lat": -67.57,
+    "lon": -68.13,
+    "cell": "-67.6_-68.4",
+    "rock": {
+     "score": 0.0,
+     "body": null
+    },
+    "winter_snow_evidence": "station shows snow",
+    "in_grazing_cells": true,
+    "hemisphere": "S",
+    "region": "Antarctic Peninsula and South Shetlands",
+    "gridded": false,
+    "bare": 0.113967715586935,
+    "land_share": 0.4395833333333334,
+    "snow": {
+     "status": "unmeasured",
+     "source": null,
+     "land_pixels": null,
+     "stuck_winters": null
+    },
+    "horizon": {
+     "north_deg": 4.34,
+     "south_deg": 0.66,
+     "valid_share": 0.398,
+     "pixel_m": 60.0
+    },
+    "terrain": {
+     "median_slope_deg": 4.5,
+     "p90_slope_deg": 18.95,
+     "relief_m": 257.8
+    },
+    "targets": {
+     "connecting-ridge": {
+      "flat": {
+       "all": {
+        "year": 511.4,
+        "winter_half": 228.8,
+        "summer_half": 282.6
+       },
+       "long": {
+        "year": 181.9,
+        "winter_half": 59.2,
+        "summer_half": 122.7
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 129.3,
+        "winter_half": 16.8,
+        "summer_half": 112.6
+       },
+       "long": {
+        "year": 65.2,
+        "winter_half": 0.7,
+        "summer_half": 64.5
+       }
+      },
+      "longest_stretch_h": 3.28,
+      "best_stretch_bin": 33,
+      "poleward_share": 0.674,
+      "top_bins": [
+       [
+        35,
+        34.3
+       ],
+       [
+        0,
+        31.5
+       ],
+       [
+        14,
+        30.3
+       ]
+      ],
+      "all_day_days": 36,
+      "usable_days": null,
+      "summer_rock_hours": 190.0,
+      "long_summer_rock_hours": 122.7,
+      "long_summer_rock_open_hours": 64.5,
+      "terrain_overlap": 0.486,
+      "terrain": 0.545
+     },
+     "malapert": {
+      "flat": {
+       "all": {
+        "year": 1096.0,
+        "winter_half": 484.5,
+        "summer_half": 611.5
+       },
+       "long": {
+        "year": 537.1,
+        "winter_half": 251.9,
+        "summer_half": 285.2
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 364.8,
+        "winter_half": 92.2,
+        "summer_half": 272.7
+       },
+       "long": {
+        "year": 197.3,
+        "winter_half": 37.2,
+        "summer_half": 160.1
+       }
+      },
+      "longest_stretch_h": 5.77,
+      "best_stretch_bin": 33,
+      "poleward_share": 0.531,
+      "top_bins": [
+       [
+        35,
+        78.2
+       ],
+       [
+        0,
+        56.6
+       ],
+       [
+        34,
+        54.0
+       ]
+      ],
+      "all_day_days": 68,
+      "usable_days": null,
+      "summer_rock_hours": 390.6,
+      "long_summer_rock_hours": 285.2,
+      "long_summer_rock_open_hours": 160.1,
+      "terrain_overlap": 0.358,
+      "terrain": 0.443
+     },
+     "mons-mouton": {
+      "flat": {
+       "all": {
+        "year": 1176.0,
+        "winter_half": 518.9,
+        "summer_half": 657.1
+       },
+       "long": {
+        "year": 564.9,
+        "winter_half": 262.6,
+        "summer_half": 302.3
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 412.3,
+        "winter_half": 111.4,
+        "summer_half": 300.9
+       },
+       "long": {
+        "year": 215.9,
+        "winter_half": 43.8,
+        "summer_half": 172.0
+       }
+      },
+      "longest_stretch_h": 6.03,
+      "best_stretch_bin": 33,
+      "poleward_share": 0.535,
+      "top_bins": [
+       [
+        35,
+        83.2
+       ],
+       [
+        0,
+        59.7
+       ],
+       [
+        34,
+        57.2
+       ]
+      ],
+      "all_day_days": 72,
+      "usable_days": null,
+      "summer_rock_hours": 416.7,
+      "long_summer_rock_hours": 302.3,
+      "long_summer_rock_open_hours": 172.0,
+      "terrain_overlap": 0.469,
+      "terrain": 0.628
+     },
+     "nobile-rim-2": {
+      "flat": {
+       "all": {
+        "year": 1376.4,
+        "winter_half": 603.4,
+        "summer_half": 773.0
+       },
+       "long": {
+        "year": 809.8,
+        "winter_half": 378.3,
+        "summer_half": 431.5
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 537.9,
+        "winter_half": 162.7,
+        "summer_half": 375.2
+       },
+       "long": {
+        "year": 337.9,
+        "winter_half": 92.2,
+        "summer_half": 245.7
+       }
+      },
+      "longest_stretch_h": 6.82,
+      "best_stretch_bin": 33,
+      "poleward_share": 0.533,
+      "top_bins": [
+       [
+        35,
+        95.4
+       ],
+       [
+        0,
+        67.4
+       ],
+       [
+        34,
+        65.1
+       ]
+      ],
+      "all_day_days": 82,
+      "usable_days": null,
+      "summer_rock_hours": 481.7,
+      "long_summer_rock_hours": 385.5,
+      "long_summer_rock_open_hours": 221.7,
+      "terrain_overlap": 0.561,
+      "terrain": 0.664
+     }
+    }
+   },
+   {
+    "name": "Jutulsessen at Troll",
+    "lat": -72.01,
+    "lon": 2.53,
+    "cell": "-72.1_2.4",
+    "rock": {
+     "score": 0.0,
+     "body": null
+    },
+    "winter_snow_evidence": "one qualitative report",
+    "in_grazing_cells": true,
+    "hemisphere": "S",
+    "region": "Dronning Maud Land",
+    "gridded": true,
+    "bare": 0.31145667696262613,
+    "land_share": 1.0,
+    "snow": {
+     "status": "unmeasured",
+     "source": null,
+     "land_pixels": null,
+     "stuck_winters": null
+    },
+    "horizon": {
+     "north_deg": 0.3,
+     "south_deg": 3.2,
+     "valid_share": 1.0,
+     "pixel_m": 60.0
+    },
+    "terrain": {
+     "median_slope_deg": 2.35,
+     "p90_slope_deg": 22.6,
+     "relief_m": 578.1
+    },
+    "targets": {
+     "connecting-ridge": {
+      "flat": {
+       "all": {
+        "year": 359.0,
+        "winter_half": 168.4,
+        "summer_half": 190.6
+       },
+       "long": {
+        "year": 109.8,
+        "winter_half": 56.5,
+        "summer_half": 53.3
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 88.0,
+        "winter_half": 71.7,
+        "summer_half": 16.4
+       },
+       "long": {
+        "year": 30.6,
+        "winter_half": 30.0,
+        "summer_half": 0.6
+       }
+      },
+      "longest_stretch_h": 2.93,
+      "best_stretch_bin": 31,
+      "poleward_share": 0.485,
+      "top_bins": [
+       [
+        31,
+        30.2
+       ],
+       [
+        12,
+        30.0
+       ],
+       [
+        21,
+        26.5
+       ]
+      ],
+      "all_day_days": 18,
+      "usable_days": null,
+      "summer_rock_hours": 71.7,
+      "long_summer_rock_hours": 23.1,
+      "long_summer_rock_open_hours": 0.4,
+      "terrain_overlap": 0.377,
+      "terrain": 0.423
+     },
+     "malapert": {
+      "flat": {
+       "all": {
+        "year": 967.3,
+        "winter_half": 379.6,
+        "summer_half": 587.7
+       },
+       "long": {
+        "year": 527.1,
+        "winter_half": 220.9,
+        "summer_half": 306.3
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 393.9,
+        "winter_half": 204.1,
+        "summer_half": 189.8
+       },
+       "long": {
+        "year": 223.9,
+        "winter_half": 131.1,
+        "summer_half": 92.8
+       }
+      },
+      "longest_stretch_h": 5.95,
+      "best_stretch_bin": 31,
+      "poleward_share": 0.581,
+      "top_bins": [
+       [
+        2,
+        57.7
+       ],
+       [
+        11,
+        56.9
+       ],
+       [
+        31,
+        56.9
+       ]
+      ],
+      "all_day_days": 42,
+      "usable_days": null,
+      "summer_rock_hours": 281.0,
+      "long_summer_rock_hours": 200.5,
+      "long_summer_rock_open_hours": 68.6,
+      "terrain_overlap": 0.34,
+      "terrain": 0.42
+     },
+     "mons-mouton": {
+      "flat": {
+       "all": {
+        "year": 1089.2,
+        "winter_half": 408.3,
+        "summer_half": 681.0
+       },
+       "long": {
+        "year": 710.5,
+        "winter_half": 274.9,
+        "summer_half": 435.7
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 477.2,
+        "winter_half": 225.8,
+        "summer_half": 251.4
+       },
+       "long": {
+        "year": 326.0,
+        "winter_half": 164.5,
+        "summer_half": 161.5
+       }
+      },
+      "longest_stretch_h": 6.3,
+      "best_stretch_bin": 31,
+      "poleward_share": 0.613,
+      "top_bins": [
+       [
+        2,
+        61.4
+       ],
+       [
+        31,
+        60.2
+       ],
+       [
+        11,
+        59.7
+       ]
+      ],
+      "all_day_days": 45,
+      "usable_days": null,
+      "summer_rock_hours": 348.3,
+      "long_summer_rock_hours": 281.9,
+      "long_summer_rock_open_hours": 121.3,
+      "terrain_overlap": 0.376,
+      "terrain": 0.503
+     },
+     "nobile-rim-2": {
+      "flat": {
+       "all": {
+        "year": 1339.4,
+        "winter_half": 478.7,
+        "summer_half": 860.7
+       },
+       "long": {
+        "year": 1002.9,
+        "winter_half": 399.4,
+        "summer_half": 603.5
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 653.9,
+        "winter_half": 280.9,
+        "summer_half": 373.0
+       },
+       "long": {
+        "year": 506.1,
+        "winter_half": 243.4,
+        "summer_half": 262.7
+       }
+      },
+      "longest_stretch_h": 7.2,
+      "best_stretch_bin": 31,
+      "poleward_share": 0.602,
+      "top_bins": [
+       [
+        2,
+        70.4
+       ],
+       [
+        31,
+        68.6
+       ],
+       [
+        23,
+        67.7
+       ]
+      ],
+      "all_day_days": 54,
+      "usable_days": null,
+      "summer_rock_hours": 461.5,
+      "long_summer_rock_hours": 424.0,
+      "long_summer_rock_open_hours": 205.1,
+      "terrain_overlap": 0.444,
+      "terrain": 0.525
+     }
+    }
+   },
+   {
+    "name": "Northern Foothills, Terra Nova Bay",
+    "lat": -74.75,
+    "lon": 164.0,
+    "cell": "-74.8_164.0",
+    "rock": {
+     "score": 0.0,
+     "body": null
+    },
+    "winter_snow_evidence": "no evidence",
+    "in_grazing_cells": true,
+    "hemisphere": "S",
+    "region": "Victoria Land",
+    "gridded": false,
+    "bare": 0.8983624554867318,
+    "land_share": 0.14633333333333334,
+    "snow": {
+     "status": "unmeasured",
+     "source": null,
+     "land_pixels": null,
+     "stuck_winters": null
+    },
+    "horizon": {
+     "north_deg": 2.82,
+     "south_deg": 0.21,
+     "valid_share": 0.052,
+     "pixel_m": 60.0
+    },
+    "terrain": {
+     "median_slope_deg": 6.91,
+     "p90_slope_deg": 15.49,
+     "relief_m": 147.3
+    },
+    "targets": {
+     "connecting-ridge": {
+      "flat": {
+       "all": {
+        "year": 331.6,
+        "winter_half": 154.0,
+        "summer_half": 177.6
+       },
+       "long": {
+        "year": 115.3,
+        "winter_half": 59.2,
+        "summer_half": 56.1
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 126.0,
+        "winter_half": 42.4,
+        "summer_half": 83.7
+       },
+       "long": {
+        "year": 36.3,
+        "winter_half": 8.8,
+        "summer_half": 27.6
+       }
+      },
+      "longest_stretch_h": 3.08,
+      "best_stretch_bin": 3,
+      "poleward_share": 0.486,
+      "top_bins": [
+       [
+        30,
+        31.1
+       ],
+       [
+        11,
+        31.1
+       ],
+       [
+        22,
+        28.2
+       ]
+      ],
+      "all_day_days": 16,
+      "usable_days": null,
+      "summer_rock_hours": 61.3,
+      "long_summer_rock_hours": 24.9,
+      "long_summer_rock_open_hours": 12.7,
+      "terrain_overlap": 0.689,
+      "terrain": 0.773
+     },
+     "malapert": {
+      "flat": {
+       "all": {
+        "year": 857.6,
+        "winter_half": 345.9,
+        "summer_half": 511.7
+       },
+       "long": {
+        "year": 512.7,
+        "winter_half": 237.5,
+        "summer_half": 275.2
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 421.2,
+        "winter_half": 130.1,
+        "summer_half": 291.1
+       },
+       "long": {
+        "year": 263.4,
+        "winter_half": 84.9,
+        "summer_half": 178.5
+       }
+      },
+      "longest_stretch_h": 6.4,
+      "best_stretch_bin": 3,
+      "poleward_share": 0.537,
+      "top_bins": [
+       [
+        3,
+        62.0
+       ],
+       [
+        23,
+        60.5
+       ],
+       [
+        30,
+        59.3
+       ]
+      ],
+      "all_day_days": 37,
+      "usable_days": null,
+      "summer_rock_hours": 185.8,
+      "long_summer_rock_hours": 146.0,
+      "long_summer_rock_open_hours": 91.8,
+      "terrain_overlap": 0.463,
+      "terrain": 0.572
+     },
+     "mons-mouton": {
+      "flat": {
+       "all": {
+        "year": 946.2,
+        "winter_half": 371.9,
+        "summer_half": 574.4
+       },
+       "long": {
+        "year": 645.0,
+        "winter_half": 295.0,
+        "summer_half": 350.0
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 486.9,
+        "winter_half": 148.3,
+        "summer_half": 338.6
+       },
+       "long": {
+        "year": 342.2,
+        "winter_half": 115.6,
+        "summer_half": 226.7
+       }
+      },
+      "longest_stretch_h": 6.8,
+      "best_stretch_bin": 3,
+      "poleward_share": 0.543,
+      "top_bins": [
+       [
+        3,
+        66.0
+       ],
+       [
+        10,
+        64.0
+       ],
+       [
+        30,
+        62.9
+       ]
+      ],
+      "all_day_days": 41,
+      "usable_days": null,
+      "summer_rock_hours": 210.9,
+      "long_summer_rock_hours": 159.4,
+      "long_summer_rock_open_hours": 102.5,
+      "terrain_overlap": 0.66,
+      "terrain": 0.884
+     },
+     "nobile-rim-2": {
+      "flat": {
+       "all": {
+        "year": 1196.2,
+        "winter_half": 433.4,
+        "summer_half": 762.7
+       },
+       "long": {
+        "year": 1178.3,
+        "winter_half": 428.3,
+        "summer_half": 749.9
+       }
+      },
+      "snow_free": {
+       "all": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       },
+       "long": {
+        "year": null,
+        "winter_half": null,
+        "summer_half": null
+       }
+      },
+      "open": {
+       "all": {
+        "year": 682.9,
+        "winter_half": 194.4,
+        "summer_half": 488.6
+       },
+       "long": {
+        "year": 671.3,
+        "winter_half": 194.4,
+        "summer_half": 476.9
+       }
+      },
+      "longest_stretch_h": 7.73,
+      "best_stretch_bin": 3,
+      "poleward_share": 0.55,
+      "top_bins": [
+       [
+        3,
+        75.8
+       ],
+       [
+        30,
+        72.0
+       ],
+       [
+        24,
+        70.1
+       ]
+      ],
+      "all_day_days": 49,
+      "usable_days": null,
+      "summer_rock_hours": 312.7,
+      "long_summer_rock_hours": 299.9,
+      "long_summer_rock_open_hours": 208.9,
+      "terrain_overlap": 0.747,
+      "terrain": 0.884
+     }
+    }
+   }
+  ]
+ },
+ "big_picture_north": {
+  "measured_cells": 14863,
+  "measured_bare_km2": 695226.7,
+  "cells_with_a_horizon": 1192,
+  "targets": {
+   "connecting-ridge": {
+    "long_snow_free_hours": {
+     "winter_half": {
+      "50": {
+       "cells": 0,
+       "bare_km2": 0
+      },
+      "100": {
+       "cells": 0,
+       "bare_km2": 0
+      },
+      "200": {
+       "cells": 0,
+       "bare_km2": 0
+      },
+      "cells_counted": 14860,
+      "unknown_cells": 3
+     },
+     "summer_half": {
+      "50": {
+       "cells": 476,
+       "bare_km2": 19352.1
+      },
+      "100": {
+       "cells": 6,
+       "bare_km2": 220.7
+      },
+      "200": {
+       "cells": 0,
+       "bare_km2": 0
+      },
+      "cells_counted": 14860,
+      "unknown_cells": 3
+     },
+     "year": {
+      "50": {
+       "cells": 481,
+       "bare_km2": 19419.8
+      },
+      "100": {
+       "cells": 6,
+       "bare_km2": 220.7
+      },
+      "200": {
+       "cells": 0,
+       "bare_km2": 0
+      },
+      "cells_counted": 14860,
+      "unknown_cells": 3
+     }
+    },
+    "long_open_hours_among_cells_with_a_horizon": {
+     "winter_half": {
+      "50": {
+       "cells": 0,
+       "bare_km2": 0
+      },
+      "100": {
+       "cells": 0,
+       "bare_km2": 0
+      },
+      "200": {
+       "cells": 0,
+       "bare_km2": 0
+      },
+      "cells_counted": 1192,
+      "unknown_cells": 0
+     },
+     "summer_half": {
+      "50": {
+       "cells": 1,
+       "bare_km2": 52.9
+      },
+      "100": {
+       "cells": 0,
+       "bare_km2": 0
+      },
+      "200": {
+       "cells": 0,
+       "bare_km2": 0
+      },
+      "cells_counted": 1192,
+      "unknown_cells": 0
+     },
+     "year": {
+      "50": {
+       "cells": 1,
+       "bare_km2": 52.9
+      },
+      "100": {
+       "cells": 0,
+       "bare_km2": 0
+      },
+      "200": {
+       "cells": 0,
+       "bare_km2": 0
+      },
+      "cells_counted": 1192,
+      "unknown_cells": 0
+     }
+    },
+    "calendar_hours_times_bare_km2": [
+     270.1,
+     10.1,
+     312.2,
+     0.0,
+     0.0,
+     605.8,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     151.9,
+     0.0,
+     5282.2,
+     22552.2,
+     123984.5,
+     280980.5,
+     508110.1,
+     1144375.9,
+     1461660.9,
+     1403212.7,
+     1843572.2,
+     2427912.5,
+     1542699.3,
+     1056791.0,
+     0.0,
+     0.0,
+     0.0,
+     13026.9,
+     20950.9,
+     3395.4,
+     1957.3,
+     982.9,
+     209.3,
+     526.6,
+     902.3
+    ],
+    "calendar_unknown_cell_bins": 8
+   },
+   "malapert": {
+    "long_snow_free_hours": {
+     "winter_half": {
+      "50": {
+       "cells": 74,
+       "bare_km2": 2849.9
+      },
+      "100": {
+       "cells": 10,
+       "bare_km2": 617.0
+      },
+      "200": {
+       "cells": 0,
+       "bare_km2": 0
+      },
+      "cells_counted": 14860,
+      "unknown_cells": 3
+     },
+     "summer_half": {
+      "50": {
+       "cells": 9605,
+       "bare_km2": 486113.8
+      },
+      "100": {
+       "cells": 7324,
+       "bare_km2": 384203.8
+      },
+      "200": {
+       "cells": 545,
+       "bare_km2": 20085.7
+      },
+      "cells_counted": 14860,
+      "unknown_cells": 3
+     },
+     "year": {
+      "50": {
+       "cells": 9671,
+       "bare_km2": 488955.1
+      },
+      "100": {
+       "cells": 7430,
+       "bare_km2": 389164.0
+      },
+      "200": {
+       "cells": 618,
+       "bare_km2": 22870.4
+      },
+      "cells_counted": 14860,
+      "unknown_cells": 3
+     }
+    },
+    "long_open_hours_among_cells_with_a_horizon": {
+     "winter_half": {
+      "50": {
+       "cells": 36,
+       "bare_km2": 1661.4
+      },
+      "100": {
+       "cells": 9,
+       "bare_km2": 605.6
+      },
+      "200": {
+       "cells": 0,
+       "bare_km2": 0
+      },
+      "cells_counted": 1192,
+      "unknown_cells": 0
+     },
+     "summer_half": {
+      "50": {
+       "cells": 791,
+       "bare_km2": 60351.3
+      },
+      "100": {
+       "cells": 509,
+       "bare_km2": 40051.9
+      },
+      "200": {
+       "cells": 17,
+       "bare_km2": 874.5
+      },
+      "cells_counted": 1192,
+      "unknown_cells": 0
+     },
+     "year": {
+      "50": {
+       "cells": 843,
+       "bare_km2": 62914.9
+      },
+      "100": {
+       "cells": 538,
+       "bare_km2": 41818.7
+      },
+      "200": {
+       "cells": 22,
+       "bare_km2": 1069.5
+      },
+      "cells_counted": 1192,
+      "unknown_cells": 0
+     }
+    },
+    "calendar_hours_times_bare_km2": [
+     25447.5,
+     27946.1,
+     1149.8,
+     645.1,
+     224.2,
+     2403.2,
+     2762.6,
+     1832.1,
+     1688.7,
+     1826.9,
+     2861.0,
+     1545.4,
+     996.4,
+     18226.6,
+     94105.6,
+     539730.1,
+     1792604.4,
+     3356882.5,
+     5580983.0,
+     7329679.5,
+     8150556.0,
+     10034090.2,
+     11249386.5,
+     10780752.7,
+     5171859.5,
+     1598818.9,
+     489034.0,
+     348586.1,
+     317905.8,
+     120096.4,
+     18194.3,
+     7838.8,
+     63290.5,
+     52174.7,
+     21529.0,
+     44857.9
+    ],
+    "calendar_unknown_cell_bins": 31
+   },
+   "mons-mouton": {
+    "long_snow_free_hours": {
+     "winter_half": {
+      "50": {
+       "cells": 105,
+       "bare_km2": 4428.5
+      },
+      "100": {
+       "cells": 27,
+       "bare_km2": 1220.3
+      },
+      "200": {
+       "cells": 0,
+       "bare_km2": 0
+      },
+      "cells_counted": 14860,
+      "unknown_cells": 3
+     },
+     "summer_half": {
+      "50": {
+       "cells": 10048,
+       "bare_km2": 508309.4
+      },
+      "100": {
+       "cells": 8207,
+       "bare_km2": 426432.2
+      },
+      "200": {
+       "cells": 1562,
+       "bare_km2": 61518.9
+      },
+      "cells_counted": 14860,
+      "unknown_cells": 3
+     },
+     "year": {
+      "50": {
+       "cells": 10119,
+       "bare_km2": 510981.9
+      },
+      "100": {
+       "cells": 8301,
+       "bare_km2": 430658.3
+      },
+      "200": {
+       "cells": 1723,
+       "bare_km2": 69559.0
+      },
+      "cells_counted": 14860,
+      "unknown_cells": 3
+     }
+    },
+    "long_open_hours_among_cells_with_a_horizon": {
+     "winter_half": {
+      "50": {
+       "cells": 44,
+       "bare_km2": 2180.3
+      },
+      "100": {
+       "cells": 23,
+       "bare_km2": 1142.9
+      },
+      "200": {
+       "cells": 0,
+       "bare_km2": 0
+      },
+      "cells_counted": 1192,
+      "unknown_cells": 0
+     },
+     "summer_half": {
+      "50": {
+       "cells": 855,
+       "bare_km2": 64121.0
+      },
+      "100": {
+       "cells": 637,
+       "bare_km2": 50216.2
+      },
+      "200": {
+       "cells": 68,
+       "bare_km2": 4065.6
+      },
+      "cells_counted": 1192,
+      "unknown_cells": 0
+     },
+     "year": {
+      "50": {
+       "cells": 902,
+       "bare_km2": 66278.3
+      },
+      "100": {
+       "cells": 690,
+       "bare_km2": 52814.9
+      },
+      "200": {
+       "cells": 85,
+       "bare_km2": 4922.9
+      },
+      "cells_counted": 1192,
+      "unknown_cells": 0
+     }
+    },
+    "calendar_hours_times_bare_km2": [
+     25741.8,
+     31712.4,
+     2681.4,
+     658.5,
+     586.6,
+     2403.2,
+     3058.6,
+     2160.3,
+     1855.3,
+     2119.8,
+     3052.6,
+     1679.2,
+     1949.0,
+     20542.6,
+     106507.9,
+     662494.0,
+     2261557.7,
+     4139043.8,
+     6844597.5,
+     8767738.3,
+     10088955.0,
+     12034078.4,
+     13302959.6,
+     12304950.2,
+     6408187.7,
+     2033739.0,
+     679086.2,
+     542636.0,
+     383020.9,
+     150963.2,
+     19423.0,
+     40847.7,
+     96581.7,
+     53195.6,
+     22086.8,
+     45388.0
+    ],
+    "calendar_unknown_cell_bins": 38
+   },
+   "nobile-rim-2": {
+    "long_snow_free_hours": {
+     "winter_half": {
+      "50": {
+       "cells": 214,
+       "bare_km2": 8160.5
+      },
+      "100": {
+       "cells": 40,
+       "bare_km2": 1776.0
+      },
+      "200": {
+       "cells": 3,
+       "bare_km2": 54.5
+      },
+      "cells_counted": 14860,
+      "unknown_cells": 3
+     },
+     "summer_half": {
+      "50": {
+       "cells": 11234,
+       "bare_km2": 559672.6
+      },
+      "100": {
+       "cells": 9897,
+       "bare_km2": 504540.2
+      },
+      "200": {
+       "cells": 6244,
+       "bare_km2": 325591.6
+      },
+      "cells_counted": 14860,
+      "unknown_cells": 3
+     },
+     "year": {
+      "50": {
+       "cells": 11279,
+       "bare_km2": 561192.6
+      },
+      "100": {
+       "cells": 9982,
+       "bare_km2": 508128.1
+      },
+      "200": {
+       "cells": 6403,
+       "bare_km2": 332840.9
+      },
+      "cells_counted": 14860,
+      "unknown_cells": 3
+     }
+    },
+    "long_open_hours_among_cells_with_a_horizon": {
+     "winter_half": {
+      "50": {
+       "cells": 59,
+       "bare_km2": 2744.5
+      },
+      "100": {
+       "cells": 33,
+       "bare_km2": 1619.0
+      },
+      "200": {
+       "cells": 2,
+       "bare_km2": 15.7
+      },
+      "cells_counted": 1192,
+      "unknown_cells": 0
+     },
+     "summer_half": {
+      "50": {
+       "cells": 952,
+       "bare_km2": 69146.6
+      },
+      "100": {
+       "cells": 806,
+       "bare_km2": 61038.9
+      },
+      "200": {
+       "cells": 497,
+       "bare_km2": 39926.9
+      },
+      "cells_counted": 1192,
+      "unknown_cells": 0
+     },
+     "year": {
+      "50": {
+       "cells": 982,
+       "bare_km2": 70639.6
+      },
+      "100": {
+       "cells": 856,
+       "bare_km2": 63440.4
+      },
+      "200": {
+       "cells": 549,
+       "bare_km2": 42627.3
+      },
+      "cells_counted": 1192,
+      "unknown_cells": 0
+     }
+    },
+    "calendar_hours_times_bare_km2": [
+     26006.0,
+     33862.2,
+     30821.9,
+     3084.0,
+     785.9,
+     2717.7,
+     3583.6,
+     2876.1,
+     2545.9,
+     2649.7,
+     3539.0,
+     1996.9,
+     5757.0,
+     27366.0,
+     209786.0,
+     1237054.1,
+     3292709.1,
+     6127224.4,
+     10626612.6,
+     13199641.1,
+     15559650.8,
+     17298318.9,
+     19584159.2,
+     17432738.6,
+     10319738.7,
+     4103267.1,
+     2083158.6,
+     1241560.4,
+     593509.0,
+     221621.0,
+     68946.6,
+     158296.9,
+     119801.3,
+     56870.1,
+     25150.8,
+     46551.2
+    ],
+    "calendar_unknown_cell_bins": 59
+   }
+  }
+ },
+ "old_against_new": {
+  "old_cells_in_file": 14933,
+  "old_expected": {
+   "connecting-ridge": 0,
+   "malapert": 49,
+   "mons-mouton": 52,
+   "nobile-rim-2": 57
+  },
+  "targets": {
+   "connecting-ridge": {
+    "old": 0,
+    "new_measured": 0,
+    "new_measured_unknown": 3,
+    "new_doubtful": 0,
+    "new_measured_regions": {}
+   },
+   "malapert": {
+    "old": 49,
+    "new_measured": 41,
+    "new_measured_unknown": 3,
+    "new_doubtful": 2,
+    "new_measured_regions": {
+     "Iceland": 41
+    }
+   },
+   "mons-mouton": {
+    "old": 52,
+    "new_measured": 45,
+    "new_measured_unknown": 3,
+    "new_doubtful": 2,
+    "new_measured_regions": {
+     "Iceland": 45
+    }
+   },
+   "nobile-rim-2": {
+    "old": 57,
+    "new_measured": 50,
+    "new_measured_unknown": 3,
+    "new_doubtful": 2,
+    "new_measured_regions": {
+     "Iceland": 49,
+     "Svalbard": 1
+    }
+   }
+  }
+ },
+ "recompute_check": {
+  "largest_difference_h": 0.1,
+  "known_in_one_only": 0
+ },
+ "stability": {
+  "note": "survivors: baseline top-10 sites that keep a site within 50 km under the change. ",
+  "north": {
+   "connecting-ridge": {
+    "lighting": {
+     "baseline_sites": 10,
+     "bare screen 0.15": 10,
+     "bare screen 0.25": 10,
+     "bare screen 0.35": 10,
+     "full marks at 100 h": 10,
+     "full marks at 200 h": 10,
+     "full marks at 400 h": 10,
+     "snow land pixels >= 1": 8,
+     "snow land pixels >= 4": 7,
+     "snow land pixels >= 7": 6,
+     "flat horizon instead of real": 2,
+     "stretch minimum 1 h": 5,
+     "stretch minimum 2 h": 10,
+     "stretch minimum 3 h": 5
+    },
+    "shadows": {
+     "baseline_sites": 10,
+     "bare screen 0.15": 10,
+     "bare screen 0.25": 10,
+     "bare screen 0.35": 10,
+     "full marks at 100 h": 10,
+     "full marks at 200 h": 10,
+     "full marks at 400 h": 10,
+     "snow land pixels >= 1": 9,
+     "snow land pixels >= 4": 3,
+     "snow land pixels >= 7": 3,
+     "flat horizon instead of real": 4,
+     "stretch minimum 1 h": 5,
+     "stretch minimum 2 h": 10,
+     "stretch minimum 3 h": 6
+    },
+    "geology": {
+     "baseline_sites": 4,
+     "bare screen 0.15": 4,
+     "bare screen 0.25": 4,
+     "bare screen 0.35": 3,
+     "full marks at 100 h": 4,
+     "full marks at 200 h": 4,
+     "full marks at 400 h": 4,
+     "snow land pixels >= 1": 4,
+     "snow land pixels >= 4": 3,
+     "snow land pixels >= 7": 3,
+     "flat horizon instead of real": 4,
+     "stretch minimum 1 h": 4,
+     "stretch minimum 2 h": 4,
+     "stretch minimum 3 h": 4
+    },
+    "full": {
+     "baseline_sites": 1,
+     "bare screen 0.15": 1,
+     "bare screen 0.25": 1,
+     "bare screen 0.35": 1,
+     "full marks at 100 h": 1,
+     "full marks at 200 h": 1,
+     "full marks at 400 h": 1,
+     "snow land pixels >= 1": 1,
+     "snow land pixels >= 4": 1,
+     "snow land pixels >= 7": 1,
+     "flat horizon instead of real": 1,
+     "stretch minimum 1 h": 1,
+     "stretch minimum 2 h": 1,
+     "stretch minimum 3 h": 1
+    }
+   },
+   "malapert": {
+    "lighting": {
+     "baseline_sites": 10,
+     "bare screen 0.15": 10,
+     "bare screen 0.25": 10,
+     "bare screen 0.35": 10,
+     "full marks at 100 h": 2,
+     "full marks at 200 h": 10,
+     "full marks at 400 h": 10,
+     "snow land pixels >= 1": 10,
+     "snow land pixels >= 4": 7,
+     "snow land pixels >= 7": 3,
+     "flat horizon instead of real": 8,
+     "stretch minimum 1 h": 2,
+     "stretch minimum 2 h": 10,
+     "stretch minimum 3 h": 7
+    },
+    "shadows": {
+     "baseline_sites": 10,
+     "bare screen 0.15": 10,
+     "bare screen 0.25": 10,
+     "bare screen 0.35": 10,
+     "full marks at 100 h": 7,
+     "full marks at 200 h": 10,
+     "full marks at 400 h": 10,
+     "snow land pixels >= 1": 8,
+     "snow land pixels >= 4": 5,
+     "snow land pixels >= 7": 3,
+     "flat horizon instead of real": 4,
+     "stretch minimum 1 h": 5,
+     "stretch minimum 2 h": 10,
+     "stretch minimum 3 h": 7
+    },
+    "geology": {
+     "baseline_sites": 4,
+     "bare screen 0.15": 4,
+     "bare screen 0.25": 4,
+     "bare screen 0.35": 3,
+     "full marks at 100 h": 4,
+     "full marks at 200 h": 4,
+     "full marks at 400 h": 4,
+     "snow land pixels >= 1": 4,
+     "snow land pixels >= 4": 3,
+     "snow land pixels >= 7": 3,
+     "flat horizon instead of real": 4,
+     "stretch minimum 1 h": 4,
+     "stretch minimum 2 h": 4,
+     "stretch minimum 3 h": 4
+    },
+    "full": {
+     "baseline_sites": 3,
+     "bare screen 0.15": 3,
+     "bare screen 0.25": 3,
+     "bare screen 0.35": 2,
+     "full marks at 100 h": 3,
+     "full marks at 200 h": 3,
+     "full marks at 400 h": 3,
+     "snow land pixels >= 1": 3,
+     "snow land pixels >= 4": 2,
+     "snow land pixels >= 7": 2,
+     "flat horizon instead of real": 3,
+     "stretch minimum 1 h": 3,
+     "stretch minimum 2 h": 3,
+     "stretch minimum 3 h": 3
+    }
+   },
+   "mons-mouton": {
+    "lighting": {
+     "baseline_sites": 10,
+     "bare screen 0.15": 10,
+     "bare screen 0.25": 10,
+     "bare screen 0.35": 10,
+     "full marks at 100 h": 4,
+     "full marks at 200 h": 10,
+     "full marks at 400 h": 8,
+     "snow land pixels >= 1": 10,
+     "snow land pixels >= 4": 7,
+     "snow land pixels >= 7": 7,
+     "flat horizon instead of real": 6,
+     "stretch minimum 1 h": 4,
+     "stretch minimum 2 h": 10,
+     "stretch minimum 3 h": 6
+    },
+    "shadows": {
+     "baseline_sites": 10,
+     "bare screen 0.15": 10,
+     "bare screen 0.25": 10,
+     "bare screen 0.35": 10,
+     "full marks at 100 h": 5,
+     "full marks at 200 h": 10,
+     "full marks at 400 h": 10,
+     "snow land pixels >= 1": 8,
+     "snow land pixels >= 4": 4,
+     "snow land pixels >= 7": 2,
+     "flat horizon instead of real": 3,
+     "stretch minimum 1 h": 4,
+     "stretch minimum 2 h": 10,
+     "stretch minimum 3 h": 8
+    },
+    "geology": {
+     "baseline_sites": 4,
+     "bare screen 0.15": 4,
+     "bare screen 0.25": 4,
+     "bare screen 0.35": 3,
+     "full marks at 100 h": 4,
+     "full marks at 200 h": 4,
+     "full marks at 400 h": 4,
+     "snow land pixels >= 1": 4,
+     "snow land pixels >= 4": 3,
+     "snow land pixels >= 7": 3,
+     "flat horizon instead of real": 4,
+     "stretch minimum 1 h": 4,
+     "stretch minimum 2 h": 4,
+     "stretch minimum 3 h": 4
+    },
+    "full": {
+     "baseline_sites": 3,
+     "bare screen 0.15": 3,
+     "bare screen 0.25": 3,
+     "bare screen 0.35": 2,
+     "full marks at 100 h": 3,
+     "full marks at 200 h": 3,
+     "full marks at 400 h": 3,
+     "snow land pixels >= 1": 3,
+     "snow land pixels >= 4": 2,
+     "snow land pixels >= 7": 2,
+     "flat horizon instead of real": 3,
+     "stretch minimum 1 h": 3,
+     "stretch minimum 2 h": 3,
+     "stretch minimum 3 h": 3
+    }
+   },
+   "nobile-rim-2": {
+    "lighting": {
+     "baseline_sites": 10,
+     "bare screen 0.15": 10,
+     "bare screen 0.25": 10,
+     "bare screen 0.35": 10,
+     "full marks at 100 h": 10,
+     "full marks at 200 h": 10,
+     "full marks at 400 h": 5,
+     "snow land pixels >= 1": 10,
+     "snow land pixels >= 4": 7,
+     "snow land pixels >= 7": 6,
+     "flat horizon instead of real": 8,
+     "stretch minimum 1 h": 10,
+     "stretch minimum 2 h": 10,
+     "stretch minimum 3 h": 3
+    },
+    "shadows": {
+     "baseline_sites": 10,
+     "bare screen 0.15": 10,
+     "bare screen 0.25": 10,
+     "bare screen 0.35": 10,
+     "full marks at 100 h": 5,
+     "full marks at 200 h": 10,
+     "full marks at 400 h": 6,
+     "snow land pixels >= 1": 8,
+     "snow land pixels >= 4": 7,
+     "snow land pixels >= 7": 3,
+     "flat horizon instead of real": 3,
+     "stretch minimum 1 h": 9,
+     "stretch minimum 2 h": 10,
+     "stretch minimum 3 h": 5
+    },
+    "geology": {
+     "baseline_sites": 4,
+     "bare screen 0.15": 4,
+     "bare screen 0.25": 4,
+     "bare screen 0.35": 3,
+     "full marks at 100 h": 4,
+     "full marks at 200 h": 4,
+     "full marks at 400 h": 4,
+     "snow land pixels >= 1": 4,
+     "snow land pixels >= 4": 3,
+     "snow land pixels >= 7": 3,
+     "flat horizon instead of real": 4,
+     "stretch minimum 1 h": 4,
+     "stretch minimum 2 h": 4,
+     "stretch minimum 3 h": 4
+    },
+    "full": {
+     "baseline_sites": 4,
+     "bare screen 0.15": 4,
+     "bare screen 0.25": 4,
+     "bare screen 0.35": 3,
+     "full marks at 100 h": 4,
+     "full marks at 200 h": 4,
+     "full marks at 400 h": 4,
+     "snow land pixels >= 1": 4,
+     "snow land pixels >= 4": 3,
+     "snow land pixels >= 7": 3,
+     "flat horizon instead of real": 4,
+     "stretch minimum 1 h": 4,
+     "stretch minimum 2 h": 4,
+     "stretch minimum 3 h": 3
+    }
+   }
+  },
+  "south": {
+   "connecting-ridge": {
+    "lighting": {
+     "baseline_sites": 10,
+     "bare screen 0.15": 7,
+     "bare screen 0.25": 10,
+     "bare screen 0.35": 9,
+     "full marks at 100 h": 10,
+     "full marks at 200 h": 10,
+     "full marks at 400 h": 10,
+     "flat horizon instead of real": 6,
+     "stretch minimum 1 h": 6,
+     "stretch minimum 2 h": 10,
+     "stretch minimum 3 h": 8
+    },
+    "shadows": {
+     "baseline_sites": 10,
+     "bare screen 0.15": 8,
+     "bare screen 0.25": 10,
+     "bare screen 0.35": 10,
+     "full marks at 100 h": 10,
+     "full marks at 200 h": 10,
+     "full marks at 400 h": 10,
+     "flat horizon instead of real": 7,
+     "stretch minimum 1 h": 8,
+     "stretch minimum 2 h": 10,
+     "stretch minimum 3 h": 7
+    },
+    "geology": {
+     "baseline_sites": 1,
+     "bare screen 0.15": 1,
+     "bare screen 0.25": 1,
+     "bare screen 0.35": 1,
+     "full marks at 100 h": 1,
+     "full marks at 200 h": 1,
+     "full marks at 400 h": 1,
+     "flat horizon instead of real": 1,
+     "stretch minimum 1 h": 1,
+     "stretch minimum 2 h": 1,
+     "stretch minimum 3 h": 1
+    },
+    "full": {
+     "baseline_sites": 1,
+     "bare screen 0.15": 1,
+     "bare screen 0.25": 1,
+     "bare screen 0.35": 1,
+     "full marks at 100 h": 1,
+     "full marks at 200 h": 1,
+     "full marks at 400 h": 1,
+     "flat horizon instead of real": 1,
+     "stretch minimum 1 h": 1,
+     "stretch minimum 2 h": 1,
+     "stretch minimum 3 h": 0
+    }
+   },
+   "malapert": {
+    "lighting": {
+     "baseline_sites": 10,
+     "bare screen 0.15": 10,
+     "bare screen 0.25": 10,
+     "bare screen 0.35": 10,
+     "full marks at 100 h": 6,
+     "full marks at 200 h": 10,
+     "full marks at 400 h": 9,
+     "flat horizon instead of real": 4,
+     "stretch minimum 1 h": 7,
+     "stretch minimum 2 h": 10,
+     "stretch minimum 3 h": 8
+    },
+    "shadows": {
+     "baseline_sites": 10,
+     "bare screen 0.15": 10,
+     "bare screen 0.25": 10,
+     "bare screen 0.35": 10,
+     "full marks at 100 h": 8,
+     "full marks at 200 h": 10,
+     "full marks at 400 h": 9,
+     "flat horizon instead of real": 3,
+     "stretch minimum 1 h": 7,
+     "stretch minimum 2 h": 10,
+     "stretch minimum 3 h": 8
+    },
+    "geology": {
+     "baseline_sites": 1,
+     "bare screen 0.15": 1,
+     "bare screen 0.25": 1,
+     "bare screen 0.35": 1,
+     "full marks at 100 h": 1,
+     "full marks at 200 h": 1,
+     "full marks at 400 h": 1,
+     "flat horizon instead of real": 1,
+     "stretch minimum 1 h": 1,
+     "stretch minimum 2 h": 1,
+     "stretch minimum 3 h": 1
+    },
+    "full": {
+     "baseline_sites": 1,
+     "bare screen 0.15": 1,
+     "bare screen 0.25": 1,
+     "bare screen 0.35": 1,
+     "full marks at 100 h": 1,
+     "full marks at 200 h": 1,
+     "full marks at 400 h": 1,
+     "flat horizon instead of real": 1,
+     "stretch minimum 1 h": 1,
+     "stretch minimum 2 h": 1,
+     "stretch minimum 3 h": 1
+    }
+   },
+   "mons-mouton": {
+    "lighting": {
+     "baseline_sites": 10,
+     "bare screen 0.15": 10,
+     "bare screen 0.25": 10,
+     "bare screen 0.35": 10,
+     "full marks at 100 h": 8,
+     "full marks at 200 h": 10,
+     "full marks at 400 h": 10,
+     "flat horizon instead of real": 6,
+     "stretch minimum 1 h": 9,
+     "stretch minimum 2 h": 10,
+     "stretch minimum 3 h": 7
+    },
+    "shadows": {
+     "baseline_sites": 10,
+     "bare screen 0.15": 10,
+     "bare screen 0.25": 10,
+     "bare screen 0.35": 10,
+     "full marks at 100 h": 8,
+     "full marks at 200 h": 10,
+     "full marks at 400 h": 10,
+     "flat horizon instead of real": 6,
+     "stretch minimum 1 h": 7,
+     "stretch minimum 2 h": 10,
+     "stretch minimum 3 h": 8
+    },
+    "geology": {
+     "baseline_sites": 1,
+     "bare screen 0.15": 1,
+     "bare screen 0.25": 1,
+     "bare screen 0.35": 1,
+     "full marks at 100 h": 1,
+     "full marks at 200 h": 1,
+     "full marks at 400 h": 1,
+     "flat horizon instead of real": 1,
+     "stretch minimum 1 h": 1,
+     "stretch minimum 2 h": 1,
+     "stretch minimum 3 h": 1
+    },
+    "full": {
+     "baseline_sites": 1,
+     "bare screen 0.15": 1,
+     "bare screen 0.25": 1,
+     "bare screen 0.35": 1,
+     "full marks at 100 h": 1,
+     "full marks at 200 h": 1,
+     "full marks at 400 h": 1,
+     "flat horizon instead of real": 1,
+     "stretch minimum 1 h": 1,
+     "stretch minimum 2 h": 1,
+     "stretch minimum 3 h": 1
+    }
+   },
+   "nobile-rim-2": {
+    "lighting": {
+     "baseline_sites": 10,
+     "bare screen 0.15": 10,
+     "bare screen 0.25": 10,
+     "bare screen 0.35": 10,
+     "full marks at 100 h": 6,
+     "full marks at 200 h": 10,
+     "full marks at 400 h": 6,
+     "flat horizon instead of real": 6,
+     "stretch minimum 1 h": 8,
+     "stretch minimum 2 h": 10,
+     "stretch minimum 3 h": 8
+    },
+    "shadows": {
+     "baseline_sites": 10,
+     "bare screen 0.15": 10,
+     "bare screen 0.25": 10,
+     "bare screen 0.35": 10,
+     "full marks at 100 h": 7,
+     "full marks at 200 h": 10,
+     "full marks at 400 h": 7,
+     "flat horizon instead of real": 7,
+     "stretch minimum 1 h": 7,
+     "stretch minimum 2 h": 10,
+     "stretch minimum 3 h": 7
+    },
+    "geology": {
+     "baseline_sites": 1,
+     "bare screen 0.15": 1,
+     "bare screen 0.25": 1,
+     "bare screen 0.35": 1,
+     "full marks at 100 h": 1,
+     "full marks at 200 h": 1,
+     "full marks at 400 h": 1,
+     "flat horizon instead of real": 1,
+     "stretch minimum 1 h": 1,
+     "stretch minimum 2 h": 1,
+     "stretch minimum 3 h": 1
+    },
+    "full": {
+     "baseline_sites": 1,
+     "bare screen 0.15": 1,
+     "bare screen 0.25": 1,
+     "bare screen 0.35": 1,
+     "full marks at 100 h": 1,
+     "full marks at 200 h": 1,
+     "full marks at 400 h": 1,
+     "flat horizon instead of real": 1,
+     "stretch minimum 1 h": 1,
+     "stretch minimum 2 h": 1,
+     "stretch minimum 3 h": 1
+    }
+   }
+  }
+ },
+ "regions": {
+  "connecting-ridge": {
+   "measured_cells_with_full_flat_light_and_enough_bare": {
+    "cells": 0,
+    "of_them_in_candidates": 0
+   },
+   "top_cells_lighting_real_horizon": {
+    "cells": 100,
+    "regions": {
+     "Arctic Canada": 54,
+     "Siberia and the Russian Far East": 37,
+     "Greenland": 3,
+     "Kola and north-west Russia": 2,
+     "Svalbard": 2,
+     "Alaska": 1,
+     "Severnaya Zemlya": 1
+    }
+   },
+   "top_cells_lighting_flat_horizon_all_measured": {
+    "cells": 100,
+    "regions": {
+     "Arctic Canada": 50,
+     "Siberia and the Russian Far East": 39,
+     "Greenland": 9,
+     "Alaska": 1,
+     "North-west Greenland or Ellesmere": 1
+    },
+    "of_them_in_candidates": 100
+   },
+   "measured_cells_100_long_snow_free_hours_winter_half": {},
+   "measured_cells_100_long_snow_free_hours_summer_half": {
+    "Siberia and the Russian Far East": 2,
+    "Greenland": 1,
+    "Arctic Canada": 1,
+    "Alaska": 1,
+    "Norway, Sweden or Finland": 1
+   }
+  },
+  "malapert": {
+   "measured_cells_with_full_flat_light_and_enough_bare": {
+    "cells": 384,
+    "of_them_in_candidates": 126
+   },
+   "top_cells_lighting_real_horizon": {
+    "cells": 100,
+    "regions": {
+     "Arctic Canada": 60,
+     "Siberia and the Russian Far East": 26,
+     "Svalbard": 9,
+     "Kola and north-west Russia": 2,
+     "Severnaya Zemlya": 2,
+     "Norway, Sweden or Finland": 1
+    }
+   },
+   "top_cells_lighting_flat_horizon_all_measured": {
+    "cells": 100,
+    "regions": {
+     "Arctic Canada": 52,
+     "Svalbard": 29,
+     "Siberia and the Russian Far East": 13,
+     "Kola and north-west Russia": 2,
+     "Severnaya Zemlya": 2,
+     "Norway, Sweden or Finland": 1,
+     "Novaya Zemlya": 1
+    },
+    "of_them_in_candidates": 100
+   },
+   "measured_cells_100_long_snow_free_hours_winter_half": {
+    "Iceland": 10
+   },
+   "measured_cells_100_long_snow_free_hours_summer_half": {
+    "Arctic Canada": 4648,
+    "Greenland": 761,
+    "Siberia and the Russian Far East": 708,
+    "North-west Greenland or Ellesmere": 336,
+    "Alaska": 246,
+    "Svalbard": 190,
+    "Novaya Zemlya": 167,
+    "Severnaya Zemlya": 113,
+    "Norway, Sweden or Finland": 76,
+    "Iceland": 27,
+    "Chukotka": 27,
+    "Kola and north-west Russia": 12,
+    "Franz Josef Land": 9,
+    "Unnamed region": 4
+   }
+  },
+  "mons-mouton": {
+   "measured_cells_with_full_flat_light_and_enough_bare": {
+    "cells": 1206,
+    "of_them_in_candidates": 309
+   },
+   "top_cells_lighting_real_horizon": {
+    "cells": 100,
+    "regions": {
+     "Arctic Canada": 51,
+     "Siberia and the Russian Far East": 33,
+     "Svalbard": 8,
+     "Novaya Zemlya": 4,
+     "Kola and north-west Russia": 2,
+     "Severnaya Zemlya": 2
+    }
+   },
+   "top_cells_lighting_flat_horizon_all_measured": {
+    "cells": 100,
+    "regions": {
+     "Arctic Canada": 49,
+     "Siberia and the Russian Far East": 31,
+     "Svalbard": 11,
+     "Novaya Zemlya": 6,
+     "Kola and north-west Russia": 1,
+     "Greenland": 1,
+     "Severnaya Zemlya": 1
+    },
+    "of_them_in_candidates": 100
+   },
+   "measured_cells_100_long_snow_free_hours_winter_half": {
+    "Iceland": 27
+   },
+   "measured_cells_100_long_snow_free_hours_summer_half": {
+    "Arctic Canada": 5088,
+    "Greenland": 989,
+    "Siberia and the Russian Far East": 752,
+    "North-west Greenland or Ellesmere": 373,
+    "Alaska": 250,
+    "Svalbard": 230,
+    "Novaya Zemlya": 206,
+    "Severnaya Zemlya": 119,
+    "Norway, Sweden or Finland": 80,
+    "Iceland": 54,
+    "Chukotka": 39,
+    "Kola and north-west Russia": 12,
+    "Franz Josef Land": 11,
+    "Unnamed region": 4
+   }
+  },
+  "nobile-rim-2": {
+   "measured_cells_with_full_flat_light_and_enough_bare": {
+    "cells": 4962,
+    "of_them_in_candidates": 859
+   },
+   "top_cells_lighting_real_horizon": {
+    "cells": 100,
+    "regions": {
+     "Arctic Canada": 58,
+     "Siberia and the Russian Far East": 29,
+     "Svalbard": 4,
+     "Iceland": 3,
+     "Greenland": 3,
+     "Novaya Zemlya": 2,
+     "Kola and north-west Russia": 1
+    }
+   },
+   "top_cells_lighting_flat_horizon_all_measured": {
+    "cells": 100,
+    "regions": {
+     "Arctic Canada": 57,
+     "Siberia and the Russian Far East": 29,
+     "Greenland": 5,
+     "Iceland": 3,
+     "North-west Greenland or Ellesmere": 3,
+     "Svalbard": 2,
+     "Kola and north-west Russia": 1
+    },
+    "of_them_in_candidates": 92
+   },
+   "measured_cells_100_long_snow_free_hours_winter_half": {
+    "Iceland": 38,
+    "Novaya Zemlya": 1,
+    "Svalbard": 1
+   },
+   "measured_cells_100_long_snow_free_hours_summer_half": {
+    "Arctic Canada": 5961,
+    "Greenland": 1369,
+    "Siberia and the Russian Far East": 858,
+    "North-west Greenland or Ellesmere": 424,
+    "Svalbard": 265,
+    "Novaya Zemlya": 258,
+    "Alaska": 252,
+    "Iceland": 190,
+    "Severnaya Zemlya": 128,
+    "Norway, Sweden or Finland": 90,
+    "Chukotka": 72,
+    "Franz Josef Land": 14,
+    "Kola and north-west Russia": 12,
+    "Unnamed region": 4
+   }
+  }
+ },
+ "haughton_july": {
+  "note": "A NASA-funded rover test used the 24-hour Sun at Haughton crater in July 2001; the hours below are what this method gives for the same place and month.",
+  "cell": "75.3_-90.0",
+  "bins": [
+   18,
+   19,
+   20
+  ],
+  "dates": [
+   "30 Jun-9 Jul",
+   "10 Jul-19 Jul",
+   "20 Jul-29 Jul"
+  ],
+  "snow_free_odds": [
+   0.45,
+   0.883,
+   1.0
+  ],
+  "snow_source": "3x3",
+  "horizon": {
+   "north_deg": 0.77,
+   "south_deg": 1.79,
+   "valid_share": 1.0,
+   "pixel_m": 60.0
+  },
+  "targets": {
+   "connecting-ridge": {
+    "median_longest_stretch_h": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "flat_hours": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "snow_free_hours": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "open_hours": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "flat_hours_july": 0.0,
+    "snow_free_hours_july": 0.0,
+    "open_hours_july": 0.0
+   },
+   "malapert": {
+    "median_longest_stretch_h": [
+     0.0,
+     0.0,
+     1.92
+    ],
+    "flat_hours": [
+     0.0,
+     0.0,
+     15.3
+    ],
+    "snow_free_hours": [
+     0.0,
+     0.0,
+     15.3
+    ],
+    "open_hours": [
+     0.0,
+     0.0,
+     13.2
+    ],
+    "flat_hours_july": 15.3,
+    "snow_free_hours_july": 15.3,
+    "open_hours_july": 13.2
+   },
+   "mons-mouton": {
+    "median_longest_stretch_h": [
+     0.0,
+     0.0,
+     2.93
+    ],
+    "flat_hours": [
+     0.0,
+     0.0,
+     25.9
+    ],
+    "snow_free_hours": [
+     0.0,
+     0.0,
+     25.9
+    ],
+    "open_hours": [
+     0.0,
+     0.0,
+     22.8
+    ],
+    "flat_hours_july": 25.9,
+    "snow_free_hours_july": 25.9,
+    "open_hours_july": 22.8
+   },
+   "nobile-rim-2": {
+    "median_longest_stretch_h": [
+     0.0,
+     2.33,
+     4.7
+    ],
+    "flat_hours": [
+     0.0,
+     19.8,
+     45.8
+    ],
+    "snow_free_hours": [
+     0.0,
+     17.5,
+     45.8
+    ],
+    "open_hours": [
+     0.0,
+     16.1,
+     41.0
+    ],
+    "flat_hours_july": 65.5,
+    "snow_free_hours_july": 63.2,
+    "open_hours_july": 57.1
+   }
+  }
+ }
+}

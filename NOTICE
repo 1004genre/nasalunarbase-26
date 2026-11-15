@@ -1,0 +1,228 @@
+Earth Twin Finder
+A project for the NASA Space Apps Challenge 2026.
+
+Copyright 2026 the Earth Twin Finder team
+
+This is not a NASA product. No endorsement by NASA, ESA, the European Union, NOAA
+or any other provider is implied. No NASA logo or insignia is used in this project.
+
+
+1. LICENCES
+
+These are the licences that data/SOURCES.md states.
+
+- Code (twinfinder/, scripts/, tests/, site/): Apache License 2.0. The full text is in LICENSE.
+- Our result files (data/derived/ and site/data/): CC BY 4.0,
+  https://creativecommons.org/licenses/by/4.0/
+- The two reference lists, data/reference/known_analogs.json and
+  data/reference/anorthosite_bodies.json: CC BY-SA 4.0,
+  https://creativecommons.org/licenses/by-sa/4.0/
+- The station fields taken from the COMNAP Antarctic Facilities list (station names,
+  status and distances in data/reference/antarctic_sites.json,
+  data/reference/known_analogs_check.json and the files made from them): educational
+  and non-commercial use only. They are not covered by the licences above.
+- Values taken from the Mars Climate Database (the model climate of the Mars sites in
+  data/derived/mars_climate.json, mars_sites.json, planet_factors.json and the files
+  made from them): scientific, non-commercial use only, with credit U. They are not
+  covered by the licences above.
+- Volcano names, years and distances from the Smithsonian Global Volcanism Program:
+  personal, educational and other non-commercial use only, with credit AB and a link to
+  https://volcano.si.edu/. They are not covered by the licences above.
+- Source data keep their own licences, listed in data/SOURCES.md.
+- site/vendor/globe.gl.min.js: globe.gl 2.46.2, MIT License (site/vendor/globe.gl.LICENSE.txt).
+  It bundles three.js revision 185, MIT License (site/vendor/three.LICENSE.txt). The bundle also keeps
+  the notices of h3-js (Apache License 2.0) and the Helvetiker typeface (MgOpen licence) inside the file.
+- site/vendor/textures/: the Earth, Moon and Mars globe images. The Moon and Mars images are public
+  domain. The Earth image asks for credit AE and states no licence. See data/SOURCES.md, rows 42 to 44.
+
+The licence line, word for word from data/SOURCES.md:
+
+"Code: Apache License 2.0. Our result files: CC BY 4.0, except `data/reference/known_analogs.json` and `anorthosite_bodies.json` (CC BY-SA 4.0), the station fields taken from COMNAP, values from the Mars Climate Database, and volcano names, years and distances from the Smithsonian Global Volcanism Program (non-commercial use only, under each provider's terms). Source data keep their own licences, listed in data/SOURCES.md. Not a NASA product; no endorsement by NASA, ESA, the European Union, NOAA or any other provider is implied."
+
+
+2. HOW THE CODE WAS WRITTEN
+
+The code, the tests and the first drafts of the documents were written with an AI
+assistant (Claude, by Anthropic, run through Claude Code). The Space Apps 2026 guides
+call such tools "Super Intelligence (SI)". README.md says who did what.
+
+
+3. CREDIT LINES
+
+These are the credit lines of data/SOURCES.md, section 3, as written there.
+Dates in brackets are the day the data was fetched.
+
+- A. LOLA 5 m terrain (PGDA 78): Barker, M.K., et al. (2021), Improved LOLA Elevation Maps for South Pole
+  Landing Sites: Error Estimates and Their Impact on Illumination Conditions, Planetary & Space Science,
+  Volume 203, 105119, doi:10.1016/j.pss.2020.105119. Data: NASA Goddard Planetary Geodesy Data Archive,
+  https://pgda.gsfc.nasa.gov/products/78
+- B. LOLA illumination maps (PGDA 69): Mazarico, E., et al. (2011), Illumination conditions of the lunar
+  polar regions using LOLA topography, Icarus, Volume 211, Issue 2, 1066-1081, doi:10.1016/j.icarus.2010.10.030.
+- C. JPL Horizons: NASA/JPL Solar System Dynamics. Data retrieved on 2026, November, 14. Horizons System.
+  https://ssd.jpl.nasa.gov (the two lunar Sun tables were fetched on 15 November 2026 at 00:01 UTC, which is
+  14 November in the Pacific time zone; the retrieval day of the reference values in `tests/test_sun.py` is
+  not recorded in the code).
+- D. NASA POWER: The data was obtained from National Aeronautics and Space Administration (NASA) Langley
+  Research Center's Prediction Of Worldwide Energy Resources (POWER) project funded through the NASA Earth
+  Science Division. The data was obtained from the POWER Project's Climatology and Daily 2.10.1 version on
+  2026/11/14. (Cloud amount: CERES SYN1deg. Temperature and snow: MERRA-2.) The temperature requests ran
+  from 23:55 UTC on 14 November to 00:04 UTC on 15 November 2026.
+- E. Copernicus DEM GLO-90. Beside anything we computed from it (horizons, slopes, the map):
+  "produced using Copernicus WorldDEM-90 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018
+  provided under COPERNICUS by the European Union and ESA; all rights reserved".
+  If the tiles themselves were ever shared: "© DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH
+  2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved". The licence (Article 6 c) also
+  prescribes this sentence in any notice that covers sharing the data, changed or not: "The organisations in
+  charge of the Copernicus programme by law or by delegation do not incur any liability for any use of the
+  Copernicus WorldDEM-90". And (Article 6 d) we must not give the impression that our work is endorsed by them.
+- F. ESA WorldCover: © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021)
+  processed by ESA WorldCover consortium. Citation: Zanaga, D., Van De Kerchove, R., Daems, D., De Keersmaecker,
+  W., Brockmann, C., Kirches, G., Wevers, J., Cartus, O., Santoro, M., Fritz, S., Lesiv, M., Herold, M.,
+  Tsendbazar, N.E., Xu, P., Ramoino, F., Arino, O., 2022. ESA WorldCover 10 m 2021 v200.
+  https://doi.org/10.5281/zenodo.7254221 (CC BY 4.0).
+- G. IMS snow maps: U.S. National Ice Center. (2008). IMS Daily Northern Hemisphere Snow and Ice Analysis
+  at 1 km, 4 km, and 24 km Resolutions. (G02156, Version 1). [Data Set]. Boulder, Colorado USA. National Snow
+  and Ice Data Center. https://doi.org/10.7265/N52R3PMC. 4 km GeoTIFF maps, every fifth day, 1 October 2015 to
+  28 September 2025 (740 maps). Date Accessed 11-14-2026.
+- H. GHCN-Daily: Menne, M.J., I. Durre, B. Korzeniewski, S. McNeill, K. Thomas, X. Yin, S. Anthony, R. Ray,
+  R.S. Vose, B.E. Gleason, and T.G. Houston, 2012: Global Historical Climatology Network - Daily (GHCN-Daily),
+  Version 3. NOAA National Climatic Data Center. http://doi.org/10.7289/V5D21VHZ [14 November 2026]. And:
+  Menne, M.J., I. Durre, R.S. Vose, B.E. Gleason, and T.G. Houston, 2012: An overview of the Global Historical
+  Climatology Network-Daily Database. Journal of Atmospheric and Oceanic Technology, 29, 897-910,
+  doi:10.1175/JTECH-D-11-00103.1.
+- I. Open-Meteo: "Weather data by Open-Meteo.com" as a link to https://open-meteo.com/ , licence CC BY 4.0
+  (https://creativecommons.org/licenses/by/4.0/). Add: "Contains modified Copernicus Climate Change Service
+  information 2026 (ERA5-Land, CERRA)". The second sentence is the usual Copernicus wording; the Copernicus
+  licence itself was not opened today.
+- J. Antarctic rock outcrop, Landsat: Gerrish, L. (2020). Automatically extracted rock outcrop dataset for
+  Antarctica (Version 7.3) [Data set]. UK Polar Data Centre, Natural Environment Research Council, UK Research
+  & Innovation. https://doi.org/10.5285/178EC50D-1FFB-42A4-A4A3-1145419DA2BB (CC BY 4.0). Method:
+  Burton-Johnson, A., et al. (2016), The Cryosphere, 10, 1665-1677, doi:10.5194/tc-10-1665-2016.
+- K. Antarctic rock outcrop, medium resolution: Skachkova, A., Gerrish, L., Fretwell, P., & Cooper, P. (2025).
+  Medium resolution vector polygons of Antarctic rock outcrop - VERSION 7.11 (Version 7.11) [Data set]. NERC EDS
+  UK Polar Data Centre. https://doi.org/10.5285/3f0c400f-04b9-4819-98cb-f6b53716aca5 (CC BY 4.0).
+- L. COMNAP: Station names, status and distances: COMNAP Antarctic Facilities list, version 3.2.0
+  (COMNAP 2019), copyright COMNAP, used here for educational and non-commercial purposes only.
+- M. Natural Earth (optional): Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com.
+- O. Diviner (lunar temperature and ice): Paige et al., LRO DLRE LEVEL 5 PRP V2.0, NASA Planetary Data
+  System, LRO-L-DLRE-5-PRP-V2.0, 2018. Model values, not measurements.
+- P. LROC (links to lunar mosaics): NASA/GSFC/Arizona State University.
+- N. Wikipedia: Site names and coordinates in the known-site list come in part from Wikipedia
+  (https://en.wikipedia.org/wiki/Terrestrial_analogue_site and the pages linked in each entry), by Wikipedia
+  contributors, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/). The list is shared under the
+  same licence.
+- Q. OurAirports (distance to airfields): Airfield data from OurAirports (https://ourairports.com/),
+  public domain (The Unlicense), https://github.com/davidmegginson/ourairports-data . No credit is required.
+
+Added late on 14 November 2026 (data/SOURCES.md, section 1b):
+
+- R. MOLA MEGDR (Mars heights): Smith, D. E., et al., Mars Global Surveyor Laser Altimeter Mission Experiment
+  Gridded Data Record, MGS-M-MOLA-5-MEGDR-L3-V1.0, NASA Planetary Data System.
+- S. ETOPO 2022: NOAA National Centers for Environmental Information. 2022: ETOPO 2022 15 Arc-Second Global
+  Relief Model. NOAA National Centers for Environmental Information. DOI: 10.25921/fd45-gt74 . Accessed
+  14 November 2026.
+- T. NASA POWER (Mars climate, factors, power): The data was obtained from National Aeronautics and Space
+  Administration (NASA) Langley Research Center's Prediction Of Worldwide Energy Resources (POWER) project funded
+  through the NASA Earth Science Division. The data was obtained from the POWER Project's Climatology API v2.10.1 on
+  2026/11/15. (Daily temperature range, top-soil wetness and 10 m wind speed: MERRA-2. Surface albedo: CERES SYN1deg.)
+- U. Mars Climate Database: Mars Climate Database (c) LMD/LATMOS/OU/IAA/ESA/CNES. Version 6.2, web interface,
+  climatology average solar scenario. Scientific, non-commercial use; not covered by CC BY 4.0.
+- V. Phoenix MET: Dickinson, C.D., PHX METEOROLOGICAL DATA V1.0, NASA Planetary Data System, 2008.
+- W. Curiosity REMS: Curiosity's weather figures are from NASA's public weather feed, which says it is for
+  outreach; they are not archive data.
+- X. Planet-side maps: NASA Planetary Data System, Geosciences Node (Washington University in St. Louis), with the
+  instrument teams named per factor. TES albedo: Christensen, P., et al. (2001), MGS TES; originator Arizona State
+  University; publisher USGS Astrogeology Science Center.
+- Y. GLiM (rock type): Hartmann, Jens; Moosdorf, Nils (2012): Global Lithological Map Database v1.0 (gridded to
+  0.5 deg spatial resolution) [dataset]. PANGAEA, https://doi.org/10.1594/PANGAEA.788537. Licence CC BY 3.0,
+  https://creativecommons.org/licenses/by/3.0/ . Our rock classes are derived from it.
+- Z. Permafrost: Obu, Jaroslav; Westermann, Sebastian; Kääb, Andreas; Bartsch, Annett (2018): Ground Temperature
+  Map, 2000-2016, Northern Hemisphere Permafrost [dataset]. Alfred Wegener Institute, Helmholtz Centre for Polar
+  and Marine Research, Bremerhaven, PANGAEA, https://doi.org/10.1594/PANGAEA.888600. Licence CC BY 3.0,
+  https://creativecommons.org/licenses/by/3.0/ . Our permafrost zones are derived from it.
+- AA. USGS earthquakes: Credit: U.S. Geological Survey. Data: USGS ANSS Comprehensive Earthquake Catalog (ComCat).
+- AB. Smithsonian volcanoes: Global Volcanism Program, 2026. [Database] Volcanoes of the World (v. 5.4.0; 7 Aug
+  2026). Distributed by Smithsonian Institution, compiled by Venzke, E. https://doi.org/10.5479/si.GVP.VOTW5-2026.5.4
+  (terms of use not yet read).
+- AC. GeoNames: GeoNames (geonames.org), CC BY 4.0, https://creativecommons.org/licenses/by/4.0/ . Our town
+  names and population counts are derived from it.
+- AD. Global Power Plant Database: Global Energy Observatory, Google, KTH Royal Institute of Technology in
+  Stockholm, Enipedia, World Resources Institute. 2021. Global Power Plant Database version 1.3.0. Accessed through
+  https://datasets.wri.org/datasets/global-power-plant-database on 14 November 2026. Licence CC BY 4.0,
+  https://creativecommons.org/licenses/by/4.0/ . Our geothermal plant counts are derived from it.
+- Natural Earth roads and railroads: credit M (optional).
+
+Added on 15 November 2026 (data/SOURCES.md, rows 42 to 45: the globe images and the globe library):
+
+- AE. Blue Marble (Earth globe): NASA Earth Observatory. (Blue Marble: Next Generation, July 2004, with
+  topography and bathymetry; fetched 15 November 2026.)
+- AF. CGI Moon Kit (Moon globe): NASA's Scientific Visualization Studio. (CGI Moon Kit,
+  https://svs.gsfc.nasa.gov/4720/ ; colour from the LROC Wide Angle Camera mosaic; fetched 15 November 2026.)
+- AG. Viking colour mosaic (Mars globe): Mars Viking Colorized Global Mosaic (MDIM 2.1): USGS Astrogeology
+  Science Center and NASA Ames; Viking Orbiter images, NASA. (Our wording; the product page asks for no credit line.
+  Fetched 15 November 2026.)
+- AH. globe.gl and three.js (the globes): globe.gl 2.46.2, https://github.com/vasturiano/globe.gl , MIT License.
+  It bundles three.js, https://github.com/mrdoob/three.js , MIT License, Copyright © 2010-2026 three.js authors.
+
+Added on 15 November 2026 (data/SOURCES.md, rows 46 and 47: land status and permits):
+
+- AI. Natural Earth boundaries (land status, optional): Made with Natural Earth. Free vector and raster map data
+  @ naturalearthdata.com. Public domain.
+- AJ. Territory rules (land status): our own short statements from official pages of the Secretariat of the
+  Antarctic Treaty, the Australian Antarctic Division, Crown-Indigenous Relations and Northern Affairs Canada, the
+  Nunavut Research Institute, the Government of the Northwest Territories, Sysselmesteren på Svalbard, the U.S.
+  Bureau of Land Management and Stjórnarráð Íslands, read on 15 November 2026. Not legal advice.
+
+Added on 15 November 2026 (data/SOURCES.md, rows 48 to 56: the regional maps and pages of land status and permits):
+
+- AK. Antarctic protected areas (land status): Source: Antarctic Treaty Secretariat, ASMA and ASPA shapefile
+  (2024 version), https://www.ats.aq/e/protected.html , CC BY 4.0. Converted to WGS 84 and cut to the areas of
+  this project.
+- AL. Canadian maps (land status): Contains information licensed under the Open Government Licence – Canada.
+  (Canadian Protected and Conserved Areas Database, Environment and Climate Change Canada; Aboriginal Lands of
+  Canada Legislative Boundaries, Natural Resources Canada.)
+- AM. Iceland protected areas (land status): Friðlýst svæði á Íslandi, Umhverfis- og orkustofnun.
+- AN. Norway protected areas (land status): Som referanse til kartet oppgis Miljødirektoratet. (NLOD 2.0)
+- AO. Sweden protected areas (land status): Källa: Naturvårdsverket. (CC0)
+- AP. PAD-US (land status): U.S. Geological Survey (USGS) Gap Analysis Project (GAP), 2024, Protected Areas
+  Database of the United States (PAD-US) 4.1: U.S. Geological Survey data release, https://doi.org/10.5066/P96WBCHS.
+- AQ. BLM Alaska (land status): Bureau of Land Management, Alaska. BLM AK Administered Lands (SMA), data of
+  31 August 2026. Our changes: we kept only the polygons that hold an area centre, the BLM server simplified the
+  outlines by approximately 55 m, and we added the property agency_unit.
+- AR. Territory and entry rules, regional pass (land status): our own short statements from official pages of the
+  Secretariat of the Antarctic Treaty, Crown-Indigenous Relations and Northern Affairs Canada, Avannaata Kommunia,
+  the Expedition Office of the Government of Greenland, Stjórnarráð Íslands, Náttúruverndarstofnun, Lovdata,
+  Sysselmesteren på Svalbard, Finnmarkseiendommen, Statskog, Sveriges riksdag, Naturvårdsverket, the President of
+  Russia, the U.S. Bureau of Land Management, the National Park Service, the U.S. Fish and Wildlife Service, the
+  Alaska Department of Natural Resources, Ahtna, Eklutna and Cook Inlet Region, read on 15 November 2026.
+  Not legal advice.
+
+Added on 15 November 2026 (data/SOURCES.md, row 57: the seven Mars sites added to the Mars part):
+
+- AS. Mars site positions: NASA Space Science Data Coordinated Archive (NSSDCA), spacecraft pages of Viking 1
+  Lander, Viking 2 Lander, Mars Pathfinder, Spirit, Opportunity and InSight; PDS Geosciences Node, Analyst's
+  Notebook, MER mission overview; Golombek, M., et al. (2020), Geology of the InSight landing site on Mars, Nature
+  Communications 11, 1014, doi:10.1038/s41467-020-14679-1 (CC BY 4.0); Golombek, M., et al. (2021), SpaceX
+  Starship landing sites on Mars, 52nd Lunar and Planetary Science Conference, abstract 2420; USGS Gazetteer of
+  Planetary Nomenclature, Phlegra Montes.
+
+Added on 15 November 2026 (data/SOURCES.md, rows 58 to 60: the second pass of Mars sites):
+
+- AT. Exploration zones of 2015: abstracts of the First Landing Site/Exploration Zone Workshop for Human Missions
+  to the Surface of Mars, Lunar and Planetary Institute, Houston, 27-30 October 2015; (c) their authors, published
+  by the Lunar and Planetary Institute. Only names, positions and one sentence of our own words are taken.
+- AU. NASA's map of the proposed zones: NASA Mars Program Office, Potential Exploration Zones for Human Missions to
+  the Surface of Mars, version 10 and version 12 (16 October 2015).
+- AV. 2021 shortlist for human landings: Golombek, M., et al. (2021), SpaceX Starship landing sites on Mars, 52nd
+  Lunar and Planetary Science Conference, abstract 2420, Table 1; (c) its authors, published by the Lunar and
+  Planetary Institute.
+
+Added on 15 November 2026 (data/SOURCES.md, rows 61 and 62: the positions and boxes of the lunar regions):
+
+- AW. NASA's map of the nine lunar regions of 2024 (positions of three lunar regions): NASA. (Map of the
+  nine candidate landing regions for Artemis III, NASA release 24-136 of 28 October 2024; its background is a
+  mosaic of LRO Wide Angle Camera images. Fetched 15 November 2026.)
+- AX. USGS grid release (the boxes of the 13 regions of 2022): McClernan, M.T., 2024, Lunar Grid Reference
+  System (LGRS) Artemis III Candidate Landing Site Navigational Grids in Artemis Condensed Coordinate (ACC)
+  Format: U.S. Geological Survey data release, https://doi.org/10.5066/P13FD9ZD. (The citation of the ScienceBase
+  record; CC0. Read 15 November 2026.)

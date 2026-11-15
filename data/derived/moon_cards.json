@@ -1,0 +1,3326 @@
+{
+ "meta": {
+  "generated": "2026-11-15",
+  "script": "scripts/build_moon_cards.py",
+  "how_to_rerun": "uv run python scripts/build_moon_cards.py",
+  "inputs": {
+   "targets": "data/derived/moon_targets.json",
+   "diviner_table": "data/raw/diviner/dlre_prp_south.tab",
+   "diviner_rows": 2880000,
+   "saved_pages": "data/raw/moon_provenance"
+  },
+  "pages_read_on": "2026-11-14",
+  "lists": {
+   "2022": {
+    "what": "NASA's 13 candidate regions for Artemis III, announced 19 August 2022 (release 22-089). Each region is about 15 by 15 km.",
+    "links": [
+     "https://www.nasa.gov/news-release/nasa-identifies-candidate-regions-for-landing-next-americans-on-moon/",
+     "https://svs.gsfc.nasa.gov/5013/"
+    ]
+   },
+   "2024": {
+    "what": "NASA's nine candidate regions for Artemis III, announced 28 October 2024 and listed in the NASA abstract NTRS 20250011660: Peak near Cabeus B, Haworth, Malapert Massif, Mons Mouton Plateau, Mons Mouton, Nobile Rim 1, Nobile Rim 2, de Gerlache Rim 2 and Slater Plain.",
+    "links": [
+     "https://ntrs.nasa.gov/citations/20250011660",
+     "https://www.nasa.gov/news-release/nasa-provides-update-on-artemis-iii-moon-landing-regions/"
+    ],
+    "note": "The NASA release of 28 October 2024 answered 'too many requests' on all ten tries over 15 minutes; the nine names are from the NTRS abstract."
+   }
+  },
+  "diviner": {
+   "product": "LRO Diviner Polar Resource Product, south (dlre_prp_south.tab), PDS data set LRO-L-DLRE-5-PRP-V2.0",
+   "folder": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+   "model_based": true,
+   "columns_used": {
+    "temp_avg": "annual average temperature, K, 2 cm below the surface",
+    "temp_max": "annual maximum temperature, K, at the surface",
+    "ice_depth": "depth in m at which water ice would be lost at 1 kg per m2 per billion years"
+   },
+   "special_value": {
+    "value": -999.0,
+    "column": "ice_depth",
+    "meaning": "the depth would be more than 2.8738 m: ice is not stable within the depth the product covers. It is counted as area, not left out. 0 means stable at the surface."
+   },
+   "undocumented_value": {
+    "value": -1.0,
+    "column": "ice_depth",
+    "in_label": false,
+    "records": 100319,
+    "of_records": 2880000,
+    "highest_yearly_maximum_K_among_them": 101.299,
+    "lowest_yearly_maximum_K_among_all_other_records": 101.301,
+    "records_with_depth_0": 18375,
+    "records_with_minus_999": 1847439,
+    "our_reading": "Ice stable on the surface itself (a surface cold trap), counted as depth 0. The label describes only 0 and -999; this reading rests on the temperatures of these records."
+   },
+   "mesh": "2,880,000 triangles of about 0.5 km on a Kaguya laser-altimeter terrain model, pole to 80 S",
+   "not_checked": "How well the Kaguya-based mesh lines up with the LOLA 5 m models beyond the altitude_check on each card; the product's own uncertainty, which the label does not give."
+  },
+  "pgda_78_cross_check": {
+   "done": false,
+   "why": "PGDA product 78 publishes elevation, slope, uncertainty and clone files only. Its lighting study (1 January 2024 to 1 January 2026, at 1 m and 5 m above ground) is described in words for Sites 1, 4, 7 and 11 and gives no highest Sun elevation, so our ceilings cannot be compared with it from the page.",
+   "what_it_says": "'Site 1 has the most area with average illumination > 70% at 1 m above the surface' and 'longer continuous illumination periods than the other sites' at 5 m.",
+   "link": "https://pgda.gsfc.nasa.gov/products/78"
+  },
+  "picture_credit": {
+   "credit": "NASA/GSFC/Arizona State University",
+   "source": "https://lroc.im-ldi.com/about/terms",
+   "note": "Links and credits only; no image was downloaded."
+  },
+  "units": {
+   "temperature": "K (and \u00b0C = K - 273.15)",
+   "shares": "0 to 1",
+   "angles": "degrees",
+   "lengths": "m"
+  },
+  "unknown_is": "null"
+ },
+ "cards": [
+  {
+   "id": "connecting-ridge",
+   "has_model": true,
+   "model_note": null,
+   "position": {
+    "how_sure": "from the terrain model",
+    "source": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site01/Site01_final_adj_5mpp_surf.tif",
+    "note": "The centre is the centre of the grid of the NASA 5 m terrain model. The USGS box of the region has the same corners as the model."
+   },
+   "official_name": "Connecting Ridge",
+   "name_in_project": "Connecting Ridge",
+   "name_note": "NASA's 2022 list calls the region 'Connecting Ridge' and PGDA calls the 5 m model 'Connecting ridge'. 'Shackleton - de Gerlache Connecting Ridge' is how the LRO camera team titles a terrain model of the ridge, so the longer name is in use and says where the ridge is, but it is not the name on a NASA list of candidate regions.",
+   "nasa_list": {
+    "on_2022_list_of_13": true,
+    "name_2022": "Connecting Ridge",
+    "on_2024_list_of_9": false,
+    "name_2024": null,
+    "summary": "On the 2022 list of 13 as 'Connecting Ridge'. Not among the nine regions kept in October 2024. The NASA abstract says the cut 'does not imply that removed regions are unsuitable for future exploration'.",
+    "links": [
+     "https://www.nasa.gov/news-release/nasa-identifies-candidate-regions-for-landing-next-americans-on-moon/",
+     "https://svs.gsfc.nasa.gov/5013/",
+     "https://ntrs.nasa.gov/citations/20250011660"
+    ]
+   },
+   "why_stored": "One of NASA's 13 candidate Artemis III regions of 2022 ('Connecting Ridge'); not among the nine kept in 2024. NASA Goddard's lighting study of the 5 m models found it has the most area lit more than 70 % of the time.",
+   "why_check": {
+    "confirmed": true,
+    "note": "The stored reason is the wording this check proposed from the three sources listed: \"One of NASA's 13 candidate Artemis III regions of 2022 ('Connecting Ridge'); not among the nine kept in 2024. NASA Goddard's lighting study of the 5 m models found it has the most area lit more than 70 % of the time.\" It replaced (14 Nov 2026) an earlier reason about a robotic precursor mission, which no NASA page that could be read confirmed.",
+    "proposed_wording": null,
+    "proposed_wording_sources": [
+     "https://www.nasa.gov/news-release/nasa-identifies-candidate-regions-for-landing-next-americans-on-moon/",
+     "https://ntrs.nasa.gov/citations/20250011660",
+     "https://pgda.gsfc.nasa.gov/products/78"
+    ]
+   },
+   "pgda_model": {
+    "site": "Site01",
+    "pgda_name": "Connecting ridge",
+    "page": "https://pgda.gsfc.nasa.gov/products/78",
+    "dem_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site01/Site01_final_adj_5mpp_surf.tif",
+    "pixel_m": 5,
+    "what": "NASA Goddard LOLA 5 m elevation model of the site (PGDA product 78)",
+    "citation": "Barker, M. K., et al. (2021), Improved LOLA Elevation Maps for South Pole Landing Sites, Planetary and Space Science 203, 105119, doi:10.1016/j.pss.2020.105119"
+   },
+   "centre": {
+    "lat": -89.463162834037,
+    "lon_east": 222.51044707800082
+   },
+   "extent_km": [
+    16.0,
+    16.0
+   ],
+   "box_km": null,
+   "sun_ceiling": {
+    "deg": 2.076837165962993,
+    "range_deg": [
+     1.7048893172816486,
+     2.449716391078007
+    ],
+    "how": "90 - |latitude| + 1.54 degrees, at the latitude of the middle of the 5 m model: the highest the Sun's centre climbs over a flat horizon, 1.54 degrees being the tilt of the Moon's axis to the ecliptic (twinfinder/sun.py, lunar_max_sun_elevation_deg). The range is the same formula at the model's most and least poleward corner, edge midpoint or centre. No terrain, no ephemeris and no allowance for the Sun's disc enter.",
+    "kind": "derived from latitude",
+    "source": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site01/Site01_final_adj_5mpp_surf.tif"
+   },
+   "shadow_of_1m_object_at_ceiling_m": 27.58,
+   "shadow_how": "1 m divided by the tangent of the Sun ceiling, on level ground.",
+   "lit": {
+    "mean_share": 0.29287081309868573,
+    "best_point_share": 0.93476,
+    "how": "Mean and highest 240 m pixel, inside the bounding box of the 5 m model, of NASA Goddard's average solar illumination map AVGVISIB_65S_240M_201608 (hourly steps over 18.6 years, LOLA terrain), read with the file's own scale and offset (twinfinder/moon.py, fingerprint).",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/AVGVISIB_65S_240M_201608.TIF"
+   },
+   "permanent_shadow": {
+    "share": 0.030296279795054577,
+    "how": "Share of the 240 m pixels inside the same box that NASA Goddard's map LPSR_65S_240M_201608 marks as permanently shadowed (value above 0.5).",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/LPSR_65S_240M_201608.TIF"
+   },
+   "diviner": {
+    "model_based": true,
+    "triangles": 1985,
+    "triangles_without_temperature": 0,
+    "area_covered_km2": 254.793,
+    "target_area_km2": 256.0,
+    "annual_mean_temp_2cm_K": {
+     "mean": 122.52,
+     "min": 39.186,
+     "max": 186.478
+    },
+    "annual_max_temp_surface_K": {
+     "mean": 247.697,
+     "min": 63.803,
+     "max": 321.106
+    },
+    "annual_mean_temp_2cm_C": {
+     "mean": -150.63,
+     "min": -233.96,
+     "max": -86.67
+    },
+    "annual_max_temp_surface_C": {
+     "mean": -25.45,
+     "min": -209.35,
+     "max": 47.96
+    },
+    "ice": {
+     "stable_within_reach_share": 0.36222,
+     "stable_at_surface_share": 0.00756,
+     "surface_cold_trap_share": 0.00655,
+     "stable_within_1m_share": 0.35466,
+     "not_stable_within_reach_share": 0.63778,
+     "stable_within_reach_share_without_undocumented_value": 0.35567,
+     "shallowest_m": 0.0,
+     "deepest_stable_m": 1.2319
+    },
+    "altitude_check": {
+     "triangles_compared": 1985,
+     "correlation": 0.9946,
+     "median_difference_m": 4.5,
+     "median_abs_difference_m": 32.2,
+     "how": "Height of our 5 m model (averaged to about 100 m) minus the table's triangle-centre altitude, at the same map position; both are relative to a 1737.4 km sphere."
+    },
+    "kind": "model-based",
+    "how": "LRO Diviner Polar Resource Product (LRO-L-DLRE-5-PRP-V2.0): thermal-model fits to the first year of Diviner polar observations on a mesh of about 500 m triangles. Figures are over the triangles whose centre lies inside the 5 m model's bounding box, weighted by triangle area. Ice is 'stable' where the table gives a depth (0 to 2.87 m) at which ice would be lost more slowly than 1 kg per m2 per billion years; -999 means deeper than 2.87 m, not missing. The table's undocumented value -1 is read as stable on the surface; see meta.diviner.",
+    "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+    "citation": "Paige et al., LRO DLRE Level 5 PRP V2.0, NASA Planetary Data System, 2018"
+   },
+   "picture": {
+    "page": null,
+    "title": null,
+    "product": null,
+    "note": "No LROC low-Sun controlled NAC mosaic is named for Connecting Ridge. The product search at the model centre returned no mosaic of the ridge; within one degree it lists 'de Gerlache Rim' and 'Peak near Shackleton' mosaics, which do not cover the centre.",
+    "nearby": [
+     "https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_ROI_DEGERRIMLO1",
+     "https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_ROI_SHKLTNPKLO1"
+    ],
+    "alternative": {
+     "page": "https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_DTM_SHACKRDGE02",
+     "title": "Shackleton - de Gerlache Connecting Ridge DTM",
+     "what": "An LROC NAC stereo terrain model with orthorectified images, not a low-Sun mosaic. Whether it covers our model centre was not checked.",
+     "credit": "NASA/GSFC/Arizona State University",
+     "credit_source": "https://lroc.im-ldi.com/about/terms"
+    },
+    "credit": null,
+    "credit_source": null,
+    "citation": null,
+    "sun_heights_of_images": null,
+    "image_downloaded": false
+   },
+   "earth_cannot_match": [
+    {
+     "what": "vacuum",
+     "number": 3e-15,
+     "unit": "bar",
+     "moon": "Surface pressure at night about 3 x 10^-15 bar: no air, no wind, no sound, no weather.",
+     "earth": "About 1 bar at sea level.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "gravity",
+     "number": 1.62,
+     "unit": "m/s2",
+     "moon": "1.62 m/s2 at the surface, about one sixth of Earth's.",
+     "earth": "9.80 m/s2 (ratio 0.165).",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "dust",
+     "number": null,
+     "unit": null,
+     "moon": "Dry, sharp-grained regolith that no water or air has ever rounded; it clings to suits and gear.",
+     "earth": "Soil and rock shaped by water, air and life.",
+     "source": null,
+     "note": "No number: we read no dust dataset."
+    },
+    {
+     "what": "temperature",
+     "number": 122.52,
+     "unit": "K",
+     "moon": "Model-based (Diviner): the annual mean 2 cm under the surface is 123 K (-151 \u00b0C) averaged over the area, 39 K in the coldest place; the yearly maximum at the surface ranges from 64 K to 321 K.",
+     "earth": "Not computed here; compare with the NASA POWER temperature of each Earth place.",
+     "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+     "note": "Diviner Polar Resource Product: model values, not measurements."
+    },
+    {
+     "what": "radiation",
+     "number": null,
+     "unit": null,
+     "moon": "No air and no global magnetic field to stop solar particles and cosmic rays.",
+     "earth": "Shielded by the atmosphere and the magnetic field.",
+     "source": null,
+     "note": "No number: we read no radiation dataset."
+    },
+    {
+     "what": "black shadows",
+     "number": 27.58,
+     "unit": "m of shadow per 1 m object at the Sun ceiling",
+     "moon": "No air scatters light into shadows; they are lit only by light bounced off nearby ground. At the Sun ceiling of 2.08\u00b0 a 1 m object throws a 27.6 m shadow. 3.0% of the area never sees the Sun.",
+     "earth": "The same shadow length at the same Sun height, but the sky lights the shadow and the low Sun is dimmed and reddened by air. We have no number for that difference.",
+     "source": "https://pgda.gsfc.nasa.gov/products/69"
+    },
+    {
+     "what": "slow Sun",
+     "number": 29.53,
+     "unit": "days for the Sun to go round once",
+     "moon": "One turn of the Sun around the horizon takes 29.53 days, about 0.51\u00b0 per hour; a shadow stays put for hours.",
+     "earth": "24 hours, 15\u00b0 per hour: about 29.5 times faster.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    }
+   ]
+  },
+  {
+   "id": "connecting-ridge-extension",
+   "has_model": true,
+   "model_note": null,
+   "position": {
+    "how_sure": "from the terrain model",
+    "source": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/SL3/SL3_final_adj_5mpp_surf.tif",
+    "note": "The centre is the centre of the grid of the NASA 5 m terrain model. The USGS box of the region has the same corners as the model."
+   },
+   "official_name": "Connecting Ridge Extension",
+   "name_in_project": "Connecting Ridge Extension",
+   "name_note": "The name is the name on the NASA list of 2022. PGDA calls the 5 m model 'SL3: Connecting ridge extension'.",
+   "nasa_list": {
+    "on_2022_list_of_13": true,
+    "name_2022": "Connecting Ridge Extension",
+    "on_2024_list_of_9": false,
+    "name_2024": null,
+    "summary": "On the list of 13 of 2022 only. It is not on the list of nine of 2024. The NASA abstract NTRS 20250011660 says that the cut 'does not imply that removed regions are unsuitable for future exploration'.",
+    "links": [
+     "https://www.nasa.gov/news-release/nasa-identifies-candidate-regions-for-landing-next-americans-on-moon/",
+     "https://svs.gsfc.nasa.gov/5013/",
+     "https://ntrs.nasa.gov/citations/20250011660",
+     "https://www.sciencebase.gov/catalog/item/67168797d34ebf903f48b6fc"
+    ]
+   },
+   "why_stored": "One of the 13 candidate regions of NASA's list of 2022. It is not on the list of nine of 2024. A NASA abstract (NTRS 20250011660) says that a region off the list of nine is not thus unsuitable for future exploration.",
+   "why_check": {
+    "confirmed": true,
+    "note": "The stored reason agrees with the 2022 release and NTRS 20250011660.",
+    "proposed_wording": null,
+    "proposed_wording_sources": [
+     "https://www.nasa.gov/news-release/nasa-identifies-candidate-regions-for-landing-next-americans-on-moon/",
+     "https://ntrs.nasa.gov/citations/20250011660"
+    ]
+   },
+   "pgda_model": {
+    "site": "SL3",
+    "pgda_name": "Connecting ridge extension",
+    "page": "https://pgda.gsfc.nasa.gov/products/78",
+    "dem_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/SL3/SL3_final_adj_5mpp_surf.tif",
+    "pixel_m": 5,
+    "what": "NASA Goddard LOLA 5 m elevation model of the site (PGDA product 78)",
+    "citation": "Barker, M. K., et al. (2021), Improved LOLA Elevation Maps for South Pole Landing Sites, Planetary and Space Science 203, 105119, doi:10.1016/j.pss.2020.105119"
+   },
+   "centre": {
+    "lat": -89.03241562258243,
+    "lon_east": 258.0007130694786
+   },
+   "extent_km": [
+    20.0,
+    20.0
+   ],
+   "box_km": null,
+   "sun_ceiling": {
+    "deg": 2.507584377417566,
+    "range_deg": [
+     2.1699489726163472,
+     2.922213955529764
+    ],
+    "how": "90 - |latitude| + 1.54 degrees, at the latitude of the middle of the 5 m model: the highest the Sun's centre climbs over a flat horizon, 1.54 degrees being the tilt of the Moon's axis to the ecliptic (twinfinder/sun.py, lunar_max_sun_elevation_deg). The range is the same formula at the model's most and least poleward corner, edge midpoint or centre. No terrain, no ephemeris and no allowance for the Sun's disc enter.",
+    "kind": "derived from latitude",
+    "source": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/SL3/SL3_final_adj_5mpp_surf.tif"
+   },
+   "shadow_of_1m_object_at_ceiling_m": 22.83,
+   "shadow_how": "1 m divided by the tangent of the Sun ceiling, on level ground.",
+   "lit": {
+    "mean_share": 0.26040425606038614,
+    "best_point_share": 0.8185600000000001,
+    "how": "Mean and highest 240 m pixel, inside the bounding box of the 5 m model, of NASA Goddard's average solar illumination map AVGVISIB_65S_240M_201608 (hourly steps over 18.6 years, LOLA terrain), read with the file's own scale and offset (twinfinder/moon.py, fingerprint).",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/AVGVISIB_65S_240M_201608.TIF"
+   },
+   "permanent_shadow": {
+    "share": 0.021628683408332124,
+    "how": "Share of the 240 m pixels inside the same box that NASA Goddard's map LPSR_65S_240M_201608 marks as permanently shadowed (value above 0.5).",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/LPSR_65S_240M_201608.TIF"
+   },
+   "diviner": {
+    "model_based": true,
+    "triangles": 3160,
+    "triangles_without_temperature": 0,
+    "area_covered_km2": 405.62,
+    "target_area_km2": 400.0,
+    "annual_mean_temp_2cm_K": {
+     "mean": 119.416,
+     "min": 46.325,
+     "max": 186.687
+    },
+    "annual_max_temp_surface_K": {
+     "mean": 261.923,
+     "min": 82.991,
+     "max": 330.185
+    },
+    "annual_mean_temp_2cm_C": {
+     "mean": -153.73,
+     "min": -226.82,
+     "max": -86.46
+    },
+    "annual_max_temp_surface_C": {
+     "mean": -11.23,
+     "min": -190.16,
+     "max": 57.04
+    },
+    "ice": {
+     "stable_within_reach_share": 0.47373,
+     "stable_at_surface_share": 0.00886,
+     "surface_cold_trap_share": 0.00285,
+     "stable_within_1m_share": 0.45854,
+     "not_stable_within_reach_share": 0.52627,
+     "stable_within_reach_share_without_undocumented_value": 0.47089,
+     "shallowest_m": 0.0,
+     "deepest_stable_m": 1.5624
+    },
+    "altitude_check": {
+     "triangles_compared": 3160,
+     "correlation": 0.9945,
+     "median_difference_m": 30.0,
+     "median_abs_difference_m": 53.8,
+     "how": "Height of our 5 m model (averaged to about 100 m) minus the table's triangle-centre altitude, at the same map position; both are relative to a 1737.4 km sphere."
+    },
+    "kind": "model-based",
+    "how": "LRO Diviner Polar Resource Product (LRO-L-DLRE-5-PRP-V2.0): thermal-model fits to the first year of Diviner polar observations on a mesh of about 500 m triangles. Figures are over the triangles whose centre lies inside the 5 m model's bounding box, weighted by triangle area. Ice is 'stable' where the table gives a depth (0 to 2.87 m) at which ice would be lost more slowly than 1 kg per m2 per billion years; -999 means deeper than 2.87 m, not missing. The table's undocumented value -1 is read as stable on the surface; see meta.diviner.",
+    "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+    "citation": "Paige et al., LRO DLRE Level 5 PRP V2.0, NASA Planetary Data System, 2018"
+   },
+   "picture": {
+    "page": null,
+    "title": null,
+    "product": null,
+    "note": "LROC has no low-Sun controlled NAC mosaic with the name 'Connecting Ridge Extension'.",
+    "credit": null,
+    "credit_source": null,
+    "citation": null,
+    "sun_heights_of_images": null,
+    "image_downloaded": false
+   },
+   "earth_cannot_match": [
+    {
+     "what": "vacuum",
+     "number": 3e-15,
+     "unit": "bar",
+     "moon": "Surface pressure at night about 3 x 10^-15 bar: no air, no wind, no sound, no weather.",
+     "earth": "About 1 bar at sea level.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "gravity",
+     "number": 1.62,
+     "unit": "m/s2",
+     "moon": "1.62 m/s2 at the surface, about one sixth of Earth's.",
+     "earth": "9.80 m/s2 (ratio 0.165).",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "dust",
+     "number": null,
+     "unit": null,
+     "moon": "Dry, sharp-grained regolith that no water or air has ever rounded; it clings to suits and gear.",
+     "earth": "Soil and rock shaped by water, air and life.",
+     "source": null,
+     "note": "No number: we read no dust dataset."
+    },
+    {
+     "what": "temperature",
+     "number": 119.416,
+     "unit": "K",
+     "moon": "Model-based (Diviner): the annual mean 2 cm under the surface is 119 K (-154 \u00b0C) averaged over the area, 46 K in the coldest place; the yearly maximum at the surface ranges from 83 K to 330 K.",
+     "earth": "Not computed here; compare with the NASA POWER temperature of each Earth place.",
+     "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+     "note": "Diviner Polar Resource Product: model values, not measurements."
+    },
+    {
+     "what": "radiation",
+     "number": null,
+     "unit": null,
+     "moon": "No air and no global magnetic field to stop solar particles and cosmic rays.",
+     "earth": "Shielded by the atmosphere and the magnetic field.",
+     "source": null,
+     "note": "No number: we read no radiation dataset."
+    },
+    {
+     "what": "black shadows",
+     "number": 22.83,
+     "unit": "m of shadow per 1 m object at the Sun ceiling",
+     "moon": "No air scatters light into shadows; they are lit only by light bounced off nearby ground. At the Sun ceiling of 2.51\u00b0 a 1 m object throws a 22.8 m shadow. 2.2% of the area never sees the Sun.",
+     "earth": "The same shadow length at the same Sun height, but the sky lights the shadow and the low Sun is dimmed and reddened by air. We have no number for that difference.",
+     "source": "https://pgda.gsfc.nasa.gov/products/69"
+    },
+    {
+     "what": "slow Sun",
+     "number": 29.53,
+     "unit": "days for the Sun to go round once",
+     "moon": "One turn of the Sun around the horizon takes 29.53 days, about 0.51\u00b0 per hour; a shadow stays put for hours.",
+     "earth": "24 hours, 15\u00b0 per hour: about 29.5 times faster.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    }
+   ]
+  },
+  {
+   "id": "peak-near-shackleton",
+   "has_model": true,
+   "model_note": null,
+   "position": {
+    "how_sure": "from the terrain model",
+    "source": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site07/Site07_final_adj_5mpp_surf.tif",
+    "note": "The centre is the centre of the grid of the NASA 5 m terrain model. The USGS box of the region has the same corners as the model."
+   },
+   "official_name": "Peak Near Shackleton",
+   "name_in_project": "Peak Near Shackleton",
+   "name_note": "The name is the name on the NASA list of 2022. PGDA calls the 5 m model 'Site07: Peak near Shackleton'.",
+   "nasa_list": {
+    "on_2022_list_of_13": true,
+    "name_2022": "Peak Near Shackleton",
+    "on_2024_list_of_9": false,
+    "name_2024": null,
+    "summary": "On the list of 13 of 2022 only. It is not on the list of nine of 2024. The NASA abstract NTRS 20250011660 says that the cut 'does not imply that removed regions are unsuitable for future exploration'.",
+    "links": [
+     "https://www.nasa.gov/news-release/nasa-identifies-candidate-regions-for-landing-next-americans-on-moon/",
+     "https://svs.gsfc.nasa.gov/5013/",
+     "https://ntrs.nasa.gov/citations/20250011660",
+     "https://www.sciencebase.gov/catalog/item/67168797d34ebf903f48b6fc"
+    ]
+   },
+   "why_stored": "One of the 13 candidate regions of NASA's list of 2022. It is not on the list of nine of 2024. A NASA abstract (NTRS 20250011660) says that a region off the list of nine is not thus unsuitable for future exploration.",
+   "why_check": {
+    "confirmed": true,
+    "note": "The stored reason agrees with the 2022 release and NTRS 20250011660.",
+    "proposed_wording": null,
+    "proposed_wording_sources": [
+     "https://www.nasa.gov/news-release/nasa-identifies-candidate-regions-for-landing-next-americans-on-moon/",
+     "https://ntrs.nasa.gov/citations/20250011660"
+    ]
+   },
+   "pgda_model": {
+    "site": "Site07",
+    "pgda_name": "Peak near Shackleton",
+    "page": "https://pgda.gsfc.nasa.gov/products/78",
+    "dem_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site07/Site07_final_adj_5mpp_surf.tif",
+    "pixel_m": 5,
+    "what": "NASA Goddard LOLA 5 m elevation model of the site (PGDA product 78)",
+    "citation": "Barker, M. K., et al. (2021), Improved LOLA Elevation Maps for South Pole Landing Sites, Planetary and Space Science 203, 105119, doi:10.1016/j.pss.2020.105119"
+   },
+   "centre": {
+    "lat": -88.81100807350447,
+    "lon_east": 123.69006752597979
+   },
+   "extent_km": [
+    16.0,
+    16.0
+   ],
+   "box_km": null,
+   "sun_ceiling": {
+    "deg": 2.7289919264955325,
+    "range_deg": [
+     2.366409132451701,
+     3.096516389057393
+    ],
+    "how": "90 - |latitude| + 1.54 degrees, at the latitude of the middle of the 5 m model: the highest the Sun's centre climbs over a flat horizon, 1.54 degrees being the tilt of the Moon's axis to the ecliptic (twinfinder/sun.py, lunar_max_sun_elevation_deg). The range is the same formula at the model's most and least poleward corner, edge midpoint or centre. No terrain, no ephemeris and no allowance for the Sun's disc enter.",
+    "kind": "derived from latitude",
+    "source": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site07/Site07_final_adj_5mpp_surf.tif"
+   },
+   "shadow_of_1m_object_at_ceiling_m": 20.98,
+   "shadow_how": "1 m divided by the tangent of the Sun ceiling, on level ground.",
+   "lit": {
+    "mean_share": 0.3577840320784139,
+    "best_point_share": 0.8818800000000001,
+    "how": "Mean and highest 240 m pixel, inside the bounding box of the 5 m model, of NASA Goddard's average solar illumination map AVGVISIB_65S_240M_201608 (hourly steps over 18.6 years, LOLA terrain), read with the file's own scale and offset (twinfinder/moon.py, fingerprint).",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/AVGVISIB_65S_240M_201608.TIF"
+   },
+   "permanent_shadow": {
+    "share": 0.022722209846290933,
+    "how": "Share of the 240 m pixels inside the same box that NASA Goddard's map LPSR_65S_240M_201608 marks as permanently shadowed (value above 0.5).",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/LPSR_65S_240M_201608.TIF"
+   },
+   "diviner": {
+    "model_based": true,
+    "triangles": 1953,
+    "triangles_without_temperature": 0,
+    "area_covered_km2": 250.688,
+    "target_area_km2": 256.0,
+    "annual_mean_temp_2cm_K": {
+     "mean": 126.702,
+     "min": 35.05,
+     "max": 175.954
+    },
+    "annual_max_temp_surface_K": {
+     "mean": 242.102,
+     "min": 51.348,
+     "max": 307.854
+    },
+    "annual_mean_temp_2cm_C": {
+     "mean": -146.45,
+     "min": -238.1,
+     "max": -97.2
+    },
+    "annual_max_temp_surface_C": {
+     "mean": -31.05,
+     "min": -221.8,
+     "max": 34.7
+    },
+    "ice": {
+     "stable_within_reach_share": 0.31849,
+     "stable_at_surface_share": 0.01792,
+     "surface_cold_trap_share": 0.01741,
+     "stable_within_1m_share": 0.30517,
+     "not_stable_within_reach_share": 0.68151,
+     "stable_within_reach_share_without_undocumented_value": 0.30108,
+     "shallowest_m": 0.0,
+     "deepest_stable_m": 1.2893
+    },
+    "altitude_check": {
+     "triangles_compared": 1953,
+     "correlation": 0.9972,
+     "median_difference_m": -24.4,
+     "median_abs_difference_m": 33.3,
+     "how": "Height of our 5 m model (averaged to about 100 m) minus the table's triangle-centre altitude, at the same map position; both are relative to a 1737.4 km sphere."
+    },
+    "kind": "model-based",
+    "how": "LRO Diviner Polar Resource Product (LRO-L-DLRE-5-PRP-V2.0): thermal-model fits to the first year of Diviner polar observations on a mesh of about 500 m triangles. Figures are over the triangles whose centre lies inside the 5 m model's bounding box, weighted by triangle area. Ice is 'stable' where the table gives a depth (0 to 2.87 m) at which ice would be lost more slowly than 1 kg per m2 per billion years; -999 means deeper than 2.87 m, not missing. The table's undocumented value -1 is read as stable on the surface; see meta.diviner.",
+    "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+    "citation": "Paige et al., LRO DLRE Level 5 PRP V2.0, NASA Planetary Data System, 2018"
+   },
+   "picture": {
+    "page": "https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_ROI_SHKLTNPKLO1",
+    "title": "Peak near Shackleton low-Sun controlled NAC mosaic",
+    "product": "NAC_ROI_SHKLTNPKLO1",
+    "note": "Latitude -89.17 to -88.44, longitude 107.53 to 141.84.",
+    "credit": "NASA/GSFC/Arizona State University",
+    "credit_source": "https://lroc.im-ldi.com/about/terms",
+    "citation": "Henriksen, M. R., et al. (2023), Optimized Illuminated Terrain Coverage of the Candidate Artemis III Landing Sites with LROC NAC Controlled Mosaics, European Lunar Symposium",
+    "sun_heights_of_images": {
+     "images_listed": 113,
+     "sun_height_min_deg": -1,
+     "sun_height_max_deg": 4,
+     "images_above_flat_ceiling_at_their_latitude": 0
+    },
+    "image_downloaded": false
+   },
+   "earth_cannot_match": [
+    {
+     "what": "vacuum",
+     "number": 3e-15,
+     "unit": "bar",
+     "moon": "Surface pressure at night about 3 x 10^-15 bar: no air, no wind, no sound, no weather.",
+     "earth": "About 1 bar at sea level.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "gravity",
+     "number": 1.62,
+     "unit": "m/s2",
+     "moon": "1.62 m/s2 at the surface, about one sixth of Earth's.",
+     "earth": "9.80 m/s2 (ratio 0.165).",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "dust",
+     "number": null,
+     "unit": null,
+     "moon": "Dry, sharp-grained regolith that no water or air has ever rounded; it clings to suits and gear.",
+     "earth": "Soil and rock shaped by water, air and life.",
+     "source": null,
+     "note": "No number: we read no dust dataset."
+    },
+    {
+     "what": "temperature",
+     "number": 126.702,
+     "unit": "K",
+     "moon": "Model-based (Diviner): the annual mean 2 cm under the surface is 127 K (-146 \u00b0C) averaged over the area, 35 K in the coldest place; the yearly maximum at the surface ranges from 51 K to 308 K.",
+     "earth": "Not computed here; compare with the NASA POWER temperature of each Earth place.",
+     "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+     "note": "Diviner Polar Resource Product: model values, not measurements."
+    },
+    {
+     "what": "radiation",
+     "number": null,
+     "unit": null,
+     "moon": "No air and no global magnetic field to stop solar particles and cosmic rays.",
+     "earth": "Shielded by the atmosphere and the magnetic field.",
+     "source": null,
+     "note": "No number: we read no radiation dataset."
+    },
+    {
+     "what": "black shadows",
+     "number": 20.98,
+     "unit": "m of shadow per 1 m object at the Sun ceiling",
+     "moon": "No air scatters light into shadows; they are lit only by light bounced off nearby ground. At the Sun ceiling of 2.73\u00b0 a 1 m object throws a 21.0 m shadow. 2.3% of the area never sees the Sun.",
+     "earth": "The same shadow length at the same Sun height, but the sky lights the shadow and the low Sun is dimmed and reddened by air. We have no number for that difference.",
+     "source": "https://pgda.gsfc.nasa.gov/products/69"
+    },
+    {
+     "what": "slow Sun",
+     "number": 29.53,
+     "unit": "days for the Sun to go round once",
+     "moon": "One turn of the Sun around the horizon takes 29.53 days, about 0.51\u00b0 per hour; a shadow stays put for hours.",
+     "earth": "24 hours, 15\u00b0 per hour: about 29.5 times faster.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    }
+   ]
+  },
+  {
+   "id": "de-gerlache-rim-1",
+   "has_model": true,
+   "model_note": null,
+   "position": {
+    "how_sure": "from the terrain model",
+    "source": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site11/Site11_final_adj_5mpp_surf.tif",
+    "note": "The centre is the centre of the grid of the NASA 5 m terrain model. The USGS box of the region has the same corners as the model."
+   },
+   "official_name": "de Gerlache Rim 1",
+   "name_in_project": "de Gerlache Rim 1",
+   "name_note": "The name is the name on the NASA list of 2022. The USGS release and LROC write 'de Gerlache Rim'. PGDA calls the 5 m model 'Site11: de Gerlache rim'. The USGS box of 'de Gerlache Rim' has the same corners as the model Site11.",
+   "nasa_list": {
+    "on_2022_list_of_13": true,
+    "name_2022": "de Gerlache Rim 1",
+    "on_2024_list_of_9": false,
+    "name_2024": null,
+    "summary": "On the list of 13 of 2022 only. It is not on the list of nine of 2024. The NASA abstract NTRS 20250011660 says that the cut 'does not imply that removed regions are unsuitable for future exploration'.",
+    "links": [
+     "https://www.nasa.gov/news-release/nasa-identifies-candidate-regions-for-landing-next-americans-on-moon/",
+     "https://svs.gsfc.nasa.gov/5013/",
+     "https://ntrs.nasa.gov/citations/20250011660",
+     "https://www.sciencebase.gov/catalog/item/67168797d34ebf903f48b6fc"
+    ]
+   },
+   "why_stored": "One of the 13 candidate regions of NASA's list of 2022. It is not on the list of nine of 2024. A NASA abstract (NTRS 20250011660) says that a region off the list of nine is not thus unsuitable for future exploration.",
+   "why_check": {
+    "confirmed": true,
+    "note": "The stored reason agrees with the 2022 release and NTRS 20250011660.",
+    "proposed_wording": null,
+    "proposed_wording_sources": [
+     "https://www.nasa.gov/news-release/nasa-identifies-candidate-regions-for-landing-next-americans-on-moon/",
+     "https://ntrs.nasa.gov/citations/20250011660"
+    ]
+   },
+   "pgda_model": {
+    "site": "Site11",
+    "pgda_name": "de Gerlache rim",
+    "page": "https://pgda.gsfc.nasa.gov/products/78",
+    "dem_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site11/Site11_final_adj_5mpp_surf.tif",
+    "pixel_m": 5,
+    "what": "NASA Goddard LOLA 5 m elevation model of the site (PGDA product 78)",
+    "citation": "Barker, M. K., et al. (2021), Improved LOLA Elevation Maps for South Pole Landing Sites, Planetary and Space Science 203, 105119, doi:10.1016/j.pss.2020.105119"
+   },
+   "centre": {
+    "lat": -88.68341815077612,
+    "lon_east": 292.0678995624102
+   },
+   "extent_km": [
+    16.0,
+    16.0
+   ],
+   "box_km": null,
+   "sun_ceiling": {
+    "deg": 2.85658184922388,
+    "range_deg": [
+     2.5238007474513404,
+     3.2064897359666213
+    ],
+    "how": "90 - |latitude| + 1.54 degrees, at the latitude of the middle of the 5 m model: the highest the Sun's centre climbs over a flat horizon, 1.54 degrees being the tilt of the Moon's axis to the ecliptic (twinfinder/sun.py, lunar_max_sun_elevation_deg). The range is the same formula at the model's most and least poleward corner, edge midpoint or centre. No terrain, no ephemeris and no allowance for the Sun's disc enter.",
+    "kind": "derived from latitude",
+    "source": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site11/Site11_final_adj_5mpp_surf.tif"
+   },
+   "shadow_of_1m_object_at_ceiling_m": 20.04,
+   "shadow_how": "1 m divided by the tangent of the Sun ceiling, on level ground.",
+   "lit": {
+    "mean_share": 0.2878921541546001,
+    "best_point_share": 0.8054000000000001,
+    "how": "Mean and highest 240 m pixel, inside the bounding box of the 5 m model, of NASA Goddard's average solar illumination map AVGVISIB_65S_240M_201608 (hourly steps over 18.6 years, LOLA terrain), read with the file's own scale and offset (twinfinder/moon.py, fingerprint).",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/AVGVISIB_65S_240M_201608.TIF"
+   },
+   "permanent_shadow": {
+    "share": 0.01269770550233905,
+    "how": "Share of the 240 m pixels inside the same box that NASA Goddard's map LPSR_65S_240M_201608 marks as permanently shadowed (value above 0.5).",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/LPSR_65S_240M_201608.TIF"
+   },
+   "diviner": {
+    "model_based": true,
+    "triangles": 2016,
+    "triangles_without_temperature": 0,
+    "area_covered_km2": 258.773,
+    "target_area_km2": 256.0,
+    "annual_mean_temp_2cm_K": {
+     "mean": 122.754,
+     "min": 54.982,
+     "max": 182.329
+    },
+    "annual_max_temp_surface_K": {
+     "mean": 261.417,
+     "min": 94.965,
+     "max": 320.118
+    },
+    "annual_mean_temp_2cm_C": {
+     "mean": -150.4,
+     "min": -218.17,
+     "max": -90.82
+    },
+    "annual_max_temp_surface_C": {
+     "mean": -11.73,
+     "min": -178.18,
+     "max": 46.97
+    },
+    "ice": {
+     "stable_within_reach_share": 0.42113,
+     "stable_at_surface_share": 0.00595,
+     "surface_cold_trap_share": 0.00298,
+     "stable_within_1m_share": 0.39931,
+     "not_stable_within_reach_share": 0.57887,
+     "stable_within_reach_share_without_undocumented_value": 0.41815,
+     "shallowest_m": 0.0,
+     "deepest_stable_m": 1.7738
+    },
+    "altitude_check": {
+     "triangles_compared": 2016,
+     "correlation": 0.9959,
+     "median_difference_m": -6.2,
+     "median_abs_difference_m": 39.5,
+     "how": "Height of our 5 m model (averaged to about 100 m) minus the table's triangle-centre altitude, at the same map position; both are relative to a 1737.4 km sphere."
+    },
+    "kind": "model-based",
+    "how": "LRO Diviner Polar Resource Product (LRO-L-DLRE-5-PRP-V2.0): thermal-model fits to the first year of Diviner polar observations on a mesh of about 500 m triangles. Figures are over the triangles whose centre lies inside the 5 m model's bounding box, weighted by triangle area. Ice is 'stable' where the table gives a depth (0 to 2.87 m) at which ice would be lost more slowly than 1 kg per m2 per billion years; -999 means deeper than 2.87 m, not missing. The table's undocumented value -1 is read as stable on the surface; see meta.diviner.",
+    "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+    "citation": "Paige et al., LRO DLRE Level 5 PRP V2.0, NASA Planetary Data System, 2018"
+   },
+   "picture": {
+    "page": "https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_ROI_DEGERRIMLO1",
+    "title": "de Gerlache Rim low-Sun controlled NAC mosaic",
+    "product": "NAC_ROI_DEGERRIMLO1",
+    "note": "This mosaic covers the two de Gerlache rim regions: latitude -89.02 to -87.79, longitude -83.18 to -41.31.",
+    "credit": "NASA/GSFC/Arizona State University",
+    "credit_source": "https://lroc.im-ldi.com/about/terms",
+    "citation": "Henriksen, M. R., et al. (2023), Optimized Illuminated Terrain Coverage of the Candidate Artemis III Landing Sites with LROC NAC Controlled Mosaics, European Lunar Symposium",
+    "sun_heights_of_images": {
+     "images_listed": 144,
+     "sun_height_min_deg": -1,
+     "sun_height_max_deg": 4,
+     "images_above_flat_ceiling_at_their_latitude": 0
+    },
+    "image_downloaded": false
+   },
+   "earth_cannot_match": [
+    {
+     "what": "vacuum",
+     "number": 3e-15,
+     "unit": "bar",
+     "moon": "Surface pressure at night about 3 x 10^-15 bar: no air, no wind, no sound, no weather.",
+     "earth": "About 1 bar at sea level.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "gravity",
+     "number": 1.62,
+     "unit": "m/s2",
+     "moon": "1.62 m/s2 at the surface, about one sixth of Earth's.",
+     "earth": "9.80 m/s2 (ratio 0.165).",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "dust",
+     "number": null,
+     "unit": null,
+     "moon": "Dry, sharp-grained regolith that no water or air has ever rounded; it clings to suits and gear.",
+     "earth": "Soil and rock shaped by water, air and life.",
+     "source": null,
+     "note": "No number: we read no dust dataset."
+    },
+    {
+     "what": "temperature",
+     "number": 122.754,
+     "unit": "K",
+     "moon": "Model-based (Diviner): the annual mean 2 cm under the surface is 123 K (-150 \u00b0C) averaged over the area, 55 K in the coldest place; the yearly maximum at the surface ranges from 95 K to 320 K.",
+     "earth": "Not computed here; compare with the NASA POWER temperature of each Earth place.",
+     "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+     "note": "Diviner Polar Resource Product: model values, not measurements."
+    },
+    {
+     "what": "radiation",
+     "number": null,
+     "unit": null,
+     "moon": "No air and no global magnetic field to stop solar particles and cosmic rays.",
+     "earth": "Shielded by the atmosphere and the magnetic field.",
+     "source": null,
+     "note": "No number: we read no radiation dataset."
+    },
+    {
+     "what": "black shadows",
+     "number": 20.04,
+     "unit": "m of shadow per 1 m object at the Sun ceiling",
+     "moon": "No air scatters light into shadows; they are lit only by light bounced off nearby ground. At the Sun ceiling of 2.86\u00b0 a 1 m object throws a 20.0 m shadow. 1.3% of the area never sees the Sun.",
+     "earth": "The same shadow length at the same Sun height, but the sky lights the shadow and the low Sun is dimmed and reddened by air. We have no number for that difference.",
+     "source": "https://pgda.gsfc.nasa.gov/products/69"
+    },
+    {
+     "what": "slow Sun",
+     "number": 29.53,
+     "unit": "days for the Sun to go round once",
+     "moon": "One turn of the Sun around the horizon takes 29.53 days, about 0.51\u00b0 per hour; a shadow stays put for hours.",
+     "earth": "24 hours, 15\u00b0 per hour: about 29.5 times faster.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    }
+   ]
+  },
+  {
+   "id": "de-gerlache-rim-2",
+   "has_model": true,
+   "model_note": null,
+   "position": {
+    "how_sure": "from the terrain model",
+    "source": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/SL2/SL2_final_adj_5mpp_surf.tif",
+    "note": "The centre is the centre of the grid of the NASA 5 m terrain model. The USGS box of the region has the same corners as the model."
+   },
+   "official_name": "de Gerlache Rim 2",
+   "name_in_project": "de Gerlache Rim 2",
+   "name_note": "The name is the same on the two NASA lists. PGDA calls the 5 m model 'SL2: de Gerlache rim'. The USGS box of 'de Gerlache Rim 2' has the same corners as the model SL2.",
+   "nasa_list": {
+    "on_2022_list_of_13": true,
+    "name_2022": "de Gerlache Rim 2",
+    "on_2024_list_of_9": true,
+    "name_2024": "de Gerlache Rim 2",
+    "summary": "On the list of 13 of 2022 and on the list of nine of 2024.",
+    "links": [
+     "https://www.nasa.gov/news-release/nasa-identifies-candidate-regions-for-landing-next-americans-on-moon/",
+     "https://svs.gsfc.nasa.gov/5013/",
+     "https://ntrs.nasa.gov/citations/20250011660",
+     "https://www.nasa.gov/wp-content/uploads/2024/10/artemis-iii-landing-region-candidates.jpg"
+    ]
+   },
+   "why_stored": "One of the nine candidate regions of NASA's list of 2024. It is also on the list of 13 of 2022.",
+   "why_check": {
+    "confirmed": true,
+    "note": "The stored reason agrees with NTRS 20250011660 and the 2022 release.",
+    "proposed_wording": null,
+    "proposed_wording_sources": [
+     "https://ntrs.nasa.gov/citations/20250011660",
+     "https://www.nasa.gov/news-release/nasa-identifies-candidate-regions-for-landing-next-americans-on-moon/"
+    ]
+   },
+   "pgda_model": {
+    "site": "SL2",
+    "pgda_name": "de Gerlache rim",
+    "page": "https://pgda.gsfc.nasa.gov/products/78",
+    "dem_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/SL2/SL2_final_adj_5mpp_surf.tif",
+    "pixel_m": 5,
+    "what": "NASA Goddard LOLA 5 m elevation model of the site (PGDA product 78)",
+    "citation": "Barker, M. K., et al. (2021), Improved LOLA Elevation Maps for South Pole Landing Sites, Planetary and Space Science 203, 105119, doi:10.1016/j.pss.2020.105119"
+   },
+   "centre": {
+    "lat": -88.22997767029239,
+    "lon_east": 295.37156175309593
+   },
+   "extent_km": [
+    20.0,
+    20.0
+   ],
+   "box_km": null,
+   "sun_ceiling": {
+    "deg": 3.310022329707615,
+    "range_deg": [
+     2.8800143029991796,
+     3.754711616481509
+    ],
+    "how": "90 - |latitude| + 1.54 degrees, at the latitude of the middle of the 5 m model: the highest the Sun's centre climbs over a flat horizon, 1.54 degrees being the tilt of the Moon's axis to the ecliptic (twinfinder/sun.py, lunar_max_sun_elevation_deg). The range is the same formula at the model's most and least poleward corner, edge midpoint or centre. No terrain, no ephemeris and no allowance for the Sun's disc enter.",
+    "kind": "derived from latitude",
+    "source": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/SL2/SL2_final_adj_5mpp_surf.tif"
+   },
+   "shadow_of_1m_object_at_ceiling_m": 17.29,
+   "shadow_how": "1 m divided by the tangent of the Sun ceiling, on level ground.",
+   "lit": {
+    "mean_share": 0.3371836434896212,
+    "best_point_share": 0.79888,
+    "how": "Mean and highest 240 m pixel, inside the bounding box of the 5 m model, of NASA Goddard's average solar illumination map AVGVISIB_65S_240M_201608 (hourly steps over 18.6 years, LOLA terrain), read with the file's own scale and offset (twinfinder/moon.py, fingerprint).",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/AVGVISIB_65S_240M_201608.TIF"
+   },
+   "permanent_shadow": {
+    "share": 0.013644941210625636,
+    "how": "Share of the 240 m pixels inside the same box that NASA Goddard's map LPSR_65S_240M_201608 marks as permanently shadowed (value above 0.5).",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/LPSR_65S_240M_201608.TIF"
+   },
+   "diviner": {
+    "model_based": true,
+    "triangles": 3121,
+    "triangles_without_temperature": 0,
+    "area_covered_km2": 400.609,
+    "target_area_km2": 400.0,
+    "annual_mean_temp_2cm_K": {
+     "mean": 131.798,
+     "min": 57.937,
+     "max": 177.182
+    },
+    "annual_max_temp_surface_K": {
+     "mean": 257.914,
+     "min": 100.362,
+     "max": 320.118
+    },
+    "annual_mean_temp_2cm_C": {
+     "mean": -141.35,
+     "min": -215.21,
+     "max": -95.97
+    },
+    "annual_max_temp_surface_C": {
+     "mean": -15.24,
+     "min": -172.79,
+     "max": 46.97
+    },
+    "ice": {
+     "stable_within_reach_share": 0.24575,
+     "stable_at_surface_share": 0.00481,
+     "surface_cold_trap_share": 0.00032,
+     "stable_within_1m_share": 0.2339,
+     "not_stable_within_reach_share": 0.75425,
+     "stable_within_reach_share_without_undocumented_value": 0.24543,
+     "shallowest_m": 0.0,
+     "deepest_stable_m": 1.4963
+    },
+    "altitude_check": {
+     "triangles_compared": 3121,
+     "correlation": 0.9989,
+     "median_difference_m": 24.0,
+     "median_abs_difference_m": 31.2,
+     "how": "Height of our 5 m model (averaged to about 100 m) minus the table's triangle-centre altitude, at the same map position; both are relative to a 1737.4 km sphere."
+    },
+    "kind": "model-based",
+    "how": "LRO Diviner Polar Resource Product (LRO-L-DLRE-5-PRP-V2.0): thermal-model fits to the first year of Diviner polar observations on a mesh of about 500 m triangles. Figures are over the triangles whose centre lies inside the 5 m model's bounding box, weighted by triangle area. Ice is 'stable' where the table gives a depth (0 to 2.87 m) at which ice would be lost more slowly than 1 kg per m2 per billion years; -999 means deeper than 2.87 m, not missing. The table's undocumented value -1 is read as stable on the surface; see meta.diviner.",
+    "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+    "citation": "Paige et al., LRO DLRE Level 5 PRP V2.0, NASA Planetary Data System, 2018"
+   },
+   "picture": {
+    "page": "https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_ROI_DEGERRIMLO1",
+    "title": "de Gerlache Rim low-Sun controlled NAC mosaic",
+    "product": "NAC_ROI_DEGERRIMLO1",
+    "note": "LROC has no mosaic with the name 'de Gerlache Rim 2'. This mosaic covers the two de Gerlache rim regions: latitude -89.02 to -87.79, longitude -83.18 to -41.31.",
+    "credit": "NASA/GSFC/Arizona State University",
+    "credit_source": "https://lroc.im-ldi.com/about/terms",
+    "citation": "Henriksen, M. R., et al. (2023), Optimized Illuminated Terrain Coverage of the Candidate Artemis III Landing Sites with LROC NAC Controlled Mosaics, European Lunar Symposium",
+    "sun_heights_of_images": {
+     "images_listed": 144,
+     "sun_height_min_deg": -1,
+     "sun_height_max_deg": 4,
+     "images_above_flat_ceiling_at_their_latitude": 0
+    },
+    "image_downloaded": false
+   },
+   "earth_cannot_match": [
+    {
+     "what": "vacuum",
+     "number": 3e-15,
+     "unit": "bar",
+     "moon": "Surface pressure at night about 3 x 10^-15 bar: no air, no wind, no sound, no weather.",
+     "earth": "About 1 bar at sea level.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "gravity",
+     "number": 1.62,
+     "unit": "m/s2",
+     "moon": "1.62 m/s2 at the surface, about one sixth of Earth's.",
+     "earth": "9.80 m/s2 (ratio 0.165).",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "dust",
+     "number": null,
+     "unit": null,
+     "moon": "Dry, sharp-grained regolith that no water or air has ever rounded; it clings to suits and gear.",
+     "earth": "Soil and rock shaped by water, air and life.",
+     "source": null,
+     "note": "No number: we read no dust dataset."
+    },
+    {
+     "what": "temperature",
+     "number": 131.798,
+     "unit": "K",
+     "moon": "Model-based (Diviner): the annual mean 2 cm under the surface is 132 K (-141 \u00b0C) averaged over the area, 58 K in the coldest place; the yearly maximum at the surface ranges from 100 K to 320 K.",
+     "earth": "Not computed here; compare with the NASA POWER temperature of each Earth place.",
+     "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+     "note": "Diviner Polar Resource Product: model values, not measurements."
+    },
+    {
+     "what": "radiation",
+     "number": null,
+     "unit": null,
+     "moon": "No air and no global magnetic field to stop solar particles and cosmic rays.",
+     "earth": "Shielded by the atmosphere and the magnetic field.",
+     "source": null,
+     "note": "No number: we read no radiation dataset."
+    },
+    {
+     "what": "black shadows",
+     "number": 17.29,
+     "unit": "m of shadow per 1 m object at the Sun ceiling",
+     "moon": "No air scatters light into shadows; they are lit only by light bounced off nearby ground. At the Sun ceiling of 3.31\u00b0 a 1 m object throws a 17.3 m shadow. 1.4% of the area never sees the Sun.",
+     "earth": "The same shadow length at the same Sun height, but the sky lights the shadow and the low Sun is dimmed and reddened by air. We have no number for that difference.",
+     "source": "https://pgda.gsfc.nasa.gov/products/69"
+    },
+    {
+     "what": "slow Sun",
+     "number": 29.53,
+     "unit": "days for the Sun to go round once",
+     "moon": "One turn of the Sun around the horizon takes 29.53 days, about 0.51\u00b0 per hour; a shadow stays put for hours.",
+     "earth": "24 hours, 15\u00b0 per hour: about 29.5 times faster.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    }
+   ]
+  },
+  {
+   "id": "faustini-rim-a",
+   "has_model": true,
+   "model_note": null,
+   "position": {
+    "how_sure": "from the terrain model",
+    "source": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/LM7/LM7_final_adj_5mpp_surf.tif",
+    "note": "The centre is the centre of the grid of the NASA 5 m terrain model. The USGS box of the region has the same corners as the model."
+   },
+   "official_name": "Faustini Rim A",
+   "name_in_project": "Faustini Rim A",
+   "name_note": "The name is the name on the NASA list of 2022. PGDA calls the 5 m model 'LM7: Faustini Rim A'.",
+   "nasa_list": {
+    "on_2022_list_of_13": true,
+    "name_2022": "Faustini Rim A",
+    "on_2024_list_of_9": false,
+    "name_2024": null,
+    "summary": "On the list of 13 of 2022 only. It is not on the list of nine of 2024. The NASA abstract NTRS 20250011660 says that the cut 'does not imply that removed regions are unsuitable for future exploration'.",
+    "links": [
+     "https://www.nasa.gov/news-release/nasa-identifies-candidate-regions-for-landing-next-americans-on-moon/",
+     "https://svs.gsfc.nasa.gov/5013/",
+     "https://ntrs.nasa.gov/citations/20250011660",
+     "https://www.sciencebase.gov/catalog/item/67168797d34ebf903f48b6fc"
+    ]
+   },
+   "why_stored": "One of the 13 candidate regions of NASA's list of 2022. It is not on the list of nine of 2024. A NASA abstract (NTRS 20250011660) says that a region off the list of nine is not thus unsuitable for future exploration.",
+   "why_check": {
+    "confirmed": true,
+    "note": "The stored reason agrees with the 2022 release and NTRS 20250011660.",
+    "proposed_wording": null,
+    "proposed_wording_sources": [
+     "https://www.nasa.gov/news-release/nasa-identifies-candidate-regions-for-landing-next-americans-on-moon/",
+     "https://ntrs.nasa.gov/citations/20250011660"
+    ]
+   },
+   "pgda_model": {
+    "site": "LM7",
+    "pgda_name": "Faustini Rim A",
+    "page": "https://pgda.gsfc.nasa.gov/products/78",
+    "dem_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/LM7/LM7_final_adj_5mpp_surf.tif",
+    "pixel_m": 5,
+    "what": "NASA Goddard LOLA 5 m elevation model of the site (PGDA product 78)",
+    "citation": "Barker, M. K., et al. (2021), Improved LOLA Elevation Maps for South Pole Landing Sites, Planetary and Space Science 203, 105119, doi:10.1016/j.pss.2020.105119"
+   },
+   "centre": {
+    "lat": -87.88965389477899,
+    "lon_east": 90.0
+   },
+   "extent_km": [
+    20.0,
+    20.0
+   ],
+   "box_km": null,
+   "sun_ceiling": {
+    "deg": 3.650346105221012,
+    "range_deg": [
+     3.320662518054413,
+     4.002166155822189
+    ],
+    "how": "90 - |latitude| + 1.54 degrees, at the latitude of the middle of the 5 m model: the highest the Sun's centre climbs over a flat horizon, 1.54 degrees being the tilt of the Moon's axis to the ecliptic (twinfinder/sun.py, lunar_max_sun_elevation_deg). The range is the same formula at the model's most and least poleward corner, edge midpoint or centre. No terrain, no ephemeris and no allowance for the Sun's disc enter.",
+    "kind": "derived from latitude",
+    "source": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/LM7/LM7_final_adj_5mpp_surf.tif"
+   },
+   "shadow_of_1m_object_at_ceiling_m": 15.67,
+   "shadow_how": "1 m divided by the tangent of the Sun ceiling, on level ground.",
+   "lit": {
+    "mean_share": 0.1846971345623458,
+    "best_point_share": 0.6778400000000001,
+    "how": "Mean and highest 240 m pixel, inside the bounding box of the 5 m model, of NASA Goddard's average solar illumination map AVGVISIB_65S_240M_201608 (hourly steps over 18.6 years, LOLA terrain), read with the file's own scale and offset (twinfinder/moon.py, fingerprint).",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/AVGVISIB_65S_240M_201608.TIF"
+   },
+   "permanent_shadow": {
+    "share": 0.05966032805922485,
+    "how": "Share of the 240 m pixels inside the same box that NASA Goddard's map LPSR_65S_240M_201608 marks as permanently shadowed (value above 0.5).",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/LPSR_65S_240M_201608.TIF"
+   },
+   "diviner": {
+    "model_based": true,
+    "triangles": 3160,
+    "triangles_without_temperature": 0,
+    "area_covered_km2": 405.617,
+    "target_area_km2": 400.0,
+    "annual_mean_temp_2cm_K": {
+     "mean": 87.963,
+     "min": 28.866,
+     "max": 162.69
+    },
+    "annual_max_temp_surface_K": {
+     "mean": 223.761,
+     "min": 34.907,
+     "max": 313.417
+    },
+    "annual_mean_temp_2cm_C": {
+     "mean": -185.19,
+     "min": -244.28,
+     "max": -110.46
+    },
+    "annual_max_temp_surface_C": {
+     "mean": -49.39,
+     "min": -238.24,
+     "max": 40.27
+    },
+    "ice": {
+     "stable_within_reach_share": 0.81835,
+     "stable_at_surface_share": 0.05949,
+     "surface_cold_trap_share": 0.05443,
+     "stable_within_1m_share": 0.80506,
+     "not_stable_within_reach_share": 0.18165,
+     "stable_within_reach_share_without_undocumented_value": 0.76393,
+     "shallowest_m": 0.0,
+     "deepest_stable_m": 1.5771
+    },
+    "altitude_check": {
+     "triangles_compared": 3160,
+     "correlation": 0.9978,
+     "median_difference_m": -11.5,
+     "median_abs_difference_m": 32.3,
+     "how": "Height of our 5 m model (averaged to about 100 m) minus the table's triangle-centre altitude, at the same map position; both are relative to a 1737.4 km sphere."
+    },
+    "kind": "model-based",
+    "how": "LRO Diviner Polar Resource Product (LRO-L-DLRE-5-PRP-V2.0): thermal-model fits to the first year of Diviner polar observations on a mesh of about 500 m triangles. Figures are over the triangles whose centre lies inside the 5 m model's bounding box, weighted by triangle area. Ice is 'stable' where the table gives a depth (0 to 2.87 m) at which ice would be lost more slowly than 1 kg per m2 per billion years; -999 means deeper than 2.87 m, not missing. The table's undocumented value -1 is read as stable on the surface; see meta.diviner.",
+    "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+    "citation": "Paige et al., LRO DLRE Level 5 PRP V2.0, NASA Planetary Data System, 2018"
+   },
+   "picture": {
+    "page": "https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_ROI_FAUSTINILO1",
+    "title": "Faustini Rim A low-Sun controlled NAC mosaic",
+    "product": "NAC_ROI_FAUSTINILO1",
+    "note": "Latitude -88.19 to -87.54, longitude 79.51 to 100.49.",
+    "credit": "NASA/GSFC/Arizona State University",
+    "credit_source": "https://lroc.im-ldi.com/about/terms",
+    "citation": "Henriksen, M. R., et al. (2023), Optimized Illuminated Terrain Coverage of the Candidate Artemis III Landing Sites with LROC NAC Controlled Mosaics, European Lunar Symposium",
+    "sun_heights_of_images": {
+     "images_listed": 208,
+     "sun_height_min_deg": 0,
+     "sun_height_max_deg": 5,
+     "images_above_flat_ceiling_at_their_latitude": 0
+    },
+    "image_downloaded": false
+   },
+   "earth_cannot_match": [
+    {
+     "what": "vacuum",
+     "number": 3e-15,
+     "unit": "bar",
+     "moon": "Surface pressure at night about 3 x 10^-15 bar: no air, no wind, no sound, no weather.",
+     "earth": "About 1 bar at sea level.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "gravity",
+     "number": 1.62,
+     "unit": "m/s2",
+     "moon": "1.62 m/s2 at the surface, about one sixth of Earth's.",
+     "earth": "9.80 m/s2 (ratio 0.165).",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "dust",
+     "number": null,
+     "unit": null,
+     "moon": "Dry, sharp-grained regolith that no water or air has ever rounded; it clings to suits and gear.",
+     "earth": "Soil and rock shaped by water, air and life.",
+     "source": null,
+     "note": "No number: we read no dust dataset."
+    },
+    {
+     "what": "temperature",
+     "number": 87.963,
+     "unit": "K",
+     "moon": "Model-based (Diviner): the annual mean 2 cm under the surface is 88 K (-185 \u00b0C) averaged over the area, 29 K in the coldest place; the yearly maximum at the surface ranges from 35 K to 313 K.",
+     "earth": "Not computed here; compare with the NASA POWER temperature of each Earth place.",
+     "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+     "note": "Diviner Polar Resource Product: model values, not measurements."
+    },
+    {
+     "what": "radiation",
+     "number": null,
+     "unit": null,
+     "moon": "No air and no global magnetic field to stop solar particles and cosmic rays.",
+     "earth": "Shielded by the atmosphere and the magnetic field.",
+     "source": null,
+     "note": "No number: we read no radiation dataset."
+    },
+    {
+     "what": "black shadows",
+     "number": 15.67,
+     "unit": "m of shadow per 1 m object at the Sun ceiling",
+     "moon": "No air scatters light into shadows; they are lit only by light bounced off nearby ground. At the Sun ceiling of 3.65\u00b0 a 1 m object throws a 15.7 m shadow. 6.0% of the area never sees the Sun.",
+     "earth": "The same shadow length at the same Sun height, but the sky lights the shadow and the low Sun is dimmed and reddened by air. We have no number for that difference.",
+     "source": "https://pgda.gsfc.nasa.gov/products/69"
+    },
+    {
+     "what": "slow Sun",
+     "number": 29.53,
+     "unit": "days for the Sun to go round once",
+     "moon": "One turn of the Sun around the horizon takes 29.53 days, about 0.51\u00b0 per hour; a shadow stays put for hours.",
+     "earth": "24 hours, 15\u00b0 per hour: about 29.5 times faster.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    }
+   ]
+  },
+  {
+   "id": "slater-plain",
+   "has_model": false,
+   "model_note": "PGDA product 78 has no 5 m terrain model of this region.",
+   "position": {
+    "how_sure": "estimated from a map",
+    "source": "https://www.nasa.gov/wp-content/uploads/2024/10/artemis-iii-landing-region-candidates.jpg",
+    "note": "NASA gives no table of centres. We read the centre of the box of this region on the NASA map of 28 October 2024. We expect an error of less than 1 km. The map is the only source for this region."
+   },
+   "official_name": "Slater Plain",
+   "name_in_project": "Slater Plain",
+   "name_note": "The name is the name on the NASA list of 2024. The region is not at the centre of the crater Slater: the centre of the box is approximately 33 km from it.",
+   "nasa_list": {
+    "on_2022_list_of_13": false,
+    "name_2022": null,
+    "on_2024_list_of_9": true,
+    "name_2024": "Slater Plain",
+    "summary": "On the list of nine of 2024 only. It is one of the three new regions of that list (NTRS 20250002110).",
+    "links": [
+     "https://ntrs.nasa.gov/citations/20250011660",
+     "https://ntrs.nasa.gov/citations/20250002110",
+     "https://www.nasa.gov/wp-content/uploads/2024/10/artemis-iii-landing-region-candidates.jpg"
+    ]
+   },
+   "why_stored": "One of the nine candidate regions of NASA's list of 2024. It is a new region on that list.",
+   "why_check": {
+    "confirmed": true,
+    "note": "The stored reason agrees with NTRS 20250011660 and NTRS 20250002110.",
+    "proposed_wording": null,
+    "proposed_wording_sources": [
+     "https://ntrs.nasa.gov/citations/20250011660",
+     "https://ntrs.nasa.gov/citations/20250002110"
+    ]
+   },
+   "pgda_model": null,
+   "centre": {
+    "lat": -87.15969892148003,
+    "lon_east": 125.56581010610674
+   },
+   "extent_km": null,
+   "box_km": [
+    19.98,
+    19.98
+   ],
+   "sun_ceiling": {
+    "deg": 4.380301078519971,
+    "range_deg": [
+     3.92215428977648,
+     4.840463063620313
+    ],
+    "how": "90 - |latitude| + 1.54 degrees, at the latitude of the centre of the box of the region on the NASA map of 2024. NASA gives no 5 m terrain model of this region. The range uses the same formula at the corners, the edge centres and the centre of the box.",
+    "kind": "derived from latitude",
+    "source": "https://www.nasa.gov/wp-content/uploads/2024/10/artemis-iii-landing-region-candidates.jpg"
+   },
+   "shadow_of_1m_object_at_ceiling_m": 13.05,
+   "shadow_how": "1 m divided by the tangent of the Sun ceiling, on level ground.",
+   "lit": {
+    "mean_share": 0.2638083611554653,
+    "best_point_share": 0.67696,
+    "how": "Mean and highest 240 m pixel of the NASA Goddard map AVGVISIB_65S_240M_201608, inside the box of the region on the NASA map of 2024.",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/AVGVISIB_65S_240M_201608.TIF"
+   },
+   "permanent_shadow": {
+    "share": 0.017999709682101902,
+    "how": "Share of the 240 m pixels inside the same box that the NASA Goddard map LPSR_65S_240M_201608 marks as permanently shadowed (value above 0.5).",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/LPSR_65S_240M_201608.TIF"
+   },
+   "diviner": {
+    "model_based": true,
+    "triangles": 3121,
+    "triangles_without_temperature": 0,
+    "area_covered_km2": 400.613,
+    "target_area_km2": 399.2,
+    "annual_mean_temp_2cm_K": {
+     "mean": 105.58,
+     "min": 38.072,
+     "max": 178.987
+    },
+    "annual_max_temp_surface_K": {
+     "mean": 229.422,
+     "min": 52.18,
+     "max": 319.003
+    },
+    "annual_mean_temp_2cm_C": {
+     "mean": -167.57,
+     "min": -235.08,
+     "max": -94.16
+    },
+    "annual_max_temp_surface_C": {
+     "mean": -43.73,
+     "min": -220.97,
+     "max": 45.85
+    },
+    "ice": {
+     "stable_within_reach_share": 0.58283,
+     "stable_at_surface_share": 0.01987,
+     "surface_cold_trap_share": 0.01826,
+     "stable_within_1m_share": 0.57866,
+     "not_stable_within_reach_share": 0.41717,
+     "stable_within_reach_share_without_undocumented_value": 0.56456,
+     "shallowest_m": 0.0,
+     "deepest_stable_m": 1.2135
+    },
+    "altitude_check": null,
+    "kind": "model-based",
+    "how": "LRO Diviner Polar Resource Product (LRO-L-DLRE-5-PRP-V2.0): fits of a thermal model to the first year of Diviner polar data, on triangles of approximately 500 m. The figures use the triangles with a centre inside the box of the region on the NASA map of 2024. The area of each triangle gives its weight.",
+    "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+    "citation": "Paige et al., LRO DLRE Level 5 PRP V2.0, NASA Planetary Data System, 2018"
+   },
+   "picture": {
+    "page": null,
+    "title": null,
+    "product": null,
+    "note": "LROC has no mosaic of this region. A search for 'Slater' gives only a mosaic of a permanently shadowed region in the crater Slater (NAC_ROI_PSRSLATRLOA).",
+    "credit": null,
+    "credit_source": null,
+    "citation": null,
+    "sun_heights_of_images": null,
+    "image_downloaded": false
+   },
+   "earth_cannot_match": [
+    {
+     "what": "vacuum",
+     "number": 3e-15,
+     "unit": "bar",
+     "moon": "Surface pressure at night about 3 x 10^-15 bar: no air, no wind, no sound, no weather.",
+     "earth": "About 1 bar at sea level.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "gravity",
+     "number": 1.62,
+     "unit": "m/s2",
+     "moon": "1.62 m/s2 at the surface, about one sixth of Earth's.",
+     "earth": "9.80 m/s2 (ratio 0.165).",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "dust",
+     "number": null,
+     "unit": null,
+     "moon": "Dry, sharp-grained regolith that no water or air has ever rounded; it clings to suits and gear.",
+     "earth": "Soil and rock shaped by water, air and life.",
+     "source": null,
+     "note": "No number: we read no dust dataset."
+    },
+    {
+     "what": "temperature",
+     "number": 105.58,
+     "unit": "K",
+     "moon": "Model-based (Diviner): the annual mean 2 cm under the surface is 106 K (-168 \u00b0C) averaged over the area, 38 K in the coldest place; the yearly maximum at the surface ranges from 52 K to 319 K.",
+     "earth": "Not computed here; compare with the NASA POWER temperature of each Earth place.",
+     "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+     "note": "Diviner Polar Resource Product: model values, not measurements."
+    },
+    {
+     "what": "radiation",
+     "number": null,
+     "unit": null,
+     "moon": "No air and no global magnetic field to stop solar particles and cosmic rays.",
+     "earth": "Shielded by the atmosphere and the magnetic field.",
+     "source": null,
+     "note": "No number: we read no radiation dataset."
+    },
+    {
+     "what": "black shadows",
+     "number": 13.05,
+     "unit": "m of shadow per 1 m object at the Sun ceiling",
+     "moon": "No air scatters light into shadows; they are lit only by light bounced off nearby ground. At the Sun ceiling of 4.38\u00b0 a 1 m object throws a 13.1 m shadow. 1.8% of the area never sees the Sun.",
+     "earth": "The same shadow length at the same Sun height, but the sky lights the shadow and the low Sun is dimmed and reddened by air. We have no number for that difference.",
+     "source": "https://pgda.gsfc.nasa.gov/products/69"
+    },
+    {
+     "what": "slow Sun",
+     "number": 29.53,
+     "unit": "days for the Sun to go round once",
+     "moon": "One turn of the Sun around the horizon takes 29.53 days, about 0.51\u00b0 per hour; a shadow stays put for hours.",
+     "earth": "24 hours, 15\u00b0 per hour: about 29.5 times faster.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    }
+   ]
+  },
+  {
+   "id": "haworth",
+   "has_model": true,
+   "model_note": null,
+   "position": {
+    "how_sure": "from the terrain model",
+    "source": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Haworth/Haworth_final_adj_5mpp_surf.tif",
+    "note": "The centre is the centre of the grid of the NASA 5 m terrain model. The USGS box of the region has the same corners as the model."
+   },
+   "official_name": "Haworth",
+   "name_in_project": "Haworth",
+   "name_note": "The name is the same on the two NASA lists. PGDA calls the 5 m model 'Haworth'. The region is on the west side of the crater Haworth, not at the centre of the crater.",
+   "nasa_list": {
+    "on_2022_list_of_13": true,
+    "name_2022": "Haworth",
+    "on_2024_list_of_9": true,
+    "name_2024": "Haworth",
+    "summary": "On the list of 13 of 2022 and on the list of nine of 2024.",
+    "links": [
+     "https://www.nasa.gov/news-release/nasa-identifies-candidate-regions-for-landing-next-americans-on-moon/",
+     "https://svs.gsfc.nasa.gov/5013/",
+     "https://ntrs.nasa.gov/citations/20250011660",
+     "https://www.nasa.gov/wp-content/uploads/2024/10/artemis-iii-landing-region-candidates.jpg"
+    ]
+   },
+   "why_stored": "One of the nine candidate regions of NASA's list of 2024. It is also on the list of 13 of 2022.",
+   "why_check": {
+    "confirmed": true,
+    "note": "The stored reason agrees with NTRS 20250011660 and the 2022 release.",
+    "proposed_wording": null,
+    "proposed_wording_sources": [
+     "https://ntrs.nasa.gov/citations/20250011660",
+     "https://www.nasa.gov/news-release/nasa-identifies-candidate-regions-for-landing-next-americans-on-moon/"
+    ]
+   },
+   "pgda_model": {
+    "site": "Haworth",
+    "pgda_name": "Haworth",
+    "page": "https://pgda.gsfc.nasa.gov/products/78",
+    "dem_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Haworth/Haworth_final_adj_5mpp_surf.tif",
+    "pixel_m": 5,
+    "what": "NASA Goddard LOLA 5 m elevation model of the site (PGDA product 78)",
+    "citation": "Barker, M. K., et al. (2021), Improved LOLA Elevation Maps for South Pole Landing Sites, Planetary and Space Science 203, 105119, doi:10.1016/j.pss.2020.105119"
+   },
+   "centre": {
+    "lat": -86.76394197293897,
+    "lon_east": 337.22297617627623
+   },
+   "extent_km": [
+    29.8,
+    29.8
+   ],
+   "box_km": null,
+   "sun_ceiling": {
+    "deg": 4.776058027061034,
+    "range_deg": [
+     4.146466391913401,
+     5.427601848427494
+    ],
+    "how": "90 - |latitude| + 1.54 degrees, at the latitude of the middle of the 5 m model: the highest the Sun's centre climbs over a flat horizon, 1.54 degrees being the tilt of the Moon's axis to the ecliptic (twinfinder/sun.py, lunar_max_sun_elevation_deg). The range is the same formula at the model's most and least poleward corner, edge midpoint or centre. No terrain, no ephemeris and no allowance for the Sun's disc enter.",
+    "kind": "derived from latitude",
+    "source": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Haworth/Haworth_final_adj_5mpp_surf.tif"
+   },
+   "shadow_of_1m_object_at_ceiling_m": 11.97,
+   "shadow_how": "1 m divided by the tangent of the Sun ceiling, on level ground.",
+   "lit": {
+    "mean_share": 0.2533367767950052,
+    "best_point_share": 0.7532000000000001,
+    "how": "Mean and highest 240 m pixel, inside the bounding box of the 5 m model, of NASA Goddard's average solar illumination map AVGVISIB_65S_240M_201608 (hourly steps over 18.6 years, LOLA terrain), read with the file's own scale and offset (twinfinder/moon.py, fingerprint).",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/AVGVISIB_65S_240M_201608.TIF"
+   },
+   "permanent_shadow": {
+    "share": 0.012617065556711759,
+    "how": "Share of the 240 m pixels inside the same box that NASA Goddard's map LPSR_65S_240M_201608 marks as permanently shadowed (value above 0.5).",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/LPSR_65S_240M_201608.TIF"
+   },
+   "diviner": {
+    "model_based": true,
+    "triangles": 6962,
+    "triangles_without_temperature": 0,
+    "area_covered_km2": 893.641,
+    "target_area_km2": 888.04,
+    "annual_mean_temp_2cm_K": {
+     "mean": 106.787,
+     "min": 40.752,
+     "max": 180.815
+    },
+    "annual_max_temp_surface_K": {
+     "mean": 241.968,
+     "min": 62.793,
+     "max": 305.95
+    },
+    "annual_mean_temp_2cm_C": {
+     "mean": -166.36,
+     "min": -232.4,
+     "max": -92.33
+    },
+    "annual_max_temp_surface_C": {
+     "mean": -31.18,
+     "min": -210.36,
+     "max": 32.8
+    },
+    "ice": {
+     "stable_within_reach_share": 0.64866,
+     "stable_at_surface_share": 0.00747,
+     "surface_cold_trap_share": 0.00661,
+     "stable_within_1m_share": 0.64234,
+     "not_stable_within_reach_share": 0.35134,
+     "stable_within_reach_share_without_undocumented_value": 0.64206,
+     "shallowest_m": 0.0,
+     "deepest_stable_m": 1.2454
+    },
+    "altitude_check": {
+     "triangles_compared": 6962,
+     "correlation": 0.9979,
+     "median_difference_m": -12.2,
+     "median_abs_difference_m": 31.0,
+     "how": "Height of our 5 m model (averaged to about 100 m) minus the table's triangle-centre altitude, at the same map position; both are relative to a 1737.4 km sphere."
+    },
+    "kind": "model-based",
+    "how": "LRO Diviner Polar Resource Product (LRO-L-DLRE-5-PRP-V2.0): thermal-model fits to the first year of Diviner polar observations on a mesh of about 500 m triangles. Figures are over the triangles whose centre lies inside the 5 m model's bounding box, weighted by triangle area. Ice is 'stable' where the table gives a depth (0 to 2.87 m) at which ice would be lost more slowly than 1 kg per m2 per billion years; -999 means deeper than 2.87 m, not missing. The table's undocumented value -1 is read as stable on the surface; see meta.diviner.",
+    "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+    "citation": "Paige et al., LRO DLRE Level 5 PRP V2.0, NASA Planetary Data System, 2018"
+   },
+   "picture": {
+    "page": "https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_ROI_HAWORTH_LO1",
+    "title": "Haworth low-Sun controlled NAC mosaic",
+    "product": "NAC_ROI_HAWORTH_LO1",
+    "note": "Latitude -87.39 to -86.11, longitude -34.98 to -12.36.",
+    "credit": "NASA/GSFC/Arizona State University",
+    "credit_source": "https://lroc.im-ldi.com/about/terms",
+    "citation": "Henriksen, M. R., et al. (2023), Optimized Illuminated Terrain Coverage of the Candidate Artemis III Landing Sites with LROC NAC Controlled Mosaics, European Lunar Symposium",
+    "sun_heights_of_images": {
+     "images_listed": 343,
+     "sun_height_min_deg": -1,
+     "sun_height_max_deg": 6,
+     "images_above_flat_ceiling_at_their_latitude": 0
+    },
+    "image_downloaded": false
+   },
+   "earth_cannot_match": [
+    {
+     "what": "vacuum",
+     "number": 3e-15,
+     "unit": "bar",
+     "moon": "Surface pressure at night about 3 x 10^-15 bar: no air, no wind, no sound, no weather.",
+     "earth": "About 1 bar at sea level.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "gravity",
+     "number": 1.62,
+     "unit": "m/s2",
+     "moon": "1.62 m/s2 at the surface, about one sixth of Earth's.",
+     "earth": "9.80 m/s2 (ratio 0.165).",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "dust",
+     "number": null,
+     "unit": null,
+     "moon": "Dry, sharp-grained regolith that no water or air has ever rounded; it clings to suits and gear.",
+     "earth": "Soil and rock shaped by water, air and life.",
+     "source": null,
+     "note": "No number: we read no dust dataset."
+    },
+    {
+     "what": "temperature",
+     "number": 106.787,
+     "unit": "K",
+     "moon": "Model-based (Diviner): the annual mean 2 cm under the surface is 107 K (-166 \u00b0C) averaged over the area, 41 K in the coldest place; the yearly maximum at the surface ranges from 63 K to 306 K.",
+     "earth": "Not computed here; compare with the NASA POWER temperature of each Earth place.",
+     "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+     "note": "Diviner Polar Resource Product: model values, not measurements."
+    },
+    {
+     "what": "radiation",
+     "number": null,
+     "unit": null,
+     "moon": "No air and no global magnetic field to stop solar particles and cosmic rays.",
+     "earth": "Shielded by the atmosphere and the magnetic field.",
+     "source": null,
+     "note": "No number: we read no radiation dataset."
+    },
+    {
+     "what": "black shadows",
+     "number": 11.97,
+     "unit": "m of shadow per 1 m object at the Sun ceiling",
+     "moon": "No air scatters light into shadows; they are lit only by light bounced off nearby ground. At the Sun ceiling of 4.78\u00b0 a 1 m object throws a 12.0 m shadow. 1.3% of the area never sees the Sun.",
+     "earth": "The same shadow length at the same Sun height, but the sky lights the shadow and the low Sun is dimmed and reddened by air. We have no number for that difference.",
+     "source": "https://pgda.gsfc.nasa.gov/products/69"
+    },
+    {
+     "what": "slow Sun",
+     "number": 29.53,
+     "unit": "days for the Sun to go round once",
+     "moon": "One turn of the Sun around the horizon takes 29.53 days, about 0.51\u00b0 per hour; a shadow stays put for hours.",
+     "earth": "24 hours, 15\u00b0 per hour: about 29.5 times faster.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    }
+   ]
+  },
+  {
+   "id": "malapert",
+   "has_model": true,
+   "model_note": null,
+   "position": {
+    "how_sure": "from the terrain model",
+    "source": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site23/Site23_final_adj_5mpp_surf.tif",
+    "note": "The centre is the centre of the grid of the NASA 5 m terrain model. The USGS box of the region has the same corners as the model."
+   },
+   "official_name": "Malapert Massif",
+   "name_in_project": "Malapert Massif",
+   "name_note": "Same name on both NASA lists; PGDA calls the 5 m model 'Malapert massif'.",
+   "nasa_list": {
+    "on_2022_list_of_13": true,
+    "name_2022": "Malapert Massif",
+    "on_2024_list_of_9": true,
+    "name_2024": "Malapert Massif",
+    "summary": "On the 2022 list of 13 and among the nine regions kept in October 2024.",
+    "links": [
+     "https://www.nasa.gov/news-release/nasa-identifies-candidate-regions-for-landing-next-americans-on-moon/",
+     "https://svs.gsfc.nasa.gov/5013/",
+     "https://ntrs.nasa.gov/citations/20250011660"
+    ]
+   },
+   "why_stored": "One of NASA's nine candidate regions",
+   "why_check": {
+    "confirmed": true,
+    "note": "'One of NASA's nine candidate regions' agrees with NTRS 20250011660.",
+    "proposed_wording": null,
+    "proposed_wording_sources": [
+     "https://ntrs.nasa.gov/citations/20250011660"
+    ]
+   },
+   "pgda_model": {
+    "site": "Site23",
+    "pgda_name": "Malapert massif",
+    "page": "https://pgda.gsfc.nasa.gov/products/78",
+    "dem_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site23/Site23_final_adj_5mpp_surf.tif",
+    "pixel_m": 5,
+    "what": "NASA Goddard LOLA 5 m elevation model of the site (PGDA product 78)",
+    "citation": "Barker, M. K., et al. (2021), Improved LOLA Elevation Maps for South Pole Landing Sites, Planetary and Space Science 203, 105119, doi:10.1016/j.pss.2020.105119"
+   },
+   "centre": {
+    "lat": -85.99478468356075,
+    "lon_east": 359.7642162301234
+   },
+   "extent_km": [
+    21.0,
+    21.0
+   ],
+   "box_km": null,
+   "sun_ceiling": {
+    "deg": 5.545215316439248,
+    "range_deg": [
+     5.199338112031946,
+     5.906055750282044
+    ],
+    "how": "90 - |latitude| + 1.54 degrees, at the latitude of the middle of the 5 m model: the highest the Sun's centre climbs over a flat horizon, 1.54 degrees being the tilt of the Moon's axis to the ecliptic (twinfinder/sun.py, lunar_max_sun_elevation_deg). The range is the same formula at the model's most and least poleward corner, edge midpoint or centre. No terrain, no ephemeris and no allowance for the Sun's disc enter.",
+    "kind": "derived from latitude",
+    "source": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site23/Site23_final_adj_5mpp_surf.tif"
+   },
+   "shadow_of_1m_object_at_ceiling_m": 10.3,
+   "shadow_how": "1 m divided by the tangent of the Sun ceiling, on level ground.",
+   "lit": {
+    "mean_share": 0.3594077376033058,
+    "best_point_share": 0.83352,
+    "how": "Mean and highest 240 m pixel, inside the bounding box of the 5 m model, of NASA Goddard's average solar illumination map AVGVISIB_65S_240M_201608 (hourly steps over 18.6 years, LOLA terrain), read with the file's own scale and offset (twinfinder/moon.py, fingerprint).",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/AVGVISIB_65S_240M_201608.TIF"
+   },
+   "permanent_shadow": {
+    "share": 0.0027117768595041323,
+    "how": "Share of the 240 m pixels inside the same box that NASA Goddard's map LPSR_65S_240M_201608 marks as permanently shadowed (value above 0.5).",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/LPSR_65S_240M_201608.TIF"
+   },
+   "diviner": {
+    "model_based": true,
+    "triangles": 3486,
+    "triangles_without_temperature": 0,
+    "area_covered_km2": 447.463,
+    "target_area_km2": 441.0,
+    "annual_mean_temp_2cm_K": {
+     "mean": 143.476,
+     "min": 53.642,
+     "max": 201.382
+    },
+    "annual_max_temp_surface_K": {
+     "mean": 274.036,
+     "min": 131.754,
+     "max": 342.081
+    },
+    "annual_mean_temp_2cm_C": {
+     "mean": -129.67,
+     "min": -219.51,
+     "max": -71.77
+    },
+    "annual_max_temp_surface_C": {
+     "mean": 0.89,
+     "min": -141.4,
+     "max": 68.93
+    },
+    "ice": {
+     "stable_within_reach_share": 0.22691,
+     "stable_at_surface_share": 0.0,
+     "surface_cold_trap_share": 0.0,
+     "stable_within_1m_share": 0.22002,
+     "not_stable_within_reach_share": 0.77309,
+     "stable_within_reach_share_without_undocumented_value": 0.22691,
+     "shallowest_m": 0.0004,
+     "deepest_stable_m": 1.231
+    },
+    "altitude_check": {
+     "triangles_compared": 3486,
+     "correlation": 0.9985,
+     "median_difference_m": 9.8,
+     "median_abs_difference_m": 37.9,
+     "how": "Height of our 5 m model (averaged to about 100 m) minus the table's triangle-centre altitude, at the same map position; both are relative to a 1737.4 km sphere."
+    },
+    "kind": "model-based",
+    "how": "LRO Diviner Polar Resource Product (LRO-L-DLRE-5-PRP-V2.0): thermal-model fits to the first year of Diviner polar observations on a mesh of about 500 m triangles. Figures are over the triangles whose centre lies inside the 5 m model's bounding box, weighted by triangle area. Ice is 'stable' where the table gives a depth (0 to 2.87 m) at which ice would be lost more slowly than 1 kg per m2 per billion years; -999 means deeper than 2.87 m, not missing. The table's undocumented value -1 is read as stable on the surface; see meta.diviner.",
+    "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+    "citation": "Paige et al., LRO DLRE Level 5 PRP V2.0, NASA Planetary Data System, 2018"
+   },
+   "picture": {
+    "page": "https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_ROI_MALAPERTLO1",
+    "title": "Malapert Massif low-Sun controlled NAC mosaic (Combined mosaic #1)",
+    "product": "NAC_ROI_MALAPERTLO1_P860S0003",
+    "note": "1 m per pixel; 184 NAC images, 2009 to 2017; latitude -86.33 to -85.63, longitude -5.66 to 5.15.",
+    "credit": "NASA/GSFC/Arizona State University",
+    "credit_source": "https://lroc.im-ldi.com/about/terms",
+    "citation": "Henriksen, M. R., et al. (2023), Optimized Illuminated Terrain Coverage of the Candidate Artemis III Landing Sites with LROC NAC Controlled Mosaics, European Lunar Symposium",
+    "sun_heights_of_images": {
+     "images_listed": 184,
+     "sun_height_min_deg": -1,
+     "sun_height_max_deg": 6,
+     "images_above_flat_ceiling_at_their_latitude": 0
+    },
+    "image_downloaded": false
+   },
+   "earth_cannot_match": [
+    {
+     "what": "vacuum",
+     "number": 3e-15,
+     "unit": "bar",
+     "moon": "Surface pressure at night about 3 x 10^-15 bar: no air, no wind, no sound, no weather.",
+     "earth": "About 1 bar at sea level.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "gravity",
+     "number": 1.62,
+     "unit": "m/s2",
+     "moon": "1.62 m/s2 at the surface, about one sixth of Earth's.",
+     "earth": "9.80 m/s2 (ratio 0.165).",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "dust",
+     "number": null,
+     "unit": null,
+     "moon": "Dry, sharp-grained regolith that no water or air has ever rounded; it clings to suits and gear.",
+     "earth": "Soil and rock shaped by water, air and life.",
+     "source": null,
+     "note": "No number: we read no dust dataset."
+    },
+    {
+     "what": "temperature",
+     "number": 143.476,
+     "unit": "K",
+     "moon": "Model-based (Diviner): the annual mean 2 cm under the surface is 143 K (-130 \u00b0C) averaged over the area, 54 K in the coldest place; the yearly maximum at the surface ranges from 132 K to 342 K.",
+     "earth": "Not computed here; compare with the NASA POWER temperature of each Earth place.",
+     "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+     "note": "Diviner Polar Resource Product: model values, not measurements."
+    },
+    {
+     "what": "radiation",
+     "number": null,
+     "unit": null,
+     "moon": "No air and no global magnetic field to stop solar particles and cosmic rays.",
+     "earth": "Shielded by the atmosphere and the magnetic field.",
+     "source": null,
+     "note": "No number: we read no radiation dataset."
+    },
+    {
+     "what": "black shadows",
+     "number": 10.3,
+     "unit": "m of shadow per 1 m object at the Sun ceiling",
+     "moon": "No air scatters light into shadows; they are lit only by light bounced off nearby ground. At the Sun ceiling of 5.55\u00b0 a 1 m object throws a 10.3 m shadow. 0.3% of the area never sees the Sun.",
+     "earth": "The same shadow length at the same Sun height, but the sky lights the shadow and the low Sun is dimmed and reddened by air. We have no number for that difference.",
+     "source": "https://pgda.gsfc.nasa.gov/products/69"
+    },
+    {
+     "what": "slow Sun",
+     "number": 29.53,
+     "unit": "days for the Sun to go round once",
+     "moon": "One turn of the Sun around the horizon takes 29.53 days, about 0.51\u00b0 per hour; a shadow stays put for hours.",
+     "earth": "24 hours, 15\u00b0 per hour: about 29.5 times faster.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    }
+   ]
+  },
+  {
+   "id": "de-gerlache-kocher-massif",
+   "has_model": true,
+   "model_note": null,
+   "position": {
+    "how_sure": "from the terrain model",
+    "source": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site42/Site42_final_adj_5mpp_surf.tif",
+    "note": "The centre is the centre of the grid of the NASA 5 m terrain model. The USGS box of the region has the same corners as the model."
+   },
+   "official_name": "de Gerlache-Kocher Massif",
+   "name_in_project": "de Gerlache-Kocher Massif",
+   "name_note": "The name is the name on the NASA list of 2022. LROC writes 'de Gerlache Kocher Massif'. PGDA calls the 5 m model 'Site42: de Gerlache-Kocher massif'.",
+   "nasa_list": {
+    "on_2022_list_of_13": true,
+    "name_2022": "de Gerlache-Kocher Massif",
+    "on_2024_list_of_9": false,
+    "name_2024": null,
+    "summary": "On the list of 13 of 2022 only. It is not on the list of nine of 2024. The NASA abstract NTRS 20250011660 says that the cut 'does not imply that removed regions are unsuitable for future exploration'.",
+    "links": [
+     "https://www.nasa.gov/news-release/nasa-identifies-candidate-regions-for-landing-next-americans-on-moon/",
+     "https://svs.gsfc.nasa.gov/5013/",
+     "https://ntrs.nasa.gov/citations/20250011660",
+     "https://www.sciencebase.gov/catalog/item/67168797d34ebf903f48b6fc"
+    ]
+   },
+   "why_stored": "One of the 13 candidate regions of NASA's list of 2022. It is not on the list of nine of 2024. A NASA abstract (NTRS 20250011660) says that a region off the list of nine is not thus unsuitable for future exploration.",
+   "why_check": {
+    "confirmed": true,
+    "note": "The stored reason agrees with the 2022 release and NTRS 20250011660.",
+    "proposed_wording": null,
+    "proposed_wording_sources": [
+     "https://www.nasa.gov/news-release/nasa-identifies-candidate-regions-for-landing-next-americans-on-moon/",
+     "https://ntrs.nasa.gov/citations/20250011660"
+    ]
+   },
+   "pgda_model": {
+    "site": "Site42",
+    "pgda_name": "de Gerlache-Kocher massif",
+    "page": "https://pgda.gsfc.nasa.gov/products/78",
+    "dem_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site42/Site42_final_adj_5mpp_surf.tif",
+    "pixel_m": 5,
+    "what": "NASA Goddard LOLA 5 m elevation model of the site (PGDA product 78)",
+    "citation": "Barker, M. K., et al. (2021), Improved LOLA Elevation Maps for South Pole Landing Sites, Planetary and Space Science 203, 105119, doi:10.1016/j.pss.2020.105119"
+   },
+   "centre": {
+    "lat": -85.82955053060158,
+    "lon_east": 243.6779835456424
+   },
+   "extent_km": [
+    20.0,
+    20.0
+   ],
+   "box_km": null,
+   "sun_ceiling": {
+    "deg": 5.71044946939842,
+    "range_deg": [
+     5.272145045935809,
+     6.154028484762173
+    ],
+    "how": "90 - |latitude| + 1.54 degrees, at the latitude of the middle of the 5 m model: the highest the Sun's centre climbs over a flat horizon, 1.54 degrees being the tilt of the Moon's axis to the ecliptic (twinfinder/sun.py, lunar_max_sun_elevation_deg). The range is the same formula at the model's most and least poleward corner, edge midpoint or centre. No terrain, no ephemeris and no allowance for the Sun's disc enter.",
+    "kind": "derived from latitude",
+    "source": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site42/Site42_final_adj_5mpp_surf.tif"
+   },
+   "shadow_of_1m_object_at_ceiling_m": 10.0,
+   "shadow_how": "1 m divided by the tangent of the Sun ceiling, on level ground.",
+   "lit": {
+    "mean_share": 0.25306605312817537,
+    "best_point_share": 0.7923600000000001,
+    "how": "Mean and highest 240 m pixel, inside the bounding box of the 5 m model, of NASA Goddard's average solar illumination map AVGVISIB_65S_240M_201608 (hourly steps over 18.6 years, LOLA terrain), read with the file's own scale and offset (twinfinder/moon.py, fingerprint).",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/AVGVISIB_65S_240M_201608.TIF"
+   },
+   "permanent_shadow": {
+    "share": 0.013499782261576426,
+    "how": "Share of the 240 m pixels inside the same box that NASA Goddard's map LPSR_65S_240M_201608 marks as permanently shadowed (value above 0.5).",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/LPSR_65S_240M_201608.TIF"
+   },
+   "diviner": {
+    "model_based": true,
+    "triangles": 3121,
+    "triangles_without_temperature": 0,
+    "area_covered_km2": 400.61,
+    "target_area_km2": 400.0,
+    "annual_mean_temp_2cm_K": {
+     "mean": 110.771,
+     "min": 42.713,
+     "max": 175.475
+    },
+    "annual_max_temp_surface_K": {
+     "mean": 252.287,
+     "min": 71.043,
+     "max": 311.565
+    },
+    "annual_mean_temp_2cm_C": {
+     "mean": -162.38,
+     "min": -230.44,
+     "max": -97.67
+    },
+    "annual_max_temp_surface_C": {
+     "mean": -20.86,
+     "min": -202.11,
+     "max": 38.42
+    },
+    "ice": {
+     "stable_within_reach_share": 0.6248,
+     "stable_at_surface_share": 0.00449,
+     "surface_cold_trap_share": 0.00192,
+     "stable_within_1m_share": 0.61487,
+     "not_stable_within_reach_share": 0.3752,
+     "stable_within_reach_share_without_undocumented_value": 0.62288,
+     "shallowest_m": 0.0,
+     "deepest_stable_m": 1.2917
+    },
+    "altitude_check": {
+     "triangles_compared": 3121,
+     "correlation": 0.9974,
+     "median_difference_m": -60.1,
+     "median_abs_difference_m": 73.7,
+     "how": "Height of our 5 m model (averaged to about 100 m) minus the table's triangle-centre altitude, at the same map position; both are relative to a 1737.4 km sphere."
+    },
+    "kind": "model-based",
+    "how": "LRO Diviner Polar Resource Product (LRO-L-DLRE-5-PRP-V2.0): thermal-model fits to the first year of Diviner polar observations on a mesh of about 500 m triangles. Figures are over the triangles whose centre lies inside the 5 m model's bounding box, weighted by triangle area. Ice is 'stable' where the table gives a depth (0 to 2.87 m) at which ice would be lost more slowly than 1 kg per m2 per billion years; -999 means deeper than 2.87 m, not missing. The table's undocumented value -1 is read as stable on the surface; see meta.diviner.",
+    "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+    "citation": "Paige et al., LRO DLRE Level 5 PRP V2.0, NASA Planetary Data System, 2018"
+   },
+   "picture": {
+    "page": "https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_ROI_DEGERKCHLO1",
+    "title": "de Gerlache Kocher Massif low-Sun controlled NAC mosaic",
+    "product": "NAC_ROI_DEGERKCHLO1",
+    "note": "Latitude -86.27 to -85.39, longitude -122.59 to -110.48.",
+    "credit": "NASA/GSFC/Arizona State University",
+    "credit_source": "https://lroc.im-ldi.com/about/terms",
+    "citation": "Henriksen, M. R., et al. (2023), Optimized Illuminated Terrain Coverage of the Candidate Artemis III Landing Sites with LROC NAC Controlled Mosaics, European Lunar Symposium",
+    "sun_heights_of_images": {
+     "images_listed": 42,
+     "sun_height_min_deg": -1,
+     "sun_height_max_deg": 1,
+     "images_above_flat_ceiling_at_their_latitude": 0
+    },
+    "image_downloaded": false
+   },
+   "earth_cannot_match": [
+    {
+     "what": "vacuum",
+     "number": 3e-15,
+     "unit": "bar",
+     "moon": "Surface pressure at night about 3 x 10^-15 bar: no air, no wind, no sound, no weather.",
+     "earth": "About 1 bar at sea level.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "gravity",
+     "number": 1.62,
+     "unit": "m/s2",
+     "moon": "1.62 m/s2 at the surface, about one sixth of Earth's.",
+     "earth": "9.80 m/s2 (ratio 0.165).",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "dust",
+     "number": null,
+     "unit": null,
+     "moon": "Dry, sharp-grained regolith that no water or air has ever rounded; it clings to suits and gear.",
+     "earth": "Soil and rock shaped by water, air and life.",
+     "source": null,
+     "note": "No number: we read no dust dataset."
+    },
+    {
+     "what": "temperature",
+     "number": 110.771,
+     "unit": "K",
+     "moon": "Model-based (Diviner): the annual mean 2 cm under the surface is 111 K (-162 \u00b0C) averaged over the area, 43 K in the coldest place; the yearly maximum at the surface ranges from 71 K to 312 K.",
+     "earth": "Not computed here; compare with the NASA POWER temperature of each Earth place.",
+     "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+     "note": "Diviner Polar Resource Product: model values, not measurements."
+    },
+    {
+     "what": "radiation",
+     "number": null,
+     "unit": null,
+     "moon": "No air and no global magnetic field to stop solar particles and cosmic rays.",
+     "earth": "Shielded by the atmosphere and the magnetic field.",
+     "source": null,
+     "note": "No number: we read no radiation dataset."
+    },
+    {
+     "what": "black shadows",
+     "number": 10.0,
+     "unit": "m of shadow per 1 m object at the Sun ceiling",
+     "moon": "No air scatters light into shadows; they are lit only by light bounced off nearby ground. At the Sun ceiling of 5.71\u00b0 a 1 m object throws a 10.0 m shadow. 1.3% of the area never sees the Sun.",
+     "earth": "The same shadow length at the same Sun height, but the sky lights the shadow and the low Sun is dimmed and reddened by air. We have no number for that difference.",
+     "source": "https://pgda.gsfc.nasa.gov/products/69"
+    },
+    {
+     "what": "slow Sun",
+     "number": 29.53,
+     "unit": "days for the Sun to go round once",
+     "moon": "One turn of the Sun around the horizon takes 29.53 days, about 0.51\u00b0 per hour; a shadow stays put for hours.",
+     "earth": "24 hours, 15\u00b0 per hour: about 29.5 times faster.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    }
+   ]
+  },
+  {
+   "id": "nobile-rim-1",
+   "has_model": true,
+   "model_note": null,
+   "position": {
+    "how_sure": "from the terrain model",
+    "source": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site06/Site06_final_adj_5mpp_surf.tif",
+    "note": "The centre is the centre of the grid of the NASA 5 m terrain model. The USGS box of the region has the same corners as the model."
+   },
+   "official_name": "Nobile Rim 1",
+   "name_in_project": "Nobile Rim 1",
+   "name_note": "The name is the same on the two NASA lists. PGDA calls the 5 m model 'Site06: Nobile rim 1'. The models of Nobile Rim 1 and Mons Mouton overlap by approximately 12 km by 15 km.",
+   "nasa_list": {
+    "on_2022_list_of_13": true,
+    "name_2022": "Nobile Rim 1",
+    "on_2024_list_of_9": true,
+    "name_2024": "Nobile Rim 1",
+    "summary": "On the list of 13 of 2022 and on the list of nine of 2024.",
+    "links": [
+     "https://www.nasa.gov/news-release/nasa-identifies-candidate-regions-for-landing-next-americans-on-moon/",
+     "https://svs.gsfc.nasa.gov/5013/",
+     "https://ntrs.nasa.gov/citations/20250011660",
+     "https://www.nasa.gov/wp-content/uploads/2024/10/artemis-iii-landing-region-candidates.jpg"
+    ]
+   },
+   "why_stored": "One of the nine candidate regions of NASA's list of 2024. It is also on the list of 13 of 2022.",
+   "why_check": {
+    "confirmed": true,
+    "note": "The stored reason agrees with NTRS 20250011660 and the 2022 release.",
+    "proposed_wording": null,
+    "proposed_wording_sources": [
+     "https://ntrs.nasa.gov/citations/20250011660",
+     "https://www.nasa.gov/news-release/nasa-identifies-candidate-regions-for-landing-next-americans-on-moon/"
+    ]
+   },
+   "pgda_model": {
+    "site": "Site06",
+    "pgda_name": "Nobile rim 1",
+    "page": "https://pgda.gsfc.nasa.gov/products/78",
+    "dem_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site06/Site06_final_adj_5mpp_surf.tif",
+    "pixel_m": 5,
+    "what": "NASA Goddard LOLA 5 m elevation model of the site (PGDA product 78)",
+    "citation": "Barker, M. K., et al. (2021), Improved LOLA Elevation Maps for South Pole Landing Sites, Planetary and Space Science 203, 105119, doi:10.1016/j.pss.2020.105119"
+   },
+   "centre": {
+    "lat": -85.43810048274601,
+    "lon_east": 37.3666694127687
+   },
+   "extent_km": [
+    20.0,
+    20.0
+   ],
+   "box_km": null,
+   "sun_ceiling": {
+    "deg": 6.101899517253991,
+    "range_deg": [
+     5.640782431283932,
+     6.5637167136880175
+    ],
+    "how": "90 - |latitude| + 1.54 degrees, at the latitude of the middle of the 5 m model: the highest the Sun's centre climbs over a flat horizon, 1.54 degrees being the tilt of the Moon's axis to the ecliptic (twinfinder/sun.py, lunar_max_sun_elevation_deg). The range is the same formula at the model's most and least poleward corner, edge midpoint or centre. No terrain, no ephemeris and no allowance for the Sun's disc enter.",
+    "kind": "derived from latitude",
+    "source": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site06/Site06_final_adj_5mpp_surf.tif"
+   },
+   "shadow_of_1m_object_at_ceiling_m": 9.35,
+   "shadow_how": "1 m divided by the tangent of the Sun ceiling, on level ground.",
+   "lit": {
+    "mean_share": 0.301141228044709,
+    "best_point_share": 0.78756,
+    "how": "Mean and highest 240 m pixel, inside the bounding box of the 5 m model, of NASA Goddard's average solar illumination map AVGVISIB_65S_240M_201608 (hourly steps over 18.6 years, LOLA terrain), read with the file's own scale and offset (twinfinder/moon.py, fingerprint).",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/AVGVISIB_65S_240M_201608.TIF"
+   },
+   "permanent_shadow": {
+    "share": 0.01175787487298592,
+    "how": "Share of the 240 m pixels inside the same box that NASA Goddard's map LPSR_65S_240M_201608 marks as permanently shadowed (value above 0.5).",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/LPSR_65S_240M_201608.TIF"
+   },
+   "diviner": {
+    "model_based": true,
+    "triangles": 3120,
+    "triangles_without_temperature": 0,
+    "area_covered_km2": 400.483,
+    "target_area_km2": 400.0,
+    "annual_mean_temp_2cm_K": {
+     "mean": 130.352,
+     "min": 45.252,
+     "max": 189.745
+    },
+    "annual_max_temp_surface_K": {
+     "mean": 267.389,
+     "min": 62.905,
+     "max": 331.218
+    },
+    "annual_mean_temp_2cm_C": {
+     "mean": -142.8,
+     "min": -227.9,
+     "max": -83.4
+    },
+    "annual_max_temp_surface_C": {
+     "mean": -5.76,
+     "min": -210.24,
+     "max": 58.07
+    },
+    "ice": {
+     "stable_within_reach_share": 0.36122,
+     "stable_at_surface_share": 0.00288,
+     "surface_cold_trap_share": 0.00192,
+     "stable_within_1m_share": 0.34968,
+     "not_stable_within_reach_share": 0.63878,
+     "stable_within_reach_share_without_undocumented_value": 0.3593,
+     "shallowest_m": 0.0,
+     "deepest_stable_m": 1.3021
+    },
+    "altitude_check": {
+     "triangles_compared": 3120,
+     "correlation": 0.9983,
+     "median_difference_m": 8.6,
+     "median_abs_difference_m": 61.1,
+     "how": "Height of our 5 m model (averaged to about 100 m) minus the table's triangle-centre altitude, at the same map position; both are relative to a 1737.4 km sphere."
+    },
+    "kind": "model-based",
+    "how": "LRO Diviner Polar Resource Product (LRO-L-DLRE-5-PRP-V2.0): thermal-model fits to the first year of Diviner polar observations on a mesh of about 500 m triangles. Figures are over the triangles whose centre lies inside the 5 m model's bounding box, weighted by triangle area. Ice is 'stable' where the table gives a depth (0 to 2.87 m) at which ice would be lost more slowly than 1 kg per m2 per billion years; -999 means deeper than 2.87 m, not missing. The table's undocumented value -1 is read as stable on the surface; see meta.diviner.",
+    "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+    "citation": "Paige et al., LRO DLRE Level 5 PRP V2.0, NASA Planetary Data System, 2018"
+   },
+   "picture": {
+    "page": "https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_ROI_MTMOUTONLO1",
+    "title": "Nobile Rim 1 and Mons Mouton (Leibnitz Beta Plateau) low-Sun controlled NAC mosaic",
+    "product": "NAC_ROI_MTMOUTONLO1_P854S0353",
+    "note": "One mosaic covers Nobile Rim 1 and Mons Mouton: latitude -86.07 to -84.82, longitude 27.29 to 43.23.",
+    "credit": "NASA/GSFC/Arizona State University",
+    "credit_source": "https://lroc.im-ldi.com/about/terms",
+    "citation": "Henriksen, M. R., et al. (2023), Optimized Illuminated Terrain Coverage of the Candidate Artemis III Landing Sites with LROC NAC Controlled Mosaics, European Lunar Symposium",
+    "sun_heights_of_images": {
+     "images_listed": 256,
+     "sun_height_min_deg": -1,
+     "sun_height_max_deg": 6,
+     "images_above_flat_ceiling_at_their_latitude": 0
+    },
+    "image_downloaded": false
+   },
+   "earth_cannot_match": [
+    {
+     "what": "vacuum",
+     "number": 3e-15,
+     "unit": "bar",
+     "moon": "Surface pressure at night about 3 x 10^-15 bar: no air, no wind, no sound, no weather.",
+     "earth": "About 1 bar at sea level.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "gravity",
+     "number": 1.62,
+     "unit": "m/s2",
+     "moon": "1.62 m/s2 at the surface, about one sixth of Earth's.",
+     "earth": "9.80 m/s2 (ratio 0.165).",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "dust",
+     "number": null,
+     "unit": null,
+     "moon": "Dry, sharp-grained regolith that no water or air has ever rounded; it clings to suits and gear.",
+     "earth": "Soil and rock shaped by water, air and life.",
+     "source": null,
+     "note": "No number: we read no dust dataset."
+    },
+    {
+     "what": "temperature",
+     "number": 130.352,
+     "unit": "K",
+     "moon": "Model-based (Diviner): the annual mean 2 cm under the surface is 130 K (-143 \u00b0C) averaged over the area, 45 K in the coldest place; the yearly maximum at the surface ranges from 63 K to 331 K.",
+     "earth": "Not computed here; compare with the NASA POWER temperature of each Earth place.",
+     "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+     "note": "Diviner Polar Resource Product: model values, not measurements."
+    },
+    {
+     "what": "radiation",
+     "number": null,
+     "unit": null,
+     "moon": "No air and no global magnetic field to stop solar particles and cosmic rays.",
+     "earth": "Shielded by the atmosphere and the magnetic field.",
+     "source": null,
+     "note": "No number: we read no radiation dataset."
+    },
+    {
+     "what": "black shadows",
+     "number": 9.35,
+     "unit": "m of shadow per 1 m object at the Sun ceiling",
+     "moon": "No air scatters light into shadows; they are lit only by light bounced off nearby ground. At the Sun ceiling of 6.10\u00b0 a 1 m object throws a 9.4 m shadow. 1.2% of the area never sees the Sun.",
+     "earth": "The same shadow length at the same Sun height, but the sky lights the shadow and the low Sun is dimmed and reddened by air. We have no number for that difference.",
+     "source": "https://pgda.gsfc.nasa.gov/products/69"
+    },
+    {
+     "what": "slow Sun",
+     "number": 29.53,
+     "unit": "days for the Sun to go round once",
+     "moon": "One turn of the Sun around the horizon takes 29.53 days, about 0.51\u00b0 per hour; a shadow stays put for hours.",
+     "earth": "24 hours, 15\u00b0 per hour: about 29.5 times faster.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    }
+   ]
+  },
+  {
+   "id": "mons-mouton",
+   "has_model": true,
+   "model_note": null,
+   "position": {
+    "how_sure": "from the terrain model",
+    "source": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site20v2/Site20v2_final_adj_5mpp_surf.tif",
+    "note": "The centre is the centre of the grid of the NASA 5 m terrain model. The USGS box of the region has the same corners as the model."
+   },
+   "official_name": "Mons Mouton",
+   "name_in_project": "Mons Mouton",
+   "name_note": "The 5 m model is PGDA 'Site20v2: Leibnitz beta plateau, extended boundaries'. NASA's list of 2022 calls the region 'Leibnitz Beta Plateau'. On the NASA map of 2024, the box of 'Mons Mouton' has the place and the size of the USGS box of 'Leibnitz Beta Plateau'. The two centres agree to 0.02 km. Thus this region is 'Mons Mouton'. 'Mons Mouton Plateau' is a different, larger region to the north, and the page shows it separately. No NASA text says 'renamed'.",
+   "nasa_list": {
+    "on_2022_list_of_13": true,
+    "name_2022": "Leibnitz Beta Plateau",
+    "on_2024_list_of_9": true,
+    "name_2024": "Mons Mouton",
+    "name_2024_certainty": "high: the USGS grid release of 2024 and the NASA map of 2024 show the same box with the two names; no NASA text says 'renamed'",
+    "summary": "It is on the list of 13 of 2022, as 'Leibnitz Beta Plateau'. The NASA map of the nine regions of 28 October 2024 (release 24-136) has the box 'Mons Mouton' at the place of the 2022 box 'Leibnitz Beta Plateau' (USGS grid release of 2 November 2024). The two centres agree to 0.02 km. No NASA text uses the word 'renamed'.",
+    "links": [
+     "https://www.nasa.gov/news-release/nasa-identifies-candidate-regions-for-landing-next-americans-on-moon/",
+     "https://svs.gsfc.nasa.gov/5013/",
+     "https://ntrs.nasa.gov/citations/20250011660",
+     "https://ntrs.nasa.gov/citations/20250002110",
+     "https://svs.gsfc.nasa.gov/5074/",
+     "https://www.nasa.gov/wp-content/uploads/2024/10/artemis-iii-landing-region-candidates.jpg",
+     "https://www.sciencebase.gov/catalog/item/67168797d34ebf903f48b6fc"
+    ]
+   },
+   "why_stored": "Candidate region; Chang'e-8 also targets it",
+   "why_check": {
+    "confirmed": null,
+    "note": "'Candidate region' agrees with the NASA lists. 'Chang'e-8 also targets it' was not checked: no NASA page says so and no other source was read.",
+    "proposed_wording": null,
+    "proposed_wording_sources": []
+   },
+   "pgda_model": {
+    "site": "Site20v2",
+    "pgda_name": "Leibnitz beta plateau, extended boundaries",
+    "page": "https://pgda.gsfc.nasa.gov/products/78",
+    "dem_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site20v2/Site20v2_final_adj_5mpp_surf.tif",
+    "pixel_m": 5,
+    "what": "NASA Goddard LOLA 5 m elevation model of the site (PGDA product 78)",
+    "citation": "Barker, M. K., et al. (2021), Improved LOLA Elevation Maps for South Pole Landing Sites, Planetary and Space Science 203, 105119, doi:10.1016/j.pss.2020.105119"
+   },
+   "centre": {
+    "lat": -85.42657728044321,
+    "lon_east": 31.7427611534189
+   },
+   "extent_km": [
+    26.0,
+    26.0
+   ],
+   "box_km": null,
+   "sun_ceiling": {
+    "deg": 6.113422719556788,
+    "range_deg": [
+     5.526534227366917,
+     6.70435753939075
+    ],
+    "how": "90 - |latitude| + 1.54 degrees, at the latitude of the middle of the 5 m model: the highest the Sun's centre climbs over a flat horizon, 1.54 degrees being the tilt of the Moon's axis to the ecliptic (twinfinder/sun.py, lunar_max_sun_elevation_deg). The range is the same formula at the model's most and least poleward corner, edge midpoint or centre. No terrain, no ephemeris and no allowance for the Sun's disc enter.",
+    "kind": "derived from latitude",
+    "source": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site20v2/Site20v2_final_adj_5mpp_surf.tif"
+   },
+   "shadow_of_1m_object_at_ceiling_m": 9.34,
+   "shadow_how": "1 m divided by the tangent of the Sun ceiling, on level ground.",
+   "lit": {
+    "mean_share": 0.2867024965706448,
+    "best_point_share": 0.78756,
+    "how": "Mean and highest 240 m pixel, inside the bounding box of the 5 m model, of NASA Goddard's average solar illumination map AVGVISIB_65S_240M_201608 (hourly steps over 18.6 years, LOLA terrain), read with the file's own scale and offset (twinfinder/moon.py, fingerprint).",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/AVGVISIB_65S_240M_201608.TIF"
+   },
+   "permanent_shadow": {
+    "share": 0.015689300411522635,
+    "how": "Share of the 240 m pixels inside the same box that NASA Goddard's map LPSR_65S_240M_201608 marks as permanently shadowed (value above 0.5).",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/LPSR_65S_240M_201608.TIF"
+   },
+   "diviner": {
+    "model_based": true,
+    "triangles": 5304,
+    "triangles_without_temperature": 0,
+    "area_covered_km2": 680.817,
+    "target_area_km2": 676.0,
+    "annual_mean_temp_2cm_K": {
+     "mean": 117.322,
+     "min": 40.873,
+     "max": 188.051
+    },
+    "annual_max_temp_surface_K": {
+     "mean": 250.43,
+     "min": 60.269,
+     "max": 320.415
+    },
+    "annual_mean_temp_2cm_C": {
+     "mean": -155.83,
+     "min": -232.28,
+     "max": -85.1
+    },
+    "annual_max_temp_surface_C": {
+     "mean": -22.72,
+     "min": -212.88,
+     "max": 47.27
+    },
+    "ice": {
+     "stable_within_reach_share": 0.47832,
+     "stable_at_surface_share": 0.00792,
+     "surface_cold_trap_share": 0.00735,
+     "stable_within_1m_share": 0.46965,
+     "not_stable_within_reach_share": 0.52168,
+     "stable_within_reach_share_without_undocumented_value": 0.47097,
+     "shallowest_m": 0.0,
+     "deepest_stable_m": 1.5427
+    },
+    "altitude_check": {
+     "triangles_compared": 5304,
+     "correlation": 0.9986,
+     "median_difference_m": 24.1,
+     "median_abs_difference_m": 48.6,
+     "how": "Height of our 5 m model (averaged to about 100 m) minus the table's triangle-centre altitude, at the same map position; both are relative to a 1737.4 km sphere."
+    },
+    "kind": "model-based",
+    "how": "LRO Diviner Polar Resource Product (LRO-L-DLRE-5-PRP-V2.0): thermal-model fits to the first year of Diviner polar observations on a mesh of about 500 m triangles. Figures are over the triangles whose centre lies inside the 5 m model's bounding box, weighted by triangle area. Ice is 'stable' where the table gives a depth (0 to 2.87 m) at which ice would be lost more slowly than 1 kg per m2 per billion years; -999 means deeper than 2.87 m, not missing. The table's undocumented value -1 is read as stable on the surface; see meta.diviner.",
+    "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+    "citation": "Paige et al., LRO DLRE Level 5 PRP V2.0, NASA Planetary Data System, 2018"
+   },
+   "picture": {
+    "page": "https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_ROI_MTMOUTONLO1",
+    "title": "Nobile Rim 1 and Mons Mouton (Leibnitz Beta Plateau) low-Sun controlled NAC mosaic (Combined mosaic #1)",
+    "product": "NAC_ROI_MTMOUTONLO1_P854S0353",
+    "note": "1 m per pixel; 256 NAC images, 2009 to 2022; latitude -86.07 to -84.82, longitude 27.29 to 43.23. A different mosaic, 'Mons Mouton Plateau' (NAC_ROI_MOUTNPLTLO1), is centred at 84.3 S, 30.6 E and does not cover our model centre in LROC's product search.",
+    "nearby": [
+     "https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_ROI_MOUTNPLTLO1"
+    ],
+    "credit": "NASA/GSFC/Arizona State University",
+    "credit_source": "https://lroc.im-ldi.com/about/terms",
+    "citation": "Henriksen, M. R., et al. (2023), Optimized Illuminated Terrain Coverage of the Candidate Artemis III Landing Sites with LROC NAC Controlled Mosaics, European Lunar Symposium",
+    "sun_heights_of_images": {
+     "images_listed": 256,
+     "sun_height_min_deg": -1,
+     "sun_height_max_deg": 6,
+     "images_above_flat_ceiling_at_their_latitude": 0
+    },
+    "image_downloaded": false
+   },
+   "earth_cannot_match": [
+    {
+     "what": "vacuum",
+     "number": 3e-15,
+     "unit": "bar",
+     "moon": "Surface pressure at night about 3 x 10^-15 bar: no air, no wind, no sound, no weather.",
+     "earth": "About 1 bar at sea level.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "gravity",
+     "number": 1.62,
+     "unit": "m/s2",
+     "moon": "1.62 m/s2 at the surface, about one sixth of Earth's.",
+     "earth": "9.80 m/s2 (ratio 0.165).",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "dust",
+     "number": null,
+     "unit": null,
+     "moon": "Dry, sharp-grained regolith that no water or air has ever rounded; it clings to suits and gear.",
+     "earth": "Soil and rock shaped by water, air and life.",
+     "source": null,
+     "note": "No number: we read no dust dataset."
+    },
+    {
+     "what": "temperature",
+     "number": 117.322,
+     "unit": "K",
+     "moon": "Model-based (Diviner): the annual mean 2 cm under the surface is 117 K (-156 \u00b0C) averaged over the area, 41 K in the coldest place; the yearly maximum at the surface ranges from 60 K to 320 K.",
+     "earth": "Not computed here; compare with the NASA POWER temperature of each Earth place.",
+     "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+     "note": "Diviner Polar Resource Product: model values, not measurements."
+    },
+    {
+     "what": "radiation",
+     "number": null,
+     "unit": null,
+     "moon": "No air and no global magnetic field to stop solar particles and cosmic rays.",
+     "earth": "Shielded by the atmosphere and the magnetic field.",
+     "source": null,
+     "note": "No number: we read no radiation dataset."
+    },
+    {
+     "what": "black shadows",
+     "number": 9.34,
+     "unit": "m of shadow per 1 m object at the Sun ceiling",
+     "moon": "No air scatters light into shadows; they are lit only by light bounced off nearby ground. At the Sun ceiling of 6.11\u00b0 a 1 m object throws a 9.3 m shadow. 1.6% of the area never sees the Sun.",
+     "earth": "The same shadow length at the same Sun height, but the sky lights the shadow and the low Sun is dimmed and reddened by air. We have no number for that difference.",
+     "source": "https://pgda.gsfc.nasa.gov/products/69"
+    },
+    {
+     "what": "slow Sun",
+     "number": 29.53,
+     "unit": "days for the Sun to go round once",
+     "moon": "One turn of the Sun around the horizon takes 29.53 days, about 0.51\u00b0 per hour; a shadow stays put for hours.",
+     "earth": "24 hours, 15\u00b0 per hour: about 29.5 times faster.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    }
+   ]
+  },
+  {
+   "id": "mons-mouton-plateau",
+   "has_model": false,
+   "model_note": "PGDA product 78 has no 5 m terrain model of this region.",
+   "position": {
+    "how_sure": "estimated from a map",
+    "source": "https://www.nasa.gov/wp-content/uploads/2024/10/artemis-iii-landing-region-candidates.jpg",
+    "note": "NASA gives no table of centres. We read the centre of the box of this region on the NASA map of 28 October 2024. We expect an error of less than 1 km. The LROC mosaic of the region agrees to approximately 1 km. The box is approximately 77 km by 58 km, thus the Sun ceiling changes by approximately 2.9 degrees from its south edge to its north edge."
+   },
+   "official_name": "Mons Mouton Plateau",
+   "name_in_project": "Mons Mouton Plateau",
+   "name_note": "The name is the name on the NASA list of 2024. This region is not the 2022 region 'Leibnitz Beta Plateau': that region is now 'Mons Mouton'. The box of this region on the NASA map is approximately 77 km by 58 km, north of Mons Mouton.",
+   "nasa_list": {
+    "on_2022_list_of_13": false,
+    "name_2022": null,
+    "on_2024_list_of_9": true,
+    "name_2024": "Mons Mouton Plateau",
+    "summary": "On the list of nine of 2024 only. It is one of the three new regions of that list (NTRS 20250002110).",
+    "links": [
+     "https://ntrs.nasa.gov/citations/20250011660",
+     "https://ntrs.nasa.gov/citations/20250002110",
+     "https://www.nasa.gov/wp-content/uploads/2024/10/artemis-iii-landing-region-candidates.jpg",
+     "https://ntrs.nasa.gov/citations/20260002598"
+    ]
+   },
+   "why_stored": "One of the nine candidate regions of NASA's list of 2024. It is a new region on that list, north of Mons Mouton.",
+   "why_check": {
+    "confirmed": true,
+    "note": "The stored reason agrees with NTRS 20250011660 and the NASA map of 2024.",
+    "proposed_wording": null,
+    "proposed_wording_sources": [
+     "https://ntrs.nasa.gov/citations/20250011660",
+     "https://www.nasa.gov/wp-content/uploads/2024/10/artemis-iii-landing-region-candidates.jpg"
+    ]
+   },
+   "pgda_model": null,
+   "centre": {
+    "lat": -84.3342533577128,
+    "lon_east": 30.57490001717105
+   },
+   "extent_km": null,
+   "box_km": [
+    76.99,
+    57.99
+   ],
+   "sun_ceiling": {
+    "deg": 7.205746642287203,
+    "range_deg": [
+     5.783002332275353,
+     8.695766279543257
+    ],
+    "how": "90 - |latitude| + 1.54 degrees, at the latitude of the centre of the box of the region on the NASA map of 2024. NASA gives no 5 m terrain model of this region. The range uses the same formula at the corners, the edge centres and the centre of the box.",
+    "kind": "derived from latitude",
+    "source": "https://www.nasa.gov/wp-content/uploads/2024/10/artemis-iii-landing-region-candidates.jpg"
+   },
+   "shadow_of_1m_object_at_ceiling_m": 7.91,
+   "shadow_how": "1 m divided by the tangent of the Sun ceiling, on level ground.",
+   "lit": {
+    "mean_share": 0.34812179655518655,
+    "best_point_share": 0.7624000000000001,
+    "how": "Mean and highest 240 m pixel of the NASA Goddard map AVGVISIB_65S_240M_201608, inside the box of the region on the NASA map of 2024.",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/AVGVISIB_65S_240M_201608.TIF"
+   },
+   "permanent_shadow": {
+    "share": 0.01945109549187714,
+    "how": "Share of the 240 m pixels inside the same box that the NASA Goddard map LPSR_65S_240M_201608 marks as permanently shadowed (value above 0.5).",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/LPSR_65S_240M_201608.TIF"
+   },
+   "diviner": {
+    "model_based": true,
+    "triangles": 34808,
+    "triangles_without_temperature": 0,
+    "area_covered_km2": 4467.933,
+    "target_area_km2": 4464.65,
+    "annual_mean_temp_2cm_K": {
+     "mean": 138.524,
+     "min": 40.121,
+     "max": 200.405
+    },
+    "annual_max_temp_surface_K": {
+     "mean": 257.82,
+     "min": 51.141,
+     "max": 342.472
+    },
+    "annual_mean_temp_2cm_C": {
+     "mean": -134.63,
+     "min": -233.03,
+     "max": -72.74
+    },
+    "annual_max_temp_surface_C": {
+     "mean": -15.33,
+     "min": -222.01,
+     "max": 69.32
+    },
+    "ice": {
+     "stable_within_reach_share": 0.20843,
+     "stable_at_surface_share": 0.00371,
+     "surface_cold_trap_share": 0.00267,
+     "stable_within_1m_share": 0.20587,
+     "not_stable_within_reach_share": 0.79157,
+     "stable_within_reach_share_without_undocumented_value": 0.20576,
+     "shallowest_m": 0.0,
+     "deepest_stable_m": 1.2743
+    },
+    "altitude_check": null,
+    "kind": "model-based",
+    "how": "LRO Diviner Polar Resource Product (LRO-L-DLRE-5-PRP-V2.0): fits of a thermal model to the first year of Diviner polar data, on triangles of approximately 500 m. The figures use the triangles with a centre inside the box of the region on the NASA map of 2024. The area of each triangle gives its weight.",
+    "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+    "citation": "Paige et al., LRO DLRE Level 5 PRP V2.0, NASA Planetary Data System, 2018"
+   },
+   "picture": {
+    "page": "https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_ROI_MOUTNPLTLO1",
+    "title": "Mons Mouton Plateau low-Sun controlled NAC mosaic",
+    "product": "NAC_ROI_MOUTNPLTLO1",
+    "note": "Latitude -85.76 to -82.85, longitude 15.49 to 46.61.",
+    "credit": "NASA/GSFC/Arizona State University",
+    "credit_source": "https://lroc.im-ldi.com/about/terms",
+    "citation": "Henriksen, M. R., et al. (2023), Optimized Illuminated Terrain Coverage of the Candidate Artemis III Landing Sites with LROC NAC Controlled Mosaics, European Lunar Symposium",
+    "sun_heights_of_images": {
+     "images_listed": 159,
+     "sun_height_min_deg": 0,
+     "sun_height_max_deg": 8,
+     "images_above_flat_ceiling_at_their_latitude": 0
+    },
+    "image_downloaded": false
+   },
+   "earth_cannot_match": [
+    {
+     "what": "vacuum",
+     "number": 3e-15,
+     "unit": "bar",
+     "moon": "Surface pressure at night about 3 x 10^-15 bar: no air, no wind, no sound, no weather.",
+     "earth": "About 1 bar at sea level.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "gravity",
+     "number": 1.62,
+     "unit": "m/s2",
+     "moon": "1.62 m/s2 at the surface, about one sixth of Earth's.",
+     "earth": "9.80 m/s2 (ratio 0.165).",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "dust",
+     "number": null,
+     "unit": null,
+     "moon": "Dry, sharp-grained regolith that no water or air has ever rounded; it clings to suits and gear.",
+     "earth": "Soil and rock shaped by water, air and life.",
+     "source": null,
+     "note": "No number: we read no dust dataset."
+    },
+    {
+     "what": "temperature",
+     "number": 138.524,
+     "unit": "K",
+     "moon": "Model-based (Diviner): the annual mean 2 cm under the surface is 139 K (-135 \u00b0C) averaged over the area, 40 K in the coldest place; the yearly maximum at the surface ranges from 51 K to 342 K.",
+     "earth": "Not computed here; compare with the NASA POWER temperature of each Earth place.",
+     "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+     "note": "Diviner Polar Resource Product: model values, not measurements."
+    },
+    {
+     "what": "radiation",
+     "number": null,
+     "unit": null,
+     "moon": "No air and no global magnetic field to stop solar particles and cosmic rays.",
+     "earth": "Shielded by the atmosphere and the magnetic field.",
+     "source": null,
+     "note": "No number: we read no radiation dataset."
+    },
+    {
+     "what": "black shadows",
+     "number": 7.91,
+     "unit": "m of shadow per 1 m object at the Sun ceiling",
+     "moon": "No air scatters light into shadows; they are lit only by light bounced off nearby ground. At the Sun ceiling of 7.21\u00b0 a 1 m object throws a 7.9 m shadow. 1.9% of the area never sees the Sun.",
+     "earth": "The same shadow length at the same Sun height, but the sky lights the shadow and the low Sun is dimmed and reddened by air. We have no number for that difference.",
+     "source": "https://pgda.gsfc.nasa.gov/products/69"
+    },
+    {
+     "what": "slow Sun",
+     "number": 29.53,
+     "unit": "days for the Sun to go round once",
+     "moon": "One turn of the Sun around the horizon takes 29.53 days, about 0.51\u00b0 per hour; a shadow stays put for hours.",
+     "earth": "24 hours, 15\u00b0 per hour: about 29.5 times faster.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    }
+   ]
+  },
+  {
+   "id": "amundsen-rim",
+   "has_model": true,
+   "model_note": null,
+   "position": {
+    "how_sure": "from the terrain model",
+    "source": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/DM1/DM1_final_adj_5mpp_surf.tif",
+    "note": "The centre is the centre of the grid of the NASA 5 m terrain model. The USGS box of the region has the same corners as the model."
+   },
+   "official_name": "Amundsen Rim",
+   "name_in_project": "Amundsen Rim",
+   "name_note": "The name is the name on the NASA list of 2022. PGDA calls the 5 m model 'DM1: Amundsen rim'.",
+   "nasa_list": {
+    "on_2022_list_of_13": true,
+    "name_2022": "Amundsen Rim",
+    "on_2024_list_of_9": false,
+    "name_2024": null,
+    "summary": "On the list of 13 of 2022 only. It is not on the list of nine of 2024. The NASA abstract NTRS 20250011660 says that the cut 'does not imply that removed regions are unsuitable for future exploration'.",
+    "links": [
+     "https://www.nasa.gov/news-release/nasa-identifies-candidate-regions-for-landing-next-americans-on-moon/",
+     "https://svs.gsfc.nasa.gov/5013/",
+     "https://ntrs.nasa.gov/citations/20250011660",
+     "https://www.sciencebase.gov/catalog/item/67168797d34ebf903f48b6fc"
+    ]
+   },
+   "why_stored": "One of the 13 candidate regions of NASA's list of 2022. It is not on the list of nine of 2024. A NASA abstract (NTRS 20250011660) says that a region off the list of nine is not thus unsuitable for future exploration.",
+   "why_check": {
+    "confirmed": true,
+    "note": "The stored reason agrees with the 2022 release and NTRS 20250011660.",
+    "proposed_wording": null,
+    "proposed_wording_sources": [
+     "https://www.nasa.gov/news-release/nasa-identifies-candidate-regions-for-landing-next-americans-on-moon/",
+     "https://ntrs.nasa.gov/citations/20250011660"
+    ]
+   },
+   "pgda_model": {
+    "site": "DM1",
+    "pgda_name": "Amundsen rim",
+    "page": "https://pgda.gsfc.nasa.gov/products/78",
+    "dem_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/DM1/DM1_final_adj_5mpp_surf.tif",
+    "pixel_m": 5,
+    "what": "NASA Goddard LOLA 5 m elevation model of the site (PGDA product 78)",
+    "citation": "Barker, M. K., et al. (2021), Improved LOLA Elevation Maps for South Pole Landing Sites, Planetary and Space Science 203, 105119, doi:10.1016/j.pss.2020.105119"
+   },
+   "centre": {
+    "lat": -84.22873931238196,
+    "lon_east": 69.44395478041653
+   },
+   "extent_km": [
+    20.0,
+    20.0
+   ],
+   "box_km": null,
+   "sun_ceiling": {
+    "deg": 7.311260687618039,
+    "range_deg": [
+     6.8911561479657815,
+     7.737672263238914
+    ],
+    "how": "90 - |latitude| + 1.54 degrees, at the latitude of the middle of the 5 m model: the highest the Sun's centre climbs over a flat horizon, 1.54 degrees being the tilt of the Moon's axis to the ecliptic (twinfinder/sun.py, lunar_max_sun_elevation_deg). The range is the same formula at the model's most and least poleward corner, edge midpoint or centre. No terrain, no ephemeris and no allowance for the Sun's disc enter.",
+    "kind": "derived from latitude",
+    "source": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/DM1/DM1_final_adj_5mpp_surf.tif"
+   },
+   "shadow_of_1m_object_at_ceiling_m": 7.79,
+   "shadow_how": "1 m divided by the tangent of the Sun ceiling, on level ground.",
+   "lit": {
+    "mean_share": 0.2887217767455364,
+    "best_point_share": 0.5712400000000001,
+    "how": "Mean and highest 240 m pixel, inside the bounding box of the 5 m model, of NASA Goddard's average solar illumination map AVGVISIB_65S_240M_201608 (hourly steps over 18.6 years, LOLA terrain), read with the file's own scale and offset (twinfinder/moon.py, fingerprint).",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/AVGVISIB_65S_240M_201608.TIF"
+   },
+   "permanent_shadow": {
+    "share": 0.02728988242125127,
+    "how": "Share of the 240 m pixels inside the same box that NASA Goddard's map LPSR_65S_240M_201608 marks as permanently shadowed (value above 0.5).",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/LPSR_65S_240M_201608.TIF"
+   },
+   "diviner": {
+    "model_based": true,
+    "triangles": 3120,
+    "triangles_without_temperature": 0,
+    "area_covered_km2": 400.488,
+    "target_area_km2": 400.0,
+    "annual_mean_temp_2cm_K": {
+     "mean": 128.956,
+     "min": 57.938,
+     "max": 169.426
+    },
+    "annual_max_temp_surface_K": {
+     "mean": 260.757,
+     "min": 87.241,
+     "max": 314.05
+    },
+    "annual_mean_temp_2cm_C": {
+     "mean": -144.19,
+     "min": -215.21,
+     "max": -103.72
+    },
+    "annual_max_temp_surface_C": {
+     "mean": -12.39,
+     "min": -185.91,
+     "max": 40.9
+    },
+    "ice": {
+     "stable_within_reach_share": 0.27276,
+     "stable_at_surface_share": 0.00801,
+     "surface_cold_trap_share": 0.00288,
+     "stable_within_1m_share": 0.26667,
+     "not_stable_within_reach_share": 0.72724,
+     "stable_within_reach_share_without_undocumented_value": 0.26988,
+     "shallowest_m": 0.0,
+     "deepest_stable_m": 1.1635
+    },
+    "altitude_check": {
+     "triangles_compared": 3120,
+     "correlation": 0.9961,
+     "median_difference_m": -16.2,
+     "median_abs_difference_m": 35.1,
+     "how": "Height of our 5 m model (averaged to about 100 m) minus the table's triangle-centre altitude, at the same map position; both are relative to a 1737.4 km sphere."
+    },
+    "kind": "model-based",
+    "how": "LRO Diviner Polar Resource Product (LRO-L-DLRE-5-PRP-V2.0): thermal-model fits to the first year of Diviner polar observations on a mesh of about 500 m triangles. Figures are over the triangles whose centre lies inside the 5 m model's bounding box, weighted by triangle area. Ice is 'stable' where the table gives a depth (0 to 2.87 m) at which ice would be lost more slowly than 1 kg per m2 per billion years; -999 means deeper than 2.87 m, not missing. The table's undocumented value -1 is read as stable on the surface; see meta.diviner.",
+    "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+    "citation": "Paige et al., LRO DLRE Level 5 PRP V2.0, NASA Planetary Data System, 2018"
+   },
+   "picture": {
+    "page": "https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_ROI_AMUNDRIMLO1",
+    "title": "Amundsen Rim low-Sun controlled NAC mosaic",
+    "product": "NAC_ROI_AMUNDRIMLO1",
+    "note": "Latitude -84.65 to -83.80, longitude 65.10 to 73.51.",
+    "credit": "NASA/GSFC/Arizona State University",
+    "credit_source": "https://lroc.im-ldi.com/about/terms",
+    "citation": "Henriksen, M. R., et al. (2023), Optimized Illuminated Terrain Coverage of the Candidate Artemis III Landing Sites with LROC NAC Controlled Mosaics, European Lunar Symposium",
+    "sun_heights_of_images": {
+     "images_listed": 69,
+     "sun_height_min_deg": 1,
+     "sun_height_max_deg": 7,
+     "images_above_flat_ceiling_at_their_latitude": 0
+    },
+    "image_downloaded": false
+   },
+   "earth_cannot_match": [
+    {
+     "what": "vacuum",
+     "number": 3e-15,
+     "unit": "bar",
+     "moon": "Surface pressure at night about 3 x 10^-15 bar: no air, no wind, no sound, no weather.",
+     "earth": "About 1 bar at sea level.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "gravity",
+     "number": 1.62,
+     "unit": "m/s2",
+     "moon": "1.62 m/s2 at the surface, about one sixth of Earth's.",
+     "earth": "9.80 m/s2 (ratio 0.165).",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "dust",
+     "number": null,
+     "unit": null,
+     "moon": "Dry, sharp-grained regolith that no water or air has ever rounded; it clings to suits and gear.",
+     "earth": "Soil and rock shaped by water, air and life.",
+     "source": null,
+     "note": "No number: we read no dust dataset."
+    },
+    {
+     "what": "temperature",
+     "number": 128.956,
+     "unit": "K",
+     "moon": "Model-based (Diviner): the annual mean 2 cm under the surface is 129 K (-144 \u00b0C) averaged over the area, 58 K in the coldest place; the yearly maximum at the surface ranges from 87 K to 314 K.",
+     "earth": "Not computed here; compare with the NASA POWER temperature of each Earth place.",
+     "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+     "note": "Diviner Polar Resource Product: model values, not measurements."
+    },
+    {
+     "what": "radiation",
+     "number": null,
+     "unit": null,
+     "moon": "No air and no global magnetic field to stop solar particles and cosmic rays.",
+     "earth": "Shielded by the atmosphere and the magnetic field.",
+     "source": null,
+     "note": "No number: we read no radiation dataset."
+    },
+    {
+     "what": "black shadows",
+     "number": 7.79,
+     "unit": "m of shadow per 1 m object at the Sun ceiling",
+     "moon": "No air scatters light into shadows; they are lit only by light bounced off nearby ground. At the Sun ceiling of 7.31\u00b0 a 1 m object throws a 7.8 m shadow. 2.7% of the area never sees the Sun.",
+     "earth": "The same shadow length at the same Sun height, but the sky lights the shadow and the low Sun is dimmed and reddened by air. We have no number for that difference.",
+     "source": "https://pgda.gsfc.nasa.gov/products/69"
+    },
+    {
+     "what": "slow Sun",
+     "number": 29.53,
+     "unit": "days for the Sun to go round once",
+     "moon": "One turn of the Sun around the horizon takes 29.53 days, about 0.51\u00b0 per hour; a shadow stays put for hours.",
+     "earth": "24 hours, 15\u00b0 per hour: about 29.5 times faster.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    }
+   ]
+  },
+  {
+   "id": "nobile-rim-2",
+   "has_model": true,
+   "model_note": null,
+   "position": {
+    "how_sure": "from the terrain model",
+    "source": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/DM2/DM2_final_adj_5mpp_surf.tif",
+    "note": "The centre is the centre of the grid of the NASA 5 m terrain model. The USGS box of the region has the same corners as the model."
+   },
+   "official_name": "Nobile Rim 2",
+   "name_in_project": "Nobile Rim 2",
+   "name_note": "Same name on both NASA lists; PGDA calls the 5 m model 'DM2: Nobile rim 2'.",
+   "nasa_list": {
+    "on_2022_list_of_13": true,
+    "name_2022": "Nobile Rim 2",
+    "on_2024_list_of_9": true,
+    "name_2024": "Nobile Rim 2",
+    "summary": "On the 2022 list of 13 and among the nine regions kept in October 2024.",
+    "links": [
+     "https://www.nasa.gov/news-release/nasa-identifies-candidate-regions-for-landing-next-americans-on-moon/",
+     "https://svs.gsfc.nasa.gov/5013/",
+     "https://ntrs.nasa.gov/citations/20250011660"
+    ]
+   },
+   "why_stored": "Candidate region; most top-ranked landing points in one study",
+   "why_check": {
+    "confirmed": null,
+    "note": "'Candidate region' agrees with both NASA lists. 'Most top-ranked landing points in one study' refers to a non-NASA paper (arXiv 2406.19863) that was not re-read here.",
+    "proposed_wording": null,
+    "proposed_wording_sources": []
+   },
+   "pgda_model": {
+    "site": "DM2",
+    "pgda_name": "Nobile rim 2",
+    "page": "https://pgda.gsfc.nasa.gov/products/78",
+    "dem_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/DM2/DM2_final_adj_5mpp_surf.tif",
+    "pixel_m": 5,
+    "what": "NASA Goddard LOLA 5 m elevation model of the site (PGDA product 78)",
+    "citation": "Barker, M. K., et al. (2021), Improved LOLA Elevation Maps for South Pole Landing Sites, Planetary and Space Science 203, 105119, doi:10.1016/j.pss.2020.105119"
+   },
+   "centre": {
+    "lat": -83.95401703076465,
+    "lon_east": 58.822054635731696
+   },
+   "extent_km": [
+    20.0,
+    20.0
+   ],
+   "box_km": null,
+   "sun_ceiling": {
+    "deg": 7.585982969235354,
+    "range_deg": [
+     7.135384202890287,
+     8.038450884686661
+    ],
+    "how": "90 - |latitude| + 1.54 degrees, at the latitude of the middle of the 5 m model: the highest the Sun's centre climbs over a flat horizon, 1.54 degrees being the tilt of the Moon's axis to the ecliptic (twinfinder/sun.py, lunar_max_sun_elevation_deg). The range is the same formula at the model's most and least poleward corner, edge midpoint or centre. No terrain, no ephemeris and no allowance for the Sun's disc enter.",
+    "kind": "derived from latitude",
+    "source": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/DM2/DM2_final_adj_5mpp_surf.tif"
+   },
+   "shadow_of_1m_object_at_ceiling_m": 7.51,
+   "shadow_how": "1 m divided by the tangent of the Sun ceiling, on level ground.",
+   "lit": {
+    "mean_share": 0.27418424735084923,
+    "best_point_share": 0.5397200000000001,
+    "how": "Mean and highest 240 m pixel, inside the bounding box of the 5 m model, of NASA Goddard's average solar illumination map AVGVISIB_65S_240M_201608 (hourly steps over 18.6 years, LOLA terrain), read with the file's own scale and offset (twinfinder/moon.py, fingerprint).",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/AVGVISIB_65S_240M_201608.TIF"
+   },
+   "permanent_shadow": {
+    "share": 0.09232109159529685,
+    "how": "Share of the 240 m pixels inside the same box that NASA Goddard's map LPSR_65S_240M_201608 marks as permanently shadowed (value above 0.5).",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/LPSR_65S_240M_201608.TIF"
+   },
+   "diviner": {
+    "model_based": true,
+    "triangles": 3081,
+    "triangles_without_temperature": 0,
+    "area_covered_km2": 395.476,
+    "target_area_km2": 400.0,
+    "annual_mean_temp_2cm_K": {
+     "mean": 118.135,
+     "min": 43.552,
+     "max": 181.937
+    },
+    "annual_max_temp_surface_K": {
+     "mean": 234.467,
+     "min": 57.476,
+     "max": 318.851
+    },
+    "annual_mean_temp_2cm_C": {
+     "mean": -155.01,
+     "min": -229.6,
+     "max": -91.21
+    },
+    "annual_max_temp_surface_C": {
+     "mean": -38.68,
+     "min": -215.67,
+     "max": 45.7
+    },
+    "ice": {
+     "stable_within_reach_share": 0.40896,
+     "stable_at_surface_share": 0.08179,
+     "surface_cold_trap_share": 0.06556,
+     "stable_within_1m_share": 0.40604,
+     "not_stable_within_reach_share": 0.59104,
+     "stable_within_reach_share_without_undocumented_value": 0.3434,
+     "shallowest_m": 0.0,
+     "deepest_stable_m": 1.1447
+    },
+    "altitude_check": {
+     "triangles_compared": 3081,
+     "correlation": 0.9931,
+     "median_difference_m": -0.9,
+     "median_abs_difference_m": 46.1,
+     "how": "Height of our 5 m model (averaged to about 100 m) minus the table's triangle-centre altitude, at the same map position; both are relative to a 1737.4 km sphere."
+    },
+    "kind": "model-based",
+    "how": "LRO Diviner Polar Resource Product (LRO-L-DLRE-5-PRP-V2.0): thermal-model fits to the first year of Diviner polar observations on a mesh of about 500 m triangles. Figures are over the triangles whose centre lies inside the 5 m model's bounding box, weighted by triangle area. Ice is 'stable' where the table gives a depth (0 to 2.87 m) at which ice would be lost more slowly than 1 kg per m2 per billion years; -999 means deeper than 2.87 m, not missing. The table's undocumented value -1 is read as stable on the surface; see meta.diviner.",
+    "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+    "citation": "Paige et al., LRO DLRE Level 5 PRP V2.0, NASA Planetary Data System, 2018"
+   },
+   "picture": {
+    "page": "https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_ROI_NOBILE02LO1",
+    "title": "Nobile Rim 2 low-Sun controlled NAC mosaic (Combined mosaic #1)",
+    "product": "NAC_ROI_NOBILE02LO1_P839S0587",
+    "note": "1 m per pixel; 103 NAC images, 2009 to 2022; latitude -84.40 to -83.50, longitude 54.46 to 63.02.",
+    "credit": "NASA/GSFC/Arizona State University",
+    "credit_source": "https://lroc.im-ldi.com/about/terms",
+    "citation": "Henriksen, M. R., et al. (2023), Optimized Illuminated Terrain Coverage of the Candidate Artemis III Landing Sites with LROC NAC Controlled Mosaics, European Lunar Symposium",
+    "sun_heights_of_images": {
+     "images_listed": 103,
+     "sun_height_min_deg": 0,
+     "sun_height_max_deg": 8,
+     "images_above_flat_ceiling_at_their_latitude": 0
+    },
+    "image_downloaded": false
+   },
+   "earth_cannot_match": [
+    {
+     "what": "vacuum",
+     "number": 3e-15,
+     "unit": "bar",
+     "moon": "Surface pressure at night about 3 x 10^-15 bar: no air, no wind, no sound, no weather.",
+     "earth": "About 1 bar at sea level.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "gravity",
+     "number": 1.62,
+     "unit": "m/s2",
+     "moon": "1.62 m/s2 at the surface, about one sixth of Earth's.",
+     "earth": "9.80 m/s2 (ratio 0.165).",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "dust",
+     "number": null,
+     "unit": null,
+     "moon": "Dry, sharp-grained regolith that no water or air has ever rounded; it clings to suits and gear.",
+     "earth": "Soil and rock shaped by water, air and life.",
+     "source": null,
+     "note": "No number: we read no dust dataset."
+    },
+    {
+     "what": "temperature",
+     "number": 118.135,
+     "unit": "K",
+     "moon": "Model-based (Diviner): the annual mean 2 cm under the surface is 118 K (-155 \u00b0C) averaged over the area, 44 K in the coldest place; the yearly maximum at the surface ranges from 57 K to 319 K.",
+     "earth": "Not computed here; compare with the NASA POWER temperature of each Earth place.",
+     "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+     "note": "Diviner Polar Resource Product: model values, not measurements."
+    },
+    {
+     "what": "radiation",
+     "number": null,
+     "unit": null,
+     "moon": "No air and no global magnetic field to stop solar particles and cosmic rays.",
+     "earth": "Shielded by the atmosphere and the magnetic field.",
+     "source": null,
+     "note": "No number: we read no radiation dataset."
+    },
+    {
+     "what": "black shadows",
+     "number": 7.51,
+     "unit": "m of shadow per 1 m object at the Sun ceiling",
+     "moon": "No air scatters light into shadows; they are lit only by light bounced off nearby ground. At the Sun ceiling of 7.59\u00b0 a 1 m object throws a 7.5 m shadow. 9.2% of the area never sees the Sun.",
+     "earth": "The same shadow length at the same Sun height, but the sky lights the shadow and the low Sun is dimmed and reddened by air. We have no number for that difference.",
+     "source": "https://pgda.gsfc.nasa.gov/products/69"
+    },
+    {
+     "what": "slow Sun",
+     "number": 29.53,
+     "unit": "days for the Sun to go round once",
+     "moon": "One turn of the Sun around the horizon takes 29.53 days, about 0.51\u00b0 per hour; a shadow stays put for hours.",
+     "earth": "24 hours, 15\u00b0 per hour: about 29.5 times faster.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    }
+   ]
+  },
+  {
+   "id": "peak-near-cabeus-b",
+   "has_model": false,
+   "model_note": "PGDA product 78 has no 5 m terrain model of this region.",
+   "position": {
+    "how_sure": "estimated from a map",
+    "source": "https://www.nasa.gov/wp-content/uploads/2024/10/artemis-iii-landing-region-candidates.jpg",
+    "note": "NASA gives no table of centres. We read the centre of the box of this region on the NASA map of 28 October 2024. We expect an error of less than 1 km. The LROC mosaic of the region agrees to approximately 1 km."
+   },
+   "official_name": "Peak near Cabeus B",
+   "name_in_project": "Peak near Cabeus B",
+   "name_note": "The name is the name on the NASA list of 2024. LROC writes 'Peak Near Cabeus B'. The PGDA model 'Cabeus exterior wall 1' is a different place, approximately 100 km from this region.",
+   "nasa_list": {
+    "on_2022_list_of_13": false,
+    "name_2022": null,
+    "on_2024_list_of_9": true,
+    "name_2024": "Peak near Cabeus B",
+    "summary": "On the list of nine of 2024 only. It is one of the three new regions of that list (NTRS 20250002110).",
+    "links": [
+     "https://ntrs.nasa.gov/citations/20250011660",
+     "https://ntrs.nasa.gov/citations/20250002110",
+     "https://www.nasa.gov/wp-content/uploads/2024/10/artemis-iii-landing-region-candidates.jpg"
+    ]
+   },
+   "why_stored": "One of the nine candidate regions of NASA's list of 2024. It is a new region on that list.",
+   "why_check": {
+    "confirmed": true,
+    "note": "The stored reason agrees with NTRS 20250011660 and NTRS 20250002110.",
+    "proposed_wording": null,
+    "proposed_wording_sources": [
+     "https://ntrs.nasa.gov/citations/20250011660",
+     "https://ntrs.nasa.gov/citations/20250002110"
+    ]
+   },
+   "pgda_model": null,
+   "centre": {
+    "lat": -83.63814374165243,
+    "lon_east": 291.218861104298
+   },
+   "extent_km": null,
+   "box_km": [
+    19.84,
+    20.12
+   ],
+   "sun_ceiling": {
+    "deg": 7.901856258347572,
+    "range_deg": [
+     7.481099927258392,
+     8.328165352060672
+    ],
+    "how": "90 - |latitude| + 1.54 degrees, at the latitude of the centre of the box of the region on the NASA map of 2024. NASA gives no 5 m terrain model of this region. The range uses the same formula at the corners, the edge centres and the centre of the box.",
+    "kind": "derived from latitude",
+    "source": "https://www.nasa.gov/wp-content/uploads/2024/10/artemis-iii-landing-region-candidates.jpg"
+   },
+   "shadow_of_1m_object_at_ceiling_m": 7.2,
+   "shadow_how": "1 m divided by the tangent of the Sun ceiling, on level ground.",
+   "lit": {
+    "mean_share": 0.33688417670682735,
+    "best_point_share": 0.7075600000000001,
+    "how": "Mean and highest 240 m pixel of the NASA Goddard map AVGVISIB_65S_240M_201608, inside the box of the region on the NASA map of 2024.",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/AVGVISIB_65S_240M_201608.TIF"
+   },
+   "permanent_shadow": {
+    "share": 0.0032989099254159496,
+    "how": "Share of the 240 m pixels inside the same box that the NASA Goddard map LPSR_65S_240M_201608 marks as permanently shadowed (value above 0.5).",
+    "kind": "measured terrain, modelled Sun",
+    "source": "https://pgda.gsfc.nasa.gov/products/69",
+    "file": "https://pgda.gsfc.nasa.gov/data/MoonIllumination/LPSR_65S_240M_201608.TIF"
+   },
+   "diviner": {
+    "model_based": true,
+    "triangles": 3120,
+    "triangles_without_temperature": 0,
+    "area_covered_km2": 400.499,
+    "target_area_km2": 399.18,
+    "annual_mean_temp_2cm_K": {
+     "mean": 143.248,
+     "min": 56.77,
+     "max": 200.907
+    },
+    "annual_max_temp_surface_K": {
+     "mean": 279.411,
+     "min": 171.494,
+     "max": 337.613
+    },
+    "annual_mean_temp_2cm_C": {
+     "mean": -129.9,
+     "min": -216.38,
+     "max": -72.24
+    },
+    "annual_max_temp_surface_C": {
+     "mean": 6.26,
+     "min": -101.66,
+     "max": 64.46
+    },
+    "ice": {
+     "stable_within_reach_share": 0.2939,
+     "stable_at_surface_share": 0.0,
+     "surface_cold_trap_share": 0.0,
+     "stable_within_1m_share": 0.29197,
+     "not_stable_within_reach_share": 0.7061,
+     "stable_within_reach_share_without_undocumented_value": 0.2939,
+     "shallowest_m": 0.0067,
+     "deepest_stable_m": 1.0757
+    },
+    "altitude_check": null,
+    "kind": "model-based",
+    "how": "LRO Diviner Polar Resource Product (LRO-L-DLRE-5-PRP-V2.0): fits of a thermal model to the first year of Diviner polar data, on triangles of approximately 500 m. The figures use the triangles with a centre inside the box of the region on the NASA map of 2024. The area of each triangle gives its weight.",
+    "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+    "citation": "Paige et al., LRO DLRE Level 5 PRP V2.0, NASA Planetary Data System, 2018"
+   },
+   "picture": {
+    "page": "https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_ROI_CABEUSPKLO1",
+    "title": "Peak Near Cabeus B low-Sun controlled NAC mosaic",
+    "product": "NAC_ROI_CABEUSPKLO1",
+    "note": "Latitude -84.06 to -83.21, longitude -72.47 to -64.80.",
+    "credit": "NASA/GSFC/Arizona State University",
+    "credit_source": "https://lroc.im-ldi.com/about/terms",
+    "citation": "Henriksen, M. R., et al. (2023), Optimized Illuminated Terrain Coverage of the Candidate Artemis III Landing Sites with LROC NAC Controlled Mosaics, European Lunar Symposium",
+    "sun_heights_of_images": {
+     "images_listed": 18,
+     "sun_height_min_deg": 0,
+     "sun_height_max_deg": 1,
+     "images_above_flat_ceiling_at_their_latitude": 0
+    },
+    "image_downloaded": false
+   },
+   "earth_cannot_match": [
+    {
+     "what": "vacuum",
+     "number": 3e-15,
+     "unit": "bar",
+     "moon": "Surface pressure at night about 3 x 10^-15 bar: no air, no wind, no sound, no weather.",
+     "earth": "About 1 bar at sea level.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "gravity",
+     "number": 1.62,
+     "unit": "m/s2",
+     "moon": "1.62 m/s2 at the surface, about one sixth of Earth's.",
+     "earth": "9.80 m/s2 (ratio 0.165).",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    {
+     "what": "dust",
+     "number": null,
+     "unit": null,
+     "moon": "Dry, sharp-grained regolith that no water or air has ever rounded; it clings to suits and gear.",
+     "earth": "Soil and rock shaped by water, air and life.",
+     "source": null,
+     "note": "No number: we read no dust dataset."
+    },
+    {
+     "what": "temperature",
+     "number": 143.248,
+     "unit": "K",
+     "moon": "Model-based (Diviner): the annual mean 2 cm under the surface is 143 K (-130 \u00b0C) averaged over the area, 57 K in the coldest place; the yearly maximum at the surface ranges from 171 K to 338 K.",
+     "earth": "Not computed here; compare with the NASA POWER temperature of each Earth place.",
+     "source": "https://pds-geosciences.wustl.edu/lro/urn-nasa-pds-lro_diviner_derived1/data_derived_prp/",
+     "note": "Diviner Polar Resource Product: model values, not measurements."
+    },
+    {
+     "what": "radiation",
+     "number": null,
+     "unit": null,
+     "moon": "No air and no global magnetic field to stop solar particles and cosmic rays.",
+     "earth": "Shielded by the atmosphere and the magnetic field.",
+     "source": null,
+     "note": "No number: we read no radiation dataset."
+    },
+    {
+     "what": "black shadows",
+     "number": 7.2,
+     "unit": "m of shadow per 1 m object at the Sun ceiling",
+     "moon": "No air scatters light into shadows; they are lit only by light bounced off nearby ground. At the Sun ceiling of 7.90\u00b0 a 1 m object throws a 7.2 m shadow. 0.3% of the area never sees the Sun.",
+     "earth": "The same shadow length at the same Sun height, but the sky lights the shadow and the low Sun is dimmed and reddened by air. We have no number for that difference.",
+     "source": "https://pgda.gsfc.nasa.gov/products/69"
+    },
+    {
+     "what": "slow Sun",
+     "number": 29.53,
+     "unit": "days for the Sun to go round once",
+     "moon": "One turn of the Sun around the horizon takes 29.53 days, about 0.51\u00b0 per hour; a shadow stays put for hours.",
+     "earth": "24 hours, 15\u00b0 per hour: about 29.5 times faster.",
+     "source": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    }
+   ]
+  }
+ ]
+}

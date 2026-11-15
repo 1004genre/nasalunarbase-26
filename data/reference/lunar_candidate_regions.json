@@ -1,0 +1,1929 @@
+{
+ "meta": {
+  "what": [
+   "This file lists the candidate landing regions for Artemis III near the lunar south pole.",
+   "It holds the nine regions of the NASA list of 28 October 2024 and the 13 regions of the NASA list of 19 August 2022.",
+   "Connecting Ridge is on the 2022 list. The page shows it, thus the file keeps it.",
+   "The two lists share six regions. Thus the file has 16 regions.",
+   "NASA studied these regions as candidates. NASA did not select a landing site in them.",
+   "For each region, the file gives the centre, the source of the centre and how sure we are.",
+   "It also gives the NASA 5 m terrain model, if one exists, and the Sun ceiling."
+  ],
+  "made": "2026-11-15",
+  "status": "Reference list. The pipeline does not read this file. twinfinder/moon.py holds a copy of the centres and boxes of the three regions without a terrain model. The positions of the other 13 regions come from their terrain models. All 16 regions are in the pipeline and on the page (second pass, 15 November 2026).",
+  "saved_copies": "Copies of the pages and files that we read on 15 November 2026 are in data/raw/lunar_regions_provenance. Older copies are in data/raw/moon_provenance.",
+  "page_regions_kept": "The four regions of the first build (connecting-ridge, malapert, mons-mouton, nobile-rim-2) keep the centre, the terrain model and the Sun ceiling of data/derived/moon_targets.json without change.",
+  "sun_ceiling": {
+   "meaning": "The Sun ceiling is the highest that the centre of the Sun can climb above a flat horizon at a lunar latitude.",
+   "formula": "Sun ceiling (degrees) = 90 - |latitude| + 1.54",
+   "code": "twinfinder/sun.py lunar_max_sun_elevation_deg; 1.54 is LUNAR_AXIAL_TILT_DEG",
+   "with_terrain_model": "The ceiling uses the latitude of the centre of the model grid. The range uses the most poleward and the least poleward of nine points of the grid (corners, edge centres, centre), as in twinfinder/moon.py fingerprint().",
+   "without_terrain_model": "The ceiling uses the latitude of the centre of the box on the NASA 2024 map. The range uses the same nine points of that box. The file says so for each region."
+  },
+  "coordinates": {
+   "latitude": "centre_lat, degrees, south is negative",
+   "longitude": "centre_lon, degrees east, 0 to 360, as in data/derived/moon_targets.json. centre_lon_pm180 gives the same longitude from -180 to 180.",
+   "projection": "South polar stereographic with true scale at the pole and a sphere of radius 1737.4 km, as in twinfinder/moon.py polar_xy_to_latlon. PGDA, USGS and the NASA map use this projection.",
+   "precision": "Values have more digits than their accuracy. Use the how_sure field. A model centre is exact for the model grid. A map centre is good to approximately 1 km."
+  },
+  "how_sure_values": {
+   "from the terrain model": "The centre of the grid of a NASA 5 m terrain model (PGDA product 78). For each such region, the USGS box of the 2022 region has the same corners as the model to less than 1 m. For the six such regions on the 2024 list, the box on the NASA 2024 map also agrees to less than 0.2 km. Thus the model and the region are the same box.",
+   "estimated from a map": "The centre of the region box on the NASA map of 28 October 2024. We fitted the map to lunar coordinates with six boxes that have a terrain model. The largest error at those six boxes is less than 0.2 km.",
+   "not used": [
+    "from an official table",
+    "from a gazetteer feature of the same name",
+    "from a paper"
+   ],
+   "note": "The USGS table of box corners (an official table) agrees with each model to less than 1 m. We give the model centre and keep the USGS box as a check."
+  },
+  "names_2022_to_2024": [
+   {
+    "name_2022": "Haworth",
+    "name_2024": "Haworth",
+    "how_sure": "same name, same box"
+   },
+   {
+    "name_2022": "Malapert Massif",
+    "name_2024": "Malapert Massif",
+    "how_sure": "same name, same box"
+   },
+   {
+    "name_2022": "Nobile Rim 1",
+    "name_2024": "Nobile Rim 1",
+    "how_sure": "same name, same box"
+   },
+   {
+    "name_2022": "Nobile Rim 2",
+    "name_2024": "Nobile Rim 2",
+    "how_sure": "same name, same box"
+   },
+   {
+    "name_2022": "de Gerlache Rim 2",
+    "name_2024": "de Gerlache Rim 2",
+    "how_sure": "same name, same box"
+   },
+   {
+    "name_2022": "Leibnitz Beta Plateau",
+    "name_2024": "Mons Mouton",
+    "how_sure": "High. The NASA 2024 map draws the 'Mons Mouton' box at the place and size of the 2022 box of 'Leibnitz Beta Plateau' (USGS). The centres agree to 0.02 km. LROC titles its mosaic 'Nobile Rim 1 and Mons Mouton (Leibnitz Beta Plateau)'. NTRS 20250002110 says that the nine regions are six of the 13 and three new regions. No NASA text says 'renamed' in words."
+   },
+   {
+    "name_2022": null,
+    "name_2024": "Mons Mouton Plateau",
+    "how_sure": "New region. Its box on the 2024 map is north of the Mons Mouton box and approximately 77 km by 58 km."
+   },
+   {
+    "name_2022": null,
+    "name_2024": "Peak near Cabeus B",
+    "how_sure": "New region."
+   },
+   {
+    "name_2022": null,
+    "name_2024": "Slater Plain",
+    "how_sure": "New region."
+   },
+   {
+    "name_2022": "Amundsen Rim",
+    "name_2024": null,
+    "how_sure": "Not on the 2024 list."
+   },
+   {
+    "name_2022": "Faustini Rim A",
+    "name_2024": null,
+    "how_sure": "Not on the 2024 list."
+   },
+   {
+    "name_2022": "Connecting Ridge Extension",
+    "name_2024": null,
+    "how_sure": "Not on the 2024 list."
+   },
+   {
+    "name_2022": "Connecting Ridge",
+    "name_2024": null,
+    "how_sure": "Not on the 2024 list."
+   },
+   {
+    "name_2022": "Peak Near Shackleton",
+    "name_2024": null,
+    "how_sure": "Not on the 2024 list."
+   },
+   {
+    "name_2022": "de Gerlache Rim 1",
+    "name_2024": null,
+    "how_sure": "Not on the 2024 list."
+   },
+   {
+    "name_2022": "de Gerlache-Kocher Massif",
+    "name_2024": null,
+    "how_sure": "Not on the 2024 list."
+   }
+  ],
+  "removed_regions_note": "A NASA abstract (NTRS 20250011660) says that the cut to nine regions does not imply that the removed regions are unsuitable for future exploration.",
+  "sources": [
+   {
+    "what": "NASA release 22-089, 19 August 2022: the 13 candidate regions",
+    "url": "https://www.nasa.gov/news-release/nasa-identifies-candidate-regions-for-landing-next-americans-on-moon/",
+    "kind": "official page",
+    "used_for": "names of 2022; each region is approximately 15 km by 15 km",
+    "read": "saved copy of 14 Nov 2026 (data/raw/moon_provenance)"
+   },
+   {
+    "what": "NASA release 24-136, 28 October 2024: the nine candidate regions",
+    "url": "https://www.nasa.gov/news-release/nasa-provides-update-on-artemis-iii-moon-landing-regions/",
+    "kind": "official page",
+    "used_for": "names of 2024",
+    "read": "15 Nov 2026"
+   },
+   {
+    "what": "NASA map of the nine regions (image of release 24-136)",
+    "url": "https://www.nasa.gov/wp-content/uploads/2024/10/artemis-iii-landing-region-candidates.jpg",
+    "kind": "official map with a scale bar and the south pole",
+    "used_for": "centres of Peak near Cabeus B, Mons Mouton Plateau and Slater Plain; check of the other six",
+    "read": "15 Nov 2026"
+   },
+   {
+    "what": "NTRS 20250011660, NASA abstract: down-selection from 13 to nine candidate regions",
+    "url": "https://ntrs.nasa.gov/citations/20250011660",
+    "kind": "NASA abstract",
+    "used_for": "names of 2024",
+    "read": "saved copy of 14 Nov 2026 and NTRS search of 15 Nov 2026"
+   },
+   {
+    "what": "NTRS 20250002110, NASA abstract: six of the 13 regions and three new regions",
+    "url": "https://ntrs.nasa.gov/citations/20250002110",
+    "kind": "NASA abstract",
+    "used_for": "link between the names of 2022 and the names of 2024",
+    "read": "saved copy of 14 Nov 2026"
+   },
+   {
+    "what": "NTRS 20260002598, NASA report: Mons Mouton Plateau is the northmost range, 82.5 S",
+    "url": "https://ntrs.nasa.gov/citations/20260002598",
+    "kind": "NASA report (abstract)",
+    "used_for": "check of Mons Mouton Plateau",
+    "read": "NTRS search of 15 Nov 2026"
+   },
+   {
+    "what": "USGS data release of 2 November 2024: LGRS navigational grids for the 13 Artemis III candidate regions (DOI 10.5066/P13FD9ZD)",
+    "url": "https://www.sciencebase.gov/catalog/item/67168797d34ebf903f48b6fc",
+    "kind": "official data release; the file LGRS_A3CLR_Grid_Generation.sh holds the corner coordinates of each region box",
+    "used_for": "box of each 2022 region; check of each terrain model",
+    "read": "15 Nov 2026 (read as text, not run)"
+   },
+   {
+    "what": "PGDA product 78: High-Resolution LOLA Topography for Lunar South Pole Sites, and the LOLA_5mpp README",
+    "url": "https://pgda.gsfc.nasa.gov/products/78",
+    "kind": "NASA Goddard data product",
+    "used_for": "list of models, file addresses, sizes (HEAD requests), model bounds (GeoTIFF headers only)",
+    "read": "15 Nov 2026",
+    "citation": "Improved LOLA Elevation Maps for South Pole Landing Sites, Planetary and Space Science 203, 105119 (2021), https://doi.org/10.1016/j.pss.2020.105119"
+   },
+   {
+    "what": "LROC low-Sun controlled NAC mosaics of the candidate regions (LROC team, Arizona State University)",
+    "url": "https://data.lroc.im-ldi.com/lroc/rdr_product_select",
+    "kind": "official image products of the camera team",
+    "used_for": "check of centres and extents",
+    "read": "15 Nov 2026 and saved copies of 14 Nov 2026"
+   },
+   {
+    "what": "IAU Gazetteer of Planetary Nomenclature (USGS)",
+    "url": "https://planetarynames.wr.usgs.gov/",
+    "kind": "gazetteer",
+    "used_for": "centres of named craters and mountains near each region (not region centres)",
+    "read": "15 Nov 2026"
+   },
+   {
+    "what": "NASA SVS 5074: Mons Mouton, a newly named lunar mountain (15 February 2023)",
+    "url": "https://svs.gsfc.nasa.gov/5074/",
+    "kind": "official page",
+    "used_for": "informal name 'Leibnitz Beta'",
+    "read": "saved copy of 14 Nov 2026"
+   }
+  ],
+  "not_confirmed": [
+   "No NASA page gives a table of centres or of boundaries for the nine regions of 2024.",
+   "Three centres (Peak near Cabeus B, Mons Mouton Plateau, Slater Plain) come from the NASA map. LROC mosaics agree for the first two. For Slater Plain, the map is the only source.",
+   "No NASA text says in words that 'Leibnitz Beta Plateau' is now 'Mons Mouton'. Two official products show the same box with the two names.",
+   "The region boxes (USGS, PGDA, NASA map) are 16 km to 30 km wide. NASA said in 2022 that each region is approximately 15 km by 15 km. Thus a box can be larger than the region that NASA uses.",
+   "We did not read the journal paper on the nine regions (JGR Planets, DOI 10.1029/2025JE009434). The publisher refused our request (HTTP 403).",
+   "The first pass and the second pass of 15 November 2026 downloaded the nine terrain models of the new regions into data/raw. The pipeline read them for the slopes, the Sun ceiling and the sunlight share."
+  ],
+  "corrections_to_research_notes": [
+   "The NASA 2022 list names 'de Gerlache Rim 1'. The notes and the USGS files say 'de Gerlache Rim'.",
+   "The 2022 region 'Leibnitz Beta Plateau' is the 2024 region 'Mons Mouton', not 'Mons Mouton Plateau' (target_sites.md, Inferences).",
+   "Slater Plain is at approximately 87.16 S, 125.57 E on the NASA map. The value 88.1 S, 127.8 E in the notes comes from a student code project, approximately 29 km away.",
+   "Peak near Cabeus B is at approximately 83.64 S, 291.22 E (68.78 W). The notes estimated approximately 83.4 S from a distance in a magazine.",
+   "The IAU gazetteer gives the centre of the crater Haworth at 87.45 S, 5.17 W, not 86.9 S, 4 W. The Haworth region is not at the crater centre.",
+   "The IAU gazetteer gives 13 May 2022 as the approval date of the name Mons Mouton. NASA announced the name on 15 February 2023 (SVS 5074)."
+  ],
+  "pgda_models_not_used": {
+   "note": "PGDA product 78 also has these models. None of them is a candidate region on the two lists.",
+   "models": [
+    "Site04: Shackleton rim",
+    "Shoemaker",
+    "NPA: Cabeus exterior wall 1",
+    "NPB: Amundsen 1",
+    "NPC: Idel'son L crater 1",
+    "NPD: Malapert crater 1",
+    "LM1: Shackleton Rim B",
+    "LM2 to LM6 and LM8: Shoemaker Rim A to F"
+   ],
+   "site20": "Site20 is the 2022 box of Leibnitz Beta Plateau. The page uses Site20v2, which has the same centre and a larger extent."
+  },
+  "for_the_pipeline": [
+   "twinfinder/sun.py ELEV_EDGES_DEG has a bin edge at each of the 16 Sun ceilings (21 bins). A new region needs an edge at its own ceiling, or its limit must fall within LIMIT_SLACK_DEG (0.005 degrees) of an edge.",
+   "The stored horizons (data/derived/horizon_cells.json) give the open share at the nine old bins only. Thus the hours after hills are a lower bound for each region with a bin that starts at a new edge. data/derived/grazing_cells.json meta.horizon_bins.hills_exact gives this for each region.",
+   "The models Site20v2 (Mons Mouton) and Site06 (Nobile Rim 1) overlap by approximately 12 km by 15 km.",
+   "The Haworth model is the largest file (approximately 142 MB). The other new models are approximately 41 MB to 64 MB each.",
+   "Three regions of 2024 have no NASA 5 m terrain model: Peak near Cabeus B, Mons Mouton Plateau and Slater Plain. For these three regions, the slope likeness needs another terrain source. We did not check one."
+  ],
+  "counts": {
+   "regions": 16,
+   "on_2024_list": 9,
+   "on_2022_list": 13,
+   "with_terrain_model": 13,
+   "on_page_now": 16
+  },
+  "map_fit": {
+   "pixels_per_km": 3.578,
+   "turn_deg": 0.023,
+   "largest_error_km_at_six_regions_with_models": 0.11,
+   "rms_error_km": 0.071,
+   "pole_star_offset_km": 0.33
+  }
+ },
+ "regions": [
+  {
+   "id": "peak-near-cabeus-b",
+   "official_name": "Peak near Cabeus B",
+   "other_names": [
+    {
+     "name": "Peak Near Cabeus B",
+     "where": "LROC mosaic titles",
+     "how_sure": "Same name. Only the letter case or a hyphen is different."
+    }
+   ],
+   "lists": {
+    "nasa_2024_list_of_9": true,
+    "name_on_2024_list": "Peak near Cabeus B",
+    "nasa_2022_list_of_13": false,
+    "name_on_2022_list": null
+   },
+   "new_on_2024_list": true,
+   "on_page_now": true,
+   "centre_lat": -83.63814374165243,
+   "centre_lon": 291.218861104298,
+   "centre_lon_pm180": -68.78113889570199,
+   "coordinate_source": {
+    "kind": "NASA map of the nine regions (28 October 2024), box centre",
+    "url": "https://www.nasa.gov/wp-content/uploads/2024/10/artemis-iii-landing-region-candidates.jpg",
+    "detail": "We fitted the pixel grid of the NASA map to lunar coordinates with the boxes of six regions that have a terrain model. The fit gives 3.58 pixels per km and a turn of 0.02 degrees. The six box centres agree with the model centres to 0.11 km or less. The green star of the map falls 0.3 km from the pole. We then read the centre of this box. One pixel is approximately 0.3 km."
+   },
+   "how_sure": "estimated from a map",
+   "how_sure_note": "NASA gives no table of centres. Two official sources agree: the NASA map and the LROC mosaic of the region. Their centres are less than 1 km apart.",
+   "terrain_model": null,
+   "terrain_model_note": "PGDA product 78 has no model of this region. The PGDA model NPA ('Cabeus exterior wall 1') is approximately 100 km from this region, at 86.92 S, 288.43 E. It is a different place.",
+   "sun_ceiling_deg": 7.901856258347572,
+   "sun_ceiling_rounded_deg": 7.9,
+   "sun_ceiling_range_deg": [
+    7.480988397900327,
+    8.328267086049657
+   ],
+   "sun_ceiling_basis": "Centre latitude from the NASA map, because no NASA 5 m terrain model exists for this region. The range uses the north and south edges of the box on the map.",
+   "cross_checks": [
+    {
+     "source": "NASA map of the nine regions, 28 October 2024",
+     "url": "https://www.nasa.gov/wp-content/uploads/2024/10/artemis-iii-landing-region-candidates.jpg",
+     "box_label": "Peak near Cabeus B",
+     "box_size_km": [
+      19.8,
+      20.1
+     ],
+     "box_centre_px": [
+      102.5,
+      511.0
+     ],
+     "km_from_our_centre": 0.0,
+     "box_centre_lat": -83.63814374165243,
+     "box_centre_lon": 291.218861104298
+    },
+    {
+     "source": "LROC low-Sun controlled NAC mosaic of the candidate region",
+     "product": "NAC_ROI_CABEUSPKLO1",
+     "url": "https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_ROI_CABEUSPKLO1",
+     "title": "Peak Near Cabeus B",
+     "centre_lat": -83.6,
+     "centre_lon": 291.2,
+     "lat_range": [
+      -84.06,
+      -83.21
+     ],
+     "lon_range_pm180": [
+      -72.47,
+      -64.8
+     ],
+     "km_from_our_centre": 1.162
+    },
+    {
+     "source": "IAU Gazetteer of Planetary Nomenclature",
+     "feature": "Cabeus B",
+     "kind": "crater",
+     "url": "https://planetarynames.wr.usgs.gov/Feature/8058",
+     "centre_lat": -82.26,
+     "centre_lon_pm180": -54.58,
+     "diameter_km": 59.62,
+     "km_from_our_centre": 67.336,
+     "note": "This is the centre of the named feature, not of the landing region."
+    }
+   ]
+  },
+  {
+   "id": "haworth",
+   "official_name": "Haworth",
+   "other_names": [],
+   "lists": {
+    "nasa_2024_list_of_9": true,
+    "name_on_2024_list": "Haworth",
+    "nasa_2022_list_of_13": true,
+    "name_on_2022_list": "Haworth"
+   },
+   "on_page_now": true,
+   "centre_lat": -86.76394197293897,
+   "centre_lon": 337.22297617627623,
+   "centre_lon_pm180": -22.777023823723766,
+   "coordinate_source": {
+    "kind": "NASA 5 m terrain model (PGDA product 78): centre of the model grid",
+    "url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Haworth/Haworth_final_adj_5mpp_surf.tif",
+    "detail": "We read only the header of the GeoTIFF (bounds in south polar stereographic metres). We calculated the centre with twinfinder/moon.py polar_xy_to_latlon."
+   },
+   "how_sure": "from the terrain model",
+   "how_sure_note": "Three official sources agree: the PGDA model, the USGS box of 2024 for the 2022 region and the box on the NASA 2024 map. The region is on the west side of the crater Haworth, not at the crater centre.",
+   "terrain_model": {
+    "pgda_site": "Haworth",
+    "pgda_name": "Haworth",
+    "surf_tif_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Haworth/Haworth_final_adj_5mpp_surf.tif",
+    "size_bytes": 142123767,
+    "size_mb": 142.1,
+    "last_modified": "Wed, 25 Nov 2020 00:39:20 GMT",
+    "head_request": "HTTP 200, 15 Nov 2026",
+    "extent_km": [
+     29.8,
+     29.8
+    ],
+    "bounds_polar_stereographic_m": [
+     -52900.0,
+     75600.0,
+     -23100.0,
+     105400.0
+    ],
+    "lat_most_poleward": -87.3935336080866,
+    "lat_least_poleward": -86.1123981515725,
+    "how_matched": "The USGS 2022 box for 'Haworth' has the same corners as this model. The NASA 2024 map box agrees with the model centre to less than 0.1 km."
+   },
+   "sun_ceiling_deg": 4.776058027061034,
+   "sun_ceiling_rounded_deg": 4.78,
+   "sun_ceiling_range_deg": [
+    4.146466391913401,
+    5.427601848427494
+   ],
+   "sun_ceiling_basis": "Centre latitude of the terrain model; the range uses the most poleward and the least poleward latitudes of the model grid, as in twinfinder/moon.py.",
+   "usgs_2022_box": {
+    "file": "Haworth.zip",
+    "upper_left_lon_lat": [
+     -26.65196166,
+     -86.11239815
+    ],
+    "lower_right_lon_lat": [
+     -16.99082329,
+     -87.39353361
+    ],
+    "same_box_as_model": true,
+    "largest_corner_difference_m": 0.0,
+    "source": "USGS grid release of 2 November 2024 for the 13 regions of 2022",
+    "url": "https://www.sciencebase.gov/catalog/file/get/67168797d34ebf903f48b6fc?name=LGRS_A3CLR_Grid_Generation.sh"
+   },
+   "cross_checks": [
+    {
+     "source": "NASA map of the nine regions, 28 October 2024",
+     "url": "https://www.nasa.gov/wp-content/uploads/2024/10/artemis-iii-landing-region-candidates.jpg",
+     "box_label": "Haworth",
+     "box_size_km": [
+      29.9,
+      29.9
+     ],
+     "box_centre_px": [
+      610.5,
+      437.5
+     ],
+     "km_from_our_centre": 0.063,
+     "box_centre_lat": -86.76346298883882,
+     "box_centre_lon": 337.18720818816126
+    },
+    {
+     "source": "LROC low-Sun controlled NAC mosaic of the candidate region",
+     "product": "NAC_ROI_HAWORTH_LO1",
+     "url": "https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_ROI_HAWORTH_LO1",
+     "title": "Haworth",
+     "centre_lat": -86.7,
+     "centre_lon": 336.3,
+     "lat_range": [
+      -87.39,
+      -86.11
+     ],
+     "lon_range_pm180": [
+      -34.98,
+      -12.36
+     ],
+     "km_from_our_centre": 2.513
+    },
+    {
+     "source": "IAU Gazetteer of Planetary Nomenclature",
+     "feature": "Haworth",
+     "kind": "crater",
+     "url": "https://planetarynames.wr.usgs.gov/Feature/14502",
+     "centre_lat": -87.45,
+     "centre_lon_pm180": -5.17,
+     "diameter_km": 51.42,
+     "km_from_our_centre": 33.831,
+     "note": "This is the centre of the named feature, not of the landing region."
+    }
+   ]
+  },
+  {
+   "id": "malapert",
+   "official_name": "Malapert Massif",
+   "other_names": [
+    {
+     "name": "Malapert massif",
+     "where": "PGDA model Site23",
+     "how_sure": "Same name. Only the letter case or a hyphen is different."
+    },
+    {
+     "name": "Mons Malapert",
+     "where": "IAU name of the mountain (approved 26 August 2024)",
+     "how_sure": "The mountain has this IAU name. NASA lists keep the name 'Malapert Massif' for the region."
+    }
+   ],
+   "lists": {
+    "nasa_2024_list_of_9": true,
+    "name_on_2024_list": "Malapert Massif",
+    "nasa_2022_list_of_13": true,
+    "name_on_2022_list": "Malapert Massif"
+   },
+   "on_page_now": true,
+   "centre_lat": -85.99478468356075,
+   "centre_lon": 359.7642162301234,
+   "centre_lon_pm180": -0.2357837698766616,
+   "coordinate_source": {
+    "kind": "NASA 5 m terrain model (PGDA product 78): centre of the model grid",
+    "url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site23/Site23_final_adj_5mpp_surf.tif",
+    "detail": "We keep the value from data/derived/moon_targets.json. The pipeline read the whole model for it."
+   },
+   "how_sure": "from the terrain model",
+   "how_sure_note": "The PGDA model, the USGS box and the NASA 2024 map box agree.",
+   "terrain_model": {
+    "pgda_site": "Site23",
+    "pgda_name": "Malapert massif",
+    "surf_tif_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site23/Site23_final_adj_5mpp_surf.tif",
+    "size_bytes": 70586804,
+    "size_mb": 70.6,
+    "last_modified": "Fri, 12 Jun 2020 11:39:15 GMT",
+    "head_request": "HTTP 200, 15 Nov 2026",
+    "extent_km": [
+     21.0,
+     21.0
+    ],
+    "bounds_polar_stereographic_m": [
+     -11000.0,
+     111000.0,
+     10000.0,
+     132000.0
+    ],
+    "lat_most_poleward": -86.34066188796805,
+    "lat_least_poleward": -85.63394424971796,
+    "how_matched": "The USGS 2022 box for 'Malapert_Massif' has the same corners as this model. The NASA 2024 map box agrees with the model centre to less than 0.1 km."
+   },
+   "sun_ceiling_deg": 5.545215316439248,
+   "sun_ceiling_rounded_deg": 5.55,
+   "sun_ceiling_range_deg": [
+    5.199338112031946,
+    5.906055750282044
+   ],
+   "sun_ceiling_basis": "Centre latitude of the terrain model; the range uses the most poleward and the least poleward latitudes of the model grid, as in twinfinder/moon.py.",
+   "usgs_2022_box": {
+    "file": "Malapert_Massif.zip",
+    "upper_left_lon_lat": [
+     -4.76364169,
+     -85.63394425
+    ],
+    "lower_right_lon_lat": [
+     5.14788482,
+     -86.32588928
+    ],
+    "same_box_as_model": true,
+    "largest_corner_difference_m": 0.0,
+    "source": "USGS grid release of 2 November 2024 for the 13 regions of 2022",
+    "url": "https://www.sciencebase.gov/catalog/file/get/67168797d34ebf903f48b6fc?name=LGRS_A3CLR_Grid_Generation.sh"
+   },
+   "cross_checks": [
+    {
+     "source": "NASA map of the nine regions, 28 October 2024",
+     "url": "https://www.nasa.gov/wp-content/uploads/2024/10/artemis-iii-landing-region-candidates.jpg",
+     "box_label": "Malapert Massif",
+     "box_size_km": [
+      21.0,
+      20.8
+     ],
+     "box_centre_px": [
+      745.0,
+      326.2
+     ],
+     "km_from_our_centre": 0.095,
+     "box_centre_lat": -85.99167661860722,
+     "box_centre_lon": 359.7704220559209
+    },
+    {
+     "source": "LROC low-Sun controlled NAC mosaic of the candidate region",
+     "product": "NAC_ROI_MALAPERTLO1",
+     "url": "https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_ROI_MALAPERTLO1",
+     "title": "Malapert Massif",
+     "centre_lat": -86.0,
+     "centre_lon": 0.3,
+     "lat_range": [
+      -86.33,
+      -85.63
+     ],
+     "lon_range_pm180": [
+      -5.66,
+      5.15
+     ],
+     "km_from_our_centre": 1.146
+    },
+    {
+     "source": "IAU Gazetteer of Planetary Nomenclature",
+     "feature": "Mons Malapert",
+     "kind": "mountain, approved 26 Aug 2024",
+     "url": "https://planetarynames.wr.usgs.gov/Feature/16338",
+     "centre_lat": -85.98,
+     "centre_lon_pm180": -1.67,
+     "diameter_km": 67.0,
+     "km_from_our_centre": 3.08,
+     "note": "This is the centre of the named feature, not of the landing region."
+    }
+   ]
+  },
+  {
+   "id": "mons-mouton-plateau",
+   "official_name": "Mons Mouton Plateau",
+   "other_names": [],
+   "lists": {
+    "nasa_2024_list_of_9": true,
+    "name_on_2024_list": "Mons Mouton Plateau",
+    "nasa_2022_list_of_13": false,
+    "name_on_2022_list": null
+   },
+   "new_on_2024_list": true,
+   "on_page_now": true,
+   "centre_lat": -84.3342533577128,
+   "centre_lon": 30.57490001717105,
+   "centre_lon_pm180": 30.574900017171046,
+   "coordinate_source": {
+    "kind": "NASA map of the nine regions (28 October 2024), box centre",
+    "url": "https://www.nasa.gov/wp-content/uploads/2024/10/artemis-iii-landing-region-candidates.jpg",
+    "detail": "We fitted the pixel grid of the NASA map to lunar coordinates with the boxes of six regions that have a terrain model. The fit gives 3.58 pixels per km and a turn of 0.02 degrees. The six box centres agree with the model centres to 0.11 km or less. The green star of the map falls 0.3 km from the pole. We then read the centre of this box. One pixel is approximately 0.3 km."
+   },
+   "how_sure": "estimated from a map",
+   "how_sure_note": "NASA gives no table of centres. The NASA map and the LROC mosaic of the region agree to less than 1 km. This region is a large box of approximately 77 km by 58 km. Thus the Sun ceiling changes by approximately 2.9 degrees from the south edge to the north edge.",
+   "terrain_model": null,
+   "terrain_model_note": "PGDA product 78 has no model of this region. The PGDA model Site20v2 (Mons Mouton) covers a part of its south edge only.",
+   "sun_ceiling_deg": 7.205746642287203,
+   "sun_ceiling_rounded_deg": 7.21,
+   "sun_ceiling_range_deg": [
+    5.782708741650461,
+    8.695935820704328
+   ],
+   "sun_ceiling_basis": "Centre latitude from the NASA map, because no NASA 5 m terrain model exists for this region. The range uses the north and south edges of the box on the map.",
+   "cross_checks": [
+    {
+     "source": "NASA map of the nine regions, 28 October 2024",
+     "url": "https://www.nasa.gov/wp-content/uploads/2024/10/artemis-iii-landing-region-candidates.jpg",
+     "box_label": "Mons Mouton Plateau",
+     "box_size_km": [
+      77.0,
+      58.0
+     ],
+     "box_centre_px": [
+      1059.8,
+      231.8
+     ],
+     "km_from_our_centre": 0.0,
+     "box_centre_lat": -84.3342533577128,
+     "box_centre_lon": 30.57490001717105
+    },
+    {
+     "source": "LROC low-Sun controlled NAC mosaic of the candidate region",
+     "product": "NAC_ROI_MOUTNPLTLO1",
+     "url": "https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_ROI_MOUTNPLTLO1",
+     "title": "Mons Mouton Plateau",
+     "centre_lat": -84.3,
+     "centre_lon": 30.6,
+     "lat_range": [
+      -85.76,
+      -82.85
+     ],
+     "lon_range_pm180": [
+      15.49,
+      46.61
+     ],
+     "km_from_our_centre": 1.044
+    },
+    {
+     "source": "IAU Gazetteer of Planetary Nomenclature",
+     "feature": "Mons Mouton",
+     "kind": "mountain",
+     "url": "https://planetarynames.wr.usgs.gov/Feature/16070",
+     "centre_lat": -84.6,
+     "centre_lon_pm180": 31.0,
+     "diameter_km": 130.0,
+     "km_from_our_centre": 8.173,
+     "note": "This is the centre of the named feature, not of the landing region."
+    },
+    {
+     "source": "NASA technical report NTRS 20260002598",
+     "url": "https://ntrs.nasa.gov/citations/20260002598",
+     "note": "The report calls Mons Mouton Plateau the northmost range of potential Artemis landing sites and uses 82.5 S. This agrees with the north edge of the box on the map, approximately 82.8 S."
+    }
+   ]
+  },
+  {
+   "id": "mons-mouton",
+   "official_name": "Mons Mouton",
+   "other_names": [
+    {
+     "name": "Leibnitz Beta Plateau",
+     "where": "NASA 2022 list of 13; USGS grid release (file Leibnitz_Beta_Plateau.zip)",
+     "how_sure": "High. The NASA 2024 map draws the 'Mons Mouton' box at the place of the 2022 'Leibnitz Beta Plateau' box (USGS). The centres agree to 0.02 km. Both boxes are 16 km wide. LROC titles its mosaic 'Nobile Rim 1 and Mons Mouton (Leibnitz Beta Plateau)'. No NASA text says 'renamed' in words."
+    },
+    {
+     "name": "Leibnitz beta plateau",
+     "where": "PGDA models Site20 and Site20v2",
+     "how_sure": "Same name. Only the letter case or a hyphen is different."
+    },
+    {
+     "name": "Leibnitz Beta",
+     "where": "informal name of the mountain before the IAU named it Mons Mouton (NASA SVS 5074)",
+     "how_sure": "NASA page"
+    }
+   ],
+   "lists": {
+    "nasa_2024_list_of_9": true,
+    "name_on_2024_list": "Mons Mouton",
+    "nasa_2022_list_of_13": true,
+    "name_on_2022_list": "Leibnitz Beta Plateau",
+    "name_change_note": "The 2022 region 'Leibnitz Beta Plateau' has the name 'Mons Mouton' on the 2024 list. 'Mons Mouton Plateau' is a different, new region to the north.",
+    "name_change_how_sure": "high: same box on the 2022 USGS release and the 2024 NASA map; LROC title agrees; NTRS 20250002110 says the nine are six of the 13 plus three new regions"
+   },
+   "on_page_now": true,
+   "centre_lat": -85.42657728044321,
+   "centre_lon": 31.7427611534189,
+   "centre_lon_pm180": 31.74276115341891,
+   "coordinate_source": {
+    "kind": "NASA 5 m terrain model (PGDA product 78): centre of the model grid",
+    "url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site20v2/Site20v2_final_adj_5mpp_surf.tif",
+    "detail": "We keep the value from data/derived/moon_targets.json. The pipeline read the whole model for it."
+   },
+   "how_sure": "from the terrain model",
+   "how_sure_note": "The centres of Site20 and Site20v2 are the same point. The USGS 2022 box and the NASA 2024 map box agree with Site20 to less than 0.1 km.",
+   "terrain_model": {
+    "pgda_site": "Site20v2",
+    "pgda_name": "Leibnitz beta plateau, extended boundaries",
+    "surf_tif_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site20v2/Site20v2_final_adj_5mpp_surf.tif",
+    "size_bytes": 108192905,
+    "size_mb": 108.2,
+    "last_modified": "Wed, 03 Aug 2022 06:31:55 GMT",
+    "head_request": "HTTP 200, 15 Nov 2026",
+    "extent_km": [
+     26.0,
+     26.0
+    ],
+    "bounds_polar_stereographic_m": [
+     60000.0,
+     105000.0,
+     86000.0,
+     131000.0
+    ],
+    "lat_most_poleward": -86.01346577263308,
+    "lat_least_poleward": -84.83564246060925,
+    "how_matched": "The USGS 2022 box for 'Leibnitz_Beta_Plateau' has the same corners as model Site20 (16 km). Site20v2 has the same centre and a larger extent (26 km). The page uses Site20v2."
+   },
+   "alternative_terrain_model": {
+    "pgda_site": "Site20",
+    "pgda_name": "Leibnitz beta plateau",
+    "surf_tif_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site20/Site20_final_adj_5mpp_surf.tif",
+    "size_bytes": 40980802,
+    "size_mb": 41.0,
+    "last_modified": "Fri, 12 Jun 2020 11:38:58 GMT",
+    "head_request": "HTTP 200, 15 Nov 2026",
+    "extent_km": [
+     16.0,
+     16.0
+    ],
+    "bounds_polar_stereographic_m": [
+     65000.0,
+     110000.0,
+     81000.0,
+     126000.0
+    ],
+    "lat_most_poleward": -85.7883352379665,
+    "lat_least_poleward": -85.06330364350973,
+    "how_matched": "Same box as the USGS 2022 box and the NASA 2024 map box."
+   },
+   "sun_ceiling_deg": 6.113422719556788,
+   "sun_ceiling_rounded_deg": 6.11,
+   "sun_ceiling_range_deg": [
+    5.526534227366917,
+    6.70435753939075
+   ],
+   "sun_ceiling_basis": "Centre latitude of the terrain model; the range uses the most poleward and the least poleward latitudes of the model grid, as in twinfinder/moon.py.",
+   "usgs_2022_box": {
+    "file": "Leibnitz_Beta_Plateau.zip",
+    "upper_left_lon_lat": [
+     27.28798795,
+     -85.3270534
+    ],
+    "lower_right_lon_lat": [
+     36.36658017,
+     -85.49736561
+    ],
+    "same_box_as_model": true,
+    "largest_corner_difference_m": 0.0,
+    "compared_model": "Site20",
+    "source": "USGS grid release of 2 November 2024 for the 13 regions of 2022",
+    "url": "https://www.sciencebase.gov/catalog/file/get/67168797d34ebf903f48b6fc?name=LGRS_A3CLR_Grid_Generation.sh"
+   },
+   "cross_checks": [
+    {
+     "source": "NASA map of the nine regions, 28 October 2024",
+     "url": "https://www.nasa.gov/wp-content/uploads/2024/10/artemis-iii-landing-region-candidates.jpg",
+     "box_label": "Mons Mouton",
+     "box_size_km": [
+      15.9,
+      16.1
+     ],
+     "box_centre_px": [
+      1008.0,
+      339.2
+     ],
+     "km_from_our_centre": 0.015,
+     "box_centre_lat": -85.42663201840705,
+     "box_centre_lon": 31.749001588668882
+    },
+    {
+     "source": "LROC low-Sun controlled NAC mosaic of the candidate region",
+     "product": "NAC_ROI_MTMOUTONLO1",
+     "url": "https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_ROI_MTMOUTONLO1",
+     "title": "Nobile Rim 1 and Mons Mouton (Leibnitz Beta Plateau)",
+     "centre_lat": -85.4,
+     "centre_lon": 35.3,
+     "lat_range": [
+      -86.07,
+      -84.82
+     ],
+     "lon_range_pm180": [
+      27.29,
+      43.23
+     ],
+     "km_from_our_centre": 8.676
+    },
+    {
+     "source": "IAU Gazetteer of Planetary Nomenclature",
+     "feature": "Mons Mouton",
+     "kind": "mountain",
+     "url": "https://planetarynames.wr.usgs.gov/Feature/16070",
+     "centre_lat": -84.6,
+     "centre_lon_pm180": 31.0,
+     "diameter_km": 130.0,
+     "km_from_our_centre": 25.188,
+     "note": "This is the centre of the named feature, not of the landing region."
+    }
+   ],
+   "overlap_note": "The models Site20v2 (Mons Mouton) and Site06 (Nobile Rim 1) overlap by approximately 12 km by 15 km."
+  },
+  {
+   "id": "nobile-rim-1",
+   "official_name": "Nobile Rim 1",
+   "other_names": [
+    {
+     "name": "Nobile rim 1",
+     "where": "PGDA model Site06",
+     "how_sure": "Same name. Only the letter case or a hyphen is different."
+    }
+   ],
+   "lists": {
+    "nasa_2024_list_of_9": true,
+    "name_on_2024_list": "Nobile Rim 1",
+    "nasa_2022_list_of_13": true,
+    "name_on_2022_list": "Nobile Rim 1"
+   },
+   "on_page_now": true,
+   "centre_lat": -85.43810048274601,
+   "centre_lon": 37.3666694127687,
+   "centre_lon_pm180": 37.366669412768715,
+   "coordinate_source": {
+    "kind": "NASA 5 m terrain model (PGDA product 78): centre of the model grid",
+    "url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site06/Site06_final_adj_5mpp_surf.tif",
+    "detail": "We read only the header of the GeoTIFF (bounds in south polar stereographic metres). We calculated the centre with twinfinder/moon.py polar_xy_to_latlon."
+   },
+   "how_sure": "from the terrain model",
+   "how_sure_note": "The PGDA model, the USGS box and the NASA 2024 map box agree.",
+   "terrain_model": {
+    "pgda_site": "Site06",
+    "pgda_name": "Nobile rim 1",
+    "surf_tif_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site06/Site06_final_adj_5mpp_surf.tif",
+    "size_bytes": 64025603,
+    "size_mb": 64.0,
+    "last_modified": "Fri, 12 Feb 2021 13:33:34 GMT",
+    "head_request": "HTTP 200, 15 Nov 2026",
+    "extent_km": [
+     20.0,
+     20.0
+    ],
+    "bounds_polar_stereographic_m": [
+     74000.0,
+     100000.0,
+     94000.0,
+     120000.0
+    ],
+    "lat_most_poleward": -85.89921756871607,
+    "lat_least_poleward": -84.97628328631198,
+    "how_matched": "The USGS 2022 box for 'Nobile_Rim_1' has the same corners as this model. The NASA 2024 map box agrees with the model centre to approximately 0.1 km."
+   },
+   "sun_ceiling_deg": 6.101899517253991,
+   "sun_ceiling_rounded_deg": 6.1,
+   "sun_ceiling_range_deg": [
+    5.640782431283932,
+    6.5637167136880175
+   ],
+   "sun_ceiling_basis": "Centre latitude of the terrain model; the range uses the most poleward and the least poleward latitudes of the model grid, as in twinfinder/moon.py.",
+   "usgs_2022_box": {
+    "file": "Nobile_Rim_1.zip",
+    "upper_left_lon_lat": [
+     31.6607511,
+     -85.35325142
+    ],
+    "lower_right_lon_lat": [
+     43.22853026,
+     -85.47632419
+    ],
+    "same_box_as_model": true,
+    "largest_corner_difference_m": 0.0,
+    "source": "USGS grid release of 2 November 2024 for the 13 regions of 2022",
+    "url": "https://www.sciencebase.gov/catalog/file/get/67168797d34ebf903f48b6fc?name=LGRS_A3CLR_Grid_Generation.sh"
+   },
+   "cross_checks": [
+    {
+     "source": "NASA map of the nine regions, 28 October 2024",
+     "url": "https://www.nasa.gov/wp-content/uploads/2024/10/artemis-iii-landing-region-candidates.jpg",
+     "box_label": "Nobile Rim 1",
+     "box_size_km": [
+      20.0,
+      19.4
+     ],
+     "box_centre_px": [
+      1047.2,
+      368.2
+     ],
+     "km_from_our_centre": 0.11,
+     "box_centre_lat": -85.44128136418901,
+     "box_centre_lon": 37.388876792478776
+    },
+    {
+     "source": "LROC low-Sun controlled NAC mosaic of the candidate region",
+     "product": "NAC_ROI_MTMOUTONLO1",
+     "url": "https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_ROI_MTMOUTONLO1",
+     "title": "Nobile Rim 1 and Mons Mouton (Leibnitz Beta Plateau)",
+     "centre_lat": -85.4,
+     "centre_lon": 35.3,
+     "lat_range": [
+      -86.07,
+      -84.82
+     ],
+     "lon_range_pm180": [
+      27.29,
+      43.23
+     ],
+     "km_from_our_centre": 5.145
+    },
+    {
+     "source": "IAU Gazetteer of Planetary Nomenclature",
+     "feature": "Nobile",
+     "kind": "crater",
+     "url": "https://planetarynames.wr.usgs.gov/Feature/4321",
+     "centre_lat": -85.28,
+     "centre_lon_pm180": 53.27,
+     "diameter_km": 79.27,
+     "km_from_our_centre": 39.247,
+     "note": "This is the centre of the named feature, not of the landing region."
+    }
+   ],
+   "overlap_note": "The models Site06 (Nobile Rim 1) and Site20v2 (Mons Mouton) overlap by approximately 12 km by 15 km."
+  },
+  {
+   "id": "nobile-rim-2",
+   "official_name": "Nobile Rim 2",
+   "other_names": [
+    {
+     "name": "Nobile rim 2",
+     "where": "PGDA model DM2",
+     "how_sure": "Same name. Only the letter case or a hyphen is different."
+    }
+   ],
+   "lists": {
+    "nasa_2024_list_of_9": true,
+    "name_on_2024_list": "Nobile Rim 2",
+    "nasa_2022_list_of_13": true,
+    "name_on_2022_list": "Nobile Rim 2"
+   },
+   "on_page_now": true,
+   "centre_lat": -83.95401703076465,
+   "centre_lon": 58.822054635731696,
+   "centre_lon_pm180": 58.82205463573169,
+   "coordinate_source": {
+    "kind": "NASA 5 m terrain model (PGDA product 78): centre of the model grid",
+    "url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/DM2/DM2_final_adj_5mpp_surf.tif",
+    "detail": "We keep the value from data/derived/moon_targets.json. The pipeline read the whole model for it."
+   },
+   "how_sure": "from the terrain model",
+   "how_sure_note": "The PGDA model, the USGS box and the NASA 2024 map box agree.",
+   "terrain_model": {
+    "pgda_site": "DM2",
+    "pgda_name": "Nobile rim 2",
+    "surf_tif_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/DM2/DM2_final_adj_5mpp_surf.tif",
+    "size_bytes": 64025607,
+    "size_mb": 64.0,
+    "last_modified": "Mon, 08 Feb 2021 18:59:33 GMT",
+    "head_request": "HTTP 200, 15 Nov 2026",
+    "extent_km": [
+     20.0,
+     20.0
+    ],
+    "bounds_polar_stereographic_m": [
+     147000.0,
+     85000.0,
+     167000.0,
+     105000.0
+    ],
+    "lat_most_poleward": -84.40461579710971,
+    "lat_least_poleward": -83.50154911531334,
+    "how_matched": "The USGS 2022 box for 'Nobile_Rim_2' has the same corners as this model. The NASA 2024 map box agrees with the model centre to less than 0.1 km."
+   },
+   "sun_ceiling_deg": 7.585982969235354,
+   "sun_ceiling_rounded_deg": 7.59,
+   "sun_ceiling_range_deg": [
+    7.135384202890287,
+    8.038450884686661
+   ],
+   "sun_ceiling_basis": "Centre latitude of the terrain model; the range uses the most poleward and the least poleward latitudes of the model grid, as in twinfinder/moon.py.",
+   "usgs_2022_box": {
+    "file": "Nobile_Rim_2.zip",
+    "upper_left_lon_lat": [
+     54.46232221,
+     -84.04794193
+    ],
+    "lower_right_lon_lat": [
+     63.02472352,
+     -83.82634302
+    ],
+    "same_box_as_model": true,
+    "largest_corner_difference_m": 0.0,
+    "source": "USGS grid release of 2 November 2024 for the 13 regions of 2022",
+    "url": "https://www.sciencebase.gov/catalog/file/get/67168797d34ebf903f48b6fc?name=LGRS_A3CLR_Grid_Generation.sh"
+   },
+   "cross_checks": [
+    {
+     "source": "NASA map of the nine regions, 28 October 2024",
+     "url": "https://www.nasa.gov/wp-content/uploads/2024/10/artemis-iii-landing-region-candidates.jpg",
+     "box_label": "Nobile Rim 2",
+     "box_size_km": [
+      19.8,
+      20.1
+     ],
+     "box_centre_px": [
+      1308.5,
+      421.5
+     ],
+     "km_from_our_centre": 0.038,
+     "box_centre_lat": -83.9534020456864,
+     "box_centre_lon": 58.811548418918534
+    },
+    {
+     "source": "LROC low-Sun controlled NAC mosaic of the candidate region",
+     "product": "NAC_ROI_NOBILE02LO1",
+     "url": "https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_ROI_NOBILE02LO1",
+     "title": "Nobile Rim 2",
+     "centre_lat": -83.9,
+     "centre_lon": 58.7,
+     "lat_range": [
+      -84.4,
+      -83.5
+     ],
+     "lon_range_pm180": [
+      54.46,
+      63.02
+     ],
+     "km_from_our_centre": 1.689
+    },
+    {
+     "source": "IAU Gazetteer of Planetary Nomenclature",
+     "feature": "Nobile",
+     "kind": "crater",
+     "url": "https://planetarynames.wr.usgs.gov/Feature/4321",
+     "centre_lat": -85.28,
+     "centre_lon_pm180": 53.27,
+     "diameter_km": 79.27,
+     "km_from_our_centre": 43.249,
+     "note": "This is the centre of the named feature, not of the landing region."
+    }
+   ]
+  },
+  {
+   "id": "de-gerlache-rim-2",
+   "official_name": "de Gerlache Rim 2",
+   "other_names": [
+    {
+     "name": "de Gerlache rim",
+     "where": "PGDA name of model SL2",
+     "how_sure": "PGDA gives the same name 'de Gerlache rim' to SL2 and to Site11. SL2 is 'de Gerlache Rim 2' because the USGS box and the NASA 2024 map box agree with it."
+    }
+   ],
+   "lists": {
+    "nasa_2024_list_of_9": true,
+    "name_on_2024_list": "de Gerlache Rim 2",
+    "nasa_2022_list_of_13": true,
+    "name_on_2022_list": "de Gerlache Rim 2"
+   },
+   "on_page_now": true,
+   "centre_lat": -88.22997767029239,
+   "centre_lon": 295.37156175309593,
+   "centre_lon_pm180": -64.62843824690407,
+   "coordinate_source": {
+    "kind": "NASA 5 m terrain model (PGDA product 78): centre of the model grid",
+    "url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/SL2/SL2_final_adj_5mpp_surf.tif",
+    "detail": "We read only the header of the GeoTIFF (bounds in south polar stereographic metres). We calculated the centre with twinfinder/moon.py polar_xy_to_latlon."
+   },
+   "how_sure": "from the terrain model",
+   "how_sure_note": "The PGDA model SL2, the USGS box and the NASA 2024 map box agree. LROC has no mosaic with this name; its 'de Gerlache Rim' mosaic covers both de Gerlache rim regions.",
+   "terrain_model": {
+    "pgda_site": "SL2",
+    "pgda_name": "de Gerlache rim",
+    "surf_tif_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/SL2/SL2_final_adj_5mpp_surf.tif",
+    "size_bytes": 64025605,
+    "size_mb": 64.0,
+    "last_modified": "Sat, 03 Apr 2021 14:49:02 GMT",
+    "head_request": "HTTP 200, 15 Nov 2026",
+    "extent_km": [
+     20.0,
+     20.0
+    ],
+    "bounds_polar_stereographic_m": [
+     -58500.0,
+     13000.0,
+     -38500.0,
+     33000.0
+    ],
+    "lat_most_poleward": -88.65998569700082,
+    "lat_least_poleward": -87.78528838351849,
+    "how_matched": "The USGS 2022 box for 'de_Gerlache_Rim_2' has the same corners as model SL2. The NASA 2024 map box agrees with the model centre to less than 0.1 km."
+   },
+   "sun_ceiling_deg": 3.310022329707615,
+   "sun_ceiling_rounded_deg": 3.31,
+   "sun_ceiling_range_deg": [
+    2.8800143029991796,
+    3.754711616481509
+   ],
+   "sun_ceiling_basis": "Centre latitude of the terrain model; the range uses the most poleward and the least poleward latitudes of the model grid, as in twinfinder/moon.py.",
+   "usgs_2022_box": {
+    "file": "de_Gerlache_Rim_2.zip",
+    "upper_left_lon_lat": [
+     -60.5725436,
+     -87.78528838
+    ],
+    "lower_right_lon_lat": [
+     -71.34211153,
+     -88.6599857
+    ],
+    "same_box_as_model": true,
+    "largest_corner_difference_m": 0.0,
+    "source": "USGS grid release of 2 November 2024 for the 13 regions of 2022",
+    "url": "https://www.sciencebase.gov/catalog/file/get/67168797d34ebf903f48b6fc?name=LGRS_A3CLR_Grid_Generation.sh"
+   },
+   "cross_checks": [
+    {
+     "source": "NASA map of the nine regions, 28 October 2024",
+     "url": "https://www.nasa.gov/wp-content/uploads/2024/10/artemis-iii-landing-region-candidates.jpg",
+     "box_label": "de Gerlache Rim 2",
+     "box_size_km": [
+      20.0,
+      20.1
+     ],
+     "box_centre_px": [
+      573.2,
+      679.0
+     ],
+     "km_from_our_centre": 0.055,
+     "box_centre_lat": -88.23166525048407,
+     "box_centre_lon": 295.3929385675906
+    },
+    {
+     "source": "LROC low-Sun controlled NAC mosaic of the candidate region",
+     "product": "NAC_ROI_DEGERRIMLO1",
+     "url": "https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_ROI_DEGERRIMLO1",
+     "title": "de Gerlache Rim",
+     "centre_lat": -88.5,
+     "centre_lon": 293.3,
+     "lat_range": [
+      -89.02,
+      -87.79
+     ],
+     "lon_range_pm180": [
+      -83.18,
+      -41.31
+     ],
+     "km_from_our_centre": 8.382
+    },
+    {
+     "source": "IAU Gazetteer of Planetary Nomenclature",
+     "feature": "de Gerlache",
+     "kind": "crater",
+     "url": "https://planetarynames.wr.usgs.gov/Feature/1439",
+     "centre_lat": -88.48,
+     "centre_lon_pm180": -88.34,
+     "diameter_km": 32.71,
+     "km_from_our_centre": 21.8,
+     "note": "This is the centre of the named feature, not of the landing region."
+    }
+   ]
+  },
+  {
+   "id": "slater-plain",
+   "official_name": "Slater Plain",
+   "other_names": [],
+   "lists": {
+    "nasa_2024_list_of_9": true,
+    "name_on_2024_list": "Slater Plain",
+    "nasa_2022_list_of_13": false,
+    "name_on_2022_list": null
+   },
+   "new_on_2024_list": true,
+   "on_page_now": true,
+   "centre_lat": -87.15969892148003,
+   "centre_lon": 125.56581010610674,
+   "centre_lon_pm180": 125.56581010610671,
+   "coordinate_source": {
+    "kind": "NASA map of the nine regions (28 October 2024), box centre",
+    "url": "https://www.nasa.gov/wp-content/uploads/2024/10/artemis-iii-landing-region-candidates.jpg",
+    "detail": "We fitted the pixel grid of the NASA map to lunar coordinates with the boxes of six regions that have a terrain model. The fit gives 3.58 pixels per km and a turn of 0.02 degrees. The six box centres agree with the model centres to 0.11 km or less. The green star of the map falls 0.3 km from the pole. We then read the centre of this box. One pixel is approximately 0.3 km."
+   },
+   "how_sure": "estimated from a map",
+   "how_sure_note": "Only the NASA map gives a position. We did not find a table, a terrain model or an LROC mosaic of this region. The map fit is good to less than 0.2 km at six other regions, thus we expect the error to be less than 1 km. The region is not at the centre of the crater Slater.",
+   "terrain_model": null,
+   "terrain_model_note": "PGDA product 78 has no model of this region.",
+   "sun_ceiling_deg": 4.380301078519971,
+   "sun_ceiling_rounded_deg": 4.38,
+   "sun_ceiling_range_deg": [
+    3.922087786044508,
+    4.84051978165524
+   ],
+   "sun_ceiling_basis": "Centre latitude from the NASA map, because no NASA 5 m terrain model exists for this region. The range uses the north and south edges of the box on the map.",
+   "cross_checks": [
+    {
+     "source": "NASA map of the nine regions, 28 October 2024",
+     "url": "https://www.nasa.gov/wp-content/uploads/2024/10/artemis-iii-landing-region-candidates.jpg",
+     "box_label": "Slater Plain",
+     "box_size_km": [
+      20.0,
+      20.0
+     ],
+     "box_centre_px": [
+      997.2,
+      940.8
+     ],
+     "km_from_our_centre": 0.0,
+     "box_centre_lat": -87.15969892148003,
+     "box_centre_lon": 125.56581010610674
+    },
+    {
+     "source": "IAU Gazetteer of Planetary Nomenclature",
+     "feature": "Slater",
+     "kind": "crater",
+     "url": "https://planetarynames.wr.usgs.gov/Feature/15325",
+     "centre_lat": -88.08,
+     "centre_lon_pm180": 111.29,
+     "diameter_km": 25.12,
+     "km_from_our_centre": 33.004,
+     "note": "This is the centre of the named feature, not of the landing region."
+    },
+    {
+     "source": "LROC product search",
+     "url": "https://data.lroc.im-ldi.com/lroc/rdr_product_select",
+     "note": "A text search for 'Slater' gives one product only: a mosaic of a permanently shadowed region in the crater Slater (NAC_ROI_PSRSLATRLOA). It is not a mosaic of the landing region."
+    }
+   ],
+   "rejected_values": [
+    {
+     "value": "88.1 S, 127.8 E",
+     "where": "research notes (target_sites.md), from a student code project",
+     "why": "Not an official source. It is approximately 29 km from the box on the NASA map."
+    }
+   ]
+  },
+  {
+   "id": "amundsen-rim",
+   "official_name": "Amundsen Rim",
+   "other_names": [
+    {
+     "name": "Amundsen rim",
+     "where": "PGDA model DM1",
+     "how_sure": "Same name. Only the letter case or a hyphen is different."
+    }
+   ],
+   "lists": {
+    "nasa_2024_list_of_9": false,
+    "name_on_2024_list": null,
+    "nasa_2022_list_of_13": true,
+    "name_on_2022_list": "Amundsen Rim"
+   },
+   "on_page_now": true,
+   "centre_lat": -84.22873931238196,
+   "centre_lon": 69.44395478041653,
+   "centre_lon_pm180": 69.44395478041653,
+   "coordinate_source": {
+    "kind": "NASA 5 m terrain model (PGDA product 78): centre of the model grid",
+    "url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/DM1/DM1_final_adj_5mpp_surf.tif",
+    "detail": "We read only the header of the GeoTIFF (bounds in south polar stereographic metres). We calculated the centre with twinfinder/moon.py polar_xy_to_latlon."
+   },
+   "how_sure": "from the terrain model",
+   "how_sure_note": "The PGDA model and the USGS box agree. The region is not on the 2024 map.",
+   "terrain_model": {
+    "pgda_site": "DM1",
+    "pgda_name": "Amundsen rim",
+    "surf_tif_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/DM1/DM1_final_adj_5mpp_surf.tif",
+    "size_bytes": 64033681,
+    "size_mb": 64.0,
+    "last_modified": "Fri, 16 Apr 2021 12:36:52 GMT",
+    "head_request": "HTTP 200, 15 Nov 2026",
+    "extent_km": [
+     20.0,
+     20.0
+    ],
+    "bounds_polar_stereographic_m": [
+     154000.0,
+     51500.0,
+     174000.0,
+     71500.0
+    ],
+    "lat_most_poleward": -84.64884385203422,
+    "lat_least_poleward": -83.80232773676109,
+    "how_matched": "The USGS 2022 box for 'Amundsen_Rim' has the same corners as this model."
+   },
+   "sun_ceiling_deg": 7.311260687618039,
+   "sun_ceiling_rounded_deg": 7.31,
+   "sun_ceiling_range_deg": [
+    6.8911561479657815,
+    7.737672263238914
+   ],
+   "sun_ceiling_basis": "Centre latitude of the terrain model; the range uses the most poleward and the least poleward latitudes of the model grid, as in twinfinder/moon.py.",
+   "usgs_2022_box": {
+    "file": "Amundsen_Rim.zip",
+    "upper_left_lon_lat": [
+     65.09523119,
+     -84.40517285
+    ],
+    "lower_right_lon_lat": [
+     73.51245734,
+     -84.02121673
+    ],
+    "same_box_as_model": true,
+    "largest_corner_difference_m": 0.0,
+    "source": "USGS grid release of 2 November 2024 for the 13 regions of 2022",
+    "url": "https://www.sciencebase.gov/catalog/file/get/67168797d34ebf903f48b6fc?name=LGRS_A3CLR_Grid_Generation.sh"
+   },
+   "cross_checks": [
+    {
+     "source": "LROC low-Sun controlled NAC mosaic of the candidate region",
+     "product": "NAC_ROI_AMUNDRIMLO1",
+     "url": "https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_ROI_AMUNDRIMLO1",
+     "title": "Amundsen Rim",
+     "centre_lat": -84.2,
+     "centre_lon": 69.3,
+     "lat_range": [
+      -84.65,
+      -83.8
+     ],
+     "lon_range_pm180": [
+      65.1,
+      73.51
+     ],
+     "km_from_our_centre": 0.979
+    },
+    {
+     "source": "IAU Gazetteer of Planetary Nomenclature",
+     "feature": "Amundsen",
+     "kind": "crater",
+     "url": "https://planetarynames.wr.usgs.gov/Feature/247",
+     "centre_lat": -84.44,
+     "centre_lon_pm180": 83.07,
+     "diameter_km": 103.39,
+     "km_from_our_centre": 41.29,
+     "note": "This is the centre of the named feature, not of the landing region."
+    }
+   ]
+  },
+  {
+   "id": "faustini-rim-a",
+   "official_name": "Faustini Rim A",
+   "other_names": [],
+   "lists": {
+    "nasa_2024_list_of_9": false,
+    "name_on_2024_list": null,
+    "nasa_2022_list_of_13": true,
+    "name_on_2022_list": "Faustini Rim A"
+   },
+   "on_page_now": true,
+   "centre_lat": -87.88965389477899,
+   "centre_lon": 90.0,
+   "centre_lon_pm180": 90.0,
+   "coordinate_source": {
+    "kind": "NASA 5 m terrain model (PGDA product 78): centre of the model grid",
+    "url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/LM7/LM7_final_adj_5mpp_surf.tif",
+    "detail": "We read only the header of the GeoTIFF (bounds in south polar stereographic metres). We calculated the centre with twinfinder/moon.py polar_xy_to_latlon."
+   },
+   "how_sure": "from the terrain model",
+   "how_sure_note": "The PGDA model and the USGS box agree. The region is not on the 2024 map.",
+   "terrain_model": {
+    "pgda_site": "LM7",
+    "pgda_name": "Faustini Rim A",
+    "surf_tif_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/LM7/LM7_final_adj_5mpp_surf.tif",
+    "size_bytes": 64033675,
+    "size_mb": 64.0,
+    "last_modified": "Sat, 01 May 2021 09:40:36 GMT",
+    "head_request": "HTTP 200, 15 Nov 2026",
+    "extent_km": [
+     20.0,
+     20.0
+    ],
+    "bounds_polar_stereographic_m": [
+     54000.0,
+     -10000.0,
+     74000.0,
+     10000.0
+    ],
+    "lat_most_poleward": -88.21933748194559,
+    "lat_least_poleward": -87.53783384417781,
+    "how_matched": "The USGS 2022 box for 'Faustini_Rim_A' has the same corners as this model."
+   },
+   "sun_ceiling_deg": 3.650346105221012,
+   "sun_ceiling_rounded_deg": 3.65,
+   "sun_ceiling_range_deg": [
+    3.320662518054413,
+    4.002166155822189
+   ],
+   "sun_ceiling_basis": "Centre latitude of the terrain model; the range uses the most poleward and the least poleward latitudes of the model grid, as in twinfinder/moon.py.",
+   "usgs_2022_box": {
+    "file": "Faustini_Rim_A.zip",
+    "upper_left_lon_lat": [
+     79.50852299,
+     -88.18906723
+    ],
+    "lower_right_lon_lat": [
+     97.69605172,
+     -87.53783384
+    ],
+    "same_box_as_model": true,
+    "largest_corner_difference_m": 0.0,
+    "source": "USGS grid release of 2 November 2024 for the 13 regions of 2022",
+    "url": "https://www.sciencebase.gov/catalog/file/get/67168797d34ebf903f48b6fc?name=LGRS_A3CLR_Grid_Generation.sh"
+   },
+   "cross_checks": [
+    {
+     "source": "LROC low-Sun controlled NAC mosaic of the candidate region",
+     "product": "NAC_ROI_FAUSTINILO1",
+     "url": "https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_ROI_FAUSTINILO1",
+     "title": "Faustini Rim A",
+     "centre_lat": -87.8,
+     "centre_lon": 90.0,
+     "lat_range": [
+      -88.19,
+      -87.54
+     ],
+     "lon_range_pm180": [
+      79.51,
+      100.49
+     ],
+     "km_from_our_centre": 2.72
+    },
+    {
+     "source": "IAU Gazetteer of Planetary Nomenclature",
+     "feature": "Faustini",
+     "kind": "crater",
+     "url": "https://planetarynames.wr.usgs.gov/Feature/1919",
+     "centre_lat": -87.18,
+     "centre_lon_pm180": 84.31,
+     "diameter_km": 42.48,
+     "km_from_our_centre": 22.747,
+     "note": "This is the centre of the named feature, not of the landing region."
+    }
+   ]
+  },
+  {
+   "id": "connecting-ridge-extension",
+   "official_name": "Connecting Ridge Extension",
+   "other_names": [
+    {
+     "name": "Connecting ridge extension",
+     "where": "PGDA model SL3",
+     "how_sure": "Same name. Only the letter case or a hyphen is different."
+    }
+   ],
+   "lists": {
+    "nasa_2024_list_of_9": false,
+    "name_on_2024_list": null,
+    "nasa_2022_list_of_13": true,
+    "name_on_2022_list": "Connecting Ridge Extension"
+   },
+   "on_page_now": true,
+   "centre_lat": -89.03241562258243,
+   "centre_lon": 258.0007130694786,
+   "centre_lon_pm180": -101.99928693052141,
+   "coordinate_source": {
+    "kind": "NASA 5 m terrain model (PGDA product 78): centre of the model grid",
+    "url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/SL3/SL3_final_adj_5mpp_surf.tif",
+    "detail": "We read only the header of the GeoTIFF (bounds in south polar stereographic metres). We calculated the centre with twinfinder/moon.py polar_xy_to_latlon."
+   },
+   "how_sure": "from the terrain model",
+   "how_sure_note": "The PGDA model and the USGS box agree. LROC has no mosaic with this name.",
+   "terrain_model": {
+    "pgda_site": "SL3",
+    "pgda_name": "Connecting ridge extension",
+    "surf_tif_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/SL3/SL3_final_adj_5mpp_surf.tif",
+    "size_bytes": 64025611,
+    "size_mb": 64.0,
+    "last_modified": "Mon, 15 Mar 2021 12:16:53 GMT",
+    "head_request": "HTTP 200, 15 Nov 2026",
+    "extent_km": [
+     20.0,
+     20.0
+    ],
+    "bounds_polar_stereographic_m": [
+     -38700.0,
+     -16100.0,
+     -18700.0,
+     3900.0
+    ],
+    "lat_most_poleward": -89.37005102738365,
+    "lat_least_poleward": -88.61778604447024,
+    "how_matched": "The USGS 2022 box for 'Connecting_Ridge_Extension' has the same corners as this model."
+   },
+   "sun_ceiling_deg": 2.507584377417566,
+   "sun_ceiling_rounded_deg": 2.51,
+   "sun_ceiling_range_deg": [
+    2.1699489726163472,
+    2.922213955529764
+   ],
+   "sun_ceiling_basis": "Centre latitude of the terrain model; the range uses the most poleward and the least poleward latitudes of the model grid, as in twinfinder/moon.py.",
+   "usgs_2022_box": {
+    "file": "Connecting_Ridge_Extension.zip",
+    "upper_left_lon_lat": [
+     -84.24543467,
+     -88.71734521
+    ],
+    "lower_right_lon_lat": [
+     -130.72721923,
+     -89.18625468
+    ],
+    "same_box_as_model": true,
+    "largest_corner_difference_m": 0.0,
+    "source": "USGS grid release of 2 November 2024 for the 13 regions of 2022",
+    "url": "https://www.sciencebase.gov/catalog/file/get/67168797d34ebf903f48b6fc?name=LGRS_A3CLR_Grid_Generation.sh"
+   },
+   "cross_checks": [
+    {
+     "source": "IAU Gazetteer of Planetary Nomenclature",
+     "feature": "Shackleton",
+     "kind": "crater",
+     "url": "https://planetarynames.wr.usgs.gov/Feature/5450",
+     "centre_lat": -89.67,
+     "centre_lon_pm180": 129.78,
+     "diameter_km": 20.92,
+     "km_from_our_centre": 36.392,
+     "note": "This is the centre of the named feature, not of the landing region."
+    }
+   ]
+  },
+  {
+   "id": "connecting-ridge",
+   "official_name": "Connecting Ridge",
+   "other_names": [
+    {
+     "name": "Connecting ridge",
+     "where": "PGDA model Site01",
+     "how_sure": "Same name. Only the letter case or a hyphen is different."
+    },
+    {
+     "name": "Shackleton - de Gerlache Connecting Ridge",
+     "where": "title of an LROC terrain model (NAC_DTM_SHACKRDGE02)",
+     "how_sure": "This longer name is in use, but it is not the name on a NASA list."
+    }
+   ],
+   "lists": {
+    "nasa_2024_list_of_9": false,
+    "name_on_2024_list": null,
+    "nasa_2022_list_of_13": true,
+    "name_on_2022_list": "Connecting Ridge"
+   },
+   "on_page_now": true,
+   "centre_lat": -89.463162834037,
+   "centre_lon": 222.51044707800082,
+   "centre_lon_pm180": -137.48955292199918,
+   "coordinate_source": {
+    "kind": "NASA 5 m terrain model (PGDA product 78): centre of the model grid",
+    "url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site01/Site01_final_adj_5mpp_surf.tif",
+    "detail": "We keep the value from data/derived/moon_targets.json. The pipeline read the whole model for it."
+   },
+   "how_sure": "from the terrain model",
+   "how_sure_note": "The PGDA model and the USGS box agree. The region is not on the 2024 map.",
+   "terrain_model": {
+    "pgda_site": "Site01",
+    "pgda_name": "Connecting ridge",
+    "surf_tif_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site01/Site01_final_adj_5mpp_surf.tif",
+    "size_bytes": 40980810,
+    "size_mb": 41.0,
+    "last_modified": "Fri, 05 Jun 2020 18:39:35 GMT",
+    "head_request": "HTTP 200, 15 Nov 2026",
+    "extent_km": [
+     16.0,
+     16.0
+    ],
+    "bounds_polar_stereographic_m": [
+     -19000.0,
+     -20000.0,
+     -3000.0,
+     -4000.0
+    ],
+    "lat_most_poleward": -89.83511068271835,
+    "lat_least_poleward": -89.090283608922,
+    "how_matched": "The USGS 2022 box for 'Connecting_Ridge' has the same corners as this model."
+   },
+   "sun_ceiling_deg": 2.076837165962993,
+   "sun_ceiling_rounded_deg": 2.08,
+   "sun_ceiling_range_deg": [
+    1.7048893172816486,
+    2.449716391078007
+   ],
+   "sun_ceiling_basis": "Centre latitude of the terrain model; the range uses the most poleward and the least poleward latitudes of the model grid, as in twinfinder/moon.py.",
+   "usgs_2022_box": {
+    "file": "Connecting_Ridge.zip",
+    "upper_left_lon_lat": [
+     -101.88865804,
+     -89.35969194
+    ],
+    "lower_right_lon_lat": [
+     -171.46923439,
+     -89.33307106
+    ],
+    "same_box_as_model": true,
+    "largest_corner_difference_m": 0.0,
+    "source": "USGS grid release of 2 November 2024 for the 13 regions of 2022",
+    "url": "https://www.sciencebase.gov/catalog/file/get/67168797d34ebf903f48b6fc?name=LGRS_A3CLR_Grid_Generation.sh"
+   },
+   "cross_checks": [
+    {
+     "source": "IAU Gazetteer of Planetary Nomenclature",
+     "feature": "Shackleton",
+     "kind": "crater",
+     "url": "https://planetarynames.wr.usgs.gov/Feature/5450",
+     "centre_lat": -89.67,
+     "centre_lon_pm180": 129.78,
+     "diameter_km": 20.92,
+     "km_from_our_centre": 19.51,
+     "note": "This is the centre of the named feature, not of the landing region."
+    }
+   ]
+  },
+  {
+   "id": "peak-near-shackleton",
+   "official_name": "Peak Near Shackleton",
+   "other_names": [
+    {
+     "name": "Peak near Shackleton",
+     "where": "PGDA model Site07; LROC mosaic titles",
+     "how_sure": "Same name. Only the letter case or a hyphen is different."
+    }
+   ],
+   "lists": {
+    "nasa_2024_list_of_9": false,
+    "name_on_2024_list": null,
+    "nasa_2022_list_of_13": true,
+    "name_on_2022_list": "Peak Near Shackleton"
+   },
+   "on_page_now": true,
+   "centre_lat": -88.81100807350447,
+   "centre_lon": 123.69006752597979,
+   "centre_lon_pm180": 123.69006752597977,
+   "coordinate_source": {
+    "kind": "NASA 5 m terrain model (PGDA product 78): centre of the model grid",
+    "url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site07/Site07_final_adj_5mpp_surf.tif",
+    "detail": "We read only the header of the GeoTIFF (bounds in south polar stereographic metres). We calculated the centre with twinfinder/moon.py polar_xy_to_latlon."
+   },
+   "how_sure": "from the terrain model",
+   "how_sure_note": "The PGDA model and the USGS box agree. The region is not on the 2024 map.",
+   "terrain_model": {
+    "pgda_site": "Site07",
+    "pgda_name": "Peak near Shackleton",
+    "surf_tif_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site07/Site07_final_adj_5mpp_surf.tif",
+    "size_bytes": 40980808,
+    "size_mb": 41.0,
+    "last_modified": "Fri, 05 Jun 2020 18:40:28 GMT",
+    "head_request": "HTTP 200, 15 Nov 2026",
+    "extent_km": [
+     16.0,
+     16.0
+    ],
+    "bounds_polar_stereographic_m": [
+     22000.0,
+     -28000.0,
+     38000.0,
+     -12000.0
+    ],
+    "lat_most_poleward": -89.1735908675483,
+    "lat_least_poleward": -88.44348361094261,
+    "how_matched": "The USGS 2022 box for 'Peak_Near_Shackleton' has the same corners as this model."
+   },
+   "sun_ceiling_deg": 2.7289919264955325,
+   "sun_ceiling_rounded_deg": 2.73,
+   "sun_ceiling_range_deg": [
+    2.366409132451701,
+    3.096516389057393
+   ],
+   "sun_ceiling_basis": "Centre latitude of the terrain model; the range uses the most poleward and the least poleward latitudes of the model grid, as in twinfinder/moon.py.",
+   "usgs_2022_box": {
+    "file": "Peak_Near_Shackleton.zip",
+    "upper_left_lon_lat": [
+     118.61045967,
+     -89.17359087
+    ],
+    "lower_right_lon_lat": [
+     126.38435182,
+     -88.44348361
+    ],
+    "same_box_as_model": true,
+    "largest_corner_difference_m": 0.0,
+    "source": "USGS grid release of 2 November 2024 for the 13 regions of 2022",
+    "url": "https://www.sciencebase.gov/catalog/file/get/67168797d34ebf903f48b6fc?name=LGRS_A3CLR_Grid_Generation.sh"
+   },
+   "cross_checks": [
+    {
+     "source": "LROC low-Sun controlled NAC mosaic of the candidate region",
+     "product": "NAC_ROI_SHKLTNPKLO1",
+     "url": "https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_ROI_SHKLTNPKLO1",
+     "title": "Peak near Shackleton",
+     "centre_lat": -88.8,
+     "centre_lon": 124.7,
+     "lat_range": [
+      -89.17,
+      -88.44
+     ],
+     "lon_range_pm180": [
+      107.53,
+      141.84
+     ],
+     "km_from_our_centre": 0.72
+    },
+    {
+     "source": "IAU Gazetteer of Planetary Nomenclature",
+     "feature": "Shackleton",
+     "kind": "crater",
+     "url": "https://planetarynames.wr.usgs.gov/Feature/5450",
+     "centre_lat": -89.67,
+     "centre_lon_pm180": 129.78,
+     "diameter_km": 20.92,
+     "km_from_our_centre": 26.127,
+     "note": "This is the centre of the named feature, not of the landing region."
+    }
+   ]
+  },
+  {
+   "id": "de-gerlache-rim-1",
+   "official_name": "de Gerlache Rim 1",
+   "other_names": [
+    {
+     "name": "de Gerlache Rim",
+     "where": "USGS grid release (file de_Gerlache_Rim.zip); LROC mosaic title",
+     "how_sure": "The USGS release has one file for each of the 13 regions of 2022. Thus its file de_Gerlache_Rim is the region de Gerlache Rim 1."
+    },
+    {
+     "name": "de Gerlache rim",
+     "where": "PGDA name of model Site11 (and also of SL2)",
+     "how_sure": "Same name. Only the letter case or a hyphen is different."
+    }
+   ],
+   "lists": {
+    "nasa_2024_list_of_9": false,
+    "name_on_2024_list": null,
+    "nasa_2022_list_of_13": true,
+    "name_on_2022_list": "de Gerlache Rim 1"
+   },
+   "on_page_now": true,
+   "centre_lat": -88.68341815077612,
+   "centre_lon": 292.0678995624102,
+   "centre_lon_pm180": -67.93210043758978,
+   "coordinate_source": {
+    "kind": "NASA 5 m terrain model (PGDA product 78): centre of the model grid",
+    "url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site11/Site11_final_adj_5mpp_surf.tif",
+    "detail": "We read only the header of the GeoTIFF (bounds in south polar stereographic metres). We calculated the centre with twinfinder/moon.py polar_xy_to_latlon."
+   },
+   "how_sure": "from the terrain model",
+   "how_sure_note": "The PGDA model and the USGS box agree. The region is not on the 2024 map.",
+   "terrain_model": {
+    "pgda_site": "Site11",
+    "pgda_name": "de Gerlache rim",
+    "surf_tif_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site11/Site11_final_adj_5mpp_surf.tif",
+    "size_bytes": 40980806,
+    "size_mb": 41.0,
+    "last_modified": "Fri, 05 Jun 2020 18:40:54 GMT",
+    "head_request": "HTTP 200, 15 Nov 2026",
+    "extent_km": [
+     16.0,
+     16.0
+    ],
+    "bounds_polar_stereographic_m": [
+     -45000.0,
+     7000.0,
+     -29000.0,
+     23000.0
+    ],
+    "lat_most_poleward": -89.01619925254866,
+    "lat_least_poleward": -88.33351026403338,
+    "how_matched": "The USGS 2022 box for 'de_Gerlache_Rim' has the same corners as model Site11."
+   },
+   "sun_ceiling_deg": 2.85658184922388,
+   "sun_ceiling_rounded_deg": 2.86,
+   "sun_ceiling_range_deg": [
+    2.5238007474513404,
+    3.2064897359666213
+   ],
+   "sun_ceiling_basis": "Centre latitude of the terrain model; the range uses the most poleward and the least poleward latitudes of the model grid, as in twinfinder/moon.py.",
+   "usgs_2022_box": {
+    "file": "de_Gerlache_Rim.zip",
+    "upper_left_lon_lat": [
+     -62.92791976,
+     -88.33351026
+    ],
+    "lower_right_lon_lat": [
+     -76.42956561,
+     -89.01619925
+    ],
+    "same_box_as_model": true,
+    "largest_corner_difference_m": 0.0,
+    "source": "USGS grid release of 2 November 2024 for the 13 regions of 2022",
+    "url": "https://www.sciencebase.gov/catalog/file/get/67168797d34ebf903f48b6fc?name=LGRS_A3CLR_Grid_Generation.sh"
+   },
+   "cross_checks": [
+    {
+     "source": "LROC low-Sun controlled NAC mosaic of the candidate region",
+     "product": "NAC_ROI_DEGERRIMLO1",
+     "url": "https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_ROI_DEGERRIMLO1",
+     "title": "de Gerlache Rim",
+     "centre_lat": -88.5,
+     "centre_lon": 293.3,
+     "lat_range": [
+      -89.02,
+      -87.79
+     ],
+     "lon_range_pm180": [
+      -83.18,
+      -41.31
+     ],
+     "km_from_our_centre": 5.638
+    },
+    {
+     "source": "IAU Gazetteer of Planetary Nomenclature",
+     "feature": "de Gerlache",
+     "kind": "crater",
+     "url": "https://planetarynames.wr.usgs.gov/Feature/1439",
+     "centre_lat": -88.48,
+     "centre_lon_pm180": -88.34,
+     "diameter_km": 32.71,
+     "km_from_our_centre": 16.404,
+     "note": "This is the centre of the named feature, not of the landing region."
+    }
+   ]
+  },
+  {
+   "id": "de-gerlache-kocher-massif",
+   "official_name": "de Gerlache-Kocher Massif",
+   "other_names": [
+    {
+     "name": "de Gerlache Kocher Massif",
+     "where": "LROC mosaic title",
+     "how_sure": "Same name. Only the letter case or a hyphen is different."
+    },
+    {
+     "name": "de Gerlache-Kocher massif",
+     "where": "PGDA model Site42",
+     "how_sure": "Same name. Only the letter case or a hyphen is different."
+    }
+   ],
+   "lists": {
+    "nasa_2024_list_of_9": false,
+    "name_on_2024_list": null,
+    "nasa_2022_list_of_13": true,
+    "name_on_2022_list": "de Gerlache-Kocher Massif"
+   },
+   "on_page_now": true,
+   "centre_lat": -85.82955053060158,
+   "centre_lon": 243.6779835456424,
+   "centre_lon_pm180": -116.3220164543576,
+   "coordinate_source": {
+    "kind": "NASA 5 m terrain model (PGDA product 78): centre of the model grid",
+    "url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site42/Site42_final_adj_5mpp_surf.tif",
+    "detail": "We read only the header of the GeoTIFF (bounds in south polar stereographic metres). We calculated the centre with twinfinder/moon.py polar_xy_to_latlon."
+   },
+   "how_sure": "from the terrain model",
+   "how_sure_note": "The PGDA model and the USGS box agree. The region is not on the 2024 map.",
+   "terrain_model": {
+    "pgda_site": "Site42",
+    "pgda_name": "de Gerlache-Kocher massif",
+    "surf_tif_url": "https://pgda.gsfc.nasa.gov/data/LOLA_5mpp/Site42/Site42_final_adj_5mpp_surf.tif",
+    "size_bytes": 64025611,
+    "size_mb": 64.0,
+    "last_modified": "Sun, 21 Mar 2021 17:38:04 GMT",
+    "head_request": "HTTP 200, 15 Nov 2026",
+    "extent_km": [
+     20.0,
+     20.0
+    ],
+    "bounds_polar_stereographic_m": [
+     -123400.0,
+     -66100.0,
+     -103400.0,
+     -46100.0
+    ],
+    "lat_most_poleward": -86.26785495406419,
+    "lat_least_poleward": -85.38597151523783,
+    "how_matched": "The USGS 2022 box for 'de_Gerlache-Kocher_Massif' has the same corners as this model."
+   },
+   "sun_ceiling_deg": 5.71044946939842,
+   "sun_ceiling_rounded_deg": 5.71,
+   "sun_ceiling_range_deg": [
+    5.272145045935809,
+    6.154028484762173
+   ],
+   "sun_ceiling_basis": "Centre latitude of the terrain model; the range uses the most poleward and the least poleward latitudes of the model grid, as in twinfinder/moon.py.",
+   "usgs_2022_box": {
+    "file": "de_Gerlache-Kocher_Massif.zip",
+    "upper_left_lon_lat": [
+     -110.48477552,
+     -85.65790523
+    ],
+    "lower_right_lon_lat": [
+     -122.58935728,
+     -85.95455847
+    ],
+    "same_box_as_model": true,
+    "largest_corner_difference_m": 0.0,
+    "source": "USGS grid release of 2 November 2024 for the 13 regions of 2022",
+    "url": "https://www.sciencebase.gov/catalog/file/get/67168797d34ebf903f48b6fc?name=LGRS_A3CLR_Grid_Generation.sh"
+   },
+   "cross_checks": [
+    {
+     "source": "LROC low-Sun controlled NAC mosaic of the candidate region",
+     "product": "NAC_ROI_DEGERKCHLO1",
+     "url": "https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_ROI_DEGERKCHLO1",
+     "title": "de Gerlache Kocher Massif",
+     "centre_lat": -85.8,
+     "centre_lon": 243.6,
+     "lat_range": [
+      -86.27,
+      -85.39
+     ],
+     "lon_range_pm180": [
+      -122.59,
+      -110.48
+     ],
+     "km_from_our_centre": 0.914
+    },
+    {
+     "source": "IAU Gazetteer of Planetary Nomenclature",
+     "feature": "Kocher",
+     "kind": "crater",
+     "url": "https://planetarynames.wr.usgs.gov/Feature/14535",
+     "centre_lat": -84.47,
+     "centre_lon_pm180": -134.02,
+     "diameter_km": 24.03,
+     "km_from_our_centre": 60.955,
+     "note": "This is the centre of the named feature, not of the landing region."
+    }
+   ]
+  }
+ ]
+}

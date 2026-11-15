@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-dest="moon">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Make your experiment · Earth Twin Finder</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="ask.css">
+  <style>
+    .ak-dev { max-width: 1440px; margin: auto; padding: 20px 24px 48px; }
+    .ak-dev > #ask-root, .ak-dev > #ask-words, .ak-dev-places { max-width: none; padding: 0; margin-top: 18px; }
+    .ak-dev-places { padding-top: 18px; border-top: 1px solid var(--border); }
+    .ak-dev-places > h2 { margin: 0 0 10px; font-size: 20px; }
+    .ak-dev-head { margin-bottom: 24px; }
+    .ak-dev-head h1 { font-size: clamp(1.5rem, 4vw, 2.3rem); margin: 0 0 8px; }
+    .ak-dev-controls { margin-top: 16px; }
+    .ak-dev-bar { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+    .ak-dev-bar label { display: grid; gap: 4px; min-width: 0; flex: 1 1 170px; }
+    .ak-dev-bar :is(input, select) { width: 100%; min-width: 0; }
+    .ak-dev-card { margin-top: 24px; padding: 24px; scroll-margin-top: 16px; }
+    .ak-dev-card[hidden], .ak-dev [hidden] { display: none !important; }
+    .ak-dev-part { margin-top: 16px; }
+    .ak-dev-part > summary { padding: 12px 0; cursor: pointer; }
+    .ak-dev-part > summary strong, .ak-dev-part > summary span { display: block; }
+    .ak-dev-part > summary span { color: var(--ink2, #bcc9d8); margin-top: 4px; font-size: .9rem; }
+    .ak-dev-status { color: var(--ink2, #bcc9d8); overflow-wrap: anywhere; }
+    .ak-dev :is(button, input, select, summary):focus-visible { outline: 3px solid var(--ui, #5cc8f5); outline-offset: 3px; }
+    @media (max-width: 600px) { .ak-dev { padding: 16px 12px; } .ak-dev-card { padding: 16px; } }
+  </style>
+</head>
+<body>
+<main class="ak-dev">
+  <header class="ak-dev-head" id="ak-dev-header">
+    <h1>Earth Twin Finder</h1>
+    <p>Make an experiment. Find a place from the figures on this page.</p>
+    <details class="ak-dev-controls">
+      <summary>Development controls</summary>
+      <form id="ak-dev-controls" class="ak-dev-bar">
+        <label>Lunar region<select id="ak-dev-target"></select></label>
+        <label>Look<select id="ak-dev-theme"><option value="dark">Dark</option><option value="light">Light</option></select></label>
+        <label>Area ID<input id="ak-dev-place" autocomplete="off" spellcheck="false"></label>
+        <button type="submit" class="ak-dev-button">Open area</button>
+      </form>
+      <div id="ak-dev-examples" class="ak-dev-bar"></div>
+      <div id="ak-dev-tools" class="ak-dev-bar"></div>
+      <p id="ak-dev-matches" class="ak-dev-status">No experiment is set.</p>
+    </details>
+  </header>
+  <p id="ak-dev-status" class="ak-dev-status" role="status" aria-live="polite">Please wait for the local data.</p>
+  <section id="ask-root" aria-label="Make your experiment"></section>
+  <section id="ask-words" aria-label="Set options in words"></section>
+  <section class="ak-dev-places" id="ak-dev-places" aria-label="Places">
+    <h2>Places</h2>
+    <section id="ask-results" aria-label="Places from the data"></section>
+  </section>
+  <section id="ak-dev-card" class="ak-dev-card" aria-label="Place card" hidden></section>
+</main>
+<script type="module">
+import { mount } from './ask.js';
+
+const byId = id => document.getElementById(id);
+const node = (tag, text, className) => {
+  const item = document.createElement(tag);
+  if (text != null) item.textContent = text;
+  if (className) item.className = className;
+  return item;
+};
+const cache = new Map();
+function load(name, binary = false) {
+  if (typeof name !== 'string' || name.startsWith('/') || name.includes('..') || /[:?#\\]/.test(name)) {
+    return Promise.reject(new Error('Use a file in the data folder.'));
+  }
+  if (!cache.has(name)) cache.set(name, (async () => {
+    const canOpen = typeof DecompressionStream === 'function';
+    let response = canOpen ? await fetch(`data/${name}.gz`, { redirect: 'error' }).catch(() => null) : null;
+    if (!response?.ok) response = await fetch(`data/${name}`, { redirect: 'error' });
+    if (!response.ok) throw new Error(`The page cannot read ${name}.`);
+    let buffer = await response.arrayBuffer();
+    const bytes = new Uint8Array(buffer);
+    if (bytes[0] === 0x1f && bytes[1] === 0x8b) buffer = await new Response(new Blob([buffer]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
+    return buffer;
+  })());
+  return cache.get(name).then(buffer => binary ? buffer : JSON.parse(new TextDecoder().decode(buffer)));
+}
+function readAddress() {
+  const values = new URLSearchParams(location.search);
+  for (const [key, value] of new URLSearchParams(location.hash.slice(1))) values.set(key, value);
+  return Object.fromEntries([...values].map(([key, value]) => {
+    if (value.startsWith('~')) { try { return [key, JSON.parse(value.slice(1))]; } catch { return [key, value]; } }
+    return [key, value];
+  }));
+}
+try {
+  const [meta, cells, flat, yearBuffer, snowBuffer, openBuffer, cloudBuffer, places] = await Promise.all([
+    load('meta.json'), load('cells.json'), load('flat.json'), load('yearly.bin', true),
+    load('snowfree.bin', true), load('open.bin', true), load('cloud.bin', true).catch(() => null),
+    load('places.json').catch(() => null),
+  ]);
+  const targets = meta.targets.map(target => ({ id: target.id, name: target.name, limitDeg: target.limit_deg }));
+  const periods = meta.bins.map((period, index) => ({ index, label: period.label, firstDay: period.first_day, lastDay: period.last_day, month: period.month }));
+  const indexes = new Map(cells.ids.map((id, index) => [id, index]));
+  const southern = new Map(cells.south.cells.map((index, position) => [index, position]));
+  const knownIds = new Set(places?.not_little_known?.ids || []);
+  const monthCount = new Set(periods.map(period => period.month)).size;
+  const year = new DataView(yearBuffer), snow = new Uint8Array(snowBuffer), open = new Uint8Array(openBuffer);
+  const cloud = cloudBuffer ? new Uint8Array(cloudBuffer) : null;
+  const defaults = { dest: 'moon', target: targets[0].id, step: 3, period: 'year', place: '', theme: 'dark' };
+  const state = { ...defaults, ...readAddress() };
+  const subscribers = new Set(), matchSubscribers = new Set(), sections = new Map(), actions = new Map();
+  let matches = null;
+  let moduleReady = false, cardKey = '';
+  const finite = value => typeof value === 'number' && Number.isFinite(value);
+  const fmtNumber = (value, digits = 0) => !finite(value) ? 'unknown'
+    : value.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits });
+  const fmtHours = value => !finite(value) ? 'unknown'
+    : `${fmtNumber(value, value > 0 && value < 9.95 ? 1 : 0)} h`;
+  const targetIndex = id => targets.findIndex(target => target.id === id);
+  function normalize() {
+    if (!targets.some(target => target.id === state.target)) state.target = targets[0].id;
+    state.step = [1, 2, 3, 4].includes(+state.step) ? +state.step : defaults.step;
+    if (!['light', 'dark'].includes(state.theme)) state.theme = 'dark';
+    state.dest = state.dest === 'mars' ? 'mars' : 'moon';
+    if (state.place && !indexes.has(state.place)) state.place = '';
+  }
+  function flatValue(i, t, period) {
+    const values = flat.targets[targets[t].id];
+    const raw = period === 'year' ? values.year[cells.flat_row[i]] : values.bins[cells.flat_row[i]][period];
+    return raw == null || raw < 0 ? null : raw / cells.yearly.scale.open;
+  }
+  function byteValue(array, i, t, period) {
+    const raw = array[(i * targets.length + t) * periods.length + period];
+    return raw == null || raw === meta.encoding.unknown ? null : raw * meta.encoding.unit_h;
+  }
+  function periodValue(i, t, step, period) {
+    if (!Number.isInteger(i) || i < 0 || i >= cells.n || t < 0 || !Number.isInteger(period) || period < 0 || period >= periods.length) return null;
+    if (step === 1) return flatValue(i, t, period);
+    if (cells.hemisphere[i] === 'S') {
+      if (!meta.seasons.rock_season_bins_south.includes(period)) return 0;
+      if (step === 2) return flatValue(i, t, period);
+    } else if (step === 2) return byteValue(snow, i, t, period);
+    const hours = byteValue(open, i, t, period);
+    if (step === 3 || hours == null || hours === 0) return hours;
+    const rawCloud = cloud?.[i * monthCount + periods[period].month - 1];
+    return rawCloud == null || rawCloud === meta.encoding.unknown ? null : hours * (1 - rawCloud / 100);
+  }
+  function yearValue(i, t, field) {
+    const column = cells.yearly.fields.indexOf(field);
+    if (column < 0) return null;
+    const raw = year.getUint16(((i * targets.length + t) * cells.yearly.fields.length + column) * Uint16Array.BYTES_PER_ELEMENT, true);
+    return raw === cells.yearly.unknown ? null : raw / cells.yearly.scale[field];
+  }
+  function hours(i, targetId = state.target, step = state.step, period = state.period) {
+    const t = targetIndex(targetId); step = +step;
+    if (!Number.isInteger(i) || i < 0 || i >= cells.n || t < 0 || ![1, 2, 3, 4].includes(step)) return null;
+    if (/^\d+$/.test(String(period))) return periodValue(i, t, step, Number(period));
+    if (period === 'bin') return periodValue(i, t, step, Number(state.bin));
+    if (!['year', 'winter', 'summer', 'rock'].includes(period)) return null;
+    if (step === 1) {
+      if (period === 'year') return flatValue(i, t, 'year');
+      const bins = period === 'winter' ? meta.seasons.winter_bins_north : period === 'summer'
+        ? meta.seasons.summer_bins_north : meta.seasons.rock_season_bins_south;
+      const values = bins.map(bin => periodValue(i, t, step, bin));
+      return values.some(value => value == null) ? null : values.reduce((sum, value) => sum + value, 0);
+    }
+    const field = step === 2 ? 'snow_free' : step === 3 ? 'open' : 'clear';
+    if (cells.hemisphere[i] === 'S') {
+      const position = southern.get(i);
+      const key = step === 2 ? 'rock_flat' : step === 3 ? 'rock_open' : 'rock_clear';
+      const raw = cells.south.targets[targetId]?.[key]?.[position];
+      return raw == null || raw < 0 ? null : raw / cells.yearly.scale[field];
+    }
+    return yearValue(i, t, field + (period === 'year' ? '' : period === 'winter' ? '_winter' : '_summer'));
+  }
+  function area(i) {
+    if (!Number.isInteger(i) || i < 0 || i >= cells.n) return null;
+    const earlier = knownIds.has(cells.ids[i]);
+    return { id: cells.ids[i], lat: cells.lat[i] / 100, lon: cells.lon[i] / 100, hemisphere: cells.hemisphere[i],
+      region: cells.regions[cells.region[i]], bare: cells.bare[i] < 0 ? null : cells.bare[i] / 100,
+      snowStatus: cells.snow_statuses[cells.snow[i]], named: cells.site[i] || null,
+      littleKnown: earlier ? false : cells.known[i] >= 0 ? false : places ? true : null };
+  }
+  async function renderMarsCard(key) {
+    const card = byId('ak-dev-card');
+    card.hidden = false;
+    card.replaceChildren(node('p', 'Please wait for the square.'));
+    try {
+      const data = await api.loadJSON('mars.json');
+      const site = data.sites.find(item => item.id === state.msite) || data.sites[0];
+      const files = new Set([data.squares.file, ...Object.entries(data.squares.columns)
+        .filter(([name]) => name.startsWith(`sites.${site.id}.`)).map(([, field]) => field.file || data.squares.file)]);
+      const views = new Map(await Promise.all([...files].map(async file => [file, new DataView(await api.loadBin(file))])));
+      if (key !== cardKey) return;
+      const index = data.squares.ids.indexOf(state.msquare);
+      if (index < 0) { card.replaceChildren(node('p', 'That square is not in the first pass.')); return; }
+      const methods = { uint8: ['getUint8', 1], uint16: ['getUint16', 2], uint32: ['getUint32', 4], int8: ['getInt8', 1], int16: ['getInt16', 2], int32: ['getInt32', 4], float32: ['getFloat32', 4], float64: ['getFloat64', 8] };
+      const value = name => {
+        const field = data.squares.columns[name], type = methods[field?.type], view = views.get(field?.file || data.squares.file);
+        if (!field || !type || !view || field.offset + data.squares.count * type[1] > view.byteLength) return null;
+        const raw = view[type[0]](field.offset + index * type[1], true);
+        return !finite(raw) || raw === field.unknown ? null : raw / field.scale;
+      };
+      const region = value('region');
+      card.replaceChildren(node('h2', region == null ? 'Region unknown' : data.squares.regions[region]));
+      card.append(node('p', `Square ${data.squares.ids[index]} · ${site.name}`));
+      card.append(node('p', `First pass · squares of approximately ${data.meta.square_km_about} km`));
+      const facts = node('dl');
+      for (const [label, field, unit] of [
+        ['Yearly mean air temperature', 't2m_year_c', 'degrees C'],
+        ['Yearly rain and snow as water', 'precip_mm_year', 'mm'],
+        ['Surface pressure', 'pressure_kpa', 'kPa'],
+        ['Bare share', 'bare', 'share of land'],
+        ['Score', `sites.${site.id}.${state.mgoal || 'full'}`, ''],
+      ]) {
+        const quantity = value(field), entry = node('div');
+        entry.append(node('dt', label), node('dd', quantity == null ? 'unknown' : `${fmtNumber(quantity, 2)} ${unit}`.trim()));
+        facts.append(entry);
+      }
+      card.append(facts);
+      const count = value(`sites.${site.id}.best_months_count`);
+      const best = count == null ? null : Array.from({ length: count }, (_, rank) => {
+        const month = value(`sites.${site.id}.best_month_${rank}`);
+        return month == null ? 'unknown' : data.squares.months[month];
+      });
+      card.append(node('p', `Best months: ${best == null ? 'unknown' : best.length ? best.join(', ') : 'none above zero'}`));
+      for (const caution of [data.meta.status_caution, data.meta.climate_caution, data.meta.score_caution]) if (caution) card.append(node('p', caution));
+      if (state.go === 'mars-square') card.scrollIntoView({ block: 'start' });
+    } catch {
+      if (key === cardKey) card.replaceChildren(node('p', 'The data for this square is unavailable.'));
+    }
+  }
+  function renderCard(force = false) {
+    const card = byId('ak-dev-card');
+    const key = `${state.place}|${state.target}|${state.msquare}|${state.dest}|${state.msite}|${state.mgoal}`;
+    if (!force && key === cardKey) return;
+    cardKey = key;
+    if (state.dest === 'mars' && state.msquare) { renderMarsCard(key); return; }
+    const openSections = new Set([...card.querySelectorAll('details[open]')].map(part => part.dataset.cardSection));
+    card.replaceChildren();
+    const i = indexes.get(state.place), place = area(i);
+    card.hidden = !place;
+    if (!place) return;
+    card.append(node('h2', place.named || place.region), node('p', `Area ${place.id} · ${targets[targetIndex(state.target)].name}`));
+    card.append(node('p', `${fmtHours(hours(i, state.target, 3, 'year'))} at step 3`));
+    for (const [id, section] of sections) {
+      const content = section.render(i, state.target);
+      if (!content) continue;
+      const part = node('details', null, 'ak-dev-part');
+      part.dataset.cardSection = id;
+      part.open = openSections.has(id) || state.card === 'open';
+      const summary = node('summary');
+      summary.append(node('strong', section.title));
+      const finding = section.summary?.(i, state.target);
+      if (finding) summary.append(node('span', finding));
+      part.append(summary, content); card.append(part);
+    }
+  }
+  function render() {
+    document.documentElement.dataset.theme = state.theme;
+    document.documentElement.dataset.dest = state.dest;
+    byId('ak-dev-target').value = state.target;
+    byId('ak-dev-theme').value = state.theme;
+    byId('ak-dev-place').value = state.place;
+    byId('ak-dev-header').hidden = state.only === 'card';
+    byId('ak-dev-places').hidden = state.only === 'card';
+    for (const id of ['ask-root', 'ask-words', 'ask-results']) {
+      const root = byId(id); if (root) root.hidden = state.only === 'card';
+    }
+    renderCard();
+  }
+  function writeAddress() {
+    const fragment = new URLSearchParams();
+    for (const [key, value] of Object.entries(state)) if (value != null && value !== '') {
+      fragment.set(key, typeof value === 'string' && !value.startsWith('~') ? value : `~${JSON.stringify(value)}`);
+    }
+    history.replaceState(null, '', `${location.pathname}${location.search}#${fragment}`);
+  }
+  const api = {
+    version: 1, targets, periods, areaCount: cells.n,
+    getState: () => structuredClone(state),
+    setState: partial => {
+      Object.assign(state, structuredClone(partial)); normalize(); writeAddress(); render();
+      for (const subscriber of subscribers) subscriber(structuredClone(state));
+    },
+    onState: callback => { subscribers.add(callback); return () => subscribers.delete(callback); },
+    setMatches: value => {
+      matches = value == null ? null : structuredClone(value);
+      const noun = matches?.mode === 'mars' ? 'squares' : 'areas';
+      byId('ak-dev-matches').textContent = matches == null ? 'No experiment is set.'
+        : `${fmtNumber(matches.areas.length)} ${noun} in the map results. ${matches.label}`;
+      for (const subscriber of matchSubscribers) subscriber(structuredClone(matches));
+    },
+    onMatches: callback => {
+      matchSubscribers.add(callback); callback(structuredClone(matches));
+      return () => matchSubscribers.delete(callback);
+    },
+    areaIndex: id => indexes.get(id) ?? -1, area, hours,
+    periodHours: (i, id = state.target, step = state.step) => Float32Array.from(periods, period => periodValue(i, targetIndex(id), +step, period.index) ?? NaN),
+    openPlace: id => {
+      const i = indexes.get(id);
+      if (i == null) { api.announce('That area is not in the data.'); return; }
+      api.setState({ place: id, dest: 'moon', view: area(i).hemisphere === 'S' ? 'antarctic' : 'arctic' });
+      byId('ak-dev-card').scrollIntoView({ block: 'start' });
+    },
+    flyTo: () => api.announce('This development page does not draw a map.'),
+    loadJSON: name => load(name), loadBin: name => load(name, true), fmtHours, fmtNumber, theme: () => state.theme,
+    registerAction: (id, fn) => { actions.set(id, fn); return () => actions.delete(id); },
+    addToolsButton: (id, label, fn) => {
+      const button = node('button', label, 'ak-dev-button'); button.type = 'button'; button.dataset.action = id;
+      button.addEventListener('click', fn); byId('ak-dev-tools').append(button); return () => button.remove();
+    },
+    addCardSection: (id, title, render, summary) => {
+      sections.set(id, { title, render, summary });
+      if (moduleReady) renderCard(true);
+      return () => { sections.delete(id); renderCard(true); };
+    },
+    announce: text => { byId('ak-dev-status').textContent = text; },
+  };
+  for (const target of targets) { const option = node('option', target.name); option.value = target.id; byId('ak-dev-target').append(option); }
+  // These words select the two named areas requested for the manual review; labels and IDs come from the data.
+  for (const word of ['Haughton', 'Reykjanes']) {
+    const entry = Object.entries(cells.site).find(([, name]) => name.includes(word));
+    if (!entry) continue;
+    const place = area(Number(entry[0])), button = node('button', place.named, 'ak-dev-button');
+    button.type = 'button'; button.addEventListener('click', () => api.openPlace(place.id));
+    byId('ak-dev-examples').append(button);
+  }
+  byId('ak-dev-target').addEventListener('change', event => api.setState({ target: event.target.value }));
+  byId('ak-dev-theme').addEventListener('change', event => api.setState({ theme: event.target.value }));
+  byId('ak-dev-controls').addEventListener('submit', event => { event.preventDefault(); api.openPlace(byId('ak-dev-place').value.trim()); });
+  window.addEventListener('hashchange', () => {
+    for (const key of Object.keys(state)) delete state[key];
+    Object.assign(state, defaults, readAddress()); normalize(); render();
+    for (const subscriber of subscribers) subscriber(structuredClone(state));
+  });
+  normalize(); render();
+  window.askDev = { api, state, cells, meta, sections, renderCard, actions, get matches() { return structuredClone(matches); } };
+  window.askDev.module = await mount(byId('ask-root'), api);
+  moduleReady = true; renderCard(true);
+  byId('ak-dev-status').textContent = '';
+  document.documentElement.dataset.ready = 'true';
+} catch (error) {
+  byId('ak-dev-status').textContent = 'This page cannot open the local data or the module. ' + error.message;
+  document.documentElement.dataset.ready = 'error';
+  console.error(error);
+}
+</script>
+</body>
+</html>

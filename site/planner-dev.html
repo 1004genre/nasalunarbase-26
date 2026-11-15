@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Planner development page · Earth Twin Finder</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="planner.css">
+  <style>
+    .pl-dev { max-width: 1200px; margin: auto; padding: 24px 20px; }
+    .pl-dev h1 { margin-bottom: 8px; }
+    .pl-dev-controls { display: flex; flex-wrap: wrap; gap: 12px; margin: 18px 0; }
+    .pl-dev-controls label { display: grid; gap: 4px; flex: 1 1 180px; min-width: 0; }
+    .pl-dev-controls input, .pl-dev-controls select, .pl-dev button { font: inherit; color: var(--ink, #eef3f9); background: var(--raised, #19263a); border: 1px solid var(--border, #34445b); border-radius: var(--radius-s, 10px); padding: 8px; min-width: 0; }
+    .pl-dev-controls input, .pl-dev-controls select { width: 100%; }
+    .pl-dev button { cursor: pointer; min-height: 44px; }
+    .pl-dev-section { margin-top: 24px; padding: 18px; background: var(--surface, #111b2b); border: 1px solid var(--border, #34445b); border-radius: var(--radius, 16px); min-width: 0; }
+    .pl-dev-card { max-width: 900px; margin: 24px auto; }
+    .pl-dev-card > h2, .pl-dev-card > p { margin-bottom: 10px; }
+    .pl-dev-card-part + .pl-dev-card-part { margin-top: 24px; border-top: 1px solid var(--border, #34445b); padding-top: 16px; }
+    .pl-dev-card-part > h3 { margin-bottom: 10px; }
+    .pl-dev-list { padding-left: 22px; }
+    .pl-dev-list li { margin: 8px 0; }
+    .pl-dev-list small { display: block; color: var(--ink2, #bcc9d8); }
+    .pl-dev-status { margin: 10px 0; color: var(--ink2, #bcc9d8); overflow-wrap: anywhere; }
+    .pl-dev [hidden] { display: none !important; }
+    .pl-dev input:focus-visible, .pl-dev select:focus-visible, .pl-dev button:focus-visible, .pl-dev summary:focus-visible { outline: 3px solid var(--ui, #5cc8f5); outline-offset: 3px; }
+    @media (max-width: 560px) { .pl-dev { padding: 16px 12px; } .pl-dev-section { padding: 12px; } }
+  </style>
+</head>
+<body>
+<main class="pl-dev">
+  <header id="pl-dev-header">
+    <h1>Planner development page</h1>
+    <p>This page uses the module contract and the same local data as the map.</p>
+    <form class="pl-dev-controls" id="pl-dev-controls">
+      <label>Lunar region<select id="pl-dev-target"></select></label>
+      <label>Step<select id="pl-dev-step"><option value="1">Sun only</option><option value="2">Snow-free ground / rock season</option><option value="3">After hills</option><option value="4">Typical cloud</option></select></label>
+      <label>Theme<select id="pl-dev-theme"><option value="light">Light</option><option value="dark">Dark</option></select></label>
+      <label>Area ID<input id="pl-dev-place" name="place" spellcheck="false" autocomplete="off"></label>
+      <button type="submit">Open area</button>
+    </form>
+    <div id="pl-dev-tools"></div>
+  </header>
+  <p id="pl-dev-status" class="pl-dev-status" role="status" aria-live="polite">The local data will open.</p>
+  <section id="planner-root" aria-label="Planner"></section>
+  <section id="pl-dev-card" class="pl-dev-section pl-dev-card" aria-label="Place card"></section>
+  <section id="pl-dev-lists" class="pl-dev-section" aria-label="List order preview">
+    <h2>List order preview</h2>
+    <p>These are the best areas under the selected rehearsal order.</p>
+    <div id="pl-dev-list-filters"></div>
+    <ol id="pl-dev-list" class="pl-dev-list"></ol>
+  </section>
+</main>
+<script type="module">
+import { mount } from './planner.js';
+
+const byId = id => document.getElementById(id);
+const query = new URLSearchParams(location.search);
+const initial = new URLSearchParams(location.hash.slice(1));
+for (const [key, value] of query) if (!initial.has(key)) initial.set(key, value);
+const cache = new Map();
+function load(name, binary = false) {
+  const key = (binary ? 'bin:' : 'json:') + name;
+  if (!cache.has(key)) cache.set(key, fetch('data/' + name).then(response => {
+    if (!response.ok) throw new Error(name + ' could not be read.');
+    return binary ? response.arrayBuffer() : response.json();
+  }));
+  return cache.get(key);
+}
+const node = (tag, text, className) => {
+  const element = document.createElement(tag);
+  if (text != null) element.textContent = text;
+  if (className) element.className = className;
+  return element;
+};
+
+try {
+  const [meta, cells, flat, yearBuffer, snowBuffer, openBuffer, cloudBuffer] = await Promise.all([
+    load('meta.json'), load('cells.json'), load('flat.json'), load('yearly.bin', true),
+    load('snowfree.bin', true), load('open.bin', true), load('cloud.bin', true).catch(() => null),
+  ]);
+  const targets = meta.targets.map(target => ({ id: target.id, name: target.name, limitDeg: target.limit_deg }));
+  const periods = meta.bins.map((period, index) => ({ index, label: period.label, firstDay: period.first_day, lastDay: period.last_day, month: period.month }));
+  const areaIndexes = new Map(cells.ids.map((id, index) => [id, index]));
+  const southernIndexes = new Map(cells.south.cells.map((index, position) => [index, position]));
+  const year = new DataView(yearBuffer);
+  const snow = new Uint8Array(snowBuffer), open = new Uint8Array(openBuffer);
+  const cloud = cloudBuffer ? new Uint8Array(cloudBuffer) : null;
+  const state = { dest: 'moon', view: 'arctic', target: targets[0].id,
+    step: 3, period: 'year', place: '75.3_-90.0', little: false, theme: 'dark', ...Object.fromEntries(initial) };
+  state.step = Number(state.step);
+  if (![1, 2, 3, 4].includes(state.step)) state.step = 3;
+  if (!targets.some(target => target.id === state.target)) state.target = targets[0].id;
+  if (!['light', 'dark'].includes(state.theme)) state.theme = 'dark';
+  if (!areaIndexes.has(state.place)) state.place = cells.ids[0];
+  state.view = cells.hemisphere[areaIndexes.get(state.place)] === 'S' ? 'antarctic' : 'arctic';
+  const subscribers = new Set(), sections = new Map(), filters = new Map(), orders = new Map(), notes = new Set();
+  let selectedOrder = null, moduleReady = false;
+  const number = (value, digits = 0) => value == null || !Number.isFinite(value) ? 'unknown'
+    : new Intl.NumberFormat('en-US', { maximumFractionDigits: digits }).format(value);
+  const fmtHours = value => value == null || !Number.isFinite(value) ? 'unknown'
+    : number(value, value > 0 && value < 9.95 ? 1 : 0) + ' h';
+  const indexOfTarget = id => targets.findIndex(target => target.id === id);
+  function flatValue(i, t, period) {
+    const values = flat.targets[targets[t].id];
+    const raw = period === 'year' ? values.year[cells.flat_row[i]] : values.bins[cells.flat_row[i]][period];
+    return raw == null || raw < 0 ? null : raw / 10;
+  }
+  function byteValue(array, i, t, period) {
+    const raw = array[(i * targets.length + t) * periods.length + period];
+    return raw === meta.encoding.unknown || raw == null ? null : raw * meta.encoding.unit_h;
+  }
+  function periodValue(i, t, step, period) {
+    if (i < 0 || t < 0 || period < 0 || period >= periods.length) return null;
+    if (step === 1) return flatValue(i, t, period);
+    if (cells.hemisphere[i] === 'S') {
+      if (!meta.seasons.rock_season_bins_south.includes(period)) return 0;
+      if (step === 2) return flatValue(i, t, period);
+    } else if (step === 2) return byteValue(snow, i, t, period);
+    const hours = byteValue(open, i, t, period);
+    if (step === 3 || hours == null || hours === 0) return hours;
+    const rawCloud = cloud?.[i * 12 + periods[period].month - 1];
+    return rawCloud == null || rawCloud === meta.encoding.unknown ? null : hours * (1 - rawCloud / 100);
+  }
+  function yearValue(i, t, field) {
+    const position = cells.yearly.fields.indexOf(field);
+    if (position < 0) return null;
+    const raw = year.getUint16(((i * targets.length + t) * cells.yearly.fields.length + position) * Uint16Array.BYTES_PER_ELEMENT, true);
+    return raw === cells.yearly.unknown ? null : raw / cells.yearly.scale[field];
+  }
+  function hours(i, targetId, step, period = state.period) {
+    const t = indexOfTarget(targetId);
+    if (i < 0 || i >= cells.n || t < 0) return null;
+    if (/^\d+$/.test(String(period))) return periodValue(i, t, step, Number(period));
+    if (period === 'bin') return periodValue(i, t, step, Number(state.bin));
+    if (step === 1) {
+      if (period === 'year') return flatValue(i, t, 'year');
+      const bins = period === 'winter' ? meta.seasons.winter_bins_north : period === 'summer'
+        ? meta.seasons.summer_bins_north : meta.seasons.rock_season_bins_south;
+      const values = bins.map(bin => periodValue(i, t, step, bin));
+      return values.some(value => value == null) ? null : values.reduce((sum, value) => sum + value, 0);
+    }
+    if (cells.hemisphere[i] === 'S') {
+      const k = southernIndexes.get(i);
+      if (k == null) return null;
+      const key = step === 2 ? 'rock_flat' : step === 3 ? 'rock_open' : 'rock_clear';
+      const raw = cells.south.targets[targetId][key][k];
+      return raw == null || raw < 0 ? null : raw / 10;
+    }
+    const field = step === 2 ? 'snow_free' : step === 3 ? 'open' : 'clear';
+    return yearValue(i, t, field + (period === 'winter' ? '_winter' : period === 'summer' ? '_summer' : ''));
+  }
+  function area(i) {
+    if (!Number.isInteger(i) || i < 0 || i >= cells.n) return null;
+    return { id: cells.ids[i], lat: cells.lat[i] / 100, lon: cells.lon[i] / 100, hemisphere: cells.hemisphere[i],
+      region: cells.regions[cells.region[i]], bare: cells.bare[i] < 0 ? null : cells.bare[i] / 100,
+      snowStatus: cells.snow_statuses[cells.snow[i]], named: cells.site[i] || null, littleKnown: cells.known[i] === -1 };
+  }
+  function renderCard() {
+    const card = byId('pl-dev-card');
+    card.replaceChildren();
+    const index = areaIndexes.get(state.place), place = area(index);
+    if (!place) return;
+    card.append(node('h2', place.named || place.region || 'Selected area'), node('p', 'Area ' + place.id + ' · ' + targets[indexOfTarget(state.target)].name));
+    for (const [id, section] of sections) {
+      const content = section.render(index, state.target);
+      if (!content) continue;
+      const part = node('section', null, 'pl-dev-card-part');
+      part.id = 'pl-dev-card-' + id;
+      part.dataset.plCardFeature = id;
+      part.append(node('h3', section.title), content);
+      card.append(part);
+    }
+  }
+  function renderLists() {
+    const list = byId('pl-dev-list');
+    list.replaceChildren();
+    const order = orders.get(selectedOrder) || [...orders.values()].at(-1);
+    let rows = Array.from({ length: cells.n }, (_, i) => ({ i, score: order?.score(i, state.target) }));
+    rows = rows.filter(row => [...filters.values()].every(filter => !filter.active || filter.test(row.i, state.target)));
+    if (order) rows.sort((a, b) => (b.score ?? -Infinity) - (a.score ?? -Infinity));
+    else rows.sort((a, b) => (hours(b.i, state.target, state.step, 'year') ?? -Infinity) - (hours(a.i, state.target, state.step, 'year') ?? -Infinity));
+    for (const { i } of rows.slice(0, 8)) {
+      const place = area(i), row = node('li'), button = node('button', place.named || (place.region + ' · area ' + place.id));
+      button.type = 'button'; button.addEventListener('click', () => api.openPlace(place.id));
+      row.append(button, node('small', fmtHours(hours(i, state.target, state.step, 'year'))));
+      for (const note of notes) { const text = note(i, state.target); if (text) row.append(node('small', text)); }
+      list.append(row);
+    }
+  }
+  function showOnly(name = state.only) {
+    const root = byId('planner-root');
+    byId('pl-dev-header').hidden = !!name;
+    byId('pl-dev-lists').hidden = !!name && name !== 'lists';
+    byId('pl-dev-card').hidden = !!name && !['card', 'rehearsal', 'compass', 'pin'].includes(name);
+    root.hidden = !!name && ['card', 'rehearsal', 'compass', 'pin', 'lists'].includes(name);
+    const expected = { choices: /choice|rehears/, compare: /compare/, year: /year/ }[name];
+    if (expected) {
+      const markers = [...root.querySelectorAll('[data-pl-feature], #pl-choices, #pl-compare, #pl-year, .pl-choices, .pl-compare, .pl-year')];
+      const matching = markers.filter(element => expected.test(element.dataset.plFeature || element.id || element.className));
+      if (matching.length) {
+        for (const child of root.children) child.hidden = !matching.some(element => child === element || child.contains(element));
+        for (const marker of markers) marker.hidden = !matching.some(element => marker === element || marker.contains(element) || element.contains(marker));
+      }
+    }
+    if (['rehearsal', 'compass', 'pin'].includes(name)) {
+      const pattern = name === 'pin' ? /pin|compare/ : name === 'compass' ? /compass|sun|rose/ : /rehears|verdict|activit/;
+      for (const part of byId('pl-dev-card').querySelectorAll('[data-pl-card-feature]')) {
+        part.hidden = !pattern.test(part.dataset.plCardFeature + ' ' + part.querySelector('h3').textContent.toLowerCase());
+      }
+    }
+  }
+  function render() {
+    document.documentElement.dataset.theme = state.theme;
+    byId('pl-dev-target').value = state.target;
+    byId('pl-dev-step').value = String(state.step);
+    byId('pl-dev-theme').value = state.theme;
+    byId('pl-dev-place').value = state.place;
+    renderCard(); renderLists(); showOnly();
+  }
+  const api = {
+    version: 1, targets, periods, areaCount: cells.n,
+    getState: () => ({ ...state }),
+    setState: partial => {
+      Object.assign(state, partial);
+      const fragment = new URLSearchParams();
+      for (const [key, value] of Object.entries(state)) if (value != null && value !== false && value !== '') fragment.set(key, value);
+      history.replaceState(null, '', location.pathname + location.search + '#' + fragment);
+      for (const subscriber of subscribers) subscriber({ ...state });
+      render();
+    },
+    onState: callback => { subscribers.add(callback); return () => subscribers.delete(callback); },
+    areaIndex: id => areaIndexes.get(id) ?? -1, area, hours,
+    periodHours: (i, targetId, step) => Float32Array.from(periods, period => periodValue(i, indexOfTarget(targetId), step, period.index) ?? NaN),
+    openPlace: id => {
+      if (!areaIndexes.has(id)) { api.announce('That area is not in the data.'); return; }
+      api.setState({ place: id, view: area(areaIndexes.get(id)).hemisphere === 'S' ? 'antarctic' : 'arctic' });
+      byId('pl-dev-card').scrollIntoView({ block: 'start', behavior: 'auto' });
+    },
+    flyTo: (lat, lon, zoom) => { Object.assign(state, { lat, lon, zoom }); api.announce('Map movement is not drawn on this development page.'); },
+    loadJSON: name => load(name), loadBin: name => load(name, true), fmtHours, fmtNumber: number, theme: () => state.theme,
+    addToolsButton: (id, label, onPress) => {
+      const button = node('button', label); button.type = 'button'; button.dataset.plTool = id;
+      button.addEventListener('click', onPress); byId('pl-dev-tools').append(button);
+      return () => button.remove();
+    },
+    addCardSection: (id, title, render) => { sections.set(id, { title, render }); if (moduleReady) renderCard(); return () => { sections.delete(id); renderCard(); }; },
+    addListNote: callback => { notes.add(callback); return () => notes.delete(callback); },
+    addListFilter: (id, label, test) => {
+      const filter = { label, test, active: false }, wrapper = node('label'), input = node('input'); input.type = 'checkbox';
+      input.addEventListener('change', () => { filter.active = input.checked; renderLists(); });
+      wrapper.append(input, document.createTextNode(' ' + label)); filters.set(id, filter); byId('pl-dev-list-filters').append(wrapper);
+      return () => { filters.delete(id); wrapper.remove(); };
+    },
+    setListOrder: (id, label, score) => { if (score) { orders.set(id, { label, score }); selectedOrder = id; } else orders.delete(id); if (moduleReady) renderLists(); return () => orders.delete(id); },
+    announce: message => { byId('pl-dev-status').textContent = message; },
+  };
+  for (const target of targets) { const option = node('option', target.name); option.value = target.id; byId('pl-dev-target').append(option); }
+  byId('pl-dev-target').addEventListener('change', event => api.setState({ target: event.target.value }));
+  byId('pl-dev-step').addEventListener('change', event => api.setState({ step: Number(event.target.value) }));
+  byId('pl-dev-theme').addEventListener('change', event => api.setState({ theme: event.target.value }));
+  byId('pl-dev-controls').addEventListener('submit', event => { event.preventDefault(); api.openPlace(byId('pl-dev-place').value.trim()); });
+  document.documentElement.dataset.theme = state.theme;
+  window.plannerDev = { api, state, sections, render, showOnly, cells, meta };
+  const module = await mount(byId('planner-root'), api);
+  window.plannerDev.module = module;
+  moduleReady = true;
+  byId('pl-dev-status').textContent = '';
+  render();
+  document.documentElement.dataset.ready = '1';
+} catch (error) {
+  byId('pl-dev-status').textContent = 'Planner could not load: ' + error.message;
+  document.documentElement.dataset.error = error.message;
+  console.error(error);
+}
+</script>
+</body>
+</html>

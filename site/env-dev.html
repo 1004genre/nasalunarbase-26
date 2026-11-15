@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-dest="moon">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sunlight and haze development page · Earth Twin Finder</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="env.css">
+  <style>
+    .env-dev { max-width: 1200px; margin: auto; padding: 20px; }
+    .env-dev h1 { margin-bottom: 6px; }
+    .env-dev-controls { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0; }
+    .env-dev-controls label { display: grid; gap: 4px; flex: 1 1 160px; min-width: 0; font-size: 14px; }
+    .env-dev-controls input, .env-dev-controls select, .env-dev button { font: inherit; color: var(--ink, #edf3fa); background: var(--raised, #17283b); border: 1px solid var(--hair, rgba(255,255,255,0.08)); border-radius: 6px; padding: 8px; min-width: 0; width: 100%; }
+    .env-dev button { cursor: pointer; min-height: 44px; }
+    .env-dev-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 400px); gap: 20px; align-items: start; }
+    .env-dev-layout > * { min-width: 0; }
+    .env-dev-list { padding-left: 22px; }
+    .env-dev-list li { margin: 8px 0; }
+    .env-dev-list small { display: block; color: var(--ink2, #bdcbdc); }
+    .env-dev-status { margin: 10px 0; color: var(--ink2, #bdcbdc); overflow-wrap: anywhere; }
+    .env-dev [hidden] { display: none !important; }
+    .env-dev :focus-visible { outline: 3px solid var(--ui, #5cc8f5); outline-offset: 2px; }
+    #env-dev-card { margin-top: 0; }
+    :focus-visible { outline: 3px solid var(--ui, #5cc8f5); outline-offset: 3px; }
+    @media (max-width: 760px) { .env-dev { padding: 14px 16px; } .env-dev-layout { grid-template-columns: minmax(0, 1fr); } }
+  </style>
+</head>
+<body>
+<main class="env-dev">
+  <header id="env-dev-header">
+    <h1>Sunlight and haze development page</h1>
+    <p>This page uses the module contract and the same local data as the map.</p>
+    <form class="env-dev-controls" id="env-dev-controls">
+      <label>Lunar region<select id="env-dev-target"></select></label>
+      <label>Step<select id="env-dev-step"><option value="1">Sun only</option><option value="2">Snow-free ground / rock season</option><option value="3">After terrain</option><option value="4">Typical cloud</option></select></label>
+      <label>Theme<select id="env-dev-theme"><option value="light">Light</option><option value="dark">Dark</option></select></label>
+      <label>Area ID<input id="env-dev-place" spellcheck="false" autocomplete="off"></label>
+      <label><span>&nbsp;</span><button class="btn" type="submit">Open area</button></label>
+    </form>
+  </header>
+  <p id="env-dev-status" class="env-dev-status" role="status" aria-live="polite">The local data will open here.</p>
+  <div class="env-dev-layout">
+    <div>
+      <section id="env-dev-lists" aria-label="List preview">
+        <h2>List preview</h2>
+        <p class="lede">The best areas for the lunar region by hours of the year, with this module's note.</p>
+        <ol id="env-dev-list" class="env-dev-list"></ol>
+      </section>
+    </div>
+    <aside class="card" id="env-dev-card" aria-live="polite" aria-label="Place card"></aside>
+  </div>
+  <section id="env-root" class="module-section" aria-label="Sunlight, UV, clear days and haze">
+    <h2>Sunlight, UV, clear days and haze</h2>
+    <p class="lede">Four figures from NASA POWER for each area, with what they are and are not.</p>
+  </section>
+</main>
+<script type="module">
+import { mount } from './env.js';
+
+const byId = (id) => document.getElementById(id);
+const query = new URLSearchParams(location.search);
+const cache = new Map();
+function load(name, binary = false) {
+  if (!cache.has(name)) cache.set(name, fetch('data/' + name).then((response) => {
+    if (!response.ok) throw new Error(name + ' could not be read.');
+    return response.arrayBuffer();
+  }));
+  return cache.get(name).then((buffer) => binary ? buffer : JSON.parse(new TextDecoder().decode(buffer)));
+}
+const node = (tag, text, className) => {
+  const element = document.createElement(tag);
+  if (text != null) element.textContent = text;
+  if (className) element.className = className;
+  return element;
+};
+
+try {
+  const [meta, cells, flat, yearBuffer, snowBuffer, openBuffer, cloudBuffer] = await Promise.all([
+    load('meta.json'), load('cells.json'), load('flat.json'), load('yearly.bin', true),
+    load('snowfree.bin', true), load('open.bin', true), load('cloud.bin', true).catch(() => null),
+  ]);
+  const targets = meta.targets.map((t) => ({ id: t.id, name: t.name, limitDeg: t.limit_deg }));
+  const periods = meta.bins.map((b, index) => ({ index, label: b.label, firstDay: b.first_day, lastDay: b.last_day, month: b.month }));
+  const areaIndexes = new Map(cells.ids.map((id, index) => [id, index]));
+  const southern = new Map(cells.south.cells.map((index, position) => [index, position]));
+  const year = new DataView(yearBuffer);
+  const snow = new Uint8Array(snowBuffer), open = new Uint8Array(openBuffer);
+  const cloud = cloudBuffer ? new Uint8Array(cloudBuffer) : null;
+  const state = { target: targets[0].id, step: 3, period: 'year',
+    place: '75.3_-90.0', theme: 'dark', ...Object.fromEntries(query) };
+  state.step = Number(state.step);
+  if (![1, 2, 3, 4].includes(state.step)) state.step = 3;
+  if (!targets.some((t) => t.id === state.target)) state.target = targets[0].id;
+  if (!['light', 'dark'].includes(state.theme)) state.theme = 'dark';
+  if (!areaIndexes.has(state.place)) state.place = cells.ids[0];
+  const listeners = new Set(), sections = new Map(), notes = new Set();
+  let ready = false;
+  const number = (x, digits = 0) => x == null || !Number.isFinite(x) ? 'unknown'
+    : x.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits });
+  const fmtHours = (x) => x == null || !Number.isFinite(x) ? 'unknown' : number(x, x > 0 && x < 9.95 ? 1 : 0) + ' h';
+  const tIndex = (id) => targets.findIndex((t) => t.id === id);
+  function flatValue(i, t, period) {
+    const values = flat.targets[targets[t].id];
+    const raw = period === 'year' ? values.year[cells.flat_row[i]] : values.bins[cells.flat_row[i]][period];
+    return raw == null || raw < 0 ? null : raw / 10;
+  }
+  function byteValue(array, i, t, period) {
+    const raw = array[(i * targets.length + t) * periods.length + period];
+    return raw === meta.encoding.unknown || raw == null ? null : raw * meta.encoding.unit_h;
+  }
+  // the same rules as binValue() in app.js
+  function periodValue(i, t, step, period) {
+    if (i < 0 || t < 0 || period < 0 || period >= periods.length) return null;
+    if (step === 1) return flatValue(i, t, period);
+    if (cells.hemisphere[i] === 'S') {
+      if (!meta.seasons.rock_season_bins_south.includes(period)) return 0;
+      if (step === 2) return flatValue(i, t, period);
+    } else if (step === 2) return byteValue(snow, i, t, period);
+    const hours = byteValue(open, i, t, period);
+    if (step === 3 || hours == null || hours === 0) return hours;
+    const raw = cloud?.[i * 12 + periods[period].month - 1];
+    return raw == null || raw === meta.encoding.unknown ? null : hours * (1 - raw / 100);
+  }
+  function yearValue(i, t, field) {
+    const position = cells.yearly.fields.indexOf(field);
+    if (position < 0) return null;
+    const raw = year.getUint16(((i * targets.length + t) * cells.yearly.fields.length + position) * 2, true);
+    return raw === cells.yearly.unknown ? null : raw / cells.yearly.scale[field];
+  }
+  function yearHours(i, targetId, step) {
+    const t = tIndex(targetId);
+    if (step === 1) return flatValue(i, t, 'year');
+    if (cells.hemisphere[i] === 'S') {
+      const k = southern.get(i);
+      if (k == null) return null;
+      const raw = cells.south.targets[targetId][step === 2 ? 'rock_flat' : step === 3 ? 'rock_open' : 'rock_clear'][k];
+      return raw == null || raw < 0 ? null : raw / 10;
+    }
+    return yearValue(i, t, step === 2 ? 'snow_free' : step === 3 ? 'open' : 'clear');
+  }
+  function area(i) {
+    if (!Number.isInteger(i) || i < 0 || i >= cells.n) return null;
+    return { id: cells.ids[i], lat: cells.lat[i] / 100, lon: cells.lon[i] / 100, hemisphere: cells.hemisphere[i],
+      region: cells.regions[cells.region[i]], bare: cells.bare[i] < 0 ? null : cells.bare[i] / 100,
+      snowStatus: cells.snow_statuses[cells.snow[i]], named: cells.site[i] || null, littleKnown: cells.known[i] === -1 };
+  }
+  // the card, drawn the way renderCardExtensions() in app.js draws module parts
+  function renderCard() {
+    const card = byId('env-dev-card');
+    card.replaceChildren();
+    const i = areaIndexes.get(state.place), place = area(i);
+    if (!place) return;
+    card.append(node('h3', place.named || place.region || 'Selected area'),
+      node('p', `Area ${place.id} · ${targets[tIndex(state.target)].name} · ${fmtHours(yearHours(i, state.target, state.step))} a year at step ${state.step}`, 'where'));
+    for (const [id, part] of sections) {
+      let content = null;
+      try { content = part.render(i, state.target); } catch (error) { console.error(error); }
+      if (!(content instanceof Element)) continue;
+      const section = node('section', null, 'card-extension'), title = node('h4', part.title);
+      section.dataset.cardSection = id; section.append(title, content); card.append(section);
+    }
+  }
+  function renderLists() {
+    const list = byId('env-dev-list');
+    list.replaceChildren();
+    const hemisphere = cells.hemisphere[areaIndexes.get(state.place)];
+    const rows = [];
+    for (let i = 0; i < cells.n; i += 1) if (cells.hemisphere[i] === hemisphere) rows.push({ i, h: yearHours(i, state.target, state.step) });
+    rows.sort((a, b) => (b.h ?? -Infinity) - (a.h ?? -Infinity));
+    for (const { i, h } of rows.slice(0, 6)) {
+      const place = area(i), item = node('li'), button = node('button', place.named || `${place.region} · area ${place.id}`);
+      button.type = 'button'; button.addEventListener('click', () => api.openPlace(place.id));
+      item.append(button, node('small', fmtHours(h) + ' a year'));
+      for (const note of notes) { const text = note(i, state.target); if (text) item.append(node('small', text)); }
+      list.append(item);
+    }
+  }
+  function showOnly() {
+    const only = state.only;
+    byId('env-dev-header').hidden = !!only;
+    byId('env-dev-lists').hidden = !!only && only !== 'lists';
+    byId('env-dev-card').hidden = !!only && only !== 'card';
+    byId('env-root').hidden = !!only && only !== 'about';
+    document.querySelector('.env-dev-layout').style.gridTemplateColumns = only === 'card' ? 'minmax(0, 1fr)' : '';
+    byId('env-dev-card').style.maxWidth = only === 'card' ? '400px' : '';
+  }
+  function render() {
+    document.documentElement.dataset.theme = state.theme;
+    byId('env-dev-target').value = state.target;
+    byId('env-dev-step').value = String(state.step);
+    byId('env-dev-theme').value = state.theme;
+    byId('env-dev-place').value = state.place;
+    renderCard(); renderLists(); showOnly();
+  }
+  const api = {
+    version: 1, targets, periods, areaCount: cells.n,
+    getState: () => ({ ...state }),
+    setState(partial) {
+      Object.assign(state, partial);
+      history.replaceState(null, '', location.pathname + '?' + new URLSearchParams(Object.entries(state).filter(([, v]) => v != null && v !== '')));
+      for (const fn of listeners) fn({ ...state });
+      render();
+    },
+    onState: (fn) => { listeners.add(fn); return () => listeners.delete(fn); },
+    areaIndex: (id) => areaIndexes.get(id) ?? -1, area,
+    hours: (i, targetId = state.target, step = state.step, period = state.period) =>
+      /^\d+$/.test(String(period)) ? periodValue(i, tIndex(targetId), +step, +period) : period === 'year' ? yearHours(i, targetId, +step) : null,
+    periodHours: (i, targetId = state.target, step = state.step) => Float32Array.from(periods, (p) => periodValue(i, tIndex(targetId), +step, p.index) ?? NaN),
+    openPlace(id) {
+      if (!areaIndexes.has(id)) { api.announce('That area is not in the data.'); return; }
+      api.setState({ place: id });
+    },
+    flyTo: () => api.announce('Map movement is not drawn on this development page.'),
+    loadJSON: (name) => load(name), loadBin: (name) => load(name, true),
+    fmtHours, fmtNumber: number, theme: () => state.theme,
+    addToolsButton: () => () => {},
+    addCardSection(id, title, renderPart) { sections.set(id, { title, render: renderPart }); if (ready) renderCard(); return () => { sections.delete(id); renderCard(); }; },
+    addListNote(fn) { notes.add(fn); if (ready) renderLists(); return () => { notes.delete(fn); renderLists(); }; },
+    addListFilter: () => () => {}, setListOrder: () => () => {},
+    announce: (text) => { byId('env-dev-status').textContent = text; },
+  };
+  for (const t of targets) { const option = node('option', t.name); option.value = t.id; byId('env-dev-target').append(option); }
+  byId('env-dev-target').addEventListener('change', (event) => api.setState({ target: event.target.value }));
+  byId('env-dev-step').addEventListener('change', (event) => api.setState({ step: Number(event.target.value) }));
+  byId('env-dev-theme').addEventListener('change', (event) => api.setState({ theme: event.target.value }));
+  byId('env-dev-controls').addEventListener('submit', (event) => { event.preventDefault(); api.openPlace(byId('env-dev-place').value.trim()); });
+  document.documentElement.dataset.theme = state.theme;
+  const module = await mount(byId('env-root'), api);
+  window.envDev = { api, state, module };
+  ready = true;
+  byId('env-dev-status').textContent = '';
+  render();
+  document.documentElement.dataset.ready = '1';
+  // for checks from the command line: does anything scroll sideways?
+  requestAnimationFrame(() => {
+    const width = document.documentElement.clientWidth;
+    const past = [...document.querySelectorAll('body *')].filter((e) => e.getClientRects().length && e.getBoundingClientRect().right > width + 0.5);
+    document.documentElement.dataset.sideways = String(past.length > 0);
+    document.documentElement.dataset.width = String(width);
+    document.documentElement.dataset.past = past.slice(0, 6).map((e) => `${e.tagName.toLowerCase()}.${e.className}:${Math.round(e.getBoundingClientRect().width)}`).join(' ');
+  });
+} catch (error) {
+  byId('env-dev-status').textContent = 'The module could not load: ' + error.message;
+  document.documentElement.dataset.error = error.message;
+  console.error(error);
+}
+</script>
+</body>
+</html>

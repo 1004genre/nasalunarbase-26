@@ -1,0 +1,1763 @@
+{
+ "meta": {
+  "what": "One row for every factor the project shows or was asked for, with where its figures come from and its status, read from the files on disk.",
+  "made": "2026-11-15T19:16:22Z",
+  "made_by": "agent FACTOR-MATRIX, scripts/build_factor_matrix.py",
+  "how_to_rerun": "uv run python scripts/build_factor_matrix.py",
+  "groups": [
+   "light and sky",
+   "ground shape",
+   "ground material",
+   "climate",
+   "below the ground",
+   "hazards",
+   "people and access"
+  ],
+  "statuses": {
+   "measured and used in the ranking": "Measured (or computed from measured data) and part of the score that orders the lists.",
+   "measured and shown": "Read from a measured map, a catalogue or a model grid, and shown for each place; not in the score.",
+   "rough estimate by our own rule": "A word set by a stated rule of our own from other layers. It is not a measurement.",
+   "planet side only": "We hold figures for the lunar regions or the Mars sites, but none for the places on Earth.",
+   "being built": "Another member is still writing the input file.",
+   "not built": "No figure: the reason is given."
+  },
+  "kinds": {
+   "measured": "measured from a map, a catalogue or the Sun's computed path, for the area itself",
+   "model": "a model value (reanalysis or climate model) at the nearest grid point",
+   "coarse map": "a value of a grid box much larger than the area; not a measurement at the place",
+   "rough estimate by our rule": "a word set by our own stated rule; not a measurement"
+  },
+  "status_rule": "Read from the files: a factor with known values for Earth places is measured (in the ranking or shown) or a rough estimate by its kind; with figures only for the lunar regions or Mars sites it is 'planet side only'; otherwise 'not built' with the reason, or 'being built' when another member's file is still missing.",
+  "left_out": "Pits, caves and skylights: dropped by the team lead, no row.",
+  "counts_by_status": {
+   "measured and used in the ranking": 6,
+   "measured and shown": 19,
+   "rough estimate by our own rule": 12,
+   "not built": 1,
+   "planet side only": 1
+  },
+  "rows": 39,
+  "inputs_present": [
+   "grazing_cells.json",
+   "cloud_cells.json",
+   "temperature_cells.json",
+   "access_cells.json",
+   "environment_cells.json",
+   "tremors_cells.json",
+   "power_extra_cells.json",
+   "ground_cells.json",
+   "hazards_people_cells.json",
+   "rock_frozen_cells.json",
+   "estimates_cells.json",
+   "steady_effects_cells.json",
+   "power_cells.json",
+   "mars_cells.json",
+   "mars_environment.json",
+   "mars_tremors.json",
+   "mars_power_extra.json",
+   "mars_ground.json",
+   "mars_hazards_people.json",
+   "mars_rock_frozen.json",
+   "mars_estimates.json",
+   "mars_steady_effects.json",
+   "mars_power.json",
+   "land_status_cells.json",
+   "mars_land_status.json",
+   "planet_factors.json",
+   "ground_moon.json",
+   "moon_cards.json",
+   "mars_sites.json"
+  ],
+  "inputs_missing": [],
+  "credits_and_licences_by_file": {
+   "cloud_cells.json": [
+    {
+     "name": "source",
+     "licence": null,
+     "credit": "NASA POWER, POWER Climatology API v2.10.1, regional endpoint; data source named by the service: SYN1DEG (CERES SYN1deg)"
+    }
+   ],
+   "temperature_cells.json": [
+    {
+     "name": "source",
+     "licence": null,
+     "credit": "NASA POWER, POWER Climatology API v2.10.1, regional endpoint; data source named by the service for each parameter: T2M: MERRA2; T2M_MAX: MERRA2, POWER; T2M_MIN: MERRA2, POWER; TS: MERRA2 (MERRA-2 is NASA's reanalysis)"
+    }
+   ],
+   "access_cells.json": [
+    {
+     "name": "OurAirports, airports.csv",
+     "licence": "public domain",
+     "credit": null
+    }
+   ],
+   "environment_cells.json": [
+    {
+     "name": "source",
+     "licence": null,
+     "credit": "NASA POWER, POWER Climatology API (version in each parameter's answers), regional endpoint, community RE"
+    }
+   ],
+   "tremors_cells.json": [
+    {
+     "name": "source",
+     "licence": null,
+     "credit": "USGS ANSS Comprehensive Earthquake Catalog (ComCat) via the FDSN event web service, https://earthquake.usgs.gov/fdsnws/event/1/ (public domain, U.S. Geological Survey)"
+    }
+   ],
+   "power_extra_cells.json": [
+    {
+     "name": null,
+     "licence": "NASA POWER asks for the credit line above (https://power.larc.nasa.gov/docs/referencing/); NASA Earth science data carry no restriction on use unless marked (CC0; https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance). No key, no login.",
+     "credit": "The data was obtained from National Aeronautics and Space Administration (NASA) Langley Research Center's Prediction Of Worldwide Energy Resources (POWER) project funded through the NASA Earth Science Division. The data was obtained from the POWER Project's Climatology API v2.10.1 on 2026/11/15. (Daily temperature range, top-soil wetness and 10 m wind speed: MERRA-2. Surface albedo: CERES SYN1deg.)"
+    },
+    {
+     "name": "source",
+     "licence": "NASA POWER asks for the credit line above (https://power.larc.nasa.gov/docs/referencing/); NASA Earth science data carry no restriction on use unless marked (CC0; https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance). No key, no login.",
+     "credit": "NASA POWER POWER Climatology API v2.10.1, regional endpoint, community RE; T2M_RANGE: MERRA2, POWER; ALLSKY_SRF_ALB: SYN1DEG, POWER; GWETTOP: MERRA2; WS10M: MERRA2, POWER"
+    },
+    {
+     "name": "credit",
+     "licence": null,
+     "credit": "The data was obtained from National Aeronautics and Space Administration (NASA) Langley Research Center's Prediction Of Worldwide Energy Resources (POWER) project funded through the NASA Earth Science Division. The data was obtained from the POWER Project's Climatology API v2.10.1 on 2026/11/15. (Daily temperature range, top-soil wetness and 10 m wind speed: MERRA-2. Surface albedo: CERES SYN1deg.)"
+    },
+    {
+     "name": "licence",
+     "licence": null,
+     "credit": null
+    }
+   ],
+   "ground_cells.json": [
+    {
+     "name": "Copernicus DEM GLO-90",
+     "licence": "Licence for COP-DEM-GLO-90-F Global 90m Full, Free & Open (see data/SOURCES.md, row 6)",
+     "credit": "produced using Copernicus WorldDEM-90 (c) DLR e.V. 2010-2014 and (c) Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved. The organisations in charge of the Copernicus programme by law or by delegation do not incur any liability for any use of the Copernicus WorldDEM-90."
+    },
+    {
+     "name": "LOLA 5 m terrain models (PGDA product 78)",
+     "licence": "Data Usage Policy on the product page: cite the paper; NASA material is not copyrighted in the US (data/SOURCES.md, row 1)",
+     "credit": "Barker, M.K., et al. (2021), Improved LOLA Elevation Maps for South Pole Landing Sites: Error Estimates and Their Impact on Illumination Conditions, Planetary & Space Science, Volume 203, 105119, doi:10.1016/j.pss.2020.105119. Data: NASA Goddard Planetary Geodesy Data Archive."
+    },
+    {
+     "name": "LOLA illumination map (PGDA product 69), read through moon_targets.json",
+     "licence": "cite the paper (data/SOURCES.md, row 2)",
+     "credit": "Mazarico, E., et al. (2011), Illumination conditions of the lunar polar regions using LOLA topography, Icarus, Volume 211, Issue 2, 1066-1081, doi:10.1016/j.icarus.2010.10.030."
+    },
+    {
+     "name": "Sun table, snow-free odds and horizons, read through grazing_bins.npz and horizon_cells.json",
+     "licence": "the project's own files (CC BY 4.0); the snow odds carry the IMS credit line of NOTICE (G) and the horizons the Copernicus line above",
+     "credit": "U.S. National Ice Center. (2008). IMS Daily Northern Hemisphere Snow and Ice Analysis at 1 km, 4 km, and 24 km Resolutions. (G02156, Version 1). NSIDC. https://doi.org/10.7265/N52R3PMC"
+    }
+   ],
+   "hazards_people_cells.json": [
+    {
+     "name": "USGS ANSS Comprehensive Earthquake Catalog (ComCat), FDSN event web service",
+     "licence": "U.S. public domain",
+     "credit": "Credit: U.S. Geological Survey (the form the USGS page asks for)"
+    },
+    {
+     "name": "Smithsonian Institution, Global Volcanism Program: Volcanoes of the World, Holocene volcano list (layer GVP-VOTW:Smithsonian_VOTW_Holocene_Volcanoes of the GVP GeoServer web feature service)",
+     "licence": "not stated in the web service answer or its capabilities document (Fees: NONE, AccessConstraints: NONE); the GVP website, which holds the terms of use, could not be read tonight",
+     "credit": "Global Volcanism Program, Smithsonian Institution, Volcanoes of the World database (the GVP asks to be cited as 'Global Volcanism Program, <year>. [Database] Volcanoes of the World (v. <version>; <date>). Distributed by Smithsonian Institution, compiled by Venzke, E.' with a DOI; the version, date and DOI of this download were not read and are to be filled in)"
+    },
+    {
+     "name": "GeoNames gazetteer, cities1000 (populated places)",
+     "licence": "CC BY 4.0",
+     "credit": "GeoNames (geonames.org), CC BY 4.0"
+    }
+   ],
+   "rock_frozen_cells.json": [
+    {
+     "name": null,
+     "licence": null,
+     "credit": "Rock type: GLiM, Hartmann & Moosdorf (2012), PANGAEA, CC BY 3.0; Permafrost: Obu et al. (2019), ESA GlobPermafrost, PANGAEA, CC BY 3.0"
+    },
+    {
+     "name": "Global Lithological Map Database v1.0 (GLiM), gridded to 0.5 degree",
+     "licence": "Creative Commons Attribution 3.0 Unported (CC BY 3.0)",
+     "credit": "Rock type: GLiM, Hartmann & Moosdorf (2012), PANGAEA, CC BY 3.0"
+    },
+    {
+     "name": "Ground Temperature Map, 2000-2016, Northern Hemisphere Permafrost: permafrost probability (PERPROB)",
+     "licence": "Creative Commons Attribution 3.0 Unported (CC BY 3.0)",
+     "credit": "Permafrost: Obu et al. (2019), ESA GlobPermafrost, PANGAEA, CC BY 3.0"
+    }
+   ],
+   "estimates_cells.json": [
+    {
+     "name": "nasa_power",
+     "licence": "NASA POWER asks for the credit line above (https://power.larc.nasa.gov/docs/referencing/); NASA Earth science data carry no restriction on use unless marked (CC0; https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance). No key, no login.",
+     "credit": "The data was obtained from National Aeronautics and Space Administration (NASA) Langley Research Center's Prediction Of Worldwide Energy Resources (POWER) project funded through the NASA Earth Science Division. The data was obtained from the POWER Project's Climatology API v2.10.1 on 2026/11/15. (Daily temperature range, top-soil wetness and 10 m wind speed: MERRA-2. Surface albedo: CERES SYN1deg.)"
+    },
+    {
+     "name": "glim",
+     "licence": "Creative Commons Attribution 3.0 Unported (CC BY 3.0)",
+     "credit": "Rock type: GLiM, Hartmann & Moosdorf (2012), PANGAEA, CC BY 3.0"
+    },
+    {
+     "name": "permafrost",
+     "licence": "Creative Commons Attribution 3.0 Unported (CC BY 3.0)",
+     "credit": "Permafrost: Obu et al. (2019), ESA GlobPermafrost, PANGAEA, CC BY 3.0"
+    }
+   ],
+   "steady_effects_cells.json": [
+    {
+     "name": "Smithsonian Institution, Global Volcanism Program (GVP): Volcanoes of the World, Holocene volcano list (layer GVP-VOTW:Smithsonian_VOTW_Holocene_Volcanoes)",
+     "licence": "not stated in the web feature service's answer; its capabilities document says Fees: NONE and AccessConstraints: NONE; no login is asked for",
+     "credit": "Global Volcanism Program, Smithsonian Institution: Volcanoes of the World v. 5.4.0 (7 Aug 2026), Holocene volcano and eruption lists, from its public web feature service"
+    },
+    {
+     "name": "GeoNames gazetteer, cities1000",
+     "licence": "CC BY 4.0",
+     "credit": "GeoNames (geonames.org), CC BY 4.0"
+    },
+    {
+     "name": "OurAirports, airports.csv",
+     "licence": "public domain (The Unlicense, the LICENSE file of github.com/davidmegginson/ourairports-data; copy in data/raw/ourairports/)",
+     "credit": "OurAirports (ourairports.com), public domain"
+    },
+    {
+     "name": "Natural Earth 1:10m Cultural Vectors: roads (ne_10m_roads) and railroads (ne_10m_railroads), GeoJSON from github.com/nvkelso/natural-earth-vector",
+     "licence": "public domain (the repository's LICENSE.md: 'Everything here is public domain.'; no permission needed and credit not required; copy kept in data/raw/naturalearth_roads/)",
+     "credit": "Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com. (the long credit text LICENSE.md offers)"
+    }
+   ],
+   "power_cells.json": [
+    {
+     "name": "nasa_power",
+     "licence": "NASA Earth science data carry no restriction on use unless marked; POWER asks for the credit line above.",
+     "credit": "The data was obtained from the National Aeronautics and Space Administration (NASA) Langley Research Center (LaRC) Prediction of Worldwide Energy Resource (POWER) Project funded through the NASA Earth Science/Applied Science Program (https://power.larc.nasa.gov/docs/referencing/); POWER Climatology API v2.10.1, read 15 November 2026 UTC. No key, no login."
+    },
+    {
+     "name": "power_plants",
+     "licence": "Creative Commons Attribution 4.0 International (CC BY 4.0), as the repository's README states (saved: data/raw/power_plants/README.md); the README also says WRI no longer maintains the project (early 2022) and that 1.3.0 is the last version",
+     "credit": "Global Energy Observatory, Google, KTH Royal Institute of Technology in Stockholm, Enipedia, World Resources Institute. Global Power Plant Database. Published on Resource Watch and Google Earth Engine; http://resourcewatch.org/ https://earthengine.google.com/"
+    },
+    {
+     "name": "volcanoes",
+     "licence": null,
+     "credit": "Global Volcanism Program, 2026. [Database] Volcanoes of the World (v. 5.4.0; 7 Aug 2026). Distributed by Smithsonian Institution, compiled by Venzke, E. https://doi.org/10.5479/si.GVP.VOTW5-2026.5.4"
+    }
+   ],
+   "mars_environment.json": [
+    {
+     "name": "source",
+     "licence": null,
+     "credit": "NASA POWER, POWER Climatology API v2.10.1, regional endpoint, community RE. Data set named in the answers: CERES SYN1deg (SYN1DEG; ALLSKY_KT and CLRSKY_DAYS: SYN1DEG and POWER)."
+    }
+   ],
+   "mars_tremors.json": [
+    {
+     "name": "source",
+     "licence": null,
+     "credit": "USGS ANSS Comprehensive Earthquake Catalog (ComCat) via the FDSN event web service, https://earthquake.usgs.gov/fdsnws/event/1/ (public domain, U.S. Geological Survey)"
+    }
+   ],
+   "mars_power_extra.json": [
+    {
+     "name": null,
+     "licence": "NASA POWER asks for the credit line above (https://power.larc.nasa.gov/docs/referencing/); NASA Earth science data carry no restriction on use unless marked (CC0; https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance). No key, no login.",
+     "credit": "The data was obtained from National Aeronautics and Space Administration (NASA) Langley Research Center's Prediction Of Worldwide Energy Resources (POWER) project funded through the NASA Earth Science Division. The data was obtained from the POWER Project's Climatology API v2.10.1 on 2026/11/15. (Daily temperature range, top-soil wetness and 10 m wind speed: MERRA-2. Surface albedo: CERES SYN1deg.)"
+    },
+    {
+     "name": "source",
+     "licence": "NASA POWER asks for the credit line above (https://power.larc.nasa.gov/docs/referencing/); NASA Earth science data carry no restriction on use unless marked (CC0; https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance). No key, no login.",
+     "credit": "NASA POWER POWER Climatology API v2.10.1, regional endpoint, community RE; T2M_RANGE: MERRA2, POWER; ALLSKY_SRF_ALB: SYN1DEG, POWER; GWETTOP: MERRA2; WS10M: MERRA2, POWER"
+    },
+    {
+     "name": "credit",
+     "licence": null,
+     "credit": "The data was obtained from National Aeronautics and Space Administration (NASA) Langley Research Center's Prediction Of Worldwide Energy Resources (POWER) project funded through the NASA Earth Science Division. The data was obtained from the POWER Project's Climatology API v2.10.1 on 2026/11/15. (Daily temperature range, top-soil wetness and 10 m wind speed: MERRA-2. Surface albedo: CERES SYN1deg.)"
+    },
+    {
+     "name": "licence",
+     "licence": null,
+     "credit": null
+    }
+   ],
+   "mars_ground.json": [
+    {
+     "name": "MGS MOLA MEGDR, 32 pixels per degree, read through mars_terrain.json",
+     "licence": "NASA Planetary Data System archive; NASA material is not copyrighted in the US (general NASA policy; no licence page was opened tonight)",
+     "credit": "Smith, D. E., et al., Mars Global Surveyor Laser Altimeter Mission Experiment Gridded Data Record, MGS-M-MOLA-5-MEGDR-L3-V1.0, NASA Planetary Data System."
+    },
+    {
+     "name": "NOAA NCEI ETOPO 2022, 60 arc-seconds, read through mars_terrain.json",
+     "licence": "NOAA data, US public domain (general NOAA policy; no licence page was opened tonight)",
+     "credit": "NOAA National Centers for Environmental Information. 2022: ETOPO 2022 15 Arc-Second Global Relief Model. NOAA National Centers for Environmental Information. doi:10.25921/fd45-gt74"
+    }
+   ],
+   "mars_hazards_people.json": [
+    {
+     "name": "USGS ANSS Comprehensive Earthquake Catalog (ComCat), FDSN event web service",
+     "licence": "U.S. public domain",
+     "credit": "Credit: U.S. Geological Survey (the form the USGS page asks for)"
+    },
+    {
+     "name": "Smithsonian Institution, Global Volcanism Program: Volcanoes of the World, Holocene volcano list (layer GVP-VOTW:Smithsonian_VOTW_Holocene_Volcanoes of the GVP GeoServer web feature service)",
+     "licence": "not stated in the web service answer or its capabilities document (Fees: NONE, AccessConstraints: NONE); the GVP website, which holds the terms of use, could not be read tonight",
+     "credit": "Global Volcanism Program, Smithsonian Institution, Volcanoes of the World database (the GVP asks to be cited as 'Global Volcanism Program, <year>. [Database] Volcanoes of the World (v. <version>; <date>). Distributed by Smithsonian Institution, compiled by Venzke, E.' with a DOI; the version, date and DOI of this download were not read and are to be filled in)"
+    },
+    {
+     "name": "GeoNames gazetteer, cities1000 (populated places)",
+     "licence": "CC BY 4.0",
+     "credit": "GeoNames (geonames.org), CC BY 4.0"
+    }
+   ],
+   "mars_rock_frozen.json": [
+    {
+     "name": null,
+     "licence": null,
+     "credit": "Rock type: GLiM, Hartmann & Moosdorf (2012), PANGAEA, CC BY 3.0; Permafrost: Obu et al. (2019), ESA GlobPermafrost, PANGAEA, CC BY 3.0"
+    },
+    {
+     "name": "Global Lithological Map Database v1.0 (GLiM), gridded to 0.5 degree",
+     "licence": "Creative Commons Attribution 3.0 Unported (CC BY 3.0)",
+     "credit": "Rock type: GLiM, Hartmann & Moosdorf (2012), PANGAEA, CC BY 3.0"
+    },
+    {
+     "name": "Ground Temperature Map, 2000-2016, Northern Hemisphere Permafrost: permafrost probability (PERPROB)",
+     "licence": "Creative Commons Attribution 3.0 Unported (CC BY 3.0)",
+     "credit": "Permafrost: Obu et al. (2019), ESA GlobPermafrost, PANGAEA, CC BY 3.0"
+    }
+   ],
+   "mars_estimates.json": [
+    {
+     "name": "nasa_power",
+     "licence": "NASA POWER asks for the credit line above (https://power.larc.nasa.gov/docs/referencing/); NASA Earth science data carry no restriction on use unless marked (CC0; https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance). No key, no login.",
+     "credit": "The data was obtained from National Aeronautics and Space Administration (NASA) Langley Research Center's Prediction Of Worldwide Energy Resources (POWER) project funded through the NASA Earth Science Division. The data was obtained from the POWER Project's Climatology API v2.10.1 on 2026/11/15. (Daily temperature range, top-soil wetness and 10 m wind speed: MERRA-2. Surface albedo: CERES SYN1deg.)"
+    },
+    {
+     "name": "glim",
+     "licence": "Creative Commons Attribution 3.0 Unported (CC BY 3.0)",
+     "credit": "Rock type: GLiM, Hartmann & Moosdorf (2012), PANGAEA, CC BY 3.0"
+    },
+    {
+     "name": "permafrost",
+     "licence": "Creative Commons Attribution 3.0 Unported (CC BY 3.0)",
+     "credit": "Permafrost: Obu et al. (2019), ESA GlobPermafrost, PANGAEA, CC BY 3.0"
+    }
+   ],
+   "mars_steady_effects.json": [
+    {
+     "name": "Smithsonian Institution, Global Volcanism Program (GVP): Volcanoes of the World, Holocene volcano list (layer GVP-VOTW:Smithsonian_VOTW_Holocene_Volcanoes)",
+     "licence": "not stated in the web feature service's answer; its capabilities document says Fees: NONE and AccessConstraints: NONE; no login is asked for",
+     "credit": "Global Volcanism Program, Smithsonian Institution: Volcanoes of the World v. 5.4.0 (7 Aug 2026), Holocene volcano and eruption lists, from its public web feature service"
+    },
+    {
+     "name": "GeoNames gazetteer, cities1000",
+     "licence": "CC BY 4.0",
+     "credit": "GeoNames (geonames.org), CC BY 4.0"
+    },
+    {
+     "name": "OurAirports, airports.csv",
+     "licence": "public domain (The Unlicense, the LICENSE file of github.com/davidmegginson/ourairports-data; copy in data/raw/ourairports/)",
+     "credit": "OurAirports (ourairports.com), public domain"
+    },
+    {
+     "name": "Natural Earth 1:10m Cultural Vectors: roads (ne_10m_roads) and railroads (ne_10m_railroads), GeoJSON from github.com/nvkelso/natural-earth-vector",
+     "licence": "public domain (the repository's LICENSE.md: 'Everything here is public domain.'; no permission needed and credit not required; copy kept in data/raw/naturalearth_roads/)",
+     "credit": "Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com. (the long credit text LICENSE.md offers)"
+    }
+   ],
+   "mars_power.json": [
+    {
+     "name": "nasa_power",
+     "licence": "NASA Earth science data carry no restriction on use unless marked; POWER asks for the credit line above.",
+     "credit": "The data was obtained from the National Aeronautics and Space Administration (NASA) Langley Research Center (LaRC) Prediction of Worldwide Energy Resource (POWER) Project funded through the NASA Earth Science/Applied Science Program (https://power.larc.nasa.gov/docs/referencing/); POWER Climatology API v2.10.1, read 15 November 2026 UTC. No key, no login."
+    },
+    {
+     "name": "power_plants",
+     "licence": "Creative Commons Attribution 4.0 International (CC BY 4.0), as the repository's README states (saved: data/raw/power_plants/README.md); the README also says WRI no longer maintains the project (early 2022) and that 1.3.0 is the last version",
+     "credit": "Global Energy Observatory, Google, KTH Royal Institute of Technology in Stockholm, Enipedia, World Resources Institute. Global Power Plant Database. Published on Resource Watch and Google Earth Engine; http://resourcewatch.org/ https://earthengine.google.com/"
+    },
+    {
+     "name": "volcanoes",
+     "licence": null,
+     "credit": "Global Volcanism Program, 2026. [Database] Volcanoes of the World (v. 5.4.0; 7 Aug 2026). Distributed by Smithsonian Institution, compiled by Venzke, E. https://doi.org/10.5479/si.GVP.VOTW5-2026.5.4"
+    }
+   ],
+   "planet_factors.json": [
+    {
+     "name": "NASA PDS (TES thermal inertia, Odyssey GRS, Lunar Prospector, LRO Diviner)",
+     "licence": "Public NASA archive data; no login; no copyright restriction stated on the PDS Geosciences Node pages",
+     "credit": "NASA Planetary Data System, Geosciences Node (Washington University in St. Louis), with the instrument teams named per factor"
+    },
+    {
+     "name": "USGS Astrogeology (TES albedo mosaic)",
+     "licence": "Access constraints: public domain (USGS product page); 'Please cite authors'",
+     "credit": "Christensen, P., et al. (2001), MGS TES; originator Arizona State University; publisher USGS Astrogeology Science Center"
+    },
+    {
+     "name": "NASA web pages (nasa.gov, mars.nasa.gov, science.nasa.gov)",
+     "licence": "NASA content, generally not subject to copyright in the US; credit NASA",
+     "credit": "NASA / JPL-Caltech; image credits as on each page"
+    },
+    {
+     "name": "Arvidson et al. 2009 (JGR 114, E00E02)",
+     "licence": "Copyright 2009 American Geophysical Union; open copy on the JPL robotics site; only a short phrase is quoted",
+     "credit": "Arvidson, R. E., et al. (2009), Results from the Mars Phoenix Lander Robotic Arm experiment, J. Geophys. Res., 114, E00E02, doi:10.1029/2009JE003408"
+    },
+    {
+     "name": "Morgan et al. 2021 (Nature Astronomy), NASA-funded SWIM project",
+     "licence": "Author manuscript on NASA NTRS (20205008958); only short phrases are quoted",
+     "credit": "Morgan, G. A., et al. (2021), Availability of subsurface water-ice resources in the northern mid-latitudes of Mars, Nature Astronomy 5, 230-236"
+    },
+    {
+     "name": "Mars Climate Database (daily swing, from the Mars-climate job's saved tables)",
+     "licence": "MCD web interface output; free for research use with credit",
+     "credit": "Mars Climate Database v6.2 (c) LMD/LATMOS/OU/IAA/ESA/CNES"
+    }
+   ],
+   "ground_moon.json": [
+    {
+     "name": "Copernicus DEM GLO-90",
+     "licence": "Licence for COP-DEM-GLO-90-F Global 90m Full, Free & Open (see data/SOURCES.md, row 6)",
+     "credit": "produced using Copernicus WorldDEM-90 (c) DLR e.V. 2010-2014 and (c) Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved. The organisations in charge of the Copernicus programme by law or by delegation do not incur any liability for any use of the Copernicus WorldDEM-90."
+    },
+    {
+     "name": "LOLA 5 m terrain models (PGDA product 78)",
+     "licence": "Data Usage Policy on the product page: cite the paper; NASA material is not copyrighted in the US (data/SOURCES.md, row 1)",
+     "credit": "Barker, M.K., et al. (2021), Improved LOLA Elevation Maps for South Pole Landing Sites: Error Estimates and Their Impact on Illumination Conditions, Planetary & Space Science, Volume 203, 105119, doi:10.1016/j.pss.2020.105119. Data: NASA Goddard Planetary Geodesy Data Archive."
+    },
+    {
+     "name": "LOLA illumination map (PGDA product 69), read through moon_targets.json",
+     "licence": "cite the paper (data/SOURCES.md, row 2)",
+     "credit": "Mazarico, E., et al. (2011), Illumination conditions of the lunar polar regions using LOLA topography, Icarus, Volume 211, Issue 2, 1066-1081, doi:10.1016/j.icarus.2010.10.030."
+    },
+    {
+     "name": "Sun table, snow-free odds and horizons, read through grazing_bins.npz and horizon_cells.json",
+     "licence": "the project's own files (CC BY 4.0); the snow odds carry the IMS credit line of NOTICE (G) and the horizons the Copernicus line above",
+     "credit": "U.S. National Ice Center. (2008). IMS Daily Northern Hemisphere Snow and Ice Analysis at 1 km, 4 km, and 24 km Resolutions. (G02156, Version 1). NSIDC. https://doi.org/10.7265/N52R3PMC"
+    }
+   ],
+   "moon_cards.json": [
+    {
+     "name": "picture_credit",
+     "licence": null,
+     "credit": "NASA/GSFC/Arizona State University"
+    }
+   ]
+  },
+  "page_licence_line": "Code: Apache License 2.0. Our result files: CC BY 4.0, except data/reference/known_analogs.json and anorthosite_bodies.json (CC BY-SA 4.0), the station fields taken from COMNAP, values from the Mars Climate Database, and volcano names, years and distances from the Smithsonian Global Volcanism Program (non-commercial use only, under each provider's terms). Source data keep their own licences, listed in data/SOURCES.md. Not a NASA product; no endorsement by NASA, ESA, the European Union, NOAA or any other provider is implied.",
+  "unknown_is": "null"
+ },
+ "rows": [
+  {
+   "id": "sun_low_hours",
+   "name": "Sun height and low-Sun hours",
+   "group": "light and sky",
+   "kind": "measured",
+   "unit": "hours a year; degrees",
+   "what_it_is": "Hours a year in spells of 2 h or more with the Sun's centre above the horizon but under the lunar region's ceiling.",
+   "what_it_is_not": "Not sunshine under cloud, and not the Sun's height at any one moment.",
+   "earth_figure_from": "The Sun's path computed every minute for each area (twinfinder/sun.py), over a flat horizon, then over the real hills.",
+   "moon_figure_from": "The Sun ceiling at each lunar region from its latitude and the Moon's 1.54 degree tilt (moon_cards.json).",
+   "mars_figure_from": "Not used in the Mars part, which compares climate and ground, not low Sun.",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 16184,
+     "of": 16184
+    },
+    "mars_squares": null,
+    "lunar_regions": {
+     "known": 16,
+     "of": 16
+    },
+    "mars_sites": null
+   },
+   "files": [
+    "grazing_cells.json",
+    "moon_cards.json"
+   ],
+   "files_missing": [],
+   "status": "measured and used in the ranking",
+   "status_reason": null,
+   "enters_score": true
+  },
+  {
+   "id": "cloud",
+   "name": "Cloud",
+   "group": "light and sky",
+   "kind": "coarse map",
+   "unit": "percent of sky",
+   "what_it_is": "Mean cloud amount by month for the 1 degree box that holds the area; step 4 keeps the hours under typical cloud.",
+   "what_it_is_not": "Not the cloud at the low-Sun hours themselves, and not a measurement at the area.",
+   "earth_figure_from": "NASA POWER climatology, CERES SYN1deg cloud amount (cloud_cells.json).",
+   "moon_figure_from": "No air and no cloud on the Moon.",
+   "mars_figure_from": "Not used in the Mars part.",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 16184,
+     "of": 16184
+    },
+    "mars_squares": null,
+    "lunar_regions": null,
+    "mars_sites": null
+   },
+   "files": [
+    "cloud_cells.json"
+   ],
+   "files_missing": [],
+   "status": "measured and shown",
+   "status_reason": "Step 4 of the map takes typical cloud out of the hours. No ranking score uses it.",
+   "enters_score": false
+  },
+  {
+   "id": "uv",
+   "name": "UV exposure",
+   "group": "light and sky",
+   "kind": "coarse map",
+   "unit": "UV index",
+   "what_it_is": "The UV index at the ground under the real sky, averaged over all 24 hours of the day, by month.",
+   "what_it_is_not": "Not the noon UV index of a weather forecast, and not a measurement at the place.",
+   "earth_figure_from": "NASA POWER climatology ALLSKY_SFC_UV_INDEX, CERES SYN1deg 1 degree box (environment_cells.json, mars_environment.json).",
+   "moon_figure_from": "No air or ozone on the Moon to filter UV; no lunar UV figure is in our data.",
+   "mars_figure_from": "No Mars UV figure is in our data.",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 16184,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 12984,
+     "of": 12984
+    },
+    "lunar_regions": null,
+    "mars_sites": null
+   },
+   "files": [
+    "environment_cells.json",
+    "mars_environment.json"
+   ],
+   "files_missing": [],
+   "status": "measured and shown",
+   "status_reason": null,
+   "enters_score": false
+  },
+  {
+   "id": "sunlight",
+   "name": "Surface sunlight",
+   "group": "light and sky",
+   "kind": "coarse map",
+   "unit": "kWh per m2 per day",
+   "what_it_is": "Sunlight reaching level ground in a mean day of each month, night included, under the real mix of cloud and clear.",
+   "what_it_is_not": "Not the light on a tilted panel, and not a measurement at the place.",
+   "earth_figure_from": "NASA POWER climatology ALLSKY_SFC_SW_DWN, CERES SYN1deg (environment_cells.json, mars_environment.json).",
+   "moon_figure_from": "The lunar regions' lit share of all time (PGDA illumination maps, moon_cards.json); the energy a day is not in our data.",
+   "mars_figure_from": "Sunlight at the top of the Mars atmosphere from the NASA fact sheet (mars_environment.json meta).",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 16184,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 12984,
+     "of": 12984
+    },
+    "lunar_regions": {
+     "known": 16,
+     "of": 16
+    },
+    "mars_sites": null
+   },
+   "files": [
+    "environment_cells.json",
+    "mars_environment.json",
+    "moon_cards.json"
+   ],
+   "files_missing": [],
+   "status": "measured and shown",
+   "status_reason": null,
+   "enters_score": false
+  },
+  {
+   "id": "clear_days",
+   "name": "Clear-sky days",
+   "group": "light and sky",
+   "kind": "coarse map",
+   "unit": "days a year",
+   "what_it_is": "Days with daytime cloud under 10 percent in the 1 degree box, in a typical year (2001 to 2020).",
+   "what_it_is_not": "Not days of clear sky during the low-Sun hours, and not a count at the place.",
+   "earth_figure_from": "NASA POWER climatology CLRSKY_DAYS, divided by its 20 years (environment_cells.json, mars_environment.json).",
+   "moon_figure_from": "Every day is clear on the Moon: there is no air.",
+   "mars_figure_from": "No Mars figure in our data.",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 16184,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 12984,
+     "of": 12984
+    },
+    "lunar_regions": null,
+    "mars_sites": null
+   },
+   "files": [
+    "environment_cells.json",
+    "mars_environment.json"
+   ],
+   "files_missing": [],
+   "status": "measured and shown",
+   "status_reason": null,
+   "enters_score": false
+  },
+  {
+   "id": "haze",
+   "name": "Dust and haze",
+   "group": "light and sky",
+   "kind": "coarse map",
+   "unit": "aerosol optical depth at 550 nm",
+   "what_it_is": "How much the air's dust, smoke and haze dim the Sun, as the aerosol optical depth of the 1 degree box.",
+   "what_it_is_not": "Not dust on the ground, and not dust alone: all aerosol together.",
+   "earth_figure_from": "NASA POWER climatology AOD_55_ADJ for the areas and AOD_55 for the Mars squares (environment_cells.json, mars_environment.json); the service has no dust-only figure.",
+   "moon_figure_from": "No air on the Moon, so no haze; lunar dust is on the ground.",
+   "mars_figure_from": "The dusty Mars sky from Martinez et al. 2017 (mars_environment.json meta), words only.",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 16184,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 12984,
+     "of": 12984
+    },
+    "lunar_regions": null,
+    "mars_sites": null
+   },
+   "files": [
+    "environment_cells.json",
+    "mars_environment.json"
+   ],
+   "files_missing": [],
+   "status": "measured and shown",
+   "status_reason": null,
+   "enters_score": false
+  },
+  {
+   "id": "hills",
+   "name": "Hills around the area",
+   "group": "ground shape",
+   "kind": "measured",
+   "unit": "degrees of horizon; hours",
+   "what_it_is": "The real horizon of each area from a 60 m height model; it removes the low-Sun hours the hills hide.",
+   "what_it_is_not": "Not shade from plants or buildings.",
+   "earth_figure_from": "Copernicus DEM GLO-90 horizons (horizon_cells.json), step 3 of the map.",
+   "moon_figure_from": "The lunar regions' 5 m LOLA models (PGDA product 78).",
+   "mars_figure_from": "Not used in the Mars part.",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 16133,
+     "of": 16184
+    },
+    "mars_squares": null,
+    "lunar_regions": {
+     "known": 13,
+     "of": 16
+    },
+    "mars_sites": null
+   },
+   "files": [
+    "grazing_cells.json",
+    "ground_moon.json"
+   ],
+   "files_missing": [],
+   "status": "measured and used in the ranking",
+   "status_reason": null,
+   "enters_score": true
+  },
+  {
+   "id": "slope",
+   "name": "Slope",
+   "group": "ground shape",
+   "kind": "measured",
+   "unit": "degrees",
+   "what_it_is": "The median and 90th-percentile slope of the ground in a 10 km window, from a 90 m height model.",
+   "what_it_is_not": "Not the slope under one footprint: 90 m pixels smooth out small steps.",
+   "earth_figure_from": "Copernicus DEM GLO-90 (ground_cells.json, as terrain_cells.json); Mars squares: slopes across about 3.7 km (mars_ground.json).",
+   "moon_figure_from": "LOLA 5 m models, slopes on 90 m blocks (ground_moon.json).",
+   "mars_figure_from": "MOLA heights every 1.85 km at the Mars sites (mars_ground.json).",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 16181,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 12893,
+     "of": 12984
+    },
+    "lunar_regions": {
+     "known": 13,
+     "of": 16
+    },
+    "mars_sites": {
+     "known": 57,
+     "of": 57
+    }
+   },
+   "files": [
+    "ground_cells.json",
+    "ground_moon.json",
+    "mars_ground.json"
+   ],
+   "files_missing": [],
+   "status": "measured and shown",
+   "status_reason": null,
+   "enters_score": false
+  },
+  {
+   "id": "slope_likeness",
+   "name": "Slope likeness",
+   "group": "ground shape",
+   "kind": "measured",
+   "unit": "score 0 to 1",
+   "what_it_is": "How much the area's spread of slopes overlaps the lunar region's own spread of slopes.",
+   "what_it_is_not": "Not a match of single landforms, and blind to anything under 90 m.",
+   "earth_figure_from": "Copernicus DEM GLO-90 slopes (the terrain score in site/data/yearly.bin).",
+   "moon_figure_from": "LOLA 5 m models on 90 m blocks (moon_cards.json fingerprints).",
+   "mars_figure_from": "MOLA slopes across about 3.7 km (the terrain score of mars_cells.json).",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 16181,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 12893,
+     "of": 12984
+    },
+    "lunar_regions": null,
+    "mars_sites": null
+   },
+   "files": [
+    "mars_cells.json",
+    "site/data/cells.json"
+   ],
+   "files_missing": [],
+   "status": "measured and used in the ranking",
+   "status_reason": null,
+   "enters_score": true
+  },
+  {
+   "id": "roughness",
+   "name": "Roughness at several scales",
+   "group": "ground shape",
+   "kind": "measured",
+   "unit": "m",
+   "what_it_is": "How bumpy the ground is once the local slope is taken away, at baselines of 90, 270 and 810 m.",
+   "what_it_is_not": "Not boulders: nothing under 90 m is seen on Earth. GLO-90 includes forest and buildings.",
+   "earth_figure_from": "Copernicus DEM GLO-90 in a 10 km window (ground_cells.json).",
+   "moon_figure_from": "LOLA 5 m models at 5, 15, 45, 90, 270 and 810 m (ground_moon.json).",
+   "mars_figure_from": "Not worked out for the Mars squares: their heights are 1.85 km apart.",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 16184,
+     "of": 16184
+    },
+    "mars_squares": null,
+    "lunar_regions": {
+     "known": 13,
+     "of": 16
+    },
+    "mars_sites": null
+   },
+   "files": [
+    "ground_cells.json",
+    "ground_moon.json"
+   ],
+   "files_missing": [],
+   "status": "measured and shown",
+   "status_reason": null,
+   "enters_score": false
+  },
+  {
+   "id": "landform",
+   "name": "Landforms",
+   "group": "ground shape",
+   "kind": "rough estimate by our rule",
+   "unit": "class",
+   "what_it_is": "Plain, rolling ground, hills or mountains, set from slope and relief by thresholds after Hammond (1964).",
+   "what_it_is_not": "Not a geomorphological map, and not checked in the field.",
+   "earth_figure_from": "Copernicus DEM GLO-90 window (ground_cells.json); Mars squares: a relief class only (mars_ground.json).",
+   "moon_figure_from": "The same rule on 10 km pieces of the 5 m LOLA models (ground_moon.json).",
+   "mars_figure_from": "A relief class at the Mars sites (mars_ground.json).",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 16181,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 12893,
+     "of": 12984
+    },
+    "lunar_regions": {
+     "known": 13,
+     "of": 16
+    },
+    "mars_sites": {
+     "known": 57,
+     "of": 57
+    }
+   },
+   "files": [
+    "ground_cells.json",
+    "ground_moon.json",
+    "mars_ground.json"
+   ],
+   "files_missing": [],
+   "status": "rough estimate by our own rule",
+   "status_reason": null,
+   "enters_score": false
+  },
+  {
+   "id": "visual_navigation",
+   "name": "Visual navigation difficulty",
+   "group": "ground shape",
+   "kind": "measured",
+   "unit": "shown as its parts",
+   "what_it_is": "Shown as its parts side by side: the Sun's height, the share of ground in terrain shadow, roughness at 90 m and haze.",
+   "what_it_is_not": "Not a single score: we give none.",
+   "earth_figure_from": "The parts' own sources (Sun path, horizons, GLO-90, NASA POWER aerosol); ground_cells.json for the shadow share.",
+   "moon_figure_from": "The lunar regions' Sun ceiling, lit share and roughness (moon_cards.json, ground_moon.json).",
+   "mars_figure_from": "Not built for the Mars part.",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 14328,
+     "of": 16184
+    },
+    "mars_squares": null,
+    "lunar_regions": {
+     "known": 13,
+     "of": 16
+    },
+    "mars_sites": null
+   },
+   "files": [
+    "ground_cells.json",
+    "ground_moon.json"
+   ],
+   "files_missing": [],
+   "status": "measured and shown",
+   "status_reason": null,
+   "enters_score": false
+  },
+  {
+   "id": "bare",
+   "name": "Bare ground",
+   "group": "ground material",
+   "kind": "measured",
+   "unit": "share of land",
+   "what_it_is": "The share of the area's land that is bare rock, gravel or sand, without plants or permanent ice.",
+   "what_it_is_not": "Not snow-free in every season: snow is a separate step.",
+   "earth_figure_from": "ESA WorldCover 10 m 2021 (north) and the SCAR rock outcrop layer (south), in grazing_cells.json.",
+   "moon_figure_from": "The lunar regions are bare regolith.",
+   "mars_figure_from": "ESA WorldCover 2021 for the Mars squares (mars_cells.json).",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 16184,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 12984,
+     "of": 12984
+    },
+    "lunar_regions": null,
+    "mars_sites": null
+   },
+   "files": [
+    "grazing_cells.json",
+    "mars_cells.json"
+   ],
+   "files_missing": [],
+   "status": "measured and used in the ranking",
+   "status_reason": null,
+   "enters_score": true
+  },
+  {
+   "id": "snow",
+   "name": "Snow",
+   "group": "ground material",
+   "kind": "measured",
+   "unit": "odds in percent",
+   "what_it_is": "The odds that the area is free of snow in each ten-day period, from daily snow maps of past years.",
+   "what_it_is_not": "Not measured in the south, where the rock season is used instead.",
+   "earth_figure_from": "NOAA / U.S. National Ice Center IMS snow maps through NSIDC (snow_free_dekads.npz, grazing_cells.json).",
+   "moon_figure_from": "No snow on the Moon.",
+   "mars_figure_from": "Not used in the Mars part; it uses temperature and dryness.",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 14867,
+     "of": 16184
+    },
+    "mars_squares": null,
+    "lunar_regions": null,
+    "mars_sites": null
+   },
+   "files": [
+    "grazing_cells.json"
+   ],
+   "files_missing": [],
+   "status": "measured and used in the ranking",
+   "status_reason": null,
+   "enters_score": true
+  },
+  {
+   "id": "anorthosite",
+   "name": "Anorthosite",
+   "group": "ground material",
+   "kind": "coarse map",
+   "unit": "named body; An number",
+   "what_it_is": "Whether the area lies on a listed anorthosite body, the rock of the Moon's bright highlands.",
+   "what_it_is_not": "Not a rock map of the area: a listed body is a circle around its published centre.",
+   "earth_figure_from": "Our list of anorthosite bodies from the literature (data/reference/anorthosite_bodies.json; site/data/cells.json rock).",
+   "moon_figure_from": "The lunar regions are highland anorthosite.",
+   "mars_figure_from": "Mars squares on a listed body (mars_estimates.json mineral family).",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 43,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 12,
+     "of": 12984
+    },
+    "lunar_regions": null,
+    "mars_sites": null
+   },
+   "files": [
+    "mars_estimates.json",
+    "site/data/cells.json"
+   ],
+   "files_missing": [],
+   "status": "measured and used in the ranking",
+   "status_reason": null,
+   "enters_score": true
+  },
+  {
+   "id": "albedo",
+   "name": "Albedo (surface brightness)",
+   "group": "ground material",
+   "kind": "coarse map",
+   "unit": "fraction 0 to 1",
+   "what_it_is": "The share of sunlight the ground reflects, as a mean over the sunlit months of the year, for a 1 degree box.",
+   "what_it_is_not": "Not the brightness of bare rock: the box mixes snow, sea and plants.",
+   "earth_figure_from": "NASA POWER ALLSKY_SRF_ALB, CERES SYN1deg (power_extra_cells.json, mars_power_extra.json).",
+   "moon_figure_from": "No lunar albedo file was read tonight (planet_factors.json).",
+   "mars_figure_from": "MGS TES albedo mosaic at each Mars site (planet_factors.json).",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 16184,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 12984,
+     "of": 12984
+    },
+    "lunar_regions": {
+     "known": 0,
+     "of": 16
+    },
+    "mars_sites": {
+     "known": 57,
+     "of": 57
+    }
+   },
+   "files": [
+    "mars_power_extra.json",
+    "planet_factors.json",
+    "power_extra_cells.json"
+   ],
+   "files_missing": [],
+   "status": "measured and shown",
+   "status_reason": null,
+   "enters_score": false
+  },
+  {
+   "id": "volcanic_rock",
+   "name": "Volcanic and basaltic material",
+   "group": "ground material",
+   "kind": "coarse map",
+   "unit": "yes or no",
+   "what_it_is": "Whether the main rock of the half-degree box is volcanic, and whether it is basalt-like (basic volcanic).",
+   "what_it_is_not": "Not the rock at the place: only the main rock of a box about 55 km across.",
+   "earth_figure_from": "GLiM rock map, Hartmann and Moosdorf 2012, half-degree grid (rock_frozen_cells.json, mars_rock_frozen.json).",
+   "moon_figure_from": "The lunar regions are highland anorthosite, not mare basalt.",
+   "mars_figure_from": "No per-site rock class in our data.",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 15336,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 12808,
+     "of": 12984
+    },
+    "lunar_regions": null,
+    "mars_sites": null
+   },
+   "files": [
+    "mars_rock_frozen.json",
+    "rock_frozen_cells.json"
+   ],
+   "files_missing": [],
+   "status": "measured and shown",
+   "status_reason": null,
+   "enters_score": false
+  },
+  {
+   "id": "mineralogy",
+   "name": "Mineralogy",
+   "group": "ground material",
+   "kind": "rough estimate by our rule",
+   "unit": "mineral family",
+   "what_it_is": "The usual minerals of the area's mapped rock class, with a Moon and Mars likeness, from one table of ours.",
+   "what_it_is_not": "Read from a rock map, not from spectra.",
+   "earth_figure_from": "GLiM rock class and our anorthosite list (estimates_cells.json, mars_estimates.json).",
+   "moon_figure_from": "Highland anorthosite (plagioclase-rich) at the lunar regions.",
+   "mars_figure_from": "No per-site mineral figure in our data.",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 15343,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 12809,
+     "of": 12984
+    },
+    "lunar_regions": null,
+    "mars_sites": null
+   },
+   "files": [
+    "estimates_cells.json",
+    "mars_estimates.json"
+   ],
+   "files_missing": [],
+   "status": "rough estimate by our own rule",
+   "status_reason": null,
+   "enters_score": false
+  },
+  {
+   "id": "silicate",
+   "name": "Silicate composition",
+   "group": "ground material",
+   "kind": "rough estimate by our rule",
+   "unit": "mineral family",
+   "what_it_is": "Which silicate minerals lead (plagioclase, pyroxene and olivine, quartz), read from the mineral family.",
+   "what_it_is_not": "Not a chemical analysis: no element or oxide figure was read.",
+   "earth_figure_from": "The mineral family row stands in (estimates_cells.json).",
+   "moon_figure_from": "Plagioclase-rich highland rock.",
+   "mars_figure_from": "No per-site figure in our data.",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 15343,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 12809,
+     "of": 12984
+    },
+    "lunar_regions": null,
+    "mars_sites": null
+   },
+   "files": [
+    "estimates_cells.json",
+    "mars_estimates.json"
+   ],
+   "files_missing": [],
+   "status": "rough estimate by our own rule",
+   "status_reason": null,
+   "enters_score": false
+  },
+  {
+   "id": "spectral_match",
+   "name": "Spectral match",
+   "group": "ground material",
+   "kind": "measured",
+   "unit": "none",
+   "what_it_is": "How closely the ground's reflected spectrum matches lunar or Mars spectra.",
+   "what_it_is_not": "The mineral family is not a spectral match.",
+   "earth_figure_from": "Not built.",
+   "moon_figure_from": "Not built.",
+   "mars_figure_from": "Not built.",
+   "coverage": {
+    "moon_part_areas": null,
+    "mars_squares": null,
+    "lunar_regions": null,
+    "mars_sites": null
+   },
+   "files": [],
+   "files_missing": [],
+   "status": "not built",
+   "status_reason": "No spectra of Earth places or of the lunar regions were read tonight; the mineral family row stands in.",
+   "enters_score": false
+  },
+  {
+   "id": "thermal_inertia",
+   "name": "Thermal inertia",
+   "group": "ground material",
+   "kind": "rough estimate by our rule",
+   "unit": "class; index in 1 per degree C",
+   "what_it_is": "How fast the ground heats and cools: our index of (1 - albedo) over the daily air temperature swing, cut into thirds.",
+   "what_it_is_not": "Not thermal inertia: an index from coarse climate grids.",
+   "earth_figure_from": "NASA POWER albedo and temperature swing (estimates_cells.json heat_response).",
+   "moon_figure_from": "No Diviner polar thermal-inertia product exists (planet_factors.json).",
+   "mars_figure_from": "TES night thermal inertia map at the Mars sites (planet_factors.json).",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 16184,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 12984,
+     "of": 12984
+    },
+    "lunar_regions": {
+     "known": 0,
+     "of": 16
+    },
+    "mars_sites": {
+     "known": 57,
+     "of": 57
+    }
+   },
+   "files": [
+    "estimates_cells.json",
+    "mars_estimates.json",
+    "planet_factors.json"
+   ],
+   "files_missing": [],
+   "status": "rough estimate by our own rule",
+   "status_reason": null,
+   "enters_score": false
+  },
+  {
+   "id": "resources",
+   "name": "Resource-use materials",
+   "group": "ground material",
+   "kind": "rough estimate by our rule",
+   "unit": "class",
+   "what_it_is": "Whether ilmenite-bearing rock (the oxygen ore of lunar plans) is possible, by the mapped rock class.",
+   "what_it_is_not": "Not an ore survey: no assay or grade.",
+   "earth_figure_from": "GLiM rock class and our anorthosite list (estimates_cells.json ilmenite).",
+   "moon_figure_from": "Lunar Prospector hydrogen at the lunar regions (planet_factors.json) is the main resource figure.",
+   "mars_figure_from": "Odyssey GRS water at the Mars sites (planet_factors.json).",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 15343,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 12809,
+     "of": 12984
+    },
+    "lunar_regions": {
+     "known": 16,
+     "of": 16
+    },
+    "mars_sites": {
+     "known": 55,
+     "of": 57
+    }
+   },
+   "files": [
+    "estimates_cells.json",
+    "mars_estimates.json",
+    "planet_factors.json"
+   ],
+   "files_missing": [],
+   "status": "rough estimate by our own rule",
+   "status_reason": null,
+   "enters_score": false
+  },
+  {
+   "id": "rock_abundance",
+   "name": "Rock abundance",
+   "group": "ground material",
+   "kind": "rough estimate by our rule",
+   "unit": "class",
+   "what_it_is": "Rockiness: our word from bare share, steep or rough ground and loose sediment, standing in for rock abundance.",
+   "what_it_is_not": "Not a count of rocks or boulders: 90 m heights cannot see single rocks.",
+   "earth_figure_from": "grazing_cells.json, terrain and ground figures and GLiM (estimates_cells.json rockiness).",
+   "moon_figure_from": "The Diviner rock map stops at 80 S; all the lunar regions lie further south (planet_factors.json).",
+   "mars_figure_from": "No numeric Mars rock-abundance file was found (planet_factors.json).",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 16130,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 12912,
+     "of": 12984
+    },
+    "lunar_regions": {
+     "known": 0,
+     "of": 16
+    },
+    "mars_sites": {
+     "known": 0,
+     "of": 57
+    }
+   },
+   "files": [
+    "estimates_cells.json",
+    "mars_estimates.json",
+    "planet_factors.json"
+   ],
+   "files_missing": [],
+   "status": "rough estimate by our own rule",
+   "status_reason": null,
+   "enters_score": false
+  },
+  {
+   "id": "surface_activity",
+   "name": "Surface activity",
+   "group": "ground material",
+   "kind": "measured",
+   "unit": "m per year where given",
+   "what_it_is": "Ground that changes by itself today: moving dunes, slope streaks, frost.",
+   "what_it_is_not": "The Gale rate is the dune field's, not the landing point's.",
+   "earth_figure_from": "No per-area figure.",
+   "moon_figure_from": "None expected (NASA 2024 release, planet_factors.json).",
+   "mars_figure_from": "About 1 m a year of dune advance at Gale (NASA APOD; planet_factors.json).",
+   "coverage": {
+    "moon_part_areas": null,
+    "mars_squares": null,
+    "lunar_regions": {
+     "known": 16,
+     "of": 16
+    },
+    "mars_sites": {
+     "known": 1,
+     "of": 57
+    }
+   },
+   "files": [
+    "planet_factors.json"
+   ],
+   "files_missing": [],
+   "status": "planet side only",
+   "status_reason": "No per-place Earth figure; figures exist for the lunar regions or the Mars sites.",
+   "enters_score": false
+  },
+  {
+   "id": "temperature",
+   "name": "Temperature",
+   "group": "climate",
+   "kind": "model",
+   "unit": "degrees C",
+   "what_it_is": "Mean air temperature 2 m above the ground by month, at the nearest grid point.",
+   "what_it_is_not": "Not the ground surface temperature, and not measured at the place.",
+   "earth_figure_from": "NASA POWER climatology T2M, MERRA-2 (temperature_cells.json; site/data/temperature.bin).",
+   "moon_figure_from": "Diviner model temperatures at the lunar regions (moon_cards.json).",
+   "mars_figure_from": "Mars Climate Database at the Mars sites (mars_sites.json).",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 16184,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 12984,
+     "of": 12984
+    },
+    "lunar_regions": {
+     "known": 16,
+     "of": 16
+    },
+    "mars_sites": null
+   },
+   "files": [
+    "mars_cells.json",
+    "moon_cards.json",
+    "temperature_cells.json"
+   ],
+   "files_missing": [],
+   "status": "measured and shown",
+   "status_reason": null,
+   "enters_score": false
+  },
+  {
+   "id": "temp_swing",
+   "name": "Daily temperature swing",
+   "group": "climate",
+   "kind": "model",
+   "unit": "degrees C",
+   "what_it_is": "The day's warmest hour minus its coldest hour for air 2 m above the ground, averaged over each month.",
+   "what_it_is_not": "Not the swing of the ground surface, and not measured at the place.",
+   "earth_figure_from": "NASA POWER T2M_RANGE, MERRA-2 (power_extra_cells.json, mars_power_extra.json).",
+   "moon_figure_from": "Diviner polar tables were too large to read tonight (planet_factors.json).",
+   "mars_figure_from": "Mars Climate Database ground and air swing (planet_factors.json).",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 16184,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 12984,
+     "of": 12984
+    },
+    "lunar_regions": {
+     "known": 0,
+     "of": 16
+    },
+    "mars_sites": {
+     "known": 57,
+     "of": 57
+    }
+   },
+   "files": [
+    "mars_power_extra.json",
+    "planet_factors.json",
+    "power_extra_cells.json"
+   ],
+   "files_missing": [],
+   "status": "measured and shown",
+   "status_reason": null,
+   "enters_score": false
+  },
+  {
+   "id": "wind",
+   "name": "Wind",
+   "group": "climate",
+   "kind": "model",
+   "unit": "m/s",
+   "what_it_is": "Mean wind speed 10 m above the ground over all hours, at the nearest grid point.",
+   "what_it_is_not": "Not gusts and not valley winds smaller than the grid box.",
+   "earth_figure_from": "NASA POWER WS10M, MERRA-2 (power_extra_cells.json, mars_power_extra.json).",
+   "moon_figure_from": "No air, no wind.",
+   "mars_figure_from": "No Mars wind figure in our data.",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 16184,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 12984,
+     "of": 12984
+    },
+    "lunar_regions": null,
+    "mars_sites": null
+   },
+   "files": [
+    "mars_power_extra.json",
+    "power_extra_cells.json"
+   ],
+   "files_missing": [],
+   "status": "measured and shown",
+   "status_reason": null,
+   "enters_score": false
+  },
+  {
+   "id": "soil_moisture",
+   "name": "Soil moisture",
+   "group": "climate",
+   "kind": "model",
+   "unit": "fraction 0 to 1",
+   "what_it_is": "Wetness of the top 5 cm of soil, from 0 (dry) to 1 (saturated), from a land model.",
+   "what_it_is_not": "Not a probe measurement. A value of 1 all year means the model's grid point is ice.",
+   "earth_figure_from": "NASA POWER GWETTOP, MERRA-2 (power_extra_cells.json, mars_power_extra.json).",
+   "moon_figure_from": "Lunar soil holds no liquid water.",
+   "mars_figure_from": "No liquid water at the surface; see near-surface water.",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 16184,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 12984,
+     "of": 12984
+    },
+    "lunar_regions": null,
+    "mars_sites": null
+   },
+   "files": [
+    "mars_power_extra.json",
+    "power_extra_cells.json"
+   ],
+   "files_missing": [],
+   "status": "measured and shown",
+   "status_reason": null,
+   "enters_score": false
+  },
+  {
+   "id": "permafrost",
+   "name": "Permafrost",
+   "group": "below the ground",
+   "kind": "coarse map",
+   "unit": "probability 0 to 1; zone",
+   "what_it_is": "The modelled probability of permafrost, as a mean of 1 km pixels over the area, and its zone.",
+   "what_it_is_not": "Not a measurement in the ground. Antarctica is not in this map.",
+   "earth_figure_from": "Obu et al. 2019 Northern Hemisphere permafrost map, 1 km (rock_frozen_cells.json, mars_rock_frozen.json).",
+   "moon_figure_from": "Lunar polar ground is frozen all year; see depth to stable ice.",
+   "mars_figure_from": "Mars ice depth at the sites; see depth to stable ice.",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 14843,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 7447,
+     "of": 12984
+    },
+    "lunar_regions": null,
+    "mars_sites": null
+   },
+   "files": [
+    "mars_rock_frozen.json",
+    "rock_frozen_cells.json"
+   ],
+   "files_missing": [],
+   "status": "measured and shown",
+   "status_reason": null,
+   "enters_score": false
+  },
+  {
+   "id": "ice_depth",
+   "name": "Depth to stable ice",
+   "group": "below the ground",
+   "kind": "rough estimate by our rule",
+   "unit": "class (Earth); m (Moon, Mars)",
+   "what_it_is": "How far down frozen ground or stable ice starts. Earth: a class by our rule from the permafrost zone.",
+   "what_it_is_not": "Not a thaw-depth measurement on Earth.",
+   "earth_figure_from": "Our rule on the permafrost zone (estimates_cells.json frozen_ground_depth); no metres were found.",
+   "moon_figure_from": "Diviner model depth to stable ice (moon_cards.json).",
+   "mars_figure_from": "Phoenix 3 to 5 cm by digging; published words for Arcadia and Deuteronilus (planet_factors.json).",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 16089,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 12840,
+     "of": 12984
+    },
+    "lunar_regions": {
+     "known": 16,
+     "of": 16
+    },
+    "mars_sites": {
+     "known": 3,
+     "of": 57
+    }
+   },
+   "files": [
+    "estimates_cells.json",
+    "mars_estimates.json",
+    "moon_cards.json",
+    "planet_factors.json"
+   ],
+   "files_missing": [],
+   "status": "rough estimate by our own rule",
+   "status_reason": null,
+   "enters_score": false
+  },
+  {
+   "id": "hydrogen",
+   "name": "Near-surface hydrogen or water",
+   "group": "below the ground",
+   "kind": "rough estimate by our rule",
+   "unit": "class (Earth); ppm H (Moon); weight % water (Mars)",
+   "what_it_is": "Earth: top-soil water and ground ice by our rule. Moon and Mars: hydrogen seen from orbit.",
+   "what_it_is_not": "Not an orbital hydrogen measurement on Earth; the planet figures are regional, not at the landing point.",
+   "earth_figure_from": "NASA POWER top-soil wetness and the permafrost map (estimates_cells.json topsoil_water).",
+   "moon_figure_from": "Lunar Prospector neutron spectrometer, half-degree bins (planet_factors.json).",
+   "mars_figure_from": "Mars Odyssey GRS, 5 degree bins (planet_factors.json).",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 13931,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 12581,
+     "of": 12984
+    },
+    "lunar_regions": {
+     "known": 16,
+     "of": 16
+    },
+    "mars_sites": {
+     "known": 55,
+     "of": 57
+    }
+   },
+   "files": [
+    "estimates_cells.json",
+    "mars_estimates.json",
+    "planet_factors.json"
+   ],
+   "files_missing": [],
+   "status": "rough estimate by our own rule",
+   "status_reason": null,
+   "enters_score": false
+  },
+  {
+   "id": "large_quakes",
+   "name": "Large earthquakes",
+   "group": "hazards",
+   "kind": "measured",
+   "unit": "count; magnitude; km",
+   "what_it_is": "Catalogued earthquakes of magnitude 5 or more within 200 km, 1990 to 2025, with the largest and the nearest.",
+   "what_it_is_not": "Not a hazard map and not a forecast.",
+   "earth_figure_from": "USGS ANSS ComCat (hazards_people_cells.json, mars_hazards_people.json).",
+   "moon_figure_from": "NASA 2024 release on south-polar moonquakes, words only (planet_factors.json).",
+   "mars_figure_from": "InSight's 1,319 marsquakes for the whole planet (planet_factors.json).",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 16184,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 12984,
+     "of": 12984
+    },
+    "lunar_regions": {
+     "known": 16,
+     "of": 16
+    },
+    "mars_sites": {
+     "known": 57,
+     "of": 57
+    }
+   },
+   "files": [
+    "hazards_people_cells.json",
+    "mars_hazards_people.json",
+    "planet_factors.json"
+   ],
+   "files_missing": [],
+   "status": "measured and shown",
+   "status_reason": null,
+   "enters_score": false
+  },
+  {
+   "id": "small_tremors",
+   "name": "Steady small tremors",
+   "group": "hazards",
+   "kind": "measured",
+   "unit": "events a year; years of 16",
+   "what_it_is": "Catalogued events of magnitude 1 to under 5 within 100 km, 2010 to 2025, and whether the catalogue can see them here.",
+   "what_it_is_not": "Not ground motion at the place; where the network is thin the answer is 'cannot tell'.",
+   "earth_figure_from": "USGS ANSS ComCat small events (tremors_cells.json, mars_tremors.json).",
+   "moon_figure_from": "No seismometer has worked near the south pole (planet_factors.json).",
+   "mars_figure_from": "InSight, planet-wide only (planet_factors.json).",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 16184,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 12984,
+     "of": 12984
+    },
+    "lunar_regions": {
+     "known": 16,
+     "of": 16
+    },
+    "mars_sites": {
+     "known": 57,
+     "of": 57
+    }
+   },
+   "files": [
+    "mars_tremors.json",
+    "planet_factors.json",
+    "tremors_cells.json"
+   ],
+   "files_missing": [],
+   "status": "measured and shown",
+   "status_reason": null,
+   "enters_score": false
+  },
+  {
+   "id": "active_volcanism",
+   "name": "Active volcanism",
+   "group": "hazards",
+   "kind": "rough estimate by our rule",
+   "unit": "class; km",
+   "what_it_is": "Our class from volcanoes that erupted since 1990 within 30 or 100 km, with the nearest Holocene volcano.",
+   "what_it_is_not": "Not a hazard map and not an eruption forecast.",
+   "earth_figure_from": "Smithsonian GVP Holocene volcano list (steady_effects_cells.json, hazards_people_cells.json).",
+   "moon_figure_from": "No active volcanism on the Moon.",
+   "mars_figure_from": "No active volcanism known on Mars today.",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 16184,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 12984,
+     "of": 12984
+    },
+    "lunar_regions": null,
+    "mars_sites": null
+   },
+   "files": [
+    "mars_steady_effects.json",
+    "steady_effects_cells.json"
+   ],
+   "files_missing": [],
+   "status": "rough estimate by our own rule",
+   "status_reason": null,
+   "enters_score": false
+  },
+  {
+   "id": "airfield",
+   "name": "Airfield distance",
+   "group": "people and access",
+   "kind": "measured",
+   "unit": "km",
+   "what_it_is": "Straight-line distance to the nearest airfield, and to the nearest with scheduled flights.",
+   "what_it_is_not": "Straight-line distance, not travel time.",
+   "earth_figure_from": "OurAirports, public domain (access_cells.json).",
+   "moon_figure_from": "Not applicable.",
+   "mars_figure_from": "Airfields near the Mars squares (mars_steady_effects.json).",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 16184,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 12984,
+     "of": 12984
+    },
+    "lunar_regions": null,
+    "mars_sites": null
+   },
+   "files": [
+    "access_cells.json",
+    "mars_steady_effects.json"
+   ],
+   "files_missing": [],
+   "status": "measured and shown",
+   "status_reason": null,
+   "enters_score": false
+  },
+  {
+   "id": "human_footprint",
+   "name": "Human footprint",
+   "group": "people and access",
+   "kind": "rough estimate by our rule",
+   "unit": "class; people; km",
+   "what_it_is": "Our class from settlements, main roads and airfields nearby, with the people listed within 100 km.",
+   "what_it_is_not": "Not a population map: settlements under 1,000 people and stations are not listed.",
+   "earth_figure_from": "GeoNames cities1000, Natural Earth roads, OurAirports (steady_effects_cells.json, hazards_people_cells.json).",
+   "moon_figure_from": "No people.",
+   "mars_figure_from": "No people.",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 16184,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 12984,
+     "of": 12984
+    },
+    "lunar_regions": null,
+    "mars_sites": null
+   },
+   "files": [
+    "mars_steady_effects.json",
+    "steady_effects_cells.json"
+   ],
+   "files_missing": [],
+   "status": "rough estimate by our own rule",
+   "status_reason": null,
+   "enters_score": false
+  },
+  {
+   "id": "remoteness",
+   "name": "Remoteness",
+   "group": "people and access",
+   "kind": "measured",
+   "unit": "km",
+   "what_it_is": "Straight-line distance to the nearest listed settlement and to the nearest city of 50,000 or more.",
+   "what_it_is_not": "Not travel time; 'no settlement within 100 km' does not mean nobody lives there.",
+   "earth_figure_from": "GeoNames cities1000, CC BY 4.0 (hazards_people_cells.json, mars_hazards_people.json).",
+   "moon_figure_from": "Not applicable.",
+   "mars_figure_from": "Not applicable.",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 16184,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 12984,
+     "of": 12984
+    },
+    "lunar_regions": null,
+    "mars_sites": null
+   },
+   "files": [
+    "hazards_people_cells.json",
+    "mars_hazards_people.json"
+   ],
+   "files_missing": [],
+   "status": "measured and shown",
+   "status_reason": null,
+   "enters_score": false
+  },
+  {
+   "id": "power",
+   "name": "Power from sun, wind and ground heat",
+   "group": "people and access",
+   "kind": "rough estimate by our rule",
+   "unit": "class",
+   "what_it_is": "Our classes for solar panels, wind at 50 m and geothermal plants nearby.",
+   "what_it_is_not": "Not a power-yield figure for any real system.",
+   "earth_figure_from": "NASA POWER and the geothermal plant list (power_cells.json, mars_power.json).",
+   "moon_figure_from": "Lunar lit share (moon_cards.json).",
+   "mars_figure_from": "Mars sunlight from the fact sheet (mars_power.json meta).",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 16184,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 12984,
+     "of": 12984
+    },
+    "lunar_regions": null,
+    "mars_sites": null
+   },
+   "files": [
+    "mars_power.json",
+    "power_cells.json"
+   ],
+   "files_missing": [],
+   "status": "rough estimate by our own rule",
+   "status_reason": null,
+   "enters_score": false
+  },
+  {
+   "id": "land_status",
+   "name": "Land status and permits",
+   "group": "people and access",
+   "kind": "rough estimate by our rule",
+   "unit": "class; territory; authority",
+   "what_it_is": "Who owns or governs the ground at the area's centre, any protected area there, and whom to ask for a permit. Some classes come from open maps, and the others from territory rules.",
+   "what_it_is_not": "Not legal advice. We test the centre of the area only. A territory rule is a rough guide, not a land survey. A map covers only its own region.",
+   "earth_figure_from": "Natural Earth boundaries give the territory, and official pages give each territory rule. Open maps of protected areas and owners set the class where a polygon holds the centre.",
+   "moon_figure_from": "Not applicable: no lunar land status is in our data.",
+   "mars_figure_from": "The same territory rules and maps for the Mars squares on Earth, where a map covers the square.",
+   "coverage": {
+    "moon_part_areas": {
+     "known": 14262,
+     "of": 16184
+    },
+    "mars_squares": {
+     "known": 2539,
+     "of": 12984
+    },
+    "lunar_regions": null,
+    "mars_sites": null
+   },
+   "files": [
+    "land_status_cells.json",
+    "mars_land_status.json"
+   ],
+   "files_missing": [],
+   "status": "rough estimate by our own rule",
+   "status_reason": null,
+   "enters_score": false
+  }
+ ]
+}

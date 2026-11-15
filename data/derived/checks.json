@@ -1,0 +1,306 @@
+{
+ "jpl_horizons": {
+  "ran_utc": "2026-11-15T03:58:00Z",
+  "program": "scripts/check_against_horizons.py (saved answers only; no request made)",
+  "horizons_answers": "data/raw/horizons_check/*.txt, asked for on 14 November 2026 (see each file's header)",
+  "places": [
+   {
+    "name": "reykjanes",
+    "lat": 63.88,
+    "lon": -22.45
+   },
+   {
+    "name": "lofoten",
+    "lat": 68.04,
+    "lon": 13.35
+   },
+   {
+    "name": "haughton",
+    "lat": 75.38,
+    "lon": -89.67
+   },
+   {
+    "name": "longyearbyen",
+    "lat": 78.2,
+    "lon": 15.6
+   },
+   {
+    "name": "arctic_canada",
+    "lat": 68.25,
+    "lon": -96.15
+   },
+   {
+    "name": "kotelny",
+    "lat": 74.95,
+    "lon": 141.25
+   },
+   {
+    "name": "pechora",
+    "lat": 68.95,
+    "lon": 54.45
+   },
+   {
+    "name": "vestfold",
+    "lat": -68.45,
+    "lon": 78.15
+   },
+   {
+    "name": "quito",
+    "lat": 0.0,
+    "lon": -78.5
+   }
+  ],
+  "periods_per_place": 4,
+  "periods": {
+   "reykjanes": {
+    "best": 1,
+    "midwinter": 35,
+    "equinox": 7,
+    "midsummer": 17
+   },
+   "lofoten": {
+    "best": 19,
+    "midwinter": 35,
+    "equinox": 7,
+    "midsummer": 17
+   },
+   "haughton": {
+    "best": 22,
+    "midwinter": 35,
+    "equinox": 7,
+    "midsummer": 17
+   },
+   "longyearbyen": {
+    "best": 23,
+    "midwinter": 35,
+    "equinox": 7,
+    "midsummer": 17
+   },
+   "arctic_canada": {
+    "best": 19,
+    "midwinter": 35,
+    "equinox": 7,
+    "midsummer": 17
+   },
+   "kotelny": {
+    "best": 29,
+    "midwinter": 35,
+    "equinox": 7,
+    "midsummer": 17
+   },
+   "pechora": {
+    "best": 14,
+    "midwinter": 35,
+    "equinox": 7,
+    "midsummer": 17
+   },
+   "vestfold": {
+    "best": 1,
+    "midwinter": 17,
+    "equinox": 7,
+    "midsummer": 35
+   },
+   "quito": {
+    "best": 0,
+    "midwinter": 35,
+    "equinox": 7,
+    "midsummer": 17
+   }
+  },
+  "limits_deg": [
+   2.08,
+   5.55,
+   6.11,
+   7.59
+  ],
+  "project_side": "twinfinder.sun band_minutes_table and long_band_minutes_table at the place's latitude, 1-minute steps, mean of 8 calendars",
+  "sun_code_sha256": "21efad9522eeec7da1c5afa84a944e72b025548875f4eab1464bf5f1b69cc2d5",
+  "year_phases": 8,
+  "differences": "project minus Horizons; percent of the Horizons figure, over rows where Horizons has hours",
+  "all_hours": {
+   "rows": 144,
+   "rows_with_a_percentage": 103,
+   "median_abs_difference_h": 0.009,
+   "largest_abs_difference_h": 0.63,
+   "median_abs_difference_pct": 0.113,
+   "largest_abs_difference_pct": 6.346,
+   "horizons_total_h": 3767.4,
+   "project_total_h": 3766.9
+  },
+  "hours_in_spells_of_2_h_or_more": {
+   "rows": 144,
+   "rows_with_a_percentage": 51,
+   "median_abs_difference_h": 0.0,
+   "largest_abs_difference_h": 1.599,
+   "median_abs_difference_pct": 0.259,
+   "largest_abs_difference_pct": 7.958,
+   "horizons_total_h": 2802.5,
+   "project_total_h": 2794.7
+  },
+  "flag_rule": "more than 5 percent or more than 1 hour",
+  "rows_flagged": [
+   {
+    "hours": "all hours",
+    "place": "vestfold",
+    "lat": -68.45,
+    "lon": 78.15,
+    "bin": 35,
+    "period": "midsummer",
+    "target": "connecting-ridge",
+    "limit_deg": 2.08,
+    "horizons_h": 3.829,
+    "project_h": 4.072,
+    "difference_h": 0.243,
+    "difference_pct": 6.35,
+    "project_one_calendar_h": 3.958,
+    "cause": "the average over calendars: the project's single calendar of day 0 gives 3.96 h, within the flag rule of Horizons' 3.83 h; the mean of the calendars a fraction of a day apart gives 4.07 h"
+   },
+   {
+    "hours": "hours in spells of 2 h or more",
+    "place": "lofoten",
+    "lat": 68.04,
+    "lon": 13.35,
+    "bin": 19,
+    "period": "best",
+    "target": "connecting-ridge",
+    "limit_deg": 2.08,
+    "horizons_h": 22.117,
+    "project_h": 20.518,
+    "difference_h": -1.599,
+    "difference_pct": -7.23,
+    "project_one_calendar_h": 21.932,
+    "cause": "the average over calendars: the project's single calendar of day 0 gives 21.93 h, within the flag rule of Horizons' 22.12 h; the mean of the calendars a fraction of a day apart gives 20.52 h (at the two-hour cut, the day on which spells first or last reach 2 h differs between calendars)"
+   },
+   {
+    "hours": "hours in spells of 2 h or more",
+    "place": "haughton",
+    "lat": 75.38,
+    "lon": -89.67,
+    "bin": 22,
+    "period": "best",
+    "target": "connecting-ridge",
+    "limit_deg": 2.08,
+    "horizons_h": 22.733,
+    "project_h": 21.514,
+    "difference_h": -1.219,
+    "difference_pct": -5.36,
+    "project_one_calendar_h": 21.053,
+    "cause": "on 1 of the 10 days the longest Horizons spell is within 15 minutes of the 2-hour cut (2.05 h), so a small shift of the calendar decides whether the day counts; the project's single calendar gives 21.05 h"
+   },
+   {
+    "hours": "hours in spells of 2 h or more",
+    "place": "pechora",
+    "lat": 68.95,
+    "lon": 54.45,
+    "bin": 14,
+    "period": "best",
+    "target": "connecting-ridge",
+    "limit_deg": 2.08,
+    "horizons_h": 27.013,
+    "project_h": 25.505,
+    "difference_h": -1.508,
+    "difference_pct": -5.58,
+    "project_one_calendar_h": 26.945,
+    "cause": "the average over calendars: the project's single calendar of day 0 gives 26.95 h, within the flag rule of Horizons' 27.01 h; the mean of the calendars a fraction of a day apart gives 25.50 h (at the two-hour cut, the day on which spells first or last reach 2 h differs between calendars)"
+   },
+   {
+    "hours": "hours in spells of 2 h or more",
+    "place": "vestfold",
+    "lat": -68.45,
+    "lon": 78.15,
+    "bin": 1,
+    "period": "best",
+    "target": "connecting-ridge",
+    "limit_deg": 2.08,
+    "horizons_h": 18.85,
+    "project_h": 17.35,
+    "difference_h": -1.5,
+    "difference_pct": -7.96,
+    "project_one_calendar_h": 18.779,
+    "cause": "the average over calendars: the project's single calendar of day 0 gives 18.78 h, within the flag rule of Horizons' 18.85 h; the mean of the calendars a fraction of a day apart gives 17.35 h (at the two-hour cut, the day on which spells first or last reach 2 h differs between calendars)"
+   }
+  ]
+ },
+ "independent_recount": {
+  "ran_utc": "2026-11-15T04:00:34Z",
+  "program": "scripts/independent_recount.py (imports nothing of twinfinder)",
+  "method": "own Sun position at the edges of 1-minute steps with Saemundsson refraction; mean of 8 calendars 1/8 day apart, centred on day 0 = J2000.0 + 9495.86 days; own spell finding with crossing times inside the minute, joined through midnight and the year end, 120 min minimum; the band sampled every 6 seconds; own polar-stereographic reading of the snow grid; the terrain's open share read from horizon_cells.json",
+  "sun_series": "Astronomical Almanac low-precision series (the project's), written out again in the program",
+  "year_phases": 8,
+  "cells": 16184,
+  "targets": 4,
+  "comparisons": 1359456,
+  "compared": "per cell and target: the six per-bin arrays of grazing_bins.npz (flat, snow_free, open and their long_ twins, by yearly sum and by ten-day bin) and 13 yearly fields of grazing_cells.json, plus the poleward share; and the snow summary of every northern cell",
+  "tolerance": "the larger of 2 percent and 1 hour a year; or known in one and unknown in the other",
+  "outside_tolerance": 0,
+  "largest_difference_h_a_year": 0.065,
+  "largest_difference_h_in_a_ten_day_bin": 0.007,
+  "largest_poleward_share_difference": 0.0005,
+  "snow_summaries_that_differ": 0,
+  "cell_centres_that_differ": 0,
+  "first_rows_outside": [],
+  "against": [
+   {
+    "file": "data/derived/grazing_cells.json",
+    "sha256": "f9a55629a2a01df082f185ed67e3847b8746a955e879e17c8dad68a180eef905",
+    "modified": "2026-11-14T19:56:14-08:00"
+   },
+   {
+    "file": "data/derived/grazing_bins.npz",
+    "sha256": "0fce474e95915f4e5837fe71d4343913e0890d65fd1804627af57782c3441361",
+    "modified": "2026-11-14T19:56:15-08:00"
+   },
+   {
+    "file": "data/derived/horizon_cells.json",
+    "sha256": "d651516a0a912909c134ed357e0315263821c3bfcf72a4d643d43e58fddf05fe",
+    "modified": "2026-11-14T17:54:17-08:00"
+   },
+   {
+    "file": "data/derived/snow_free_dekads.npz",
+    "sha256": "f367669064c55fafdf107c098e74aed543e75a0ef4bd2db7870e504b75c86aa6",
+    "modified": "2026-11-14T13:28:39-08:00"
+   },
+   {
+    "file": "data/derived/moon_targets.json",
+    "sha256": "b2b58393c4cb93273d2b44d36485d6adb4913fd8b4f987c2a015daa7ae1b8b4e",
+    "modified": "2026-11-14T19:32:03-08:00"
+   }
+  ],
+  "seconds": 415.5,
+  "calendar_moved": {
+   "what": "every one of the 8 calendars moved 0.14 day later; yearly long-window flat hours of each cell against grazing_bins.npz long_flat",
+   "days": 0.14,
+   "cells": 16184,
+   "targets": {
+    "connecting-ridge": {
+     "cells_with_long_window_flat_hours": 12559,
+     "cells_outside_tolerance": 0,
+     "largest_difference_h": 1.22,
+     "median_difference_h": 0.25,
+     "p90_difference_h": 0.53
+    },
+    "malapert": {
+     "cells_with_long_window_flat_hours": 15691,
+     "cells_outside_tolerance": 0,
+     "largest_difference_h": 0.76,
+     "median_difference_h": 0.04,
+     "p90_difference_h": 0.49
+    },
+    "mons-mouton": {
+     "cells_with_long_window_flat_hours": 15999,
+     "cells_outside_tolerance": 0,
+     "largest_difference_h": 0.75,
+     "median_difference_h": 0.02,
+     "p90_difference_h": 0.27
+    },
+    "nobile-rim-2": {
+     "cells_with_long_window_flat_hours": 16184,
+     "cells_outside_tolerance": 0,
+     "largest_difference_h": 0.76,
+     "median_difference_h": 0.02,
+     "p90_difference_h": 0.27
+    }
+   }
+  }
+ }
+}

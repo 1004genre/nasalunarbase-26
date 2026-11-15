@@ -1,0 +1,2004 @@
+{
+ "meta": {
+  "what": "The Mars sites of the Mars part (plan docs/superpowers/plans/2026-11-14-mars-part.md): the nine places where a NASA lander or rover landed and worked (Viking 1, Viking 2, Mars Pathfinder, Spirit, Opportunity, Phoenix, Curiosity at Gale, InSight, Perseverance at Jezero), and three mid-latitude ice regions studied for human landings.",
+  "made": "2026-11-14T19:17:55-08:00",
+  "made_by": "agent MARS-SITES, by reading the saved sources in data/raw/mars_sites/; written by build_mars_sites_base.py in the MARS-SITES scratch folder (not a project script)",
+  "how": "Each latitude and longitude is copied as written in one saved source file (meta.coordinates names the file and the exact text); nothing is averaged or moved. Pages were downloaded on 2026-11-14 with User-Agent twinfinder/0.1; data/raw/mars_sites/_downloads.tsv lists every URL and time.",
+  "convention": "planetocentric latitude (degrees, north positive), longitude 0 to 360 degrees east",
+  "convention_note": "The USGS gazetteer (planetocentric) and the PDS Phoenix page (areocentric) state their system. The other coordinate sources give east longitude without naming the latitude system; they are kept as written. If one were planetographic, its planetocentric latitude would be smaller by the amount in meta.coordinates[id].if_it_were_planetographic_deg (IAU 2000 ellipsoid, 3396.19 by 3376.20 km), at most 0.33 degree, well inside the 2 x 2 degree site box.",
+  "status": "NASA has not selected a human landing site on Mars. Arcadia Planitia and Deuteronilus Mensae are candidates that were studied: exploration zones proposed at NASA's First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars (27-30 October 2015, Lunar and Planetary Institute, Houston; 47 proposals), and regions named in NASA's release on the NASA-funded SWIM ice maps (8 February 2021). Phlegra Montes (site PM-1) comes from a 2021 abstract of JPL, SpaceX and university authors (Golombek et al. 2021, LPSC abstract 2420) on landing sites for SpaceX Starship; it is a study, not a NASA selection. No other commercial list was used. The second pass adds the other six sites of the 2021 shortlist and the exploration zones proposed at the 2015 workshop. A proposal or a study is not a NASA decision.",
+  "kinds": [
+   "visited by a NASA mission",
+   "studied for a human landing",
+   "proposed as an exploration zone in 2015"
+  ],
+  "left_out": [
+   {
+    "what": "NASA Moon to Mars architecture documents",
+    "why": "Not read in this pass; a web search found no architecture document that names a Mars landing site."
+   },
+   {
+    "what": "measured weather of Viking 1, Viking 2, Mars Pathfinder and InSight",
+    "why": "No official table of these records was saved and read in this pass; these sites use the model climate of the Mars Climate Database, labelled 'model'."
+   },
+   {
+    "what": "exploration zone 1030 (South-western Meridiani Planum (Endeavour crater area))",
+    "why": "The abstract states no position in words. The list file says that the circle on NASA's map (0.04 N, 359.88 E) is 5 to 6 degrees east of the craters that the abstract names, thus not a usable position."
+   },
+   {
+    "what": "exploration zone 1049 (Holden crater)",
+    "why": "The abstract states no position in words, and the zone is not on NASA's map of the proposed zones."
+   },
+   {
+    "what": "exploration zone 1011 (Erebus Montes, Arcadia Planitia) as a site of its own",
+    "why": "It lies at the same place as the site 'arcadia-planitia', which got the list '2015 exploration zone' and the abstract number 1011."
+   },
+   {
+    "what": "exploration zone 1020 (Gale crater (MSL landing ellipse)) as a site of its own",
+    "why": "It lies at the same place as the site 'gale', which got the list '2015 exploration zone' and the abstract number 1020."
+   },
+   {
+    "what": "exploration zone 1022 (Aeolis Palus, Gale crater) as a site of its own",
+    "why": "It lies at the same place as the site 'gale', which got the list '2015 exploration zone' and the abstract number 1022."
+   },
+   {
+    "what": "exploration zone 1040 (Gale crater (MSL ground truth)) as a site of its own",
+    "why": "It lies at the same place as the site 'gale', which got the list '2015 exploration zone' and the abstract number 1040."
+   },
+   {
+    "what": "exploration zone 1033 (Dichotomy Boundary Deuteronilus Mensae (DBDM)) as a site of its own",
+    "why": "It lies at the same place as the site 'deuteronilus-mensae', which got the list '2015 exploration zone' and the abstract number 1033."
+   },
+   {
+    "what": "exploration zone 1034 (Jezero crater watershed, Isidis basin and Syrtis Major) as a site of its own",
+    "why": "It lies at the same place as the site 'jezero', which got the list '2015 exploration zone' and the abstract number 1034."
+   },
+   {
+    "what": "exploration zone 1008 (Gusev crater) as a site of its own",
+    "why": "It lies at the same place as the site 'spirit', which got the list '2015 exploration zone' and the abstract number 1008."
+   },
+   {
+    "what": "exploration zone 1019 (Chryse Planitia at the Viking Lander 1 site) as a site of its own",
+    "why": "It lies at the same place as the site 'viking-1', which got the list '2015 exploration zone' and the abstract number 1019."
+   }
+  ],
+  "not_reached": [
+   "www.jpl.nasa.gov news and image pages answered 403 to the project User-Agent on every try; the same 2021 release was read from its nasa.gov copy",
+   "swim.psi.edu (SWIM project site) answered 523 on every try, so the SWIM maps and slides were not read"
+  ],
+  "pages_read_on": "2026-11-14",
+  "inputs": [
+   "data/raw/mars_sites/hirise_ESP_068360_1985.html",
+   "data/raw/mars_sites/rodriguezmanfredi2023_natgeo.pdf",
+   "data/raw/mars_sites/pds_an_msl_mission.htm",
+   "data/raw/mars_sites/pds_an_phx_mission.htm",
+   "data/raw/mars_sites/pds_atmos_phoenix_met.html",
+   "data/raw/mars_sites/msl_weather_feed.json",
+   "data/raw/mars_sites/ezworkshop2015_program.pdf",
+   "data/raw/mars_sites/ezworkshop2015_abstract_1002.pdf",
+   "data/raw/mars_sites/ezworkshop2015_abstract_1011.pdf",
+   "data/raw/mars_sites/ezworkshop2015_abstract_1033.pdf",
+   "data/raw/mars_sites/ezworkshop2015_abstract_1034.pdf",
+   "data/raw/mars_sites/ezworkshop2015_abstract_1044.pdf",
+   "data/raw/mars_sites/ntrs_20160001040.pdf",
+   "data/raw/mars_sites/nasa_2021_follow_the_water.html",
+   "data/raw/mars_sites/martinez2017_ssr_review.pdf",
+   "data/raw/mars_sites/usgs_gazetteer_feature_14300.html",
+   "data/raw/mars_sites/usgs_gazetteer_feature_2071.html",
+   "data/raw/mars_sites/usgs_gazetteer_feature_348.html",
+   "data/raw/mars_sites/usgs_gazetteer_feature_1509.html",
+   "data/raw/mars_sites/usgs_gazetteer_feature_1821.html",
+   "data/raw/mars_sites/usgs_gazetteer_feature_4700.html",
+   "data/raw/mars_sites/usgs_gazetteer_feature_4701.html",
+   "data/raw/mars_sites/nssdca_1975-075C.html",
+   "data/raw/mars_sites/nssdca_1975-083C.html",
+   "data/raw/mars_sites/nssdca_viking_project.html",
+   "data/raw/mars_sites/nssdca_1996-068A.html",
+   "data/raw/mars_sites/nssdca_pathfinder_project.html",
+   "data/raw/mars_sites/pds_an_mer_mission.htm",
+   "data/raw/mars_sites/nssdca_2003-027A.html",
+   "data/raw/mars_sites/nssdca_2003-032A.html",
+   "data/raw/mars_sites/golombek2020_natcomms_insight_geology.pdf",
+   "data/raw/mars_sites/nssdca_2018-042A.html",
+   "data/raw/mars_sites/golombek2021_lpsc_2420.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1002.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1005.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1006.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1007.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1008.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1009.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1010.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1011.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1012.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1015.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1016.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1017.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1018.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1019.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1020.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1021.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1022.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1023.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1025.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1026.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1027.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1028.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1029.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1032.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1033.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1034.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1035.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1036.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1037.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1038.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1040.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1041.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1042.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1043.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1044.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1045.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1046.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1048.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1050.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1051.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1052.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1053.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1054.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1056.pdf",
+   "data/raw/mars_sites/ezworkshop2015/abstract_1057.pdf",
+   "data/raw/mars_sites/ezworkshop2015/nasa_exploration_zone_map_v10.pdf",
+   "data/reference/mars_exploration_zones_2015.json"
+  ],
+  "coordinates": {
+   "jezero": {
+    "file": "data/raw/mars_sites/hirise_ESP_068360_1985.html",
+    "lat_as_written": "18.442",
+    "lon_as_written": "77.452",
+    "source_convention": "the page gives 'Latitude (centered)' and 'Longitude (East)' and does not name the latitude system; HiRISE map products are planetocentric (not stated on this page)",
+    "if_it_were_planetographic_deg": 0.2,
+    "note": "centre of a HiRISE image that shows the rover a week after landing, not a surveyed rover position; the MEDA paper gives 18.44 N 77.45 E; inside the gazetteer outline of Jezero (checked on the saved outline)"
+   },
+   "gale": {
+    "file": "data/raw/mars_sites/pds_an_msl_mission.htm",
+    "lat_as_written": "4.5895 degrees South",
+    "lon_as_written": "137.4417 degrees East",
+    "source_convention": "east longitude; the page does not name the latitude system",
+    "if_it_were_planetographic_deg": 0.05,
+    "note": "the landing point; the rover has since climbed from about -4520 m to -4336 m by sol 1526 (Martinez et al. 2017) and further since (not checked); inside the gazetteer outline of Gale (checked)"
+   },
+   "phoenix": {
+    "file": "data/raw/mars_sites/pds_an_phx_mission.htm",
+    "lat_as_written": "68.22 degrees N",
+    "lon_as_written": "234.25 degrees East",
+    "source_convention": "areocentric (planetocentric), east, stated on the page",
+    "if_it_were_planetographic_deg": null,
+    "note": "234.25 E is 125.75 W"
+   },
+   "arcadia-planitia": {
+    "file": "data/raw/mars_sites/ezworkshop2015_abstract_1011.pdf",
+    "lat_as_written": "39.0°N",
+    "lon_as_written": "192.1°E",
+    "source_convention": "east longitude 0-360; the abstract does not name the latitude system",
+    "if_it_were_planetographic_deg": 0.33,
+    "note": "'centered near'; inside the gazetteer outline of Arcadia Planitia and outside that of Erebus Montes (180.3-190.4 E), checked by point-in-polygon on the saved outlines"
+   },
+   "deuteronilus-mensae": {
+    "file": "data/raw/mars_sites/ezworkshop2015_abstract_1033.pdf",
+    "lat_as_written": "39.11˚ N",
+    "lon_as_written": "23.199˚",
+    "source_convention": "east longitude; the abstract does not name the latitude system",
+    "if_it_were_planetographic_deg": 0.33,
+    "note": "lies 0.46 degree south of the southern edge of the gazetteer outline of Deuteronilus Mensae (39.57 N), at the dichotomy boundary the zone is named for; the 2 x 2 degree box of the plan overlaps the outline; Plaut's zone lies inside the outline but has no exact centre"
+   },
+   "viking-1": {
+    "file": "data/raw/mars_sites/nssdca_1975-075C.html",
+    "lat_as_written": "22.27 deg N latitude",
+    "lon_as_written": "312.05 deg E longitude (planetocentric)",
+    "source_convention": "planetocentric, east, stated on the page",
+    "if_it_were_planetographic_deg": null,
+    "note": "the touchdown point of the lander"
+   },
+   "viking-2": {
+    "file": "data/raw/mars_sites/nssdca_1975-083C.html",
+    "lat_as_written": "47.6673 deg N latitude",
+    "lon_as_written": "134.2809 deg E longitude",
+    "source_convention": "east longitude; the page does not name the latitude system",
+    "if_it_were_planetographic_deg": 0.34,
+    "note": "the touchdown point of the lander"
+   },
+   "pathfinder": {
+    "file": "data/raw/mars_sites/nssdca_1996-068A.html",
+    "lat_as_written": "19.33 N",
+    "lon_as_written": "33.55 W",
+    "source_convention": "west longitude; the page does not name the latitude system",
+    "if_it_were_planetographic_deg": 0.21,
+    "note": "33.55 W is 326.45 E (360 - 33.55); west longitude is the planetographic custom for Mars, thus this latitude is possibly planetographic"
+   },
+   "spirit": {
+    "file": "data/raw/mars_sites/pds_an_mer_mission.htm",
+    "lat_as_written": "14.5692 degrees S latitude",
+    "lon_as_written": "175.4729 degrees E longitude",
+    "source_convention": "MOLA IAU 2000 cartographic frame (planetocentric, east), stated on the page",
+    "if_it_were_planetographic_deg": null,
+    "note": "the landing site with respect to surface features in MOLA IAU 2000 maps; the same page gives the inertial position 14.571892 S, 175.47848 E; the rover drove from here to the Columbia Hills"
+   },
+   "opportunity": {
+    "file": "data/raw/mars_sites/pds_an_mer_mission.htm",
+    "lat_as_written": "1.9462 degrees S latitude",
+    "lon_as_written": "354.4734 degrees E longitude",
+    "source_convention": "MOLA IAU 2000 cartographic frame (planetocentric, east), stated on the page",
+    "if_it_were_planetographic_deg": null,
+    "note": "the landing site; the rover drove away from it over more than 14 years"
+   },
+   "insight": {
+    "file": "data/raw/mars_sites/golombek2020_natcomms_insight_geology.pdf",
+    "lat_as_written": "4.502°N",
+    "lon_as_written": "135.623°E",
+    "source_convention": "MOLA cartographic grid (planetocentric, east), stated in the paper",
+    "if_it_were_planetographic_deg": null,
+    "note": "the lander as seen in a HiRISE image tied to the MOLA grid"
+   },
+   "phlegra-montes": {
+    "file": "data/raw/mars_sites/golombek2021_lpsc_2420.pdf",
+    "lat_as_written": "35.23",
+    "lon_as_written": "163.95",
+    "source_convention": "Table 1 heads the columns °N and °E; the abstract does not name the latitude system",
+    "if_it_were_planetographic_deg": 0.32,
+    "note": "site PM-1, a landing point for Starship, not the centre of the mountains; inside the gazetteer outline of Phlegra Montes, which is a box (29.11 to 51.37 N, 160.40 to 167.60 E), checked on the saved page"
+   },
+   "arcadia-ap-1": {
+    "file": "data/raw/mars_sites/golombek2021_lpsc_2420.pdf",
+    "lat_as_written": "39.8",
+    "lon_as_written": "202.1",
+    "source_convention": "Table 1 heads the columns °N and °E; the abstract does not name the latitude system",
+    "if_it_were_planetographic_deg": 0.33,
+    "note": "site AP-1 in Table 1 (prime site), a landing point for Starship, elevation -3.9 km with respect to the MOLA geoid"
+   },
+   "arcadia-ap-9": {
+    "file": "data/raw/mars_sites/golombek2021_lpsc_2420.pdf",
+    "lat_as_written": "40.02",
+    "lon_as_written": "203.35",
+    "source_convention": "Table 1 heads the columns °N and °E; the abstract does not name the latitude system",
+    "if_it_were_planetographic_deg": 0.33,
+    "note": "site AP-9 in Table 1 (prime site), a landing point for Starship, elevation -3.9 km with respect to the MOLA geoid"
+   },
+   "erebus-em-16": {
+    "file": "data/raw/mars_sites/golombek2021_lpsc_2420.pdf",
+    "lat_as_written": "39.89",
+    "lon_as_written": "192.03",
+    "source_convention": "Table 1 heads the columns °N and °E; the abstract does not name the latitude system",
+    "if_it_were_planetographic_deg": 0.33,
+    "note": "site EM-16 in Table 1 (prime site), a landing point for Starship, elevation -3.9 km with respect to the MOLA geoid"
+   },
+   "arcadia-ap-8": {
+    "file": "data/raw/mars_sites/golombek2021_lpsc_2420.pdf",
+    "lat_as_written": "40.75",
+    "lon_as_written": "201.3",
+    "source_convention": "Table 1 heads the columns °N and °E; the abstract does not name the latitude system",
+    "if_it_were_planetographic_deg": 0.33,
+    "note": "site AP-8 in Table 1 (secondary site), a landing point for Starship, elevation -3.9 km with respect to the MOLA geoid"
+   },
+   "erebus-em-15": {
+    "file": "data/raw/mars_sites/golombek2021_lpsc_2420.pdf",
+    "lat_as_written": "39.75",
+    "lon_as_written": "195.62",
+    "source_convention": "Table 1 heads the columns °N and °E; the abstract does not name the latitude system",
+    "if_it_were_planetographic_deg": 0.33,
+    "note": "site EM-15 in Table 1 (secondary site), a landing point for Starship, elevation -3.9 km with respect to the MOLA geoid"
+   },
+   "phlegra-pm-7": {
+    "file": "data/raw/mars_sites/golombek2021_lpsc_2420.pdf",
+    "lat_as_written": "36.43",
+    "lon_as_written": "162.16",
+    "source_convention": "Table 1 heads the columns °N and °E; the abstract does not name the latitude system",
+    "if_it_were_planetographic_deg": 0.32,
+    "note": "site PM-7 in Table 1 (secondary site), a landing point for Starship, elevation -2.3 km with respect to the MOLA geoid"
+   },
+   "ez-1002-phlegra-dorsa": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1002.pdf",
+    "position_as_written": "a Landing Site (LS) located in Arcadia Planetia, along the Phlegra Dorsa, at 39°N 172°E",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "degrees with N and E letters; east longitude (a value under 180, so the 0-360 and -180 to 180 forms are the same)",
+    "if_it_were_planetographic_deg": 0.33,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1002-phlegra-dorsa",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). The zone is the 100 km around this landing site. The abstract also names three higher-latitude places (49°N, 126°E; 49.5°N, 160°E; 47°N, 13°W) that 'will need to be considered' later; they are not proposed zones and are not listed. Tyndall crater (USGS Gazetteer 39.73 N, 169.97 E) lies about 100 km away, which fits the text ('just outside our 100 km EZ')."
+   },
+   "ez-1005-southern-nectaris-fossae": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1005.pdf",
+    "position_as_written": "an area within 100 km radius of a landing site located at approximately 28.88˚S 300.29˚E",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "degrees with S and E letters; east longitude 0 to 360",
+    "if_it_were_planetographic_deg": 0.29,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1005-southern-nectaris-fossae",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). Region check: Protva Valles in the USGS Gazetteer is centred at 29.11 S, 299.42 E, next to this point."
+   },
+   "ez-1006-valles-marineris-mouth": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1006.pdf",
+    "position_as_written": "Proposed EZ in the southern Acidalia Planitia has coordinates: 40˚W and 20˚N",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "west longitude (40 W = 320 E); latitude with N letter; whole degrees",
+    "if_it_were_planetographic_deg": 0.22,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1006-valles-marineris-mouth",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). The point lies in Chryse Planitia (USGS Gazetteer extent 14.85 to 39.61 N, 305.23 to 333.93 E), not in Acidalia; the abstract itself puts it between the Viking 1 and Pathfinder sites, so only the region name is loose. In the title, 'mouth' means where the outflow channels reach the northern plains, not the canyon itself. The page-1 text layer is scrambled by an overlapping title box; the coordinate sentence was read on the rendered page by a reader and the words are in the text layer. The LPI program lists this abstract (Equatorial I), but the NASA agenda v11 has no talk for it and the NASA abstract set files it as a poster."
+   },
+   "ez-1007-east-melas-chasma": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1007.pdf",
+    "position_as_written": "This region (see figure; center ~11.7 S, 290.0 E)",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "east longitude 0 to 360; latitude with S letter",
+    "if_it_were_planetographic_deg": 0.13,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1007-east-melas-chasma",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). Region check: inside the USGS Gazetteer extent of Melas Chasma (7.23 to 13.96 S, 282.46 to 291.89 E)."
+   },
+   "ez-1009-mawrth-vallis": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1009.pdf",
+    "position_as_written": "The plateau above the Mawrth Vallis outflow channel near 340.8°E, 24.3°N",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "east longitude 0 to 360; latitude with N letter; longitude written first",
+    "if_it_were_planetographic_deg": 0.25,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1009-mawrth-vallis",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). Figure 1 shows two alternative landing sites, each with its own circle, but gives no coordinates for them; kept as one zone because the abstract names one exploration zone. The point lies between Mawrth Vallis (USGS 22.43 N, 343.03 E) and Oyama crater."
+   },
+   "ez-1010-nili-fossae": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1010.pdf",
+    "position_as_written": "The landing site, located approximately at 22.05°N, 76.95°E is centered in a crater at the southern end of a large valley.",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "decimal degrees with N and E letters; east longitude (under 180)",
+    "if_it_were_planetographic_deg": 0.23,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1010-nili-fossae",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). The abstract's own reference [2] gives the Google Earth view of the landing site as 'centered about 21.43°N 76.93°E', 0.6 degree south of the text value; the text value is kept. An alternate landing zone about 67 miles ENE (reference [3], 'centered about 21.75°N 78.95°E') belongs to the same zone. The byline reads 'L. J. Markle'; the LPI program prints 'Markle L. M.'."
+   },
+   "ez-1011b-acheron-fossae": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1011.pdf",
+    "position_as_written": "Acheron Fossae: This proposed site is centered near 220.6°E, 39.8°N (Fig. 2).",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "east longitude 0 to 360; latitude with N letter; longitude written first",
+    "if_it_were_planetographic_deg": 0.33,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1011b-acheron-fossae",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). Second zone of this abstract (map label 11b). Region check: inside the USGS Gazetteer extent of Acheron Fossae (31.47 to 40.03 N, 216.90 to 230.92 E)."
+   },
+   "ez-1012-hebrus-valles": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1012.pdf",
+    "position_as_written": "The candidate landing site (LS) and Exploration Zone (EZ) are located in the middle reaches of Hebrus Valles (Fig 1, centered at 20º05’ N, 126º38’ E).",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "degrees and minutes with N and E letters; east longitude (under 180). 20°05' N = 20.0833; 126°38' E = 126.6333",
+    "if_it_were_planetographic_deg": 0.22,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1012-hebrus-valles",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). USGS Gazetteer: Hebrus Valles 19.88 N, 126.74 E."
+   },
+   "ez-1015-newton-crater": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1015.pdf",
+    "position_as_written": "Latitude and longitude of the proposed EZ: 40.6O S / 200O E",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "degrees with S and E letters; east longitude 0 to 360 (200 E); the text layer prints the degree sign as a capital 'O'",
+    "if_it_were_planetographic_deg": 0.33,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1015-newton-crater",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). One-page abstract with no figure. USGS Gazetteer: Newton crater 40.50 S, 201.97 E, about 300 km across, so the point is inside the crater."
+   },
+   "ez-1016-zephyria-planum-hills": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1016.pdf",
+    "position_as_written": "The site is located in \"Sea Urchins\" (fig.1,2) having landing point coordinates 1˚22,3'S;157˚8,5'E",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "degrees and decimal minutes with decimal commas, S and E letters; east longitude (under 180). 1°22.3' S = -1.3717; 157°8.5' E = 157.1417",
+    "if_it_were_planetographic_deg": 0.02,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1016-zephyria-planum-hills",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). The Figure 2 caption gives the centre of the image of the hills as '1˚28'S; 157˚20'Е' (1.4667 S, 157.3333 E; the E is a Cyrillic letter). USGS Gazetteer extent of Zephyria Planum is 149.96 to 156.75 E, so the site is about 0.4 degree east of that edge. Not on the v10 NASA map; on the v12 map its circle carries the label '18' (see official_check)."
+   },
+   "ez-1017-cerberus": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1017.pdf",
+    "position_as_written": "200 km diameter Exploration Zone with center landing site at 10° N, 162° E",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "degrees with N and E letters; east longitude (under 180); whole degrees",
+    "if_it_were_planetographic_deg": 0.12,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1017-cerberus",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). From the Figure 2 caption. USGS Gazetteer: Zunil crater 7.70 N, 166.19 E, east of the zone as the title says."
+   },
+   "ez-1018-amazonis-planitia-ice": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1018.pdf",
+    "position_as_written": "Location of ROI: 40-50 N, 160 -190 E ; Specific Landing Site proposed: 46.16N, 188.8 E",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "decimal degrees with N and E letters; east longitude 0 to 360",
+    "if_it_were_planetographic_deg": 0.34,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1018-amazonis-planitia-ice",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). One-page abstract. The point lies inside the USGS Gazetteer extents of both Amazonis Planitia and Arcadia Planitia. Not on the v10 NASA map; on the v12 map it is the circle labelled '18' beside 'Amazonis Planitia'."
+   },
+   "ez-1021-noachis-terra-chlorides": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1021.pdf",
+    "position_as_written": "Figure 1: Location of the proposed exploration zone (white), centered at 350.5°E, -37.2°N, west of Argyre Planitia in Noachis Terra",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "east longitude 0 to 360; latitude written as negative degrees north (-37.2°N = 37.2 S); longitude written first",
+    "if_it_were_planetographic_deg": 0.33,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1021-noachis-terra-chlorides",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). Table 1 gives the landing site centre as '350.5785°E, -37.4214°N' (3 km radius). The words 'west of Argyre Planitia' do not fit the numbers: the USGS Gazetteer puts Argyre Planitia at 306.12 to 326.62 E, so 350.5 E is east of it. The numbers fit Noachis Terra and agree with Appendix D (37S). The NASA map circle is about 4.8 degrees further south (see official_check)."
+   },
+   "ez-1023-south-valles-marineris": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1023.pdf",
+    "position_as_written": "The equatorial site presented here (-18.83°N, 310.79°E, Figure 1)",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "latitude written as negative degrees north (-18.83°N = 18.83 S); east longitude 0 to 360",
+    "if_it_were_planetographic_deg": 0.21,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1023-south-valles-marineris",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). Figure 1 shows the zone circle just south of the wide eastern part of the canyon system, which fits the signs as read. USGS Gazetteer extent of Valles Marineris reaches 18.33 S and 331.15 E. Figure 1 has no coordinate grid."
+   },
+   "ez-1025-mclaughlin-crater": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1025.pdf",
+    "position_as_written": "McLaughlin Crater is an ancient (Noachian) Martian impact crater located at 337.6E, 21.9 N",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "east longitude 0 to 360; latitude with N letter; longitude written first",
+    "if_it_were_planetographic_deg": 0.23,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1025-mclaughlin-crater",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). The zone is the crater and the terrain around it. The 25 km2 landing zone is on the crater floor at -5.1 km elevation, with no coordinates. USGS Gazetteer: McLaughlin 21.90 N, 337.63 E."
+   },
+   "ez-1026-south-of-firsoff-crater": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1026.pdf",
+    "position_as_written": "We are proposing an area South of Firsoff Crater centered at 0° 23’ 28”N, 8° 21’ 45” W (Fig. 1).",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "degrees, minutes and seconds; west longitude (8°21'45\" W = 8.3625 W = 351.6375 E); latitude with N letter (0°23'28\" N = 0.3911 N)",
+    "if_it_were_planetographic_deg": 0.0,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1026-south-of-firsoff-crater",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). A reader measured the white zone circle on the Figure 1 grid at about 0.63 N, 350.83 E, so the stated centre sits near the east edge of the drawn circle (about 50 km away). The stated centre is kept; the NASA map agrees with it to within 0.4 degree. All seven ROI coordinates in the text lie between 8°32' and 9°32' W, 0°09' and 1°11' N. USGS Gazetteer: Firsoff crater 2.73 N, 350.63 E."
+   },
+   "ez-1027-ismenius-cavus": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1027.pdf",
+    "position_as_written": "Geological data on this site (located 33°49’N, 17°10’E, elevation -3450 m, with Exploration zone of 60*70 km)",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "degrees and minutes with N and E letters; east longitude (under 180). 33°49' N = 33.8167; 17°10' E = 17.1667",
+    "if_it_were_planetographic_deg": 0.31,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1027-ismenius-cavus",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). The zone is 60 by 70 km. ROI 1 is 'Centered 33°42', 17°09'E' (no N letter on the latitude) and is said to lie just south of the landing site. USGS Gazetteer: Ismenius Cavus 33.90 N, 17.08 E. The NASA map labels this zone 'Ismenius Lacus'."
+   },
+   "ez-1028-hale-crater": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1028.pdf",
+    "position_as_written": "Our proposed LS (35.30°S, 323.14°E, elevation of -1621 m) is to the northwest of the central peak (Fig. 2).",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "decimal degrees with S and E letters; east longitude 0 to 360",
+    "if_it_were_planetographic_deg": 0.32,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1028-hale-crater",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). The text also gives the crater: 'Hale crater is a complex impact crater (125 x 150 km located at 35.79°S, 323.68°E; Fig 1)'. The PDF draws the degree and minus signs with Symbol-font glyphs, which plain pdftotext output shows as private-use characters; they were decoded by hand. The landing site is used here because it is the named base point. USGS Gazetteer: Hale 35.69 S, 323.64 E."
+   },
+   "ez-1029-copernicus-crater": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1029.pdf",
+    "position_as_written": "Copernicus Crater is located south of the planet's equator in the heavily cratered highlands of Terra Sirenum in the Phaethontis quadrangle at 49.2°S and 169.2°W.",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "west longitude (169.2 W = 190.8 E); latitude with S letter",
+    "if_it_were_planetographic_deg": 0.33,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1029-copernicus-crater",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). The authors propose the whole crater (almost 300 km across) as the zone. USGS Gazetteer: Copernicus 48.84 S, 191.17 E. The point is near the ±50 degree latitude limit set for the workshop."
+   },
+   "ez-1032-huygens-crater": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1032.pdf",
+    "position_as_written": "Huygens crater (Figure 1) is a well preserved peak ring structure on Mars centered at 13.5°S, 55.5°E",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "decimal degrees with S and E letters; east longitude (under 180)",
+    "if_it_were_planetographic_deg": 0.15,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1032-huygens-crater",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). Figure 1 has no grid; a reader estimated Landing Site 1 about 90-100 km north-east and Landing Site 2 about 150-160 km south-east of the crater centre. The crater centre may therefore lie at or outside the edge of the landing circles. USGS Gazetteer: Huygens 13.88 S, 55.58 E."
+   },
+   "ez-1035-mesopotamia-east-hellas": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1035.pdf",
+    "position_as_written": "The proposed EZ (94.02E, 35.352S) is located on the east rim of the Hellas Basin, between Niger/Dao Vallis and Harmakhis Vallis: Mesopotamia.",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "decimal degrees with E and S letters, longitude written first; east longitude (under 180)",
+    "if_it_were_planetographic_deg": 0.32,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1035-mesopotamia-east-hellas",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). The text also says the zone 'lies at ~35°S'. Region check: USGS Gazetteer gives Niger Vallis at 34.96 S, 92.57 E and Negele crater (inside the zone per the text) at 35.80 S, 96.00 E."
+   },
+   "ez-1036-western-coprates-chasma": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1036.pdf",
+    "position_as_written": "Our proposed exploration zone is centered atop an inferred tilted fault block 1 km above the valley level in the western aspect of Coprates Chasma, 293.367°E -11.684°N.",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "east longitude 0 to 360, written first; latitude written as negative degrees north (-11.684°N = 11.684 S)",
+    "if_it_were_planetographic_deg": 0.13,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1036-western-coprates-chasma",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). The point sits on an inferred tilted fault block about 1 km above the canyon floor. Inside the USGS Gazetteer extent of Coprates Chasma (10.32 to 16.26 S, 291.04 to 307.44 E)."
+   },
+   "ez-1037-hellas-rim": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1037.pdf",
+    "position_as_written": "Located at 39.05˚ S, 101.91˚ E, the Hellas Rim EZ contains landforms",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "decimal degrees with S and E letters; east longitude (under 180)",
+    "if_it_were_planetographic_deg": 0.33,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1037-hellas-rim",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). One-page abstract with no figure. Inside the USGS Gazetteer extent of Reull Vallis (36.82 to 42.40 S, 95.42 to 112.83 E), which the text says the zone reaches."
+   },
+   "ez-1038-eastern-hellas-rim": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1038.pdf",
+    "position_as_written": "Our proposed 200 km diameter Exploration Zone centered near 40°S; 104°E",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "degrees with S and E letters; east longitude (under 180); whole degrees",
+    "if_it_were_planetographic_deg": 0.33,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1038-eastern-hellas-rim",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). USGS Gazetteer: Reull Vallis centre 42.14 S, 104.95 E; Euripus Mons 44.82 S, 105.18 E."
+   },
+   "ez-1041-columbus-crater": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1041.pdf",
+    "position_as_written": "Columbus crater is a groundwater-fed paleolake basin located in the northwest region of Terra Sirenum (29° S, 166° W)",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "west longitude (166 W = 194 E); latitude with S letter; whole degrees",
+    "if_it_were_planetographic_deg": 0.29,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1041-columbus-crater",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). The 5 by 5 km landing and habitation site is on the flat north-east floor (Figure 1, box a) with no coordinates. USGS Gazetteer: Columbus 29.29 S, 194.02 E."
+   },
+   "ez-1042-southwest-sinus-meridiani": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1042.pdf",
+    "position_as_written": "EZ: SW Sinus Meridiani, centered 6.4335degW 2.2526degS",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "decimal degrees written 'deg' with W and S letters; west longitude (6.4335 W = 353.5665 E)",
+    "if_it_were_planetographic_deg": 0.03,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1042-southwest-sinus-meridiani",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). Figure 1 shows the field station at the centre of a 100 km circle with Miyamoto crater to the west and the Opportunity traverse to the east. USGS Gazetteer: Miyamoto 2.87 S, 353.05 E."
+   },
+   "ez-1043-apollinaris-sulci": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1043.pdf",
+    "position_as_written": "Location of the candidate human landing site at Apollinaris Sulci (12˚40’ S, 176˚40’ E).",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "degrees and minutes with S and E letters; east longitude (under 180). 12°40' S = -12.6667; 176°40' E = 176.6667",
+    "if_it_were_planetographic_deg": 0.14,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1043-apollinaris-sulci",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). From the Figure 1 caption. USGS Gazetteer: Apollinaris Sulci 11.06 S, 177.47 E."
+   },
+   "ez-1044-deuteronilus-mensae-debris-apron": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1044.pdf",
+    "position_as_written": "The proposed EZ meets the provided engineering constraints: latitude 39-43 deg. N, longitude 20-24 deg. E",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "ranges in degrees N and degrees E; east longitude (under 180)",
+    "if_it_were_planetographic_deg": 0.33,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1044-deuteronilus-mensae-debris-apron",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). lat and lon here are the midpoint of the stated box, worked out by us, not words of the abstract. A reader measured the zone-circle centre on the page-1 figure grid at about 41.0 N, 22.2 E, and the NASA map circle is at 41.03 N, 22.00 E, so the midpoint is a fair stand-in for the centre."
+   },
+   "ez-1045a-ausonia-cavus": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1045.pdf",
+    "position_as_written": "Figure 1- Ausonia Caves (32.0S, 96.5E)",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "decimal degrees with S and E letters; east longitude (under 180)",
+    "if_it_were_planetographic_deg": 0.3,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1045a-ausonia-cavus",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). One of two zones in this abstract (map label 45a). The caption spells 'Caves'. USGS Gazetteer: Ausonia Cavus 31.92 S, 96.55 E. A CTX image named in reference [6] ('..._32S263W', i.e. 263 W = 97 E) agrees."
+   },
+   "ez-1045b-kasei-valles": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1045.pdf",
+    "position_as_written": "Figure 2 - Kasei Valles (24.81N, 287.37E)",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "decimal degrees with N and E letters; east longitude 0 to 360",
+    "if_it_were_planetographic_deg": 0.26,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1045b-kasei-valles",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). Second zone of this abstract (map label 45b). The text names two sub-areas; the first is given only as '(Lat and Long)', a placeholder never filled in. Inside the USGS Gazetteer extent of Kasei Valles (16.28 to 27.11 N, 285.55 to 309.66 E)."
+   },
+   "ez-1046-gusev-apollinaris-sulci": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1046.pdf",
+    "position_as_written": "Our proposed 200 km diameter Exploration Zone centered near 13°S; 175°E is located along the floor and north eastern rim of Gusev crater and Apollinaris Sulci.",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "degrees with S and E letters; east longitude (under 180); whole degrees",
+    "if_it_were_planetographic_deg": 0.15,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1046-gusev-apollinaris-sulci",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). The text layer interleaves two columns, so the words appear split; the phrase above was checked in the text. Figure 1 places the zone in north-east Gusev, just south of Apollinaris Mons."
+   },
+   "ez-1048-aram-chaos": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1048.pdf",
+    "position_as_written": "EZ coordinates: 2° 25’ N, 20° 02’ W",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "degrees and minutes; N latitude; west longitude (20°02' W = 20.0333 W = 339.9667 E)",
+    "if_it_were_planetographic_deg": 0.03,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1048-aram-chaos",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). Inside the USGS Gazetteer extent of Aram Chaos (0.34 to 5.17 N, 336.45 to 340.72 E). The NASA map circle is about 1.5 degrees further west (see official_check)."
+   },
+   "ez-1050-noctis-landing": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1050.pdf",
+    "position_as_written": "Landing Site Coordinates: Noctis Landing 6o 29’ 38.33” S, 92o 27’ 12.34” W.",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "degrees, minutes and seconds; west longitude (92°27'12.34\" W = 92.4534 W = 267.5466 E); S latitude (6°29'38.33\" S = -6.4940); the text layer prints the degree sign as a raised 'o'",
+    "if_it_were_planetographic_deg": 0.08,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1050-noctis-landing",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). 'Noctis Landing' is the authors' informal name. USGS Gazetteer: Oudemans crater 9.84 S, 268.23 E, about 200 km to the south, as Figure 1 shows."
+   },
+   "ez-1051-hypanis-delta": {
+    "file": "data/raw/mars_sites/ezworkshop2015/nasa_exploration_zone_map_v10.pdf",
+    "position_as_written": "circle '51' on the map; its centre is at 11.98 N, 313.94 E",
+    "lat_as_written": "11.98",
+    "lon_as_written": "313.94",
+    "source_convention": "the map's own graticule (Mercator, east longitude); circle centres taken from the vector paths, good to approximately 0.05 degree (list file, meta.official_sources_compared)",
+    "if_it_were_planetographic_deg": 0.14,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1051-hypanis-delta",
+    "note": "The abstract states no position in words. No position in the text; 11.8 N, 314.4 E is a reading from the Figure 1 grid. Use it only if the team accepts a figure reading (the NASA map, 11.98 N, 313.94 E, agrees)."
+   },
+   "ez-1052-hadriacus-palus": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1052.pdf",
+    "position_as_written": "(A) Exploration zone (centered at 77.47E, -26.84N) is located NNE of Hellas Planitia",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "east longitude written first; latitude written as negative degrees north (-26.84N = 26.84 S)",
+    "if_it_were_planetographic_deg": 0.27,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1052-hadriacus-palus",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). The text also gives Hadriacus Palus at '(77.30°E, -27.25°N)' (the minus sign falls at a line break) and Hadriacus Cavi at '(78.05°E, -27.25°N)'; both equal the USGS Gazetteer centres."
+   },
+   "ez-1053-protonilus-mensae": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1053.pdf",
+    "position_as_written": "The proposed EZ (48.062E, 42.187N) is in the Protonilus Mensae region of Mars, located just to the east of Moreux Crater",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "decimal degrees with E and N letters, longitude written first; east longitude (under 180)",
+    "if_it_were_planetographic_deg": 0.34,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1053-protonilus-mensae",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). The text also says the zone 'lies at ~42°N'. USGS Gazetteer: Moreux crater 41.79 N, 44.54 E, west of the point as the text says."
+   },
+   "ez-1054-eastern-valles-marineris-outlet": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1054.pdf",
+    "position_as_written": "The proposed landing site is located at the eastern end of Vallis Marineris (-4.1o, -35.2o)",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "not stated: signed decimal degrees (latitude, longitude). Read as latitude negative = south and longitude positive east from -180 to 180, so -35.2 = 35.2 W = 324.8 E",
+    "if_it_were_planetographic_deg": 0.05,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1054-eastern-valles-marineris-outlet",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). The zone box is also given: 'latitudes: -3.0o to -6.2o, longitudes: -36.7o to -33.6o' (3.0 to 6.2 S, 323.3 to 326.4 E). The east-positive reading is the only one that fits the named features (Aurorae Chaos, Hydraotes Colles) and it matches the NASA map circle (4.18 S, 325.08 E). The text layer prints degree signs as a raised 'o'."
+   },
+   "ez-1056-tempe-terra": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1056.pdf",
+    "position_as_written": "The proposed EZ (270.82E, 42.266N) is located in the Tempe Terra region of Mars, east of Alba Mons.",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "decimal degrees with E and N letters, longitude written first; east longitude 0 to 360",
+    "if_it_were_planetographic_deg": 0.34,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1056-tempe-terra",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). Not in the LPI program and not on the LPI server; the abstract is only in NASA's compiled abstract set. USGS Gazetteer: Cangwu crater (named as inside the zone) 41.85 N, 270.41 E."
+   },
+   "ez-1057-southern-meridiani-endeavour": {
+    "file": "data/raw/mars_sites/ezworkshop2015/abstract_1057.pdf",
+    "position_as_written": "Exploration Zone/Landing site Location: Longitude 4°31'2.33\"W, Latitude 3°10'26.25\"S",
+    "lat_as_written": null,
+    "lon_as_written": null,
+    "source_convention": "degrees, minutes and seconds; west longitude (4°31'2.33\" W = 4.5173 W = 355.4827 E); S latitude (3°10'26.25\" S = -3.1740); longitude written first",
+    "if_it_were_planetographic_deg": 0.04,
+    "list_file": "data/reference/mars_exploration_zones_2015.json",
+    "zone": "ez-1057-southern-meridiani-endeavour",
+    "note": "lat and lon_east are the list file's reading of these words (degrees-minutes-seconds turned into decimal degrees; west longitude turned into east = 360 - west). USGS Gazetteer: Endeavour crater 2.28 S, 354.80 E, about 0.9 degree north and 0.7 degree west of this point."
+   }
+  },
+  "updated": "2026-11-15: seven sites added (viking-1, viking-2, pathfinder, spirit, opportunity, insight, phlegra-montes) by agent MARS-SITES-2, by the same rule: each position copied as written from one saved source; data/raw/mars_sites/_downloads_2026-11-15_new_sites.tsv lists the new URLs and times. The first five records are unchanged.",
+  "lists": {
+   "NASA landing site": "A place where a NASA lander or rover landed and worked.",
+   "2021 shortlist for human landings": "A site of Table 1 of Golombek et al. 2021 (LPSC abstract 2420), a study of landing sites for SpaceX Starship by JPL, SpaceX and university authors. It is a study, not a NASA decision.",
+   "2015 exploration zone": "An exploration zone proposed in an abstract of NASA's First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars (Lunar and Planetary Institute, Houston, 27-30 October 2015). A proposal is not a NASA decision."
+  },
+  "updated_second_pass": "2026-11-15T09:40:23-08:00: 45 sites added by scripts/add_mars_site_lists.py (six of the 2021 shortlist, 39 exploration zones of 2015). Each position is copied from one saved source. Every site has the field 'lists'. The twelve earlier records keep their values. Climate tables: data/raw/mars_climate/mcd/_downloads_2026-11-15_second_pass.tsv."
+ },
+ "sites": [
+  {
+   "id": "jezero",
+   "name": "Jezero crater, Perseverance landing site (Octavia E. Butler Landing)",
+   "lat": 18.442,
+   "lon_east": 77.452,
+   "kind": "visited by a NASA mission",
+   "why": "NASA's Perseverance rover landed here on 18 February 2021, on the floor of a crater that once held a lake and a river delta, and its MEDA station measures the weather at the surface.",
+   "sources": [
+    {
+     "what": "HiRISE (NASA Mars Reconnaissance Orbiter) image ESP_068360_1985, Perseverance on the ground, 25 February 2021: image centre 18.442 N, 77.452 E",
+     "url": "https://hirise.lpl.arizona.edu/ESP_068360_1985"
+    },
+    {
+     "what": "Rodriguez-Manfredi et al. 2023, Nature Geoscience 16, 19-28 (MEDA, first 250 sols): landed at 18.44 N 77.45 E",
+     "url": "https://doi.org/10.1038/s41561-022-01084-0"
+    },
+    {
+     "what": "USGS Gazetteer of Planetary Nomenclature, Jezero: crater centre 18.41 N, 77.69 E, 47.52 km across (planetocentric, east, 0-360)",
+     "url": "https://planetarynames.wr.usgs.gov/Feature/14300"
+    },
+    {
+     "what": "Mustard 2015, abstract 1034, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: the Jezero crater open-basin lake and delta, also proposed as a human exploration zone",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1034.pdf"
+    }
+   ],
+   "exploration_zone_abstracts": [
+    1034
+   ],
+   "lists": [
+    "NASA landing site",
+    "2015 exploration zone"
+   ]
+  },
+  {
+   "id": "gale",
+   "name": "Gale crater, Curiosity landing site (Bradbury Landing)",
+   "lat": -4.5895,
+   "lon_east": 137.4417,
+   "kind": "visited by a NASA mission",
+   "why": "NASA's Curiosity rover landed here on 6 August 2012, and its REMS station recorded air temperature, ground temperature and pressure on 4,717 sols up to 25 August 2026 while the rover drove uphill from its landing point.",
+   "sources": [
+    {
+     "what": "PDS Geosciences Node, Analyst's Notebook, MSL mission overview: landed at 4.5895 degrees South, 137.4417 degrees East",
+     "url": "https://an.rsl.wustl.edu/help/Content/About%20the%20mission/MSL/MSL%20mission.htm"
+    },
+    {
+     "what": "USGS Gazetteer of Planetary Nomenclature, Gale: crater centre 5.44 S, 137.70 E, 155.3 km across (planetocentric, east, 0-360)",
+     "url": "https://planetarynames.wr.usgs.gov/Feature/2071"
+    },
+    {
+     "what": "NASA Mars weather feed of Curiosity REMS daily values (Centro de Astrobiologia; marked for outreach use only)",
+     "url": "https://mars.nasa.gov/rss/api/?feed=weather&category=msl&feedtype=json"
+    },
+    {
+     "what": "Calef and others 2015, abstract 1020, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Gale crater (MSL landing ellipse); position as written: Our proposed landing site is located at the center of the final MSL landing ellipse at 137.4019° longitude and -4.5965° latitude (Figure 1).",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1020.pdf"
+    },
+    {
+     "what": "Yun 2015, abstract 1022, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Aeolis Palus, Gale crater; position as written: Latitude and Longitude of the proposed EZ: 4.6°S 137°E",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1022.pdf"
+    },
+    {
+     "what": "Montaño and others 2015, abstract 1040, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Gale crater (MSL ground truth); position as written: This crater meets the general criteria for a candidate landing site, with an elevation of less than 2 km and a near-equatorial latitude of 4° S.",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1040.pdf"
+    }
+   ],
+   "exploration_zone_abstracts": [
+    1020,
+    1022,
+    1040
+   ],
+   "lists": [
+    "NASA landing site",
+    "2015 exploration zone"
+   ]
+  },
+  {
+   "id": "phoenix",
+   "name": "Phoenix landing site, northern plains",
+   "lat": 68.22,
+   "lon_east": 234.25,
+   "kind": "visited by a NASA mission",
+   "why": "NASA's Phoenix lander touched down here on 25 May 2008 to test whether water ice lies under a thin soil cover, saw ice in a trench dug by its arm sublimate within days, and its MET station measured the northern summer weather until early November 2008.",
+   "sources": [
+    {
+     "what": "PDS Geosciences Node, Analyst's Notebook, Phoenix mission overview: landed at 68.22 degrees N, 234.25 degrees East Areocentric on 25 May 2008, operated until 2 November 2008",
+     "url": "https://an.rsl.wustl.edu/help/Content/About%20the%20mission/PHX/PHX%20mission.htm"
+    },
+    {
+     "what": "PDS Atmospheres Node, Phoenix MET data (temperature and pressure, sols 0 to 150)",
+     "url": "https://atmos.nmsu.edu/data_and_services/atmospheres_data/phoenix/met.html"
+    },
+    {
+     "what": "NASA/JPL release of 8 February 2021 (SWIM): Phoenix trench Dodo-Goldilocks, ice sublimated over four days",
+     "url": "https://www.nasa.gov/centers-and-facilities/jpl/where-should-future-astronauts-land-on-mars-follow-the-water/"
+    }
+   ],
+   "lists": [
+    "NASA landing site"
+   ]
+  },
+  {
+   "id": "arcadia-planitia",
+   "name": "Arcadia Planitia (Erebus Montes exploration zone)",
+   "lat": 39.0,
+   "lon_east": 192.1,
+   "kind": "studied for a human landing",
+   "why": "Smooth northern plains thought to hold abundant water ice within the top metre of the ground, studied as a candidate exploration zone for human landings at NASA's 2015 workshop (Viola, McEwen and Dundas) and named by NASA's SWIM ice-mapping project as a region of accessible shallow ice, but not selected by NASA.",
+   "sources": [
+    {
+     "what": "Viola, McEwen and Dundas 2015, abstract 1011, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Erebus Montes EZ centred near 192.1 E, 39.0 N",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1011.pdf"
+    },
+    {
+     "what": "Barker, James, Chamitoff and Clifford 2015, abstract 1002, same workshop: a second Arcadia Planitia landing site, along Phlegra Dorsa at 39 N 172 E",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1002.pdf"
+    },
+    {
+     "what": "Bussey and Hoffman 2016 (NASA), Human Mars Landing Site and Impacts on Mars Surface Operations, Appendix D: the 47 proposed exploration zones",
+     "url": "https://ntrs.nasa.gov/api/citations/20160001040/downloads/20160001040.pdf"
+    },
+    {
+     "what": "NASA/JPL release of 8 February 2021 on the SWIM maps (Morgan et al. 2021, Nature Astronomy): names the plains of Arcadia Planitia for accessible subsurface ice",
+     "url": "https://www.nasa.gov/centers-and-facilities/jpl/where-should-future-astronauts-land-on-mars-follow-the-water/"
+    },
+    {
+     "what": "USGS Gazetteer of Planetary Nomenclature, Arcadia Planitia: 34.68 to 54.68 N, 165 to 217 E, centre 46.66 N, 192.00 E (planetocentric, east, 0-360)",
+     "url": "https://planetarynames.wr.usgs.gov/Feature/348"
+    }
+   ],
+   "exploration_zone_abstracts": [
+    1011
+   ],
+   "lists": [
+    "2015 exploration zone"
+   ]
+  },
+  {
+   "id": "deuteronilus-mensae",
+   "name": "Deuteronilus Mensae (dichotomy boundary exploration zone)",
+   "lat": 39.11,
+   "lon_east": 23.199,
+   "kind": "studied for a human landing",
+   "why": "Mesas ringed by debris aprons that orbital radar shows to be mostly water ice under a rocky cover, studied as a candidate exploration zone for human landings at NASA's 2015 workshop (Head and others; Plaut of JPL) and named by NASA's SWIM ice-mapping project for its glacier-filled valleys, but not selected by NASA.",
+   "sources": [
+    {
+     "what": "Head et al. 2015, abstract 1033, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Dichotomy Boundary Deuteronilus Mensae EZ at 39.11 N, 23.199 E",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1033.pdf"
+    },
+    {
+     "what": "Plaut 2015 (JPL), abstract 1044, same workshop: Deuteronilus Mensae EZ within 39-43 N, 20-24 E, landing beside a radar-detected ice apron",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1044.pdf"
+    },
+    {
+     "what": "Bussey and Hoffman 2016 (NASA), Human Mars Landing Site and Impacts on Mars Surface Operations, Appendix D: the 47 proposed exploration zones",
+     "url": "https://ntrs.nasa.gov/api/citations/20160001040/downloads/20160001040.pdf"
+    },
+    {
+     "what": "NASA/JPL release of 8 February 2021 on the SWIM maps: names the glacier-filled valleys of Deuteronilus Mensae for accessible subsurface ice",
+     "url": "https://www.nasa.gov/centers-and-facilities/jpl/where-should-future-astronauts-land-on-mars-follow-the-water/"
+    },
+    {
+     "what": "USGS Gazetteer of Planetary Nomenclature, Deuteronilus Mensae: 39.57 to 50.17 N, 13.70 to 35.40 E, centre 43.56 N, 22.60 E (planetocentric, east, 0-360)",
+     "url": "https://planetarynames.wr.usgs.gov/Feature/1509"
+    }
+   ],
+   "exploration_zone_abstracts": [
+    1033
+   ],
+   "lists": [
+    "2015 exploration zone"
+   ]
+  },
+  {
+   "id": "viking-1",
+   "name": "Chryse Planitia, Viking 1 landing site",
+   "lat": 22.27,
+   "lon_east": 312.05,
+   "kind": "visited by a NASA mission",
+   "why": "NASA's Viking 1 lander touched down on the plains of western Chryse Planitia on 20 July 1976, found surface material like iron-rich clay, and worked until November 1982.",
+   "sources": [
+    {
+     "what": "NASA NSSDCA, Viking 1 Lander (1975-075C): touched down in western Chryse Planitia at 22.27 deg N latitude and 312.05 deg E longitude (planetocentric); operated until 13 November 1982",
+     "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1975-075C"
+    },
+    {
+     "what": "NASA NSSDCA, Viking project information: the surface material at both Viking landing sites is best characterized as iron-rich clay; measured temperatures at the landing sites from 150 to 250 K",
+     "url": "https://nssdc.gsfc.nasa.gov/planetary/viking.html"
+    },
+    {
+     "what": "Farrell 2015, abstract 1019, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Chryse Planitia at the Viking Lander 1 site; position as written: The proposed EZ, centered at latitude 22.3°N and longitude 48.3°W",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1019.pdf"
+    }
+   ],
+   "exploration_zone_abstracts": [
+    1019
+   ],
+   "lists": [
+    "NASA landing site",
+    "2015 exploration zone"
+   ]
+  },
+  {
+   "id": "viking-2",
+   "name": "Utopia Planitia, Viking 2 landing site",
+   "lat": 47.6673,
+   "lon_east": 134.2809,
+   "kind": "visited by a NASA mission",
+   "why": "NASA's Viking 2 lander touched down in Utopia Planitia on 3 September 1976 with one leg on a rock, found surface material like iron-rich clay, and worked for 1,281 sols.",
+   "sources": [
+    {
+     "what": "NASA NSSDCA, Viking 2 Lander (1975-083C): touched down about 200 km west of the crater Mie in Utopia Planitia at 47.6673 deg N latitude and 134.2809 deg E longitude; one leg on a rock, tilted 8.2 degrees; operated for 1281 Mars days, turned off on 11 April 1980",
+     "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1975-083C"
+    },
+    {
+     "what": "NASA NSSDCA, Viking project information: the surface material at both Viking landing sites is best characterized as iron-rich clay; measured temperatures at the landing sites from 150 to 250 K",
+     "url": "https://nssdc.gsfc.nasa.gov/planetary/viking.html"
+    }
+   ],
+   "lists": [
+    "NASA landing site"
+   ]
+  },
+  {
+   "id": "pathfinder",
+   "name": "Ares Vallis, Mars Pathfinder landing site",
+   "lat": 19.33,
+   "lon_east": 326.45,
+   "kind": "visited by a NASA mission",
+   "why": "NASA's Mars Pathfinder lander and its Sojourner rover landed on 4 July 1997 on the Ares Vallis outwash plain, which a huge flood made, and studied the rocks and soil near the lander.",
+   "sources": [
+    {
+     "what": "NASA NSSDCA, Mars Pathfinder (1996-068A): the landing site in the Ares Vallis region is at 19.33 N, 33.55 W; a large outwash plain near Chryse Planitia, the result of a huge flood; contact lost on 27 September 1997",
+     "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1996-068A"
+    },
+    {
+     "what": "NASA NSSDCA, Mars Pathfinder project information: landed on 4 July 1997; the extended mission included more analyses of nearby rock and soil",
+     "url": "https://nssdc.gsfc.nasa.gov/planetary/mesur.html"
+    }
+   ],
+   "lists": [
+    "NASA landing site"
+   ]
+  },
+  {
+   "id": "spirit",
+   "name": "Gusev crater, Spirit landing site",
+   "lat": -14.5692,
+   "lon_east": 175.4729,
+   "kind": "visited by a NASA mission",
+   "why": "NASA's Spirit rover landed on 4 January 2004 on a flat plain with many small rocks in Gusev crater, which looks like an old crater lake bed, and searched the Columbia Hills for signs of past water.",
+   "sources": [
+    {
+     "what": "PDS Geosciences Node, Analyst's Notebook, MER mission overview: Spirit landing site at 14.5692 degrees S latitude, 175.4729 degrees E longitude, with respect to surface features in the MOLA IAU 2000 cartographic frame; Gusev evidence for past water mainly a possible crater lake",
+     "url": "https://an.rsl.wustl.edu/help/Content/About%20the%20mission/MER/MER%20mission.htm"
+    },
+    {
+     "what": "NASA NSSDCA, Spirit (2003-027A): landed on 4 January 2004 in Gusev Crater at 14.572 S, 175.478 E; first images show a flat plain littered with small rocks",
+     "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2003-027A"
+    },
+    {
+     "what": "Longo 2015, abstract 1008, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Gusev crater; position as written: The crater is located in the southern highlands of Mars, at 14.5o S, 175.4o E.",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1008.pdf"
+    }
+   ],
+   "exploration_zone_abstracts": [
+    1008
+   ],
+   "lists": [
+    "NASA landing site",
+    "2015 exploration zone"
+   ]
+  },
+  {
+   "id": "opportunity",
+   "name": "Meridiani Planum, Opportunity landing site (Eagle crater)",
+   "lat": -1.9462,
+   "lon_east": 354.4734,
+   "kind": "visited by a NASA mission",
+   "why": "NASA's Opportunity rover landed on 25 January 2004 in a small crater on Meridiani Planum, a plain with coarse-grained hematite, and studied rock that water laid down for more than 14 years.",
+   "sources": [
+    {
+     "what": "PDS Geosciences Node, Analyst's Notebook, MER mission overview: Opportunity landing site at 1.9462 degrees S latitude, 354.4734 degrees E longitude (MOLA IAU 2000 cartographic frame); landed in the 20 m crater 'Eagle'; water-lain sedimentary outcrops in Meridiani Planum",
+     "url": "https://an.rsl.wustl.edu/help/Content/About%20the%20mission/MER/MER%20mission.htm"
+    },
+    {
+     "what": "NASA NSSDCA, Opportunity (2003-032A): came to rest in a 20 m diameter crater at 1.946 S and 354.473 E (IAU 2000 body-centered); coarse-grained hematite; explored for over 14 years",
+     "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2003-032A"
+    }
+   ],
+   "lists": [
+    "NASA landing site"
+   ]
+  },
+  {
+   "id": "insight",
+   "name": "Elysium Planitia, InSight landing site (Homestead hollow)",
+   "lat": 4.502,
+   "lon_east": 135.623,
+   "kind": "visited by a NASA mission",
+   "why": "NASA's InSight lander landed on 26 November 2018 in a degraded impact crater in Elysium Planitia, on smooth ground of sand, granules and pebbles with few rocks, and worked until December 2022.",
+   "sources": [
+    {
+     "what": "Golombek et al. 2020, Geology of the InSight landing site on Mars, Nature Communications 11, 1014: the lander is at 4.502 N, 135.623 E, elevation -2613.43 m, in the MOLA cartographic grid; a smooth sandy, granule- and pebble-rich surface with few rocks",
+     "url": "https://doi.org/10.1038/s41467-020-14679-1"
+    },
+    {
+     "what": "NASA NSSDCA, InSight (2018-042A): landed in western Elysium Planitia on 26 November 2018; last transmission received on 15 December 2022",
+     "url": "https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=2018-042A"
+    }
+   ],
+   "lists": [
+    "NASA landing site"
+   ]
+  },
+  {
+   "id": "phlegra-montes",
+   "name": "Phlegra Montes (site PM-1 of a 2021 Starship landing site study)",
+   "lat": 35.23,
+   "lon_east": 163.95,
+   "kind": "studied for a human landing",
+   "why": "Lobate debris aprons and well-developed polygons, signs of ground ice, lie at this prime site (PM-1) of a 2021 JPL and SpaceX study of Starship landing sites, but not selected by NASA.",
+   "sources": [
+    {
+     "what": "Golombek et al. 2021, SpaceX Starship landing sites on Mars, 52nd Lunar and Planetary Science Conference, abstract 2420 (JPL, SpaceX and university authors), Table 1: PM-1 at 35.23 N, 163.95 E, -3.2 km (MOLA geoid); lowest latitude and elevation of the Phlegra group, lobate debris aprons, well-developed polygons, highest SWIM score for landforms of ice",
+     "url": "https://www.hou.usra.edu/meetings/lpsc2021/pdf/2420.pdf"
+    },
+    {
+     "what": "USGS Gazetteer of Planetary Nomenclature, Phlegra Montes: 29.11 to 51.37 N, 160.40 to 167.60 E, centre 40.77 N, 165.20 E (planetocentric, east, 0-360)",
+     "url": "https://planetarynames.wr.usgs.gov/Feature/4701"
+    }
+   ],
+   "lists": [
+    "2021 shortlist for human landings"
+   ]
+  },
+  {
+   "id": "arcadia-ap-1",
+   "name": "Arcadia Planitia (site AP-1 of a 2021 Starship landing site study)",
+   "lat": 39.8,
+   "lon_east": 202.1,
+   "kind": "studied for a human landing",
+   "why": "AP-1 is one of four prime sites in a 2021 study of Starship landing sites. It looked the safest site, with a moderate score for ice.",
+   "position_kind": "landing site, stated in Table 1",
+   "lists": [
+    "2021 shortlist for human landings"
+   ],
+   "sources": [
+    {
+     "what": "Golombek et al. 2021, SpaceX Starship landing sites on Mars, 52nd Lunar and Planetary Science Conference, abstract 2420 (JPL, SpaceX and university authors), Table 1: AP-1 at 39.8 N, 202.1 E, -3.9 km (MOLA geoid), a prime site; safest site; moderate combined SWIM score for ice; on the sinuous unit",
+     "url": "https://www.hou.usra.edu/meetings/lpsc2021/pdf/2420.pdf"
+    }
+   ]
+  },
+  {
+   "id": "arcadia-ap-9",
+   "name": "Arcadia Planitia (site AP-9 of a 2021 Starship landing site study)",
+   "lat": 40.02,
+   "lon_east": 203.35,
+   "kind": "studied for a human landing",
+   "why": "AP-9 is one of four prime sites in a 2021 study of Starship landing sites. Radar shows the thickest ice of the Arcadia sites on the sinuous unit, but the ground looks slightly rocky and rough.",
+   "position_kind": "landing site, stated in Table 1",
+   "lists": [
+    "2021 shortlist for human landings"
+   ],
+   "sources": [
+    {
+     "what": "Golombek et al. 2021, SpaceX Starship landing sites on Mars, 52nd Lunar and Planetary Science Conference, abstract 2420 (JPL, SpaceX and university authors), Table 1: AP-9 at 40.02 N, 203.35 E, -3.9 km (MOLA geoid), a prime site; thickest ice from radar returns; highest combined SWIM score for ice; slightly rocky and rough; on the sinuous unit",
+     "url": "https://www.hou.usra.edu/meetings/lpsc2021/pdf/2420.pdf"
+    }
+   ]
+  },
+  {
+   "id": "erebus-em-16",
+   "name": "Erebus Montes (site EM-16 of a 2021 Starship landing site study)",
+   "lat": 39.89,
+   "lon_east": 192.03,
+   "kind": "studied for a human landing",
+   "why": "EM-16 is one of four prime sites in a 2021 study of Starship landing sites. A debris apron lies next to it, and radar shows the strongest return from shallow ice.",
+   "position_kind": "landing site, stated in Table 1",
+   "lists": [
+    "2021 shortlist for human landings"
+   ],
+   "sources": [
+    {
+     "what": "Golombek et al. 2021, SpaceX Starship landing sites on Mars, 52nd Lunar and Planetary Science Conference, abstract 2420 (JPL, SpaceX and university authors), Table 1: EM-16 at 39.89 N, 192.03 E, -3.9 km (MOLA geoid), a prime site; lobate debris apron; strongest radar return for shallow ice; highest combined SWIM score",
+     "url": "https://www.hou.usra.edu/meetings/lpsc2021/pdf/2420.pdf"
+    }
+   ]
+  },
+  {
+   "id": "arcadia-ap-8",
+   "name": "Arcadia Planitia (site AP-8 of a 2021 Starship landing site study)",
+   "lat": 40.75,
+   "lon_east": 201.3,
+   "kind": "studied for a human landing",
+   "why": "AP-8 is one of three secondary sites in a 2021 study of Starship landing sites. Next to the sinuous unit, it looked the safest site, with the highest scores for ice.",
+   "position_kind": "landing site, stated in Table 1",
+   "lists": [
+    "2021 shortlist for human landings"
+   ],
+   "sources": [
+    {
+     "what": "Golombek et al. 2021, SpaceX Starship landing sites on Mars, 52nd Lunar and Planetary Science Conference, abstract 2420 (JPL, SpaceX and university authors), Table 1: AP-8 at 40.75 N, 201.3 E, -3.9 km (MOLA geoid), a secondary site; adjacent to the sinuous unit; appears the safest; highest neutron and combined SWIM scores for ice",
+     "url": "https://www.hou.usra.edu/meetings/lpsc2021/pdf/2420.pdf"
+    }
+   ]
+  },
+  {
+   "id": "erebus-em-15",
+   "name": "Erebus Montes (site EM-15 of a 2021 Starship landing site study)",
+   "lat": 39.75,
+   "lon_east": 195.62,
+   "kind": "studied for a human landing",
+   "why": "EM-15 is one of three secondary sites in a 2021 study of Starship landing sites. It lies near a debris apron, with well-developed polygons and smooth ground.",
+   "position_kind": "landing site, stated in Table 1",
+   "lists": [
+    "2021 shortlist for human landings"
+   ],
+   "sources": [
+    {
+     "what": "Golombek et al. 2021, SpaceX Starship landing sites on Mars, 52nd Lunar and Planetary Science Conference, abstract 2420 (JPL, SpaceX and university authors), Table 1: EM-15 at 39.75 N, 195.62 E, -3.9 km (MOLA geoid), a secondary site; prominent but less extensive lobate debris apron; well developed polygons; appears smooth",
+     "url": "https://www.hou.usra.edu/meetings/lpsc2021/pdf/2420.pdf"
+    }
+   ]
+  },
+  {
+   "id": "phlegra-pm-7",
+   "name": "Phlegra Montes (site PM-7 of a 2021 Starship landing site study)",
+   "lat": 36.43,
+   "lon_east": 162.16,
+   "kind": "studied for a human landing",
+   "why": "PM-7 is one of three secondary sites in a 2021 study of Starship landing sites. It lies next to valley fill from glacial flow and looked the safest Phlegra site.",
+   "position_kind": "landing site, stated in Table 1",
+   "lists": [
+    "2021 shortlist for human landings"
+   ],
+   "sources": [
+    {
+     "what": "Golombek et al. 2021, SpaceX Starship landing sites on Mars, 52nd Lunar and Planetary Science Conference, abstract 2420 (JPL, SpaceX and university authors), Table 1: PM-7 at 36.43 N, 162.16 E, -2.3 km (MOLA geoid), a secondary site; adjacent to lineated valley fill; appeared the safest of the Phlegra sites",
+     "url": "https://www.hou.usra.edu/meetings/lpsc2021/pdf/2420.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1002-phlegra-dorsa",
+   "name": "Phlegra Dorsa, Arcadia Planitia",
+   "lat": 39.0,
+   "lon_east": 172.0,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "Ground ice fills the top tens of metres here, thus crews can mine water. Low dust and few rocks suit heavy landers.",
+   "position_kind": "landing site, stated (whole degrees)",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1002
+   ],
+   "sources": [
+    {
+     "what": "Barker and others 2015, abstract 1002, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Phlegra Dorsa, Arcadia Planitia; position as written: a Landing Site (LS) located in Arcadia Planetia, along the Phlegra Dorsa, at 39°N 172°E",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1002.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1005-southern-nectaris-fossae",
+   "name": "Southern Nectaris Fossae",
+   "lat": -28.88,
+   "lon_east": 300.29,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "River valleys, a double crater with possible ice, an old volcano and faults lie close together. Clays can give water, and mafic rock can give metals.",
+   "position_kind": "landing site, stated (also the zone centre: the zone is everything within 100 km of it)",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1005
+   ],
+   "sources": [
+    {
+     "what": "Boatwright 2015, abstract 1005, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Southern Nectaris Fossae; position as written: an area within 100 km radius of a landing site located at approximately 28.88˚S 300.29˚E",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1005.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1006-valles-marineris-mouth",
+   "name": "Valles Marineris mouth (southern Acidalia Planitia, as named in the abstract)",
+   "lat": 20.0,
+   "lon_east": 320.0,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "Floods carried rock from the southern highlands and chaos terrain to these plains, thus crews can sample many types of rock in one place.",
+   "position_kind": "position of the zone, stated (not called the centre)",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1006
+   ],
+   "sources": [
+    {
+     "what": "Kochemasov 2015, abstract 1006, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Valles Marineris mouth (southern Acidalia Planitia, as named in the abstract); position as written: Proposed EZ in the southern Acidalia Planitia has coordinates: 40˚W and 20˚N",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1006.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1007-east-melas-chasma",
+   "name": "East Melas Chasma",
+   "lat": -11.7,
+   "lon_east": 290.0,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "This deep, low canyon floor holds seasonal dark streaks (RSL) and thick sulfate beds for water. It also has old layered rock and a possible lake bed.",
+   "position_kind": "centre of the zone, stated (approximate, '~')",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1007
+   ],
+   "sources": [
+    {
+     "what": "McEwen and others 2015, abstract 1007, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: East Melas Chasma; position as written: This region (see figure; center ~11.7 S, 290.0 E)",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1007.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1009-mawrth-vallis",
+   "name": "Mawrth Vallis",
+   "lat": 24.3,
+   "lon_east": 340.8,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "Thick beds of ancient clay can keep signs of past life, and the clays can give water, iron, aluminium and silicon.",
+   "position_kind": "position of a place inside the zone, stated ('near'; not called the centre)",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1009
+   ],
+   "sources": [
+    {
+     "what": "Horgan and others 2015, abstract 1009, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Mawrth Vallis; position as written: The plateau above the Mawrth Vallis outflow channel near 340.8°E, 24.3°N",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1009.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1010-nili-fossae",
+   "name": "Nili Fossae",
+   "lat": 22.05,
+   "lon_east": 76.95,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "Orbiters see ice, sulfates and clays near the planned base for water, with deep troughs and Hargraves crater for geology.",
+   "position_kind": "landing site, stated",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1010
+   ],
+   "sources": [
+    {
+     "what": "Markle 2015, abstract 1010, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Nili Fossae; position as written: The landing site, located approximately at 22.05°N, 76.95°E is centered in a crater at the southern end of a large valley.",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1010.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1011b-acheron-fossae",
+   "name": "Acheron Fossae",
+   "lat": 39.8,
+   "lon_east": 220.6,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "The flat, low plains hold shallow ground ice for water, next to old faulted highland blocks, lava flows and rock glaciers.",
+   "position_kind": "centre of the zone, stated ('near')",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1011
+   ],
+   "sources": [
+    {
+     "what": "Viola, McEwen and Dundas 2015, abstract 1011, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Acheron Fossae; position as written: Acheron Fossae: This proposed site is centered near 220.6°E, 39.8°N (Fig. 2).",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1011.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1012-hebrus-valles",
+   "name": "Hebrus Valles",
+   "lat": 20.0833,
+   "lon_east": 126.6333,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "An outflow channel with pits and possible caves can give shelter to crews, and buried ice in nearby plains can give water.",
+   "position_kind": "centre of the zone, stated (the text adds that the landing site is in the middle of the zone)",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1012
+   ],
+   "sources": [
+    {
+     "what": "Davila and others 2015, abstract 1012, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Hebrus Valles; position as written: The candidate landing site (LS) and Exploration Zone (EZ) are located in the middle reaches of Hebrus Valles (Fig 1, centered at 20º05’ N, 126º38’ E).",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1012.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1015-newton-crater",
+   "name": "Newton crater",
+   "lat": -40.6,
+   "lon_east": 200.0,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "This large, low highland crater has gullies from past water, ground ice and old magnetised crust that can hold traces of early life.",
+   "position_kind": "position of the zone, stated (not called the centre)",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1015
+   ],
+   "sources": [
+    {
+     "what": "Laine 2015, abstract 1015, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Newton crater; position as written: Latitude and longitude of the proposed EZ: 40.6O S / 200O E",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1015.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1016-zephyria-planum-hills",
+   "name": "Zephyria Planum hills ('Sea Urchins')",
+   "lat": -1.3717,
+   "lon_east": 157.1417,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "The author thinks that these cone-shaped hills hold ice that deep groundwater pushed up, a possible source of water, heat, metals and modern life.",
+   "position_kind": "landing site, stated",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1016
+   ],
+   "sources": [
+    {
+     "what": "Yakovlev 2015, abstract 1016, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Zephyria Planum hills ('Sea Urchins'); position as written: The site is located in \"Sea Urchins\" (fig.1,2) having landing point coordinates 1˚22,3'S;157˚8,5'E",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1016.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1017-cerberus",
+   "name": "Cerberus (west of Zunil crater)",
+   "lat": 10.0,
+   "lon_east": 162.0,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "Young lava flows, older knobby ground, fresh faults and possible source rock of shergottite meteorites lie together, with signs of ground ice.",
+   "position_kind": "centre of the zone and landing site, stated (whole degrees)",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1017
+   ],
+   "sources": [
+    {
+     "what": "Wright and others 2015, abstract 1017, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Cerberus (west of Zunil crater); position as written: 200 km diameter Exploration Zone with center landing site at 10° N, 162° E",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1017.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1018-amazonis-planitia-ice",
+   "name": "Amazonis Planitia mid-latitude ice",
+   "lat": 46.16,
+   "lon_east": 188.8,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "New impact craters show clean ice only 0.15 m below the surface, and the site has no hazards in a landing ellipse of 25 km.",
+   "position_kind": "landing site, stated",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1018
+   ],
+   "sources": [
+    {
+     "what": "Stoker and Heldmann 2015, abstract 1018, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Amazonis Planitia mid-latitude ice; position as written: Location of ROI: 40-50 N, 160 -190 E ; Specific Landing Site proposed: 46.16N, 188.8 E",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1018.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1021-noachis-terra-chlorides",
+   "name": "Western Noachis Terra chloride deposits",
+   "lat": -37.2,
+   "lon_east": 350.5,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "Salt deposits in an old lake basin can keep traces of life, and buried ice in a nearby crater can give water.",
+   "position_kind": "centre of the zone, stated",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1021
+   ],
+   "sources": [
+    {
+     "what": "Hill and Christensen 2015, abstract 1021, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Western Noachis Terra chloride deposits; position as written: Figure 1: Location of the proposed exploration zone (white), centered at 350.5°E, -37.2°N, west of Argyre Planitia in Noachis Terra",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1021.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1023-south-valles-marineris",
+   "name": "South of Valles Marineris (equatorial site)",
+   "lat": -18.83,
+   "lon_east": 310.79,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "Seasonal dark streaks (RSL), salts, clays and rampart craters lie near smooth ground with little dust, with sand for construction.",
+   "position_kind": "position of the site, stated (the Figure 2 caption puts the landing and habitation sites at the centre of the zone circle)",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1023
+   ],
+   "sources": [
+    {
+     "what": "Mitchell and Christensen 2015, abstract 1023, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: South of Valles Marineris (equatorial site); position as written: The equatorial site presented here (-18.83°N, 310.79°E, Figure 1)",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1023.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1025-mclaughlin-crater",
+   "name": "McLaughlin crater",
+   "lat": 21.9,
+   "lon_east": 337.6,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "This deep crater held a lake that groundwater fed. Its layered clays and carbonates can record deep life and can give water.",
+   "position_kind": "centre of a named crater that the zone covers, stated",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1025
+   ],
+   "sources": [
+    {
+     "what": "Michalski and others 2015, abstract 1025, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: McLaughlin crater; position as written: McLaughlin Crater is an ancient (Noachian) Martian impact crater located at 337.6E, 21.9 N",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1025.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1026-south-of-firsoff-crater",
+   "name": "South of Firsoff crater, Arabia Terra",
+   "lat": 0.3911,
+   "lon_east": 351.6375,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "Sulfate layers, possible spring mounds and salt-flat beds record water across a long span of time, with sulfates and basalt as resources.",
+   "position_kind": "centre of the zone, stated",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1026
+   ],
+   "sources": [
+    {
+     "what": "Ori and Pondrelli 2015, abstract 1026, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: South of Firsoff crater, Arabia Terra; position as written: We are proposing an area South of Firsoff Crater centered at 0° 23’ 28”N, 8° 21’ 45” W (Fig. 1).",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1026.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1027-ismenius-cavus",
+   "name": "Ismenius Cavus",
+   "lat": 33.8167,
+   "lon_east": 17.1667,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "An old lake basin with deltas and clay beds lies next to ice-rich glacial deposits, thus it gives both science and water.",
+   "position_kind": "position of the site, stated (not called the centre)",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1027
+   ],
+   "sources": [
+    {
+     "what": "Mangold and others 2015, abstract 1027, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Ismenius Cavus; position as written: Geological data on this site (located 33°49’N, 17°10’E, elevation -3450 m, with Exploration zone of 60*70 km)",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1027.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1028-hale-crater",
+   "name": "Hale crater",
+   "lat": -35.3,
+   "lon_east": 323.14,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "Seasonal dark streaks (RSL) on the central peak can hold brine that crews can move through pipes for water. Gullies and old channels add science.",
+   "position_kind": "landing site, stated",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1028
+   ],
+   "sources": [
+    {
+     "what": "Stillman and others 2015, abstract 1028, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Hale crater; position as written: Our proposed LS (35.30°S, 323.14°E, elevation of -1621 m) is to the northwest of the central peak (Fig. 2).",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1028.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1029-copernicus-crater",
+   "name": "Copernicus crater",
+   "lat": -49.2,
+   "lon_east": 190.8,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "This huge crater in ancient crust has gullies and olivine dunes. Its name honours an important astronomer.",
+   "position_kind": "centre of a named crater that the zone covers, stated",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1029
+   ],
+   "sources": [
+    {
+     "what": "Westenberg and Zucker 2015, abstract 1029, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Copernicus crater; position as written: Copernicus Crater is located south of the planet's equator in the heavily cratered highlands of Terra Sirenum in the Phaethontis quadrangle at 49.2°S and 169.2°W.",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1029.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1032-huygens-crater",
+   "name": "Huygens crater",
+   "lat": -13.5,
+   "lon_east": 55.5,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "This large old impact basin brought deep crust to the surface. It has clays and carbonates from past water, and volcanic plains that give ages.",
+   "position_kind": "centre of a named crater, stated (the crater is about 470 km across; the two landing circles in Figure 1 lie east of this point)",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1032
+   ],
+   "sources": [
+    {
+     "what": "Ackiss and others 2015, abstract 1032, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Huygens crater; position as written: Huygens crater (Figure 1) is a well preserved peak ring structure on Mars centered at 13.5°S, 55.5°E",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1032.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1035-mesopotamia-east-hellas",
+   "name": "Mesopotamia (east rim of Hellas)",
+   "lat": -35.352,
+   "lon_east": 94.02,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "Ice-rich debris aprons give water. Valley networks, a young crater and two volcanic units give biology and ages for the history of Mars.",
+   "position_kind": "position of the zone, stated (the habitation zone is said to lie at the zone centre; the landing site lies to its north-west)",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1035
+   ],
+   "sources": [
+    {
+     "what": "Gallegos and Newsom 2015, abstract 1035, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Mesopotamia (east rim of Hellas); position as written: The proposed EZ (94.02E, 35.352S) is located on the east rim of the Hellas Basin, between Niger/Dao Vallis and Harmakhis Vallis: Mesopotamia.",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1035.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1036-western-coprates-chasma",
+   "name": "Western Coprates Chasma",
+   "lat": -11.684,
+   "lon_east": 293.367,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "Seasonal dark streaks (RSL) can carry brines with modern life and water, and nearby fans and craters can keep old organics.",
+   "position_kind": "centre of the zone, stated (also the landing and habitation site)",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1036
+   ],
+   "sources": [
+    {
+     "what": "Mojarro and others 2015, abstract 1036, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Western Coprates Chasma; position as written: Our proposed exploration zone is centered atop an inferred tilted fault block 1 km above the valley level in the western aspect of Coprates Chasma, 293.367°E -11.684°N.",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1036.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1037-hellas-rim",
+   "name": "Hellas Rim",
+   "lat": -39.05,
+   "lon_east": 101.91,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "Debris aprons hold more than 400 km3 of mostly water ice, near ancient Hellas rock, an old lake basin and valley networks.",
+   "position_kind": "position of the zone, stated (not called the centre)",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1037
+   ],
+   "sources": [
+    {
+     "what": "Levy and Holt 2015, abstract 1037, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Hellas Rim; position as written: Located at 39.05˚ S, 101.91˚ E, the Hellas Rim EZ contains landforms",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1037.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1038-eastern-hellas-rim",
+   "name": "Eastern rim of Hellas impact basin",
+   "lat": -40.0,
+   "lon_east": 104.0,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "Ice in buried glaciers gives water, and very old rock from the Hellas impact and Reull Vallis channel deposits give science.",
+   "position_kind": "centre of the zone, stated ('near', whole degrees)",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1038
+   ],
+   "sources": [
+    {
+     "what": "Rice and others 2015, abstract 1038, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Eastern rim of Hellas impact basin; position as written: Our proposed 200 km diameter Exploration Zone centered near 40°S; 104°E",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1038.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1041-columbus-crater",
+   "name": "Columbus crater",
+   "lat": -29.0,
+   "lon_east": 194.0,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "A former crater lake that groundwater fed left many minerals that water made, which record past climate and can give water.",
+   "position_kind": "centre of a named crater that the zone covers, stated (whole degrees)",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1041
+   ],
+   "sources": [
+    {
+     "what": "Lynch and Wray 2015, abstract 1041, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Columbus crater; position as written: Columbus crater is a groundwater-fed paleolake basin located in the northwest region of Terra Sirenum (29° S, 166° W)",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1041.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1042-southwest-sinus-meridiani",
+   "name": "South-west Sinus Meridiani",
+   "lat": -2.2526,
+   "lon_east": 353.5665,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "Crews can test if a huge river fan laid down the Meridiani rocks, with Miyamoto crater, hematite and the route of Opportunity nearby.",
+   "position_kind": "centre of the zone, stated",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1042
+   ],
+   "sources": [
+    {
+     "what": "Wilkinson and McGovern 2015, abstract 1042, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: South-west Sinus Meridiani; position as written: EZ: SW Sinus Meridiani, centered 6.4335degW 2.2526degS",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1042.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1043-apollinaris-sulci",
+   "name": "Apollinaris Sulci",
+   "lat": -12.6667,
+   "lon_east": 176.6667,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "Soft ridges that the wind cut give shelter, ice-rich ground near the surface gives water, and rocks of many ages lie near.",
+   "position_kind": "landing site, stated (the 100 km radius zone is 'centered on the flat, open plains of southern Apollinaris Sulci')",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1043
+   ],
+   "sources": [
+    {
+     "what": "Kerber and others 2015, abstract 1043, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Apollinaris Sulci; position as written: Location of the candidate human landing site at Apollinaris Sulci (12˚40’ S, 176˚40’ E).",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1043.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1044-deuteronilus-mensae-debris-apron",
+   "name": "Deuteronilus Mensae (debris apron zone)",
+   "lat": 41.0,
+   "lon_east": 22.0,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "A debris apron next to the base holds almost pure ice hundreds of metres thick, beside rocks from three major ages.",
+   "position_kind": "midpoint of a stated box (the text says the zone 'is centered on a landing site' but gives no point)",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1044
+   ],
+   "sources": [
+    {
+     "what": "Plaut 2015, abstract 1044, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Deuteronilus Mensae (debris apron zone); position as written: The proposed EZ meets the provided engineering constraints: latitude 39-43 deg. N, longitude 20-24 deg. E",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1044.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1045a-ausonia-cavus",
+   "name": "Ausonia Cavus",
+   "lat": -32.0,
+   "lon_east": 96.5,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "A possible old lake below a volcano has clays, lava flows and possible lava tubes, with ice-rich debris aprons for water.",
+   "position_kind": "position of the named feature, stated in a figure caption (not called the zone centre)",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1045
+   ],
+   "sources": [
+    {
+     "what": "Hamilton and others 2015, abstract 1045, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Ausonia Cavus; position as written: Figure 1- Ausonia Caves (32.0S, 96.5E)",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1045.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1045b-kasei-valles",
+   "name": "Kasei Valles",
+   "lat": 24.81,
+   "lon_east": 287.37,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "Huge flood channels cut through old highland rock. Gravel bars, fine sediment and possible buried ice give science and resources.",
+   "position_kind": "position of the named feature, stated in a figure caption (not called the zone centre)",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1045
+   ],
+   "sources": [
+    {
+     "what": "Hamilton and others 2015, abstract 1045, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Kasei Valles; position as written: Figure 2 - Kasei Valles (24.81N, 287.37E)",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1045.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1046-gusev-apollinaris-sulci",
+   "name": "Gusev crater - Apollinaris Sulci",
+   "lat": -13.0,
+   "lon_east": 175.0,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "The zone spans Gusev and Apollinaris Sulci, with hot-spring silica, carbonates, lavas and lake beds, and also the Spirit rover to inspect.",
+   "position_kind": "centre of the zone, stated ('near', whole degrees)",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1046
+   ],
+   "sources": [
+    {
+     "what": "Rice, Ruff and Longo 2015, abstract 1046, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Gusev crater - Apollinaris Sulci; position as written: Our proposed 200 km diameter Exploration Zone centered near 13°S; 175°E is located along the floor and north eastern rim of Gusev crater and Apollinaris Sulci.",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1046.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1048-aram-chaos",
+   "name": "Aram Chaos",
+   "lat": 2.4167,
+   "lon_east": 339.9667,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "Groundwater stayed here for a long time and left hematite and sulfates. The sulfates can give water, and the hematite can give iron.",
+   "position_kind": "position of the zone, stated as 'EZ coordinates' (not called the centre; the LZ marker in Figure 1 sits near the middle of the 100 km circle)",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1048
+   ],
+   "sources": [
+    {
+     "what": "Sibille and others 2015, abstract 1048, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Aram Chaos; position as written: EZ coordinates: 2° 25’ N, 20° 02’ W",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1048.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1050-noctis-landing",
+   "name": "Noctis Landing",
+   "lat": -6.494,
+   "lon_east": 267.5466,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "A canyon floor between Tharsis and Valles Marineris gives long rock records, hydrated and iron-sulfur minerals, and a deep drill target.",
+   "position_kind": "landing site, stated (Figure 1 defines the primary zone as 100 km around it)",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1050
+   ],
+   "sources": [
+    {
+     "what": "Lee and others 2015, abstract 1050, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Noctis Landing; position as written: Landing Site Coordinates: Noctis Landing 6o 29’ 38.33” S, 92o 27’ 12.34” W.",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1050.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1051-hypanis-delta",
+   "name": "Hypanis (Hypanis and Sabrina deltas)",
+   "lat": 11.98,
+   "lon_east": 313.94,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "River deltas and lake beds can keep signs of past life, and nearby sand and clays can give water. The position is read from NASA's map of the proposed zones, because the abstract gives no position in words.",
+   "position_kind": "read from NASA's map of the proposed zones",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1051
+   ],
+   "sources": [
+    {
+     "what": "Gupta and others 2015, abstract 1051, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Hypanis (Hypanis and Sabrina deltas); position as written: not stated in the text; Figure 1 axes are labelled '13 N', '11 N', '314 E' and '316 E'",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1051.pdf"
+    },
+    {
+     "what": "NASA Mars Program Office, Potential Exploration Zones for Human Missions to the Surface of Mars (map, version 10): circle '51' at 11.98 N, 313.94 E",
+     "url": "https://www3.nasa.gov/sites/default/files/atoms/files/exploration-zone-map-v10.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1052-hadriacus-palus",
+   "name": "Hadriacus Palus and Cavi",
+   "lat": -26.84,
+   "lon_east": 77.47,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "Pits show more than 800 m of volcanic, river, wind and impact layers in an exhumed basin that can hold shallow ice.",
+   "position_kind": "centre of the zone, stated (Figure 1 caption)",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1052
+   ],
+   "sources": [
+    {
+     "what": "Skinner and others 2015, abstract 1052, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Hadriacus Palus and Cavi; position as written: (A) Exploration zone (centered at 77.47E, -26.84N) is located NNE of Hellas Planitia",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1052.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1053-protonilus-mensae",
+   "name": "Protonilus Mensae",
+   "lat": 42.187,
+   "lon_east": 48.062,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "Ice-rich debris aprons and valley fills give water, and outflow channels, a crater lake and old highland rock give science.",
+   "position_kind": "position of the zone, stated (the habitation zone is said to lie at the zone centre; the landing crater lies to its east)",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1053
+   ],
+   "sources": [
+    {
+     "what": "Gallegos and Newsom 2015, abstract 1053, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Protonilus Mensae; position as written: The proposed EZ (48.062E, 42.187N) is in the Protonilus Mensae region of Mars, located just to the east of Moreux Crater",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1053.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1054-eastern-valles-marineris-outlet",
+   "name": "Eastern outlet of Valles Marineris",
+   "lat": -4.1,
+   "lon_east": 324.8,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "Canyon walls show approximately 3 km of old layers, flood deposits and chaos terrain, with hydrated minerals for water.",
+   "position_kind": "landing site, stated",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1054
+   ],
+   "sources": [
+    {
+     "what": "Clifford, Kring and Treiman 2015, abstract 1054, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Eastern outlet of Valles Marineris; position as written: The proposed landing site is located at the eastern end of Vallis Marineris (-4.1o, -35.2o)",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1054.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1056-tempe-terra",
+   "name": "Tempe Terra",
+   "lat": 42.266,
+   "lon_east": 270.82,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "Ice-rich debris aprons give water, and grabens, three volcanic units and old highland rock give science and ages.",
+   "position_kind": "position of the zone, stated (the habitation zone is said to lie at the zone centre; the landing site lies to its south)",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1056
+   ],
+   "sources": [
+    {
+     "what": "Gallegos and Newsom 2015, abstract 1056, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Tempe Terra; position as written: The proposed EZ (270.82E, 42.266N) is located in the Tempe Terra region of Mars, east of Alba Mons.",
+     "url": "https://www.nasa.gov/wp-content/uploads/2015/06/mars-c-abstracts_in_order_of_presentation10242015_0.pdf"
+    }
+   ]
+  },
+  {
+   "id": "ez-1057-southern-meridiani-endeavour",
+   "name": "Southern edge of Meridiani Planum (Endeavour crater area)",
+   "lat": -3.174,
+   "lon_east": 355.4827,
+   "kind": "proposed as an exploration zone in 2015",
+   "why": "Hard, flat plains near Endeavour crater give old clay-altered rock, sulfate salts and buried ice for water, and hematite for iron.",
+   "position_kind": "landing site, stated (the header labels it as both zone and landing site location)",
+   "lists": [
+    "2015 exploration zone"
+   ],
+   "exploration_zone_abstracts": [
+    1057
+   ],
+   "sources": [
+    {
+     "what": "Clarke, Willson and Smith 2015, abstract 1057, First Landing Site/Exploration Zone Workshop for Human Missions to the Surface of Mars: Southern edge of Meridiani Planum (Endeavour crater area); position as written: Exploration Zone/Landing site Location: Longitude 4°31'2.33\"W, Latitude 3°10'26.25\"S",
+     "url": "https://www.hou.usra.edu/meetings/explorationzone2015/pdf/1057.pdf"
+    }
+   ]
+  }
+ ]
+}
