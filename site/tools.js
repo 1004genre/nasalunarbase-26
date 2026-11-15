@@ -534,7 +534,7 @@ export async function mount(root, api) {
     if (destroyed || tour) return;
     clearTimeout(linkTimer);
     const saved = snapshot(), duration = mode === '30' ? 30000 : 60000;
-    const other = api.targets.find((t) => t.id !== saved.state.target) || api.targets[0];
+    const other = api.targets.find((t) => t.id === 'malapert' && t.id !== saved.state.target) || api.targets.find((t) => t.id !== saved.state.target) || api.targets[0];
     const run = tour = { ...saved, mode, duration, target: other?.id || saved.state.target,
       at: -1, events: new AbortController(), manual: motion.matches, started: performance.now(), mars: null };
     run.steps = stepsFor(run); run.slot = duration / run.steps.length;
