@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analog Atlas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/*__CSS__*/
+</style>
+</head>
+<body data-body="moon">
+<div class="app">
+  <header class="top">
+    <div class="brand">
+      <h1>Analog Atlas</h1>
+      <p>Earth sites ranked by how closely they match a Moon or Mars target, parameter by parameter</p>
+    </div>
+    <div class="actions">
+      <button class="btn" id="btn-method" type="button">Method &amp; data</button>
+      <label class="btn primary" for="file-in">Load site data</label>
+      <input type="file" id="file-in" accept=".json,application/json" hidden>
+    </div>
+  </header>
+
+  <aside class="left" aria-label="Target and parameter weights">
+    <section class="block">
+      <h2>Compare against</h2>
+      <div class="seg" role="group" aria-label="Target body">
+        <button type="button" data-body="moon" aria-pressed="true">Moon</button>
+        <button type="button" data-body="mars" aria-pressed="false">Mars</button>
+      </div>
+      <ul id="targets" class="targets"></ul>
+    </section>
+    <section class="block">
+      <h2>Mission focus</h2>
+      <div id="presets" class="chips"></div>
+    </section>
+    <section class="block">
+      <div class="h2row"><h2>Parameter weights</h2><button type="button" id="reset-w" class="link">Reset</button></div>
+      <p class="hint">Drag a slider to weight a parameter. Select a parameter's name to colour the globe by it alone and see its data sources.</p>
+      <div id="weights"></div>
+    </section>
+    <section class="block">
+      <h2>What Earth can't match</h2>
+      <div id="gaps" style="display:grid;gap:8px"></div>
+    </section>
+  </aside>
+
+  <main class="stage" aria-label="Globe">
+    <canvas id="globe" role="img" aria-label="Rotating globe showing Earth analog sites coloured by match score. Drag to rotate, scroll to zoom, select a marker for details."></canvas>
+    <div class="ov tl" id="ov-tl"></div>
+    <div class="ov tr" id="ov-tr"></div>
+    <div class="ov bl"><div class="legend" id="legend"></div></div>
+    <div class="ov br"><figure class="inset"><canvas id="inset" role="img" aria-label="Locator globe for the selected target"></canvas><figcaption id="inset-cap"></figcaption></figure></div>
+    <div id="tip" class="tip" hidden></div>
+  </main>
+
+  <aside class="right" aria-label="Ranking and site details">
+    <section class="block rank">
+      <div class="h2row"><h2>Best Earth analogs</h2><span id="rank-count" class="hint num"></span></div>
+      <p class="hint">Seed values are indicative estimates. Load your pipeline output to replace them.</p>
+      <ol id="ranking"></ol>
+    </section>
+    <section class="block dossier" id="dossier" aria-live="polite"></section>
+  </aside>
+</div>
+
+<dialog id="method" aria-labelledby="method-title">
+  <div class="dlg-head"><h2 id="method-title">Method &amp; data</h2><button class="btn" id="method-close" type="button">Close</button></div>
+  <div class="dlg-body" id="method-body"></div>
+</dialog>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>window.d3 || document.write('<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"><\/script>');</script>
+<script>const BASEMAP = /*__BASEMAP__*/;</script>
+<script>
+/*__MODEL__*/
+</script>
+<script>
+/*__APP__*/
+</script>
+</body>
+</html>
