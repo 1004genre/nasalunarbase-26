@@ -83,7 +83,7 @@ const areasN = (n) => `${fInt(n)} ${n === 1 ? 'area' : 'areas'}`;
 const halfLevel = () => (D.meta.scoring.full_hours ? D.meta.scoring.full_hours / 2 : 100);
 const defaultTarget = () => {
   const current = D.meta.targets.filter((t) => lunarListGroup(t) === 'NASA 2024 list').sort((a, b) => a.limit_deg - b.limit_deg);
-  return current[0]?.id || D.meta.targets.find((t) => t.id === 'malapert')?.id || D.meta.targets[0]?.id;
+  return D.meta.targets.find((t) => t.id === 'malapert')?.id || current[0]?.id || D.meta.targets[0]?.id;
 };
 const hasLunarModel = (t = target()) => t?.has_model !== false;
 const NO_LUNAR_MODEL = 'unknown: NASA has no 5 m terrain model of this region';

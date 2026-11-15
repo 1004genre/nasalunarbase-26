@@ -28,6 +28,17 @@ It is the entry of Researched Technologies LLC (Merced, California) to the NASA 
 - Each Moon result of the first build, with the file and field that it comes from: [data/derived/RESULTS.md](data/derived/RESULTS.md)
 - The Mars first pass, site by site: [data/derived/MARS-RESULTS.md](data/derived/MARS-RESULTS.md)
 
+## How we checked it
+
+- **The Sun code agrees with NASA JPL Horizons.** For 9 places, 4 periods and 4 Sun ceilings, the median difference is 0.009 hours (approximately 30 seconds) in a period. This check uses a flat horizon.
+- **Hills change the result.** With a flat horizon in place of the real hills, only 1 of the 10 best places for Connecting Ridge stays in the first 10. For Malapert Massif, 7 of 10 stay.
+- **Known analog sites keep fewer hours.** For Malapert Massif, the area with the best light score keeps 234 hours a year. Haughton crater keeps 102 hours, and the McMurdo Dry Valleys keep less than 20 hours.
+- **Lower latitudes have no long spell.** At 11 places from 24.5° S to 47.1° N, no spell of low Sun lasts 2 hours. The longest spell is 65 minutes.
+- **A second count agrees.** An independent recount for four lunar regions of the first build differs by 0.065 hours a year at most.
+- **The Mars part is weaker, and we say so.** Against approximately 2,000 control squares of land, known analog sites score higher: the AUC is approximately 0.82. On bare ground only, the result is weak (approximately 0.61) to no better than chance (approximately 0.46).
+
+The files `data/derived/checks.json`, `validation.json` and `validation_extras.json` hold these figures. The page shows the same checks in the box "How do we know it works?".
+
 ## Why a map of low Sun
 
 NASA and others rehearse under south-pole light with a lamp at night, or in halls with lamps. Their built test fields are approximately 77 m² to 1 hectare.
