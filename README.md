@@ -37,7 +37,7 @@ It is the entry of Researched Technologies LLC (Merced, California) to the NASA 
 - **A second count agrees.** An independent recount for four lunar regions of the first build differs by 0.065 hours a year at most.
 - **The Mars part is weaker, and we say so.** Against approximately 2,000 control squares of land, known analog sites score higher: the AUC is approximately 0.82. On bare ground only, the result is weak (approximately 0.61) to no better than chance (approximately 0.46).
 
-The files `data/derived/checks.json`, `validation.json` and `validation_extras.json` hold these figures. The page shows the same checks in the box "How do we know it works?".
+The files `data/derived/checks.json`, `validation.json` and `validation_extras.json` hold these figures. The figures of the Mars test are in `site/data/mars.json`. The page shows the same checks in the box "How do we know it works?".
 
 ## Why a map of low Sun
 
