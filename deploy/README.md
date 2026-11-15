@@ -12,6 +12,7 @@ The page uses the models only to change the words of a researcher into options. 
 Two small steps prepare a copy of the page for a server.
 
 - `add_http_fallback.py` adds `secure-fallback.js` to the page. On an address that is not secure (http), a browser gives a page no SHA-256 function. The file supplies that function, thus the page can check that its data files belong together.
+- `add_named_options.py` changes `site/ask.js`. It gives a name, a unit and a category to 15 data fields that had a file name only, for example the yield of a solar panel and the wind speed at 50 m. The copy of `site/ask.js` in this repository has this change.
 - `use_server_models.py` changes `site/ask.js`. On localhost, the page asks for the models of that computer. On each other address, it asks the server of the page. The copy of `site/ask.js` in this repository has this change.
 
 The commands, with `<folder>` for the folder that holds `site/` and the two configuration files:

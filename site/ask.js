@@ -1,7 +1,7 @@
 // Added by deploy/use_server_models.py: true if this copy of the page runs on the visitor's own computer.
 const ETF_LOCAL=/^(?:localhost|127\.0\.0\.1|\[::1\])$/.test(globalThis.location?.hostname||'localhost');
 // Words become criteria. Only the readers and arithmetic below select places.
-const GROUPS = ['Activity', 'Light', 'Time of year', 'Likeness to the site', 'Ground', 'Climate', 'Access', 'Land and permits', 'People and hazards', 'Power', 'Region'];
+const GROUPS = ['Activity', 'Light', 'Likeness to the site', 'Time of year', 'Ground', 'Climate', 'Access', 'Land and permits', 'People and hazards', 'Power', 'Region'];
 // These main options, their order and their sizes are a design decision of the team.
 // Each row is: canonical id, name, category, size, icon. Other named fields are More options.
 const MAIN_OPTIONS = {
@@ -40,6 +40,11 @@ const MAIN_OPTIONS = {
     ['factor:solar_class','Solar power','Power','small','solar'],
     ['factor:wind_class','Wind power','Power','small','turbine'],
     ['factor:geothermal_class','Geothermal power','Power','small','spring'],
+    ['named:solar_panel_yield','Solar panel yield, yearly mean','Power','small','solar'],
+    ['named:months_without_sun','Months without Sun','Power','small','sun'],
+    ['named:wind_50m','Wind speed at 50 m, yearly mean','Power','small','wind'],
+    ['named:wind_power','Wind power at 50 m','Power','small','turbine'],
+    ['named:geothermal_plant_km','Distance to a geothermal power plant','Power','small','spring'],
     ['region','Region','Region','small','pin'],
     ['hemisphere','Hemisphere','Region','small','compass'],
     ['lat','Latitude','Region','small','compass'],
@@ -65,9 +70,41 @@ const MAIN_OPTIONS = {
     ['factor:land_class','Land status','Land and permits','small','shield'],
     ['factor:human_class','Human influence','People and hazards','small','people'],
     ['region','Region','Region','small','pin'],
+    ['month','Month','Time of year','small','calendar'],
+    ['airfield','Distance to an airfield','Access','medium','plane'],
+    ['factor:help_within_reach','Help within reach','Access','small','people'],
+    ['factor:solar_class','Solar power','Power','small','solar'],
+    ['factor:wind_class','Wind power','Power','small','turbine'],
+    ['factor:geothermal_class','Geothermal power','Power','small','spring'],
+    ['named:solar_panel_yield','Solar panel yield, yearly mean','Power','small','solar'],
+    ['named:months_without_sun','Months without Sun','Power','small','sun'],
+    ['named:wind_50m','Wind speed at 50 m, yearly mean','Power','small','wind'],
+    ['named:wind_power','Wind power at 50 m','Power','small','turbine'],
+    ['named:geothermal_plant_km','Distance to a geothermal power plant','Power','small','spring'],
     ['hemisphere','Hemisphere','Region','small','compass'],
   ],
 };
+// Named options: added by deploy/add_named_options.py.
+// Each row: key, name, category, unit, digits, kind, field for a lunar region, field for a Mars site,
+// how to read a list (count or first), the wanted direction, what it is not.
+const NAMED_COUNT = v => Array.isArray(v) ? v.length : v, NAMED_FIRST = v => Array.isArray(v) ? (Number.isFinite(v[0]) ? v[0] : null) : v;
+const NAMED_OPTIONS = [
+  ['solar_panel_yield','Solar panel yield, yearly mean','Power','kWh per kW in a day',2,'model','power.solar.panel_kwh_per_kw_day_year','mars_power.solar.panel_kwh_per_kw_day_year',null,'more','An estimate for a fixed panel from satellite sunlight in a box of approximately 1 degree. It is not a measurement at the place.'],
+  ['months_without_sun','Months without Sun','Power','months',0,'model','power.solar.months_without_sun','mars_power.solar.months_without_sun',NAMED_COUNT,'less','The number of months with no sunlight in the monthly figures of the same box. It counts months, not days.'],
+  ['wind_50m','Wind speed at 50 m, yearly mean','Power','m/s',2,'model','power.wind.ws50m_ms_year','mars_power.wind.ws50m_ms_year',null,'more','A model figure for a grid point. It is not a measurement at the place.'],
+  ['wind_power','Wind power at 50 m','Power','W per m²',0,'model','power.wind.power_w_m2','mars_power.wind.power_w_m2',null,'more','A model estimate for a grid point. It is not a measurement at the place.'],
+  ['geothermal_plant_km','Distance to a geothermal power plant','Power','km',0,'measured','power.geothermal.plant.km','mars_power.geothermal.plant.km',null,'less','A straight-line distance to the nearest plant in a public list of power plants. A plant in the list does not show that ground heat is usable at the place.'],
+  ['geothermal_mw_150','Geothermal power plants within 150 km','Power','MW',0,'measured','power.geothermal.plant_mw_within_150_km','mars_power.geothermal.plant_mw_within_150_km',null,'more','The sum of the plants in a public list of power plants. It does not show that ground heat is usable at the place.'],
+  ['wind_class_1_7','Wind power class, 1 to 7','Power','',0,'model','power.wind.class_1_to_7','mars_power.wind.class_1_to_7',null,'more','A class from the model wind at a grid point. It is not a measurement at the place.'],
+  ['low_sun_power','Power of low sunlight on a panel that faces the Sun','Power','W per m²',0,'rough estimate','power.low_sun.<region>.w_m2',null,NAMED_FIRST,'more','A textbook estimate for clear air with the Sun at the ceiling of the lunar region. Light from the sky is not in it.'],
+  ['people_25km','People in listed settlements within 25 km','People and hazards','people',0,'measured','steady.human.population_within_25km','mars_steady_effects.human.population_within_25km',null,'less','From a list of settlements. A camp or a station that is not in the list is not counted.'],
+  ['settlements_25km','Listed settlements within 25 km','People and hazards','',0,'measured','steady.human.settlements_within_25km','mars_steady_effects.human.settlements_within_25km',null,'less','From a list of settlements. A camp or a station that is not in the list is not counted.'],
+  ['volcano_1990_km','Nearest volcano with an eruption since 1990: distance','People and hazards','km',0,'measured','steady.volcanic.nearest_erupted_since_1990.km','mars_steady_effects.volcanic.nearest_erupted_since_1990.km',null,null,'A straight-line distance from a public list of volcanoes. A distance does not show the effect at the place.'],
+  ['not_earthquake_share','Share of small events that are not earthquakes','People and hazards','share',2,'measured','tremors.share_not_earthquake_100km','mars_tremors.share_not_earthquake_100km',null,null,'From the event types of the earthquake catalogue, within 100 km. The catalogue does not see each small event.'],
+  ['settlement_1000_km','Nearest settlement of 1,000 people or more: distance','Access','km',0,'measured','steady.human.nearest_settlement_1000_or_more.km','mars_steady_effects.human.nearest_settlement_1000_or_more.km',null,'less','A straight-line distance. It tells nothing about roads, boats, permits or cost.'],
+  ['glacier_ice_share','Glacier ice, share of the area','Ground','share',2,'','steady.small_tremors.glacier_ice_share','mars_steady_effects.small_tremors.glacier_ice_share',null,null,'The share of the area that the map shows as glacier ice. It is not a survey of the ice.'],
+  ['clearness','Clearness of the sky, yearly mean','Climate','index 0 to 1',2,'model',null,'mars_environment.clearness_index_year',null,'more','The share of the sunlight above the air that reaches the ground, from satellite data in a coarse box.'],
+];
 const TILE_DESIGN = Object.fromEntries(MAIN_OPTIONS.moon.map(([id,,,size,icon])=>[id,[size,icon]]));
 // Numeric directions are a design decision of the team.
 const WANTED_DEFAULTS = { hours:'more',h30:'more',snow:'more',bare:'more',slope:'less',slope_likeness:'more',roughness:'less',cloud:'less',clear_days:'more',wind:'less',airfield:'less',road:'less',human_footprint:'less',small_tremors:'less',sunlight:'more',power:'more' };
@@ -172,6 +209,20 @@ export async function mount(root, api) {
   // Keep only the matrix's named meanings; a file key is never a visitor's label.
   for(const [name,fields] of [['extra',extra?.fields],['mars-extra',mextra?.squares?.columns]])
     for(const path of Object.keys(fields||{}))omittedFields.push(`${name}:${path}`);
+  // Named options: read the two files again and add each field of NAMED_OPTIONS that the data has.
+  const [namedMoonView,namedMarsView]=await Promise.all([
+    viewFile(extra?.binary,extra?.binary_bytes,matches(extra?.area_count,extra?.ids_sha256)),
+    viewFile(mextra?.squares?.file,mextra?.squares?.byte_length,mextra?.squares?.count===mars?.squares?.count),
+  ]);
+  for(const [key,label,groupName,unit,digits,kind,moonPath,marsPath,pick,wanted,note] of NAMED_OPTIONS){
+    const marsField=marsPath?mextra?.squares?.columns?.[marsPath]:null;
+    const moonField=c=>moonPath?extra?.fields?.[moonPath.replace('<region>',c.target)]:null;
+    const modes=[...(moonPath&&namedMoonView?['moon']:[]),...(marsField&&namedMarsView?['mars']:[])];
+    if(!modes.length)continue;
+    if(wanted)WANTED_DEFAULTS[`named:${key}`]=wanted;
+    add({id:`named:${key}`,label,group:groupName,unit,digits,kind,modes,note,targetSpecific:Boolean(moonPath?.includes('<region>')),
+      read:(i,c)=>{const v=c.mode==='mars'?decode(namedMarsView,marsField,i):decode(namedMoonView,moonField(c),i);return pick?pick(v):v;}});
+  }
   add({id:'destination',label:'Destination',group:'Destination',values:[...targetMap.keys(),...marsMap.keys()],labels:Object.fromEntries([...targetMap,...marsMap]),read:(i,c)=>c.target});
   const regions=unique([...areas.map(a=>a.region),...marsAreas.map(a=>a.region)].filter(Boolean)).sort();
   add({id:'region',label:'Region',group:'Region',values:regions,read:(i,c)=>(c.mode==='moon'?areas:marsAreas)[i].region});
