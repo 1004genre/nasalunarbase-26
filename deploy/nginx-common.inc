@@ -1,0 +1,34 @@
+# The page and its two optional AI models. Both server blocks of nginx-site.conf include this file.
+root /usr/share/nginx/html;
+index index.html;
+charset utf-8;
+
+# Browsers ask again on each visit, so a new copy of the page shows at once.
+add_header Cache-Control "no-cache" always;
+
+gzip on;
+gzip_types text/css application/javascript application/json image/svg+xml;
+gzip_min_length 1024;
+
+location / {
+    try_files $uri $uri/ =404;
+}
+
+# The page opens these compressed copies itself. Send the bytes as they are.
+location ~ \.gz$ {
+    types { }
+    default_type application/octet-stream;
+    gzip off;
+    add_header Cache-Control "no-cache" always;
+}
+
+# The model service is a second container. It has no port of its own on the internet.
+# Only the three requests that the page makes go through.
+resolver 127.0.0.11 valid=10s;
+set $models http://etf-ollama:11434;
+client_max_body_size 256k;
+
+location = /ollama/api/tags  { limit_except GET  { deny all; } include /etc/nginx/conf.d/models.inc; proxy_pass $models/api/tags; }
+location = /ollama/api/embed { limit_except POST { deny all; } include /etc/nginx/conf.d/models.inc; proxy_pass $models/api/embed; }
+location = /ollama/api/chat  { limit_except POST { deny all; } include /etc/nginx/conf.d/models.inc; proxy_pass $models/api/chat; }
+location /ollama/ { return 404; }

@@ -1,8 +1,8 @@
 # LuniMartian Atlas
 
-**Open the page: http://15.204.81.56/**
+**Open the page: https://spaceapps2026.researchedtechnologies.org/**
 
-**See the demo of 30 seconds: http://15.204.81.56/demo/lunimartian-atlas-demo.mp4**
+**See the demo of 30 seconds: https://spaceapps2026.researchedtechnologies.org/demo/lunimartian-atlas-demo.mp4**
 
 LuniMartian Atlas finds places on Earth for tests of Moon and Mars work.
 A scientist selects a candidate lunar landing region or a Mars site, and sets how much each condition counts, from 0 to 10.
@@ -20,7 +20,7 @@ A coarser first pass does a similar search for 57 Mars sites.
 
 It is the entry of Researched Technologies LLC (Merced, California) to the NASA Space Apps Challenge 2026. The challenge: [Identify Earth Locations that Analog the Permanent Moon Base Locations and Mars](https://www.spaceappschallenge.org/2026/challenges/permanent-moon-base-locations-and-mars/).
 
-- The page: http://15.204.81.56/
+- The page: https://spaceapps2026.researchedtechnologies.org/
 - The repository: https://github.com/1004genre/nasalunarbase-26
 - The project page on Space Apps: https://www.spaceappschallenge.org/2026/find-a-team/spicy-chicken/?tab=project
 - How the method works: [docs/METHOD.md](docs/METHOD.md)

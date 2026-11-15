@@ -6,6 +6,8 @@ The public copy runs in two containers on one server.
 1. A web server (nginx) gives the files of `site/`. Its configuration is `nginx-site.conf` and `nginx-models.inc`.
 2. A model service (Ollama) runs the two optional AI models of the page: Qwen2.5 7B and nomic-embed-text. It has no port of its own on the internet.
 
+The public copy has a name and a certificate from Let's Encrypt, so the page runs on https. `nginx-common.inc` holds the rules that the http and the https part share.
+
 The web server passes only three requests to the model service: `/ollama/api/tags`, `/ollama/api/embed` and `/ollama/api/chat`.
 The page uses the models only to change the words of a researcher into options. All places and all figures come from the data.
 
