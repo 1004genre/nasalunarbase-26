@@ -707,7 +707,7 @@ export async function mount(root, api) {
       description.textContent = `${title}. ${num(normalCount)} ${s.dest === 'moon' ? 'area' : 'square'}${normalCount === 1 ? '' : 's'} on the Earth ${normalCount === 1 ? 'has' : 'have'} `
         + (s.dest === 'moon' ? `hours of low Sun at step ${num(s.step)}. Hours in a year: ${range}.` : `a known score. Scores: ${range}. ${squareSize()}.`);
       summary.textContent = activeMatches
-        ? `${activeMatches.label || title}: ${num(matched.length)} ${s.dest === 'moon' ? 'areas' : 'squares'} match the criteria.`
+        ? (activeMatches.label || `${title}: ${num(matched.length)} ${s.dest === 'moon' ? 'areas' : 'squares'} match the criteria.`)
         : `${title}: ${num(normalCount)} ${s.dest === 'moon' ? 'areas with low Sun' : 'squares with a known score'}.`;
       summary.title = summary.textContent;
       renderPlaces();
