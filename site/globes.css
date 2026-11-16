@@ -14,7 +14,7 @@
 .gb-module button:focus-visible { outline: 3px solid var(--ui, #72d8eb); outline-offset: 3px; z-index: 20; }
 .gb-toolbar { display: flex; gap: 4px; justify-content: flex-end; position: relative; z-index: 3; }
 .gb-button { min-height: var(--row, 36px); min-width: 36px; padding: 5px 12px; border: 1px solid #415268;
-  border-radius: 7px; color: var(--gb-ink); background: #0e1b2c; font-size: 12px !important; }
+  border-radius: 2px; color: var(--gb-ink); background: #0e1b2c; font-size: 12px !important; }
 .gb-button:hover, .gb-button[aria-pressed="true"] { border-color: var(--ui, #72d8eb); background: #1a3545; }
 .gb-button[aria-pressed="true"] { text-decoration: underline; text-underline-offset: 4px; }
 .gb-status { margin: 8px 0 0; color: var(--gb-muted); font-size: 12px; line-height: 1.5; }
@@ -43,7 +43,7 @@
   background: #0c1420; border: 2px solid currentColor; border-radius: 50%; box-shadow: 0 0 0 2px #080f1b88; }
 .gb-stem { height: 1px; position: absolute; left: 0; top: 0; transform-origin: left center; background: currentColor; opacity: .7; }
 .gb-marker { position: absolute; transform: translate(-50%, -50%); width: max-content; max-width: 132px;
-  pointer-events: auto; border: 1px solid currentColor; border-radius: 6px; padding: 4px 6px;
+  pointer-events: auto; border: 1px solid currentColor; border-radius: 2px; padding: 4px 6px;
   color: inherit; background: #0b1525ed; font-size: 10px !important; line-height: 1.25; text-align: center;
   white-space: normal; box-shadow: 0 2px 7px #0006; }
 .gb-moon .gb-marker { max-width: 104px; }
@@ -63,7 +63,7 @@
 .gb-place-row { flex-shrink: 0; display: flex; align-items: start; gap: 4px; min-width: 0; }
 .gb-places { list-style: none; padding: 0; margin: 0; display: flex; flex: 1; flex-wrap: wrap; gap: 4px; min-width: 0; }
 .gb-place { min-width: 0; max-width: 100%; margin: 0; }
-.gb-place-button { border: 1px solid #3b4c60; border-radius: 6px; background: #111f30;
+.gb-place-button { border: 1px solid #3b4c60; border-radius: 2px; background: #111f30;
   min-height: calc(var(--row, 36px) - 8px); padding: 4px 6px; color: #c6eaf3; font-size: 11px !important;
   text-align: left; max-width: 100%; overflow-wrap: anywhere; }
 .gb-place-button:hover, .gb-place-button[aria-pressed="true"] { border-color: var(--ui, #72d8eb); }
@@ -73,22 +73,22 @@
 .gb-about summary, .gb-destinations summary { min-height: 24px; cursor: pointer; width: fit-content; }
 .gb-about summary:focus-visible, .gb-destinations summary:focus-visible { outline: 3px solid var(--ui, #72d8eb); outline-offset: 2px; }
 .gb-about[open] { position: absolute; left: 10px; right: 10px; bottom: 10px; z-index: 30;
-  padding: var(--pad-card, 16px); background: #0e1b2c; border: 1px solid #415268; border-radius: 8px; }
+  padding: var(--pad-card, 16px); background: #0e1b2c; border: 1px solid #415268; border-radius: 2px; }
 .gb-description { margin: 8px 0; }
 .gb-caption { margin: 8px 0 0; font-size: 10px; line-height: 1.5; color: var(--gb-muted); }
 .gb-credits { display: block; margin-top: 4px; }
 .gb-credit { display: block; }
 .gb-destinations { position: absolute; bottom: 0; left: 6%; width: 88%; z-index: 15; color: var(--gb-ink); font-size: 11px; }
-.gb-destinations > summary { margin: auto; padding: 3px 6px; border: 1px solid #415268; border-radius: 6px; background: #0e1b2c; }
-.gb-destinations[open] { background: #0e1b2c; padding: 6px; border: 1px solid #415268; border-radius: 8px; }
+.gb-destinations > summary { margin: auto; padding: 3px 6px; border: 1px solid #415268; border-radius: 2px; background: #0e1b2c; }
+.gb-destinations[open] { background: #0e1b2c; padding: 6px; border: 1px solid #415268; border-radius: 2px; }
 .gb-destination-list { position: absolute; left: -1px; right: -1px; margin: 0; padding: 6px; list-style: none;
-  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; background: #0e1b2c; border: 1px solid #415268; border-radius: 0 0 8px 8px; }
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; background: #0e1b2c; border: 1px solid #415268; border-radius: 0 0 2px 2px; }
 .gb-destination-list li { min-width: 0; }
 .gb-destination-list button { width: 100%; height: 100%; }
 .gb-moon .gb-destination-marker .gb-marker { width: 14px; height: 14px; min-width: 0; padding: 0; border: 0; background: transparent; box-shadow: none; }
 .gb-moon .gb-destination-marker .gb-marker::before { content: none; }
 .gb-lunar-name { display: none; position: absolute; left: 50%; bottom: 20px; transform: translateX(-50%);
-  width: max-content; max-width: 120px; padding: 4px 6px; background: #0b1525f5; border: 1px solid currentColor; border-radius: 6px; }
+  width: max-content; max-width: 120px; padding: 4px 6px; background: #0b1525f5; border: 1px solid currentColor; border-radius: 2px; }
 .gb-moon .gb-chosen .gb-lunar-name { display: block; }
 .gb-moon .gb-chosen .gb-lunar-name::before { content: '✓ '; }
 .gb-moon .gb-marker:hover .gb-lunar-name, .gb-moon .gb-marker:focus .gb-lunar-name { display: block; top: 20px; bottom: auto; }
@@ -143,19 +143,19 @@
 .gb-fallback { flex: 0 0 auto; overflow: visible; }
 
 /* Destination glyphs share one mesh; only active names use HTML labels. */
-.gb-module .gb-destination-marker .gb-marker { width: max-content; height: auto; min-height: 24px; max-width: min(150px, 42cqw); padding: 4px 6px; border: 1px solid currentColor; border-radius: 6px; background: #0b1525f5; box-shadow: 0 2px 7px #0006; }
+.gb-module .gb-destination-marker .gb-marker { width: max-content; height: auto; min-height: 24px; max-width: min(150px, 42cqw); padding: 4px 6px; border: 1px solid currentColor; border-radius: 2px; background: #0b1525f5; box-shadow: 0 2px 7px #0006; }
 .gb-module .gb-destination-marker .gb-marker::before { content: none; }
 .gb-module .gb-destination-marker.gb-chosen .gb-marker::before { content: '✓ '; }
 .gb-module .gb-destination-marker .gb-dot { width: 8px; height: 8px; left: -4px; top: -4px; border: 0; background: currentColor !important; border-radius: 0; box-shadow: none; outline: none; }
 .gb-module .gb-destination-marker.gb-highlight .gb-dot { width: 10px; height: 10px; left: -5px; top: -5px; }
 .gb-marker-note { display: block; font-size: 9px; font-weight: 400; }
 .gb-destination-name { display: inline; }
-.gb-host:focus-visible { outline: 3px solid var(--ui, #72d8eb); outline-offset: -3px; border-radius: 12px; }
+.gb-host:focus-visible { outline: 3px solid var(--ui, #72d8eb); outline-offset: -3px; border-radius: 2px; }
 .gb-destinations[open] { padding: 0; border: 0; background: none; z-index: 25; }
-.gb-destination-menu { position: absolute; top: 100%; left: 0; width: min(360px, calc(100cqw - 28px)); max-height: min(380px, 60dvh); overflow: auto; overscroll-behavior: contain; padding: 8px; border: 1px solid #415268; border-radius: 8px; background: #0e1b2c; box-shadow: 0 12px 28px #0008; }
+.gb-destination-menu { position: absolute; top: 100%; left: 0; width: min(360px, calc(100cqw - 28px)); max-height: min(380px, 60dvh); overflow: auto; overscroll-behavior: contain; padding: 8px; border: 1px solid #415268; border-radius: 2px; background: #0e1b2c; box-shadow: 0 12px 28px #0008; }
 .gb-mars .gb-destination-menu { left: auto; right: 0; }
 .gb-destination-filter { display: grid; gap: 4px; color: var(--gb-ink); font-size: 12px; }
-.gb-destination-input { width: 100%; min-width: 0; min-height: 36px; padding: 6px 8px; color: var(--gb-ink); background: #17283c; border: 1px solid #687d96; border-radius: 5px; font: inherit; }
+.gb-destination-input { width: 100%; min-width: 0; min-height: 36px; padding: 6px 8px; color: var(--gb-ink); background: #17283c; border: 1px solid #687d96; border-radius: 2px; font: inherit; }
 .gb-destination-input:focus-visible { outline: 3px solid var(--ui, #72d8eb); outline-offset: 2px; }
 .gb-module .gb-destination-list { position: static; display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px; margin: 6px 0 0; padding: 0; border: 0; background: none; }
 .gb-destination-group { margin-top: 6px; color: var(--gb-muted); font-weight: 650; font-size: 11px; }
