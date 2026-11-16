@@ -136,6 +136,8 @@ There is one optional exception. If the visitor turns on the AI help of the text
 - **Describe the experiment in words.** A researcher writes in a text field, and the page sets the options. The page uses its own word rules first.
   Two AI models also help, but only if the visitor turns them on. An embedding model matches the words to the options. A small chat model reads the words that are left.
   The models never name a place and never give a figure. The field asks no question and gives no answer. The places and all figures come from the data.
+  If the field cannot use a request, it says why. It names each phrase that it did not use, and the nearest option on the board.
+  If no area passes, it names the necessary option that removes the most areas.
 - **The places in order of their match.** The places, in order of their match with the options, on three globes (the Moon, Mars and the Earth) and on flat polar maps.
 - **"Which destination fits this experiment?"**
 - **"Places like this one".** It shows the areas with the nearest figures to the open area. It compares the figures on the page. It does not measure how alike the ground is.
