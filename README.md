@@ -6,6 +6,7 @@
 
 LuniMartian Atlas finds places on Earth for tests of Moon and Mars work.
 A scientist selects a candidate lunar landing region or a Mars site, and sets how much each condition counts, from 0 to 10.
+The scientist can also type or paste an experiment brief. Two AI models on our own server change the words into conditions. They never name a place or give a figure.
 The page then shows the areas on Earth that match best, with a match percent, the dates and the evidence.
 
 ![The experiment board of the page, with its closed category cards](docs/page.jpg)
