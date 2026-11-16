@@ -248,7 +248,7 @@ export async function mount(root, api) {
   if (!marsGroups.length) shapeKey.append(el('li', '', 'Mars: a circle marks a site. The data has no list tags.'));
   about.append(shapeKey);
   const controls = el('div', 'gb-earth-controls');
-  const earthAltitude = () => root.clientWidth < 480 ? 1.55 : 1.85;
+  const earthAltitude = () => root.clientWidth < 480 ? 1.55 : 1.5;
   const turn = (lat, lon, altitude = earthAltitude(), duration = 1200) => {
     if (!earth || !finite(lat) || !finite(lon)) return;
     const start = earth.pointOfView();

@@ -63,7 +63,7 @@
 .cx-site[open] .cx-site-heading .cx-value::after { content: " −"; }
 .cx-site[open] { padding-bottom: 10px; }
 .cx-sort { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; font-size: 13px; }
-.cx-sort-control { max-width: 100%; min-height: 44px; padding: 6px 8px; font: inherit; color: var(--ink, #edf3fa); background: var(--surface, #101d2e); border: 1px solid var(--hair, rgba(255,255,255,0.08)); border-radius: 6px; }
+.cx-sort-control { max-width: 100%; min-height: 44px; padding: 6px 8px; font: inherit; color: var(--ink, #edf3fa); background: var(--surface, #101d2e); border: 1px solid var(--hair, rgba(255,255,255,0.08)); border-radius: 2px; }
 .cx-table-wrap { max-width: 100%; overflow-x: auto; }
 .cx-table { width: 100%; min-width: 600px; border-collapse: collapse; font-size: 12px; }
 .cx-table caption { text-align: left; color: var(--ink2, #bdcbdc); font-size: 12px; padding: 6px 0; }
