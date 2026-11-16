@@ -540,6 +540,12 @@ ul.ak-results { margin: 0; padding: 0; list-style: none; }
 .ak-bubble-answer:empty { display: none; }
 .ak-bubble-answer .ak-button { min-height: 26px; padding: 3px 8px; font-size: 11px; }
 .ak-bubble-answer .ak-unused { flex-basis: 100%; padding: 0; background: none; }
+/* Feedback on a request: a small card under the result line. It is hidden while it is empty. */
+.ak-feedback { display: grid; gap: var(--s2, 8px); min-width: 0; padding: var(--s3, 12px) var(--s4, 16px); border-left: 3px solid var(--ui, #5cc8f5); border-radius: var(--radius-s, 10px); background: var(--raised, #182538); color: var(--ink2, #bdc9d9); font-size: var(--text, 15px); line-height: 1.5; }
+.ak-feedback:empty { display: none; }
+.ak-feedback-group { display: grid; gap: var(--s2, 8px); min-width: 0; }
+.ak-feedback-categories { display: flex; flex-wrap: wrap; gap: 5px; min-width: 0; }
+.ak-feedback .ak-button { min-height: 29px; padding: 4px 9px; font-size: 12px; line-height: 1.3; vertical-align: baseline; }
 .ak-bubble .ak-ai { gap: 5px 10px; font-size: 12px; }
 .ak-bubble .ak-ai > label { min-height: 28px; }
 .ak-bubble .ak-ai > p { font-size: 11px; max-width: none; }

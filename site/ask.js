@@ -134,6 +134,24 @@ const COMMON = {
   topsoil_water:['dry'], temperature:['cold'], light:['long shadows','low sun','winter light'],
   rover:['rover'],camera:['camera'],crew:['crew','on foot'],lamp:['lamp','headlamp'],
 };
+// Topics that the Atlas has no data for. Each row: words (a plural "s" also matches), the sentence that the page shows,
+// the nearest option or null. unsupportedPart reads the same words: no AI step sets an option from them.
+const NO_DATA = [
+  [['hotel','lodging','accommodation','hostel'],'The Atlas has no data on hotels.','named:settlement_1000_km'],
+  [['flight price','ticket','cost','price','budget','cheap','expensive'],'The Atlas has no data on costs.',null],
+  [['flight'],'The Atlas has no data on flights.','airfield'],
+  [['wifi','wi fi','internet','phone signal','mobile network'],'The Atlas has no data on internet or phone networks.',null],
+  [['restaurant','food','shop','supermarket'],'The Atlas has no data on food or shops.',null],
+  [['hospital','doctor','medical'],'The Atlas has no data on hospitals.','factor:help_within_reach'],
+  [['crime','war','safe country','security'],'The Atlas has no data on security.',null],
+  [['drill','drilling'],'The Atlas has no data on where you can drill.',null],
+  [['permit','permission'],'The Atlas has data on the land status, but not on permits.','factor:land_class'],
+  [['seismometer'],'The Atlas has no data on seismometers.','factor:tremor_verdict'],
+  [['colour','color'],'The Atlas has no data on colours.',null],
+  [['favourite','favorite'],'The Atlas has no data on personal preferences.',null],
+].map(([words,...rest])=>[new RegExp(`(?<![a-z0-9])(?:${words.join('|')})s?(?![a-z0-9])`),...rest]);
+// Words that set the importance or only join words. A phrase of only these words gets no feedback line.
+const FILLER_WORDS = /^(?:must|necessary|need|needs|important|prefer|preferably|ideally|if|possible|little|want|wants|we|our|us|you|me|very|please|also|should|can|that|this|there|are|from|by|as|but|so|some|any|have|has|no|not|without|than|least|most|more|less|within|under|over|below|above|around|about|close|nearby|approximately|max|maximum|min|minimum|minus|plus|degree|degrees|percent|colder|warmer|hotter|cooler|higher|lower|bigger|smaller|good|best|nice|ideal|suitable|area|areas|site|sites|places|location|experiment|experiments)$/;
 
 export async function mount(root, api) {
   const cleanups=[], aborters=new Set(), missing=[];
@@ -617,7 +635,9 @@ export async function mount(root, api) {
     const phrases=[...COMMON.light,...(rules?.activities||[]).flatMap(activity=>[activity.activity,...(COMMON[activity.id]||[])])];
     return phrases.some(phrase=>{const escaped=norm(phrase).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');return escaped&&new RegExp(`(?<![a-z0-9])${escaped}s?(?![a-z0-9])`).test(norm(part));});
   }
-  function unsupportedPart(part,ctx){return unsupportedBasePart(part,ctx)||/\b(?:hotel|flights?|favourite|favorite|colour|color|permit|permission|wifi|restaurant|cheap|budget|drill|seismometer)\b/.test(norm(part))||/\d+(?:\.\d+)?\s*(?:hours?|h)\s*(?:a|per|each)\s+day/.test(norm(part));}
+  // The words of NO_DATA include each word of the older list (hotel, flights, favourite, colour, permit, wifi, restaurant, cheap, budget, drill, seismometer).
+  function noDataTopic(part,ctx){const text=norm(part);return NO_DATA.find(([words])=>words.test(text))?.slice(1)||(unsupportedBasePart(part,ctx)?['The Atlas has activity and low-Sun data only for lunar regions.',null]:/\d+(?:\.\d+)?\s*(?:hours?|h)\s*(?:a|per|each)\s+day/.test(text)?['The Atlas has no figures for one day.','hours']:null);}
+  function unsupportedPart(part,ctx){return Boolean(noDataTopic(part,ctx));}
   function lexicalCandidates(part,ctx){
     const words=contentWords(part);
     return availableDefinitions(ctx).map(d=>{const labelWords=new Set(contentWords(`${d.label} ${commonWords(d).join(' ')}`));return {d,score:words.length?words.filter(w=>labelWords.has(w)).length/words.length:0};}).sort((a,b)=>b.score-a.score).slice(0,10);
@@ -643,7 +663,7 @@ export async function mount(root, api) {
     draft.unused=draft.unused.flatMap(unused=>{const text=norm(unused),index=text.indexOf(norm(part));return index<0?[unused]:[text.slice(0,index).trim(),text.slice(index+norm(part).length).trim()].filter(Boolean);});
     draft.notes.push(`${source}: ${criterionText(c)}.${c.pageDefault?' The page set this value.':''}`);return true;
   }
-  async function aiInterpret(request,{publishDraft=()=>{},isCurrent=()=>true}={}){
+  async function aiInterpret(request,{publishDraft=()=>{},isCurrent=()=>true,rankings=new Map()}={}){
     cancelAIInterpretation(false);aiCancelled=false;
     const scope={cancelled:false,controllers:new Set()},ruleStart=performance.now(),draft=interpret(request),timings=[];
     activeInterpretation=scope;draft.wordUses||=[];draft.notes||=[];
@@ -672,7 +692,7 @@ export async function mount(root, api) {
       const unsupportedClauses=requestClauses(request).filter(part=>unsupportedPart(part,draftContext));
       // A fragment of an unsupported clause is not a new request for another factor.
       const allowedPart=part=>contentWords(part).length&&!unsupportedPart(part,draftContext)&&!unsupportedClauses.some(clause=>clause.includes(norm(part)));
-      const parts=unique(draft.unused.flatMap(requestParts)).filter(allowedPart),rankings=new Map();let vectors=null;
+      const parts=unique(draft.unused.flatMap(requestParts)).filter(allowedPart);let vectors=null;
       if(embed&&parts.length){
         const vectorStart=performance.now();
         try{
@@ -736,6 +756,8 @@ export async function mount(root, api) {
     finally{clearTimeout(deadline);if(activeInterpretation===scope){aiCancel.hidden=true;if(live())aiState.textContent=timings.join(' · ');}}
   }
   const breakdown=el('section','ak-breakdown'),results=el('section','ak-results'),status=el('p','ak-status');status.setAttribute('role','status');status.setAttribute('aria-live','polite');
+  // Feedback on a request sits under the result line. CSS hides it while it is empty.
+  const feedback=el('div','ak-feedback');feedback.setAttribute('aria-live','polite');
   const builder=el('section','ak-builder ak-board'),builderCount=el('p','ak-count'),baseNotice=el('p','ak-base-notice'),categories=el('div','ak-categories');
   baseNotice.hidden=true;baseNotice.setAttribute('role','status');
   const wordsRoot=root.ownerDocument.getElementById('ask-words'),resultsRoot=root.ownerDocument.getElementById('ask-results');
@@ -743,10 +765,10 @@ export async function mount(root, api) {
   root.replaceChildren();if(wordsRoot){wordsRoot.classList.add('ak-module');wordsRoot.replaceChildren(words);}else root.append(words);
   root.append(builder);words.append(breakdown);if(resultsRoot){resultsRoot.classList.add('ak-module');resultsRoot.replaceChildren(status,results);}else root.append(status,results);
   const presets=el('div','ak-presets');
-  const applyPreset=i=>{if(!alive||!exampleTexts[i])return false;generation++;cancelAIInterpretation(false);const previous=current;current=decorateDraft(timedInterpret(exampleTexts[i]),exampleTexts[i]);current.criteria=curatedCriteria(current.criteria,context(current.criteria));textarea.value=current.request;bubbleUndo=null;bubbleUndoTiles=null;markChanges(previous.criteria,current.criteria);bubbleResult=`Preset: ${current.criteria.filter(c=>c.id!=='destination'&&importance(c)>0).map(c=>`${shortLabel(projectDefinition(byId.get(c.id),context(current.criteria)))}: ${importance(c)}`).join('; ')}.`;revealChangedOptions();render();save(true);return true;};
+  const applyPreset=i=>{if(!alive||!exampleTexts[i])return false;generation++;cancelAIInterpretation(false);feedback.replaceChildren();const previous=current;current=decorateDraft(timedInterpret(exampleTexts[i]),exampleTexts[i]);current.criteria=curatedCriteria(current.criteria,context(current.criteria));textarea.value=current.request;bubbleUndo=null;bubbleUndoTiles=null;markChanges(previous.criteria,current.criteria);bubbleResult=`Preset: ${current.criteria.filter(c=>c.id!=='destination'&&importance(c)>0).map(c=>`${shortLabel(projectDefinition(byId.get(c.id),context(current.criteria)))}: ${importance(c)}`).join('; ')}.`;revealChangedOptions();render();save(true);return true;};
   for(const [i,label] of ['Rover camera test','Crew work in winter light','Seismometer test'].entries())presets.append(button(label,()=>applyPreset(i),'ak-preset'));
   const boardActions=el('div','ak-board-actions');
-  boardActions.append(button('Open all',()=>{for(const view of categoryViews.values())setCategoryOpen(view,true,false);}),button('Close all',()=>{for(const view of categoryViews.values())setCategoryOpen(view,false,false);}),button('Clear all',()=>{generation++;cancelAIInterpretation(false);bubbleUndo=null;bubbleUndoTiles=null;bubbleResult='';changedOptions.clear();pendingExtras.clear();baseNotice.hidden=true;current=emptyExperiment();textarea.value='';drawBuilder();render();save();}));
+  boardActions.append(button('Open all',()=>{for(const view of categoryViews.values())setCategoryOpen(view,true,false);}),button('Close all',()=>{for(const view of categoryViews.values())setCategoryOpen(view,false,false);}),button('Clear all',()=>{generation++;cancelAIInterpretation(false);feedback.replaceChildren();bubbleUndo=null;bubbleUndoTiles=null;bubbleResult='';changedOptions.clear();pendingExtras.clear();baseNotice.hidden=true;current=emptyExperiment();textarea.value='';drawBuilder();render();save();}));
   builder.append(el('h3','','Make your experiment'),el('p','ak-note','Set how much each option counts, from 0 to 10. 10 means necessary.'),presets,builderCount,boardActions,baseNotice,categories);
   let lastSearch=null,openCategories=new Set(),builderUpdates=[],showAll=false,renderRequest=0,waitingSite=null,bubbleUndo=null,bubbleUndoTiles=null,bubbleUndoBoard=null,bubbleResult='',changedOptions=new Set(),pendingExtras=new Set(),changeTimer=0,tourSnapshotActive=false;
   const tileDrafts=new Map(),categoryViews=new Map();
@@ -769,20 +791,22 @@ export async function mount(root, api) {
   function applyDraft(draft,baseline,stage,seconds){
     draft.criteria=curatedCriteria(draft.criteria,context(draft.criteria));
     const incoming=draft.criteria.filter(c=>c.id!=='destination'&&importance(c)>0);
-    if(!incoming.length){bubbleResult='No option was set. Write what the experiment needs.';drawBreakdown();return;}
+    // No option: the feedback block says so when the work is complete (after the last AI step).
+    if(!incoming.length){bubbleResult='';drawBreakdown();return false;}
     const ids=new Set(draft.criteria.map(c=>c.id));current={...draft,criteria:[...baseline.criteria.filter(c=>!ids.has(c.id)),...draft.criteria]};
     markChanges(baseline.criteria,current.criteria);
     const names={rules:'The page interpreter',vectors:'Vector matching',chat:'The chat interpreter'};
     const groups=new Map();for(const c of incoming){const source=draft.wordUses?.find(use=>use.id===c.id)?.source||'Page interpreter';if(!groups.has(source))groups.set(source,[]);groups.get(source).push(`${shortLabel(projectDefinition(byId.get(c.id),context(current.criteria)))}: ${importance(c)}`);}
     bubbleResult=`${[...groups].map(([source,items])=>`${source}: ${items.join('; ')}.`).join(' ')} ${stage==='rules'?`${names[stage]}: ${seconds.toFixed(3)} s.`:draft.interpreter||`${names[stage]}: ${seconds.toFixed(3)} s.`}`;
-    revealChangedOptions();render();save(true);
+    revealChangedOptions();render();save(true);return true;
   }
   function save(wordsChanged=false){
     if(!current)return;lastSaved=JSON.stringify(current);const patch={ask:JSON.parse(lastSaved)};
     if(wordsChanged){patch.tab2='make';const c=context(current.criteria);patch.dest=c.mode;patch[c.mode==='moon'?'target':'msite']=c.target;}
     api.setState(patch);
   }
-  function edit(){generation++;cancelAIInterpretation?.(false);showAll=false;render();save();}
+  // A change on the board makes the lines of kind 4 (nothing passes) old: remove them.
+  function edit(){generation++;cancelAIInterpretation?.(false);feedback.querySelector('.ak-feedback-group')?.remove();showAll=false;render();save();}
   function labelledControl(text,node){const l=el('label');l.append(el('span','',text),node);return l;}
   function defaultCriterion(d,ctx,weight=0){
     const col=column(d,ctx),wanted=d.values?'is':direction(d)||'near';
@@ -866,9 +890,10 @@ export async function mount(root, api) {
     };builderUpdates.push(update);update();return box;
   }
   function drawBreakdown(){
-    breakdown.replaceChildren();const line=el('p','ak-bubble-answer',bubbleResult);line.setAttribute('role','status');line.setAttribute('aria-live','polite');breakdown.append(line);
+    // The feedback block stays in the page: a live region that is put in again is not announced.
+    for(const node of [...breakdown.childNodes])if(node!==feedback)node.remove();const line=el('p','ak-bubble-answer',bubbleResult);line.setAttribute('role','status');line.setAttribute('aria-live','polite');breakdown.prepend(line);if(feedback.parentNode!==breakdown)breakdown.append(feedback);
     if(bubbleResult&&bubbleResult!=='No option was set. Write what the experiment needs.'&&current.unused?.length){const unused=el('details','ak-unused');unused.append(el('summary','','Words that the page did not use'),el('p','',current.unused.join('; ')));breakdown.append(unused);}
-    const actions=el('div','ak-actions');if(bubbleUndo)actions.append(button('Undo',()=>{generation++;cancelAIInterpretation(false);current=structuredClone(bubbleUndo);for(const [id,control] of tileDrafts)control.restore(bubbleUndoTiles?.get(id)||defaultCriterion(byId.get(id),context(current.criteria)));pendingExtras=new Set(bubbleUndoBoard?.pendingExtras||[]);for(const [name,view] of categoryViews)if(view.more){view.more.open=bubbleUndoBoard?.more.get(name)||false;if(view.more.open)view.more.buildOptions();}bubbleUndo=null;bubbleUndoTiles=null;bubbleUndoBoard=null;bubbleResult='The board is back as it was before the request.';changedOptions.clear();textarea.value=current.request;render();save(true);}));
+    const actions=el('div','ak-actions');if(bubbleUndo)actions.append(button('Undo',()=>{generation++;cancelAIInterpretation(false);feedback.replaceChildren();current=structuredClone(bubbleUndo);for(const [id,control] of tileDrafts)control.restore(bubbleUndoTiles?.get(id)||defaultCriterion(byId.get(id),context(current.criteria)));pendingExtras=new Set(bubbleUndoBoard?.pendingExtras||[]);for(const [name,view] of categoryViews)if(view.more){view.more.open=bubbleUndoBoard?.more.get(name)||false;if(view.more.open)view.more.buildOptions();}bubbleUndo=null;bubbleUndoTiles=null;bubbleUndoBoard=null;bubbleResult='The board is back as it was before the request.';changedOptions.clear();textarea.value=current.request;render();save(true);}));
     actions.append(button('Copy this experiment as a link',async()=>{save();await copy(location.href);}),button('Copy the breakdown',()=>copy(plainText())));breakdown.append(actions);
   }
   async function copy(text){try{await navigator.clipboard.writeText(text);status.textContent='Copied.';}catch{const box=el('textarea','ak-request');box.value=text;box.readOnly=true;box.setAttribute('aria-label','Text to copy');status.replaceChildren(el('span','','Select and copy this text.'),box);box.focus();box.select();}}
@@ -976,13 +1001,47 @@ export async function mount(root, api) {
     if(missing.length)results.append(el('p','ak-note',`Files unavailable: ${unique(missing).join(', ')}. Their figures stay unknown.`));
     root.dataset.updateMs=String(performance.now()-start);
   }
+  // Feedback on a request. It says what the page did not use. It never answers, never names a place and never sets a value.
+  // "Show this option" opens the category (and "More options"), scrolls to the option and puts the focus on its importance control.
+  function showOption(id){const d=projectDefinition(byId.get(id),context(current.criteria)),view=categoryViews.get(d?.group);if(!view)return;setCategoryOpen(view,true,false);if(!d.main&&view.more){view.more.buildOptions();view.more.open=true;}const box=[...view.panel.querySelectorAll('[data-criterion]')].find(node=>node.dataset.criterion===id),control=box&&[...box.querySelectorAll('.ak-importance input,.ak-toggle input')].find(node=>!node.closest('[hidden]'));if(!control){view.card.focus();return;}box.scrollIntoView({block:'center'});control.focus({preventScroll:true});}
+  function feedbackLine(text,d){const line=el('p','',text);if(d){const b=button('Show this option',()=>showOption(d.id),'ak-feedback-button');b.setAttribute('aria-label',`Show this option: ${shortLabel(d)}`);line.append(' ',b);}return line;}
+  // Low Sun is lunar data only, so a Mars site gets an example with cold and dry.
+  function sayNotRequest(){feedback.replaceChildren(...['This field sets options only. It does not answer questions.','Write what the place must have.',context(current.criteria).mode==='mars'?'Example: bare ground, an airfield within 100 km, and a cold, dry place.':'Example: bare ground, an airfield within 100 km, and low Sun in August.'].map(text=>el('p','',text)));}
+  function sayNoOption(){const names=el('div','ak-feedback-categories');for(const name of categoryViews.keys()){const b=button(name,()=>{const view=categoryViews.get(name);if(!view)return;setCategoryOpen(view,true,false);view.card.focus();},'ak-feedback-button');b.setAttribute('aria-label',`Open the category ${name}`);names.append(b);}feedback.replaceChildren(el('p','','The page found no option in this text.'),el('p','','Write what the place must have: the ground, climate, access, people, power or time of year.'),el('p','','Open a category:'),names);}
+  // The vector match of the phrase (or of its clauses) counts from a score of 0.45. With no vector result, the best word match counts.
+  function nearestOption(phrase,ctx,rankings){const vector=[phrase,...requestClauses(phrase)].map(part=>rankings.get(norm(part))?.[0]).filter(Boolean).sort((a,b)=>b.score-a.score)[0],id=vector?(vector.score>=0.45?vector.d.id:null):lexicalCandidates(contentWords(phrase).filter(word=>!FILLER_WORDS.test(word)).join(' '),ctx).find(match=>match.score>0)?.d.id,d=byId.get(id);return definitionAvailable(d,ctx)?projectDefinition(d,ctx):null;}
+  function sayUnused(rankings){
+    // interpret joins neighbouring unused words across commas: split at clause marks, so that each topic gets its own line ("1,000" stays whole).
+    const ctx=context(current.criteria),phrases=(current.unused||[]).flatMap(phrase=>phrase.split(/[;:!?]|[,.](?!\d)/)).map(phrase=>phrase.replace(/^[\s,;:.!]+|[\s,;:.!]+$/g,'')).filter(phrase=>contentWords(phrase).some(word=>!FILLER_WORDS.test(word)));
+    // A leftover of a clause that already set an option gets no line: its nearest option is set, or it holds an importance word and matches nothing.
+    const isSet=d=>Boolean(d)&&current.criteria.some(c=>c.id===d.id&&importance(c)>0),leftover=phrase=>/\b(?:must|necessary|need|needs)\b/.test(norm(phrase));
+    const lines=phrases.map(phrase=>{const topic=noDataTopic(phrase,ctx),d=topic?(definitionAvailable(byId.get(topic[1]),ctx)?projectDefinition(byId.get(topic[1]),ctx):null):nearestOption(phrase,ctx,rankings);return {phrase,topic,d};}).filter(line=>line.topic?true:line.d?!isSet(line.d):!leftover(line.phrase)),more=lines.length-4;
+    for(const {phrase,topic,d} of lines.slice(0,4)){feedback.append(feedbackLine(`Not used: "${phrase}". ${topic?`${topic[0]} `:''}${d?`The nearest option is "${shortLabel(d)}", in the category "${d.group}".`:topic?'':'The page has no option for this phrase.'}`.trim(),d));}
+    if(more>0)feedback.append(el('p','',`The page did not use ${more} more ${more===1?'phrase':'phrases'}.`));
+  }
+  // Kind 4: after the result shows, find the necessary option that removes the most areas. The board does not change.
+  async function sayNothingPasses(token){
+    const experiment=current,wait=()=>new Promise(resolve=>setTimeout(resolve,0)),live=()=>alive&&token===generation&&current===experiment;
+    await wait();const ctx=context(current.criteria);if(ctx.mode==='mars')await ensureMarsSite(ctx.target);if(!live())return;
+    const noun=ctx.mode==='moon'?'area':'square',s=search(current.criteria,undefined,true),necessary=s.active.filter(c=>importance(c)===10);if(s.passed||!necessary.length)return;
+    const group=el('div','ak-feedback-group');group.append(el('p','',`No ${noun} passes all the necessary options.`));
+    if(necessary.length<=6){
+      let best=null;for(const c of necessary){await wait();if(!live())return;const passed=search(current.criteria.map(x=>x.id===c.id?{...x,importance:9}:x),undefined,true).passed;if(passed>(best?.passed||0))best={c,passed};}
+      if(best){const d=projectDefinition(byId.get(best.c.id),ctx);group.append(el('p','',`If the option "${shortLabel(d)}" is not necessary, ${api.fmtNumber(best.passed)} ${best.passed===1?`${noun} passes`:`${noun}s pass`}. This is the highest count for one option.`),feedbackLine('Give it an importance of 9 or less, or change its value.',d));}
+      else group.append(el('p','',`Two or more necessary options together remove all ${noun}s. Give two or more of them an importance of 9 or less.`));
+    }
+    if(live())feedback.append(group);
+  }
   form.addEventListener('submit',event=>{
-    event.preventDefault();cancelAIInterpretation(false);const token=++generation,request=textarea.value.trim();
-    if(!request||!isOptionRequest(request)){bubbleResult='No option was set. Write what the experiment needs.';drawBreakdown();return;}
+    event.preventDefault();cancelAIInterpretation(false);let token=++generation;const request=textarea.value.trim();feedback.replaceChildren();
+    if(!request||!isOptionRequest(request)){bubbleResult='';drawBreakdown();sayNotRequest();return;}
     const baseline=structuredClone(current);bubbleUndo=baseline;bubbleUndoTiles=new Map([...tileDrafts].map(([id,control])=>[id,control.read()]));bubbleUndoBoard={pendingExtras:new Set(pendingExtras),more:new Map([...categoryViews].map(([name,view])=>[name,Boolean(view.more?.open)]))};
-    const publishDraft=(draft,stage,seconds)=>{if(alive&&token===generation)applyDraft(draft,baseline,stage,seconds);};
-    if(aiOn)aiInterpret(request,{isCurrent:()=>alive&&token===generation,publishDraft});
-    else{const start=performance.now(),draft=decorateDraft(interpret(request),request);publishDraft(draft,'rules',(performance.now()-start)/1000);}
+    // A request that names another base changes the base in save(): that change belongs to this request, so the feedback follows it.
+    let applied=false;const rankings=new Map();
+    const publishDraft=(draft,stage,seconds)=>{if(alive&&token===generation){applied=applyDraft(draft,baseline,stage,seconds)||applied;token=generation;}};
+    const finish=()=>{if(!alive||token!==generation)return;if(!applied){sayNoOption();return;}sayUnused(rankings);sayNothingPasses(token);};
+    if(aiOn)aiInterpret(request,{isCurrent:()=>alive&&token===generation,publishDraft,rankings}).then(finish);
+    else{const start=performance.now(),draft=decorateDraft(interpret(request),request);publishDraft(draft,'rules',(performance.now()-start)/1000);finish();}
   });
   const rankCache=new Map(),summaryCache=new Map();
   function similarityColumns(target){
@@ -1046,8 +1105,8 @@ export async function mount(root, api) {
     // Do not rebuild an intermediate board before that snapshot is put back.
     if(tourSnapshotActive&&document.body.classList.contains('tl-tour-restoring'))return;
     const signature=JSON.stringify(state.ask),destination=`${state.dest}:${state.target}:${state.msite}`,changed=destination!==previousDestination,modeChanged=state.dest!==previousDestination.split(':')[0];previousDestination=destination;
-    if(signature!==lastSaved){lastSaved=signature;if(!restore(state.ask)){current=emptyExperiment();textarea.value='';drawBuilder();render();}}
-    else if(changed&&current){generation++;cancelAIInterpretation(false);const before=current.criteria.filter(c=>c.id!=='destination'),ctx=context([]);current.criteria=curatedCriteria(before,ctx,true);const removed=before.filter(c=>importance(c)>0).length-current.criteria.filter(c=>importance(c)>0).length,defaulted=current.criteria.filter(c=>c.baseDefault).length;if(modeChanged){openCategories.clear();pendingExtras.clear();}baseNotice.textContent=`${removed} ${removed===1?'option was':'options were'} put away because this base has no figures for ${removed===1?'it':'them'}.${defaulted?` ${defaulted} shared ${defaulted===1?'option uses':'options use'} a wanted value from this base.`:''}`;baseNotice.hidden=!modeChanged&&!removed&&!defaulted;bubbleUndo=null;bubbleUndoTiles=null;bubbleUndoBoard=null;changedOptions.clear();drawBuilder();render();save();}
+    if(signature!==lastSaved){lastSaved=signature;feedback.replaceChildren();if(!restore(state.ask)){current=emptyExperiment();textarea.value='';drawBuilder();render();}}
+    else if(changed&&current){generation++;cancelAIInterpretation(false);feedback.replaceChildren();const before=current.criteria.filter(c=>c.id!=='destination'),ctx=context([]);current.criteria=curatedCriteria(before,ctx,true);const removed=before.filter(c=>importance(c)>0).length-current.criteria.filter(c=>importance(c)>0).length,defaulted=current.criteria.filter(c=>c.baseDefault).length;if(modeChanged){openCategories.clear();pendingExtras.clear();}baseNotice.textContent=`${removed} ${removed===1?'option was':'options were'} put away because this base has no figures for ${removed===1?'it':'them'}.${defaulted?` ${defaulted} shared ${defaulted===1?'option uses':'options use'} a wanted value from this base.`:''}`;baseNotice.hidden=!modeChanged&&!removed&&!defaulted;bubbleUndo=null;bubbleUndoTiles=null;bubbleUndoBoard=null;changedOptions.clear();drawBuilder();render();save();}
   }));
   // Read each static field once. Later changes reuse these values and their ranks.
   for(const mode of ['moon','mars']){const ctx={target:mode==='moon'?api.targets[0].id:mars?.sites[0]?.id,mode,months:[],seasons:[]};for(const d of definitions)if(!dynamicIds.has(d.id)&&!d.id.startsWith('activity:')&&!d.id.startsWith('mars:'))column(d,ctx);}
@@ -1061,7 +1120,7 @@ export async function mount(root, api) {
     snapshot(){
       tourSnapshotActive=true;
       const saved={current,criteria:current.criteria.slice(),openCategories:new Set(openCategories),categoryViews:new Map(categoryViews),pendingExtras:new Set(pendingExtras),baseNotice:{text:baseNotice.textContent,hidden:baseNotice.hidden},showAll,lastSearch,rows,builderUpdates,waitingSite,bubbleUndo,bubbleUndoTiles,bubbleUndoBoard,tileDrafts:new Map(tileDrafts),bubbleResult,changedOptions:new Set(changedOptions),
-        nodes:[categories,breakdown,results,status].map(host=>({host,children:[...host.childNodes]})),
+        nodes:[categories,breakdown,feedback,results,status].map(host=>({host,children:[...host.childNodes]})),
         count:builderCount.textContent,draft:textarea.value,selection:[textarea.selectionStart,textarea.selectionEnd,textarea.selectionDirection],
         draftScroll:textarea.scrollTop,aiText:aiState.textContent};
       // Keep the saved controls untouched while a preset updates the tour board.
